@@ -8,6 +8,7 @@ import {SignupPage} from '../signup/signup';
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
+ *  reference http://www.9lessons.info/2017/06/ionic-angular-php-login-restful-api.html tutorial
  */
 
 @IonicPage()

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 
-let apiUrl = 'http://yourdomain.com/PHP-Slim-Restful/api/';
+let apiUrl = 'https://crickify.herokuapp.com/login';
 
 @Injectable()
 export class AuthService {
@@ -14,12 +14,14 @@ export class AuthService {
   postData(credentials, type) {
     return new Promise((resolve, reject) => {
       let headers = new Headers();
-
-      this.http.post(apiUrl + type, JSON.stringify(credentials), {headers: headers})
+    headers.set('Content-Type', 'application/json');
+      this.http.post(apiUrl + '/create', JSON.stringify(credentials), {headers: headers})
         .subscribe(res => {
           resolve(res.json());
+          console.log(res.json());
         }, (err) => {
           reject(err);
+          console.log("error",err);
         });
     });
 

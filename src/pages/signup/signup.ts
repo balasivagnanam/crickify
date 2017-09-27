@@ -26,10 +26,10 @@ export class SignupPage {
   }
 
   responseData : any;
-  userData = {"username": "","password": "", "name": "","email": ""};
+  userData = {"username": "","password": "", "name": "","phone": ""};
 
   signup(){
-     this.authService.postData(this.userData,'signup').then((result) => {
+     this.authService.postData(this.userData,'create').then((result) => {
       this.responseData = result;
       console.log(this.responseData);
       localStorage.setItem('userData', JSON.stringify(this.responseData));
