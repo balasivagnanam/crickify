@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import {HomePage} from '../home/home';
 import {AuthService} from '../../providers/auth/auth';
 import {SignupPage} from '../signup/signup';
@@ -19,17 +19,45 @@ import {SignupPage} from '../signup/signup';
 export class LoginPage {
 
   responseData : any;
-  userData = {"username": "","password": "", "name": "","email": ""};
+  userData = {"username": "","password": ""};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public alertController: AlertController, public loadingController: LoadingController) {
   }
 
   login(){
-    this.authService.postData(this.userData,'login').then((result) => {
+    const loading = this.loadingController.create({
+      content: 'Please wait...'
+    });
+    loading.present();
+    this.authService.login(this.userData).then((result) => {
       this.responseData = result;
       console.log(this.responseData);
       localStorage.setItem('userData', JSON.stringify(this.responseData));
-      this.navCtrl.push(HomePage);
+      if (this.responseData.statusCode == '200'){
+        loading.dismiss();
+        console.log("test 200");
+        console.log("result", this.responseData.results);
+        localStorage.setItem('userData', JSON.stringify(this.responseData.results.user));
+        this.navCtrl.push(HomePage);
+        this.navCtrl.setRoot(HomePage);
+      }  else {
+        loading.dismiss();
+        let alert = this.alertController.create({
+          title: 'Wrong login/password',
+          subTitle: 'your loging and password combination doesnt seem to work. Please try again or contact us to reset',
+          buttons: [
+          {
+            text: 'OK',
+            handler: data => {
+              console.log('ok clicked');
+              this.navCtrl.push(LoginPage);
+            }
+          }
+        ]
+        });
+        alert.present();
+      }
+      
     }, (err) => {
       // Error log
     });

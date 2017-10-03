@@ -1,5 +1,7 @@
 import { SignupPage } from '../signup/signup';
 import { LoginPage } from '../login/login';
+import {HomePage} from '../home/home';
+import {AuthService} from '../../providers/auth/auth';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -17,11 +19,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class WelcomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WelcomePage');
+    if (this.authService.getAuthenticated()){
+      console.log("token", this.authService.getToken());
+      this.navCtrl.push(HomePage);
+      this.navCtrl.setRoot(HomePage);
+    }
   }
   
   login(){
