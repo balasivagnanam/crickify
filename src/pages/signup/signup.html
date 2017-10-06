@@ -20,28 +20,40 @@
     </ion-card-header>
     <ion-card-content>
       <ion-list>
-        <ion-item>
-          <ion-label stacked>Name</ion-label>
-          <ion-input type="text" [(ngModel)]="userData.name"></ion-input>
-        </ion-item>
+        <form [formGroup]="signupForm" (submit)="signup()">
+          <ion-item>
+            <ion-label floating>Name</ion-label>
+            <ion-input type="text" formControlName="name"></ion-input>
+          </ion-item>
 
-        <ion-item>
-          <ion-label stacked>Phone</ion-label>
-          <ion-input type="text" [(ngModel)]="userData.email"></ion-input>
-        </ion-item>
+          <ion-item>
+            <ion-label floating>Phone</ion-label>
+            <ion-input type="text" formControlName="phone"></ion-input>
+          </ion-item>
 
-        <ion-item>
-          <ion-label stacked>Email</ion-label>
-          <ion-input type="text" [(ngModel)]="userData.username"></ion-input>
-        </ion-item>
+          <ion-item [class.invalid]="!username.valid">
+            <ion-label floating>Email</ion-label>
+            <ion-input type="text" formControlName="username" autocapitalize="off"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!username.valid" class="invalid">
+              <p>* Email is required!</p>
+          </ion-item>
 
-        <ion-item>
-          <ion-label stacked>Password</ion-label>
-          <ion-input type="password" [(ngModel)]="userData.password"></ion-input>
-        </ion-item>
+          <ion-item [class.invalid]="!password.valid">
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+          </ion-item>
 
-        <button ion-button full color="success" (click)="signup()">Sign up</button>
-        <a href="#" (click)="login()">Login Page</a>
+          <ion-item *ngIf="!password.valid" class="invalid">
+              <p>* Password is required!</p>
+          </ion-item>
+  
+          
+
+          <button ion-button full color="success" type="submit" [disabled]="!signupForm.valid">Sign up</button>
+          <a href="#" (click)="login()">Login Page</a>
+
+        </form>
       </ion-list>
     </ion-card-content>
   </ion-card>

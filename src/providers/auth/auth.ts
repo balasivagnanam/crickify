@@ -12,11 +12,11 @@ export class AuthService {
   constructor(public http : Http) {
     console.log('Hello AuthService Provider');
     const data = JSON.parse(localStorage.getItem('userData'));
-    if(data != ""){
+    if(data == null){
+        isAuthenticated = false;
+    } else {
         console.log("user data presnet");
         isAuthenticated = true;
-    } else {
-        isAuthenticated = false;
     }
   }
 
