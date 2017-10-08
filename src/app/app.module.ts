@@ -5,6 +5,9 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import {HttpModule} from '@angular/http';
 
 import {AuthService} from '../providers/auth/auth';
+import {MatchService} from '../providers/matches/matches';
+import {StatsService} from '../providers/stats/stats';
+import {TeamService} from '../providers/teams/teams';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -44,7 +47,7 @@ import { LoginPage } from '../pages/login/login';
   providers: [
     StatusBar,
     SplashScreen,
-    AuthService,
+    AuthService,MatchService,StatsService, TeamService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

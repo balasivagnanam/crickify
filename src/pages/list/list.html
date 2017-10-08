@@ -3,10 +3,43 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Stats Guru</ion-title>
+    <ion-title>Team Stats</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  Stats will be launched soon
+<!--     
+      <ion-segment [(ngModel)]="selectedRestaurantIdx" color="primary">
+        <ion-segment-button (click)="changeMenus(i)" [value]="i" *ngFor="let team of teams; let i = index">
+          {{team.teamname}}
+        </ion-segment-button>
+      </ion-segment>
+
+      <div [ngSwitch]="selectedRestaurantIdx" *ngFor="let team of teams">
+          <ion-list *ngSwitchCase="team[i]">
+            <ion-item>
+              <h2>{{team.teamname}}</h2>
+            </ion-item>
+          </ion-list>
+        </div> -->
+
+        <ion-item>
+            <ion-label>Team</ion-label>
+            <ion-select [(ngModel)]="teamSelected">
+              <ion-option *ngFor="let team of teams" [value]="team.teamname">{{team.teamname}}</ion-option>
+            </ion-select>
+        </ion-item>
+        
+        <ion-card *ngFor="let stat of stats">
+            
+              <ion-card-header>
+                Card Header
+              </ion-card-header>
+            
+              <ion-card-content>
+                <!-- Add card content here! -->
+              </ion-card-content>
+            
+            </ion-card>
+
 </ion-content>

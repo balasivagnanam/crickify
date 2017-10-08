@@ -25,7 +25,7 @@ export class WelcomePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad WelcomePage');
     if (this.authService.getAuthenticated()){
-      console.log("token", this.authService.getToken());
+      //console.log("token", this.authService.getToken());
       this.navCtrl.push(HomePage);
       this.navCtrl.setRoot(HomePage);
     }

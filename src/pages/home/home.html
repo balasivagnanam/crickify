@@ -8,23 +8,24 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card>
+  <ion-card *ngFor="let match of matches">
     <ion-card-header>
-      Vs Opponent Name
-      <p>Tournament Name</p>
+      {{match.match.team.teamname}} Vs
+      {{match.match.opponent}}
+      <p>{{match.match.tournament.name}}</p>
     </ion-card-header>
     <ion-card-content>
-      <p>Date & Time(Duration)</p>
-      <p>Venue</p>
+      <p>{{match.match.matchTime | date:'fullDate'}}, {{match.matchTime | date:'shortTime'}}</p>
+      <p>{{match.match.location.name}}, {{match.match.location.address}}</p>
       <ion-item>
         <ion-label>
           Select Attendance
         </ion-label>
-      <ion-select [(ngModel)]="attendance">
-          
-        <ion-option value="in">IN</ion-option>
-        <ion-option value="out">OUT</ion-option>
-        <ion-option value="wait">Waitlist</ion-option>
+      <ion-select [(ngModel)]="match.status" (ionChange)="availabilitySelected($event, match)">
+          <ion-option value="0">Not Provided</ion-option>
+        <ion-option value="1">IN</ion-option>
+        <ion-option value="2">OUT</ion-option>
+        <ion-option value="3">Waitlist</ion-option>
       </ion-select>
     </ion-item>
     </ion-card-content>

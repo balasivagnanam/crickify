@@ -12,16 +12,20 @@ export class AuthService {
   constructor(public http : Http) {
     console.log('Hello AuthService Provider');
     const data = JSON.parse(localStorage.getItem('userData'));
-    if(data != ""){
-        console.log("user data presnet");
-        isAuthenticated = true;
+     if(data == null){
+          isAuthenticated = false;
     } else {
-        isAuthenticated = false;
+                 console.log("user data presnet");
+                 isAuthenticated = true;
+            }    
     }
-  }
 
   getToken(){
-      return JSON.parse(localStorage.getItem('userData')).token;
+      return JSON.parse(localStorage.getItem('userData')).user.token;
+  }
+
+  getUser(){
+      return JSON.parse(localStorage.getItem('userData')).user;
   }
 
   signup(credentials) {
