@@ -1,0 +1,7 @@
+{
+    "name": "Crickify Redbacks",
+    "description": "App for availablity & Stats",
+    "repository": "https://github.com/balasivagnanam/crickify.git",
+    "logo": "http://pathToYourLogo.png",
+    "keywords": ["ionic", "crickify", "redbacks"]
+}
