@@ -17,6 +17,7 @@ export class StatsService {
   }
 
   getTeamStats(teamid) {
+    console.log("passed team id", teamid);
     return new Promise((resolve, reject) => {
       let headers = new Headers();
     headers.set('Content-Type', 'application/json');
