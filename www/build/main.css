@@ -25198,3 +25198,18 @@ ion-navbar.toolbar {
     padding-top: calc(16px + 20px);
   }
 }
+
+.cric-cards {
+  float: left;
+  margin-right: 5px;
+}
+
+.cric-player-card {
+  margin: 0px;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+
+.cric-player-card .card-header {
+  padding: 5px;
+}

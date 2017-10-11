@@ -19,6 +19,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {WelcomePage} from '../pages/welcome/welcome';
 import { SignupPage } from '../pages/signup/signup';
 import { LoginPage } from '../pages/login/login';
+import {BattingstatsPage} from '../pages/battingstats/battingstats';
+import {BowlingstatsPage} from '../pages/bowlingstats/bowlingstats';
 
 
 
@@ -29,7 +31,9 @@ import { LoginPage } from '../pages/login/login';
     ListPage,
     WelcomePage,
     SignupPage,
-    LoginPage
+    LoginPage,
+    BattingstatsPage,
+    BowlingstatsPage
   ],
   imports: [
     BrowserModule, HttpModule,
@@ -42,7 +46,9 @@ import { LoginPage } from '../pages/login/login';
     ListPage,
     WelcomePage,
     LoginPage,
-    SignupPage
+    SignupPage,
+    BattingstatsPage,
+    BowlingstatsPage
   ],
   providers: [
     StatusBar,
