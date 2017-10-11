@@ -33,32 +33,32 @@
         <ion-card *ngFor="let stat of statsArray">
             
               <ion-card-header>
-                  {{stat.tournament.name}}
+                  {{stat.name}}
               </ion-card-header>
             
               <ion-card-content>
                 <ion-item>
-                    <ion-label>Played- {{stat.played}}</ion-label>
+                    <ion-label>Played- {{stat.statistics.played}}</ion-label>
                     
                   </ion-item>
                 <ion-item>
-                  <ion-label>Won -  {{stat.won}}</ion-label>
+                  <ion-label>Won -  {{stat.statistics.won}}</ion-label>
                  
                 </ion-item>
                 <ion-item>
-                    <ion-label>Lost - {{stat.lost}}</ion-label>
+                    <ion-label>Lost - {{stat.statistics.lost}}</ion-label>
                     
                  </ion-item>
                 <ion-item>
-                  <ion-label>Abandoned - {{stat.abandoned}}</ion-label>
+                  <ion-label>Abandoned - {{stat.statistics.abandoned}}</ion-label>
                   
                 </ion-item>
                 <ion-item>
-                    <ion-label>Highest Total - {{stat.highestTotal}}</ion-label>
+                    <ion-label>Highest Total - {{stat.statistics.highestTotal}}</ion-label>
                     
                 </ion-item>
                 <ion-item>
-                      <ion-label>Lowest Total - {{stat.lowestTotal}}</ion-label>
+                      <ion-label>Lowest Total - {{stat.statistics.lowestTotal}}</ion-label>
                       
                 </ion-item>
               </ion-card-content>
