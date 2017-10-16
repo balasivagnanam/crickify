@@ -12,7 +12,7 @@ import {TeamService} from '../../providers/teams/teams';
 export class ListPage {
   userDetails : any;
   responseData: any;
-
+  tabsvalues : String = "team";
   selectedTeam: any;
 
   teams : any;

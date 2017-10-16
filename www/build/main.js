@@ -89,15 +89,31 @@ webpackEmptyAsyncContext.id = 113;
 var map = {
 	"../pages/login/login.module": [
 		271,
-		2
+		14
+	],
+	"../pages/my-account/my-account.module": [
+		280,
+		13
+	],
+	"../pages/my-profile/my-profile.module": [
+		279,
+		12
+	],
+	"../pages/my-teams/my-teams.module": [
+		284,
+		0
+	],
+	"../pages/previous-matches/previous-matches.module": [
+		278,
+		11
 	],
 	"../pages/signup/signup.module": [
 		272,
-		1
+		2
 	],
 	"../pages/welcome/welcome.module": [
 		273,
-		0
+		1
 	]
 };
 function webpackAsyncContext(req) {
@@ -350,6 +366,7 @@ var ListPage = (function () {
         this.statsService = statsService;
         this.app = app;
         this.loadingController = loadingController;
+        this.tabsvalues = "team";
         this.userPostData = { "user_id": "", "token": "" };
         if (this.authService.getAuthenticated()) {
             var data = JSON.parse(localStorage.getItem('userData'));
@@ -441,7 +458,7 @@ var ListPage = (function () {
 }());
 ListPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-list',template:/*ion-inline-start:"/Users/balasivagnanam/codes/crickify/src/pages/list/list.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Team Stats</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n<!--     \n      <ion-segment [(ngModel)]="selectedRestaurantIdx" color="primary">\n        <ion-segment-button (click)="changeMenus(i)" [value]="i" *ngFor="let team of teams; let i = index">\n          {{team.teamname}}\n        </ion-segment-button>\n      </ion-segment>\n\n      <div [ngSwitch]="selectedRestaurantIdx" *ngFor="let team of teams">\n          <ion-list *ngSwitchCase="team[i]">\n            <ion-item>\n              <h2>{{team.teamname}}</h2>\n            </ion-item>\n          </ion-list>\n        </div> -->\n\n        <ion-item>\n            <ion-label>Pick a Team</ion-label>\n            <ion-select [(ngModel)]="selectedTeam" (ionChange)="teamSelected($event)">\n              <ion-option *ngFor="let team of teams" [value]="team">{{team.teamname}}</ion-option>\n            </ion-select>\n        </ion-item>\n        \n        <ion-card *ngFor="let stat of statsArray">\n            \n              <ion-card-header>\n                  {{stat.name}}\n              </ion-card-header>\n            \n              <ion-card-content>\n                <ion-item>\n                    <ion-label>Played- {{stat.statistics.played}}</ion-label>\n                    \n                  </ion-item>\n                <ion-item>\n                  <ion-label>Won -  {{stat.statistics.won}}</ion-label>\n                 \n                </ion-item>\n                <ion-item>\n                    <ion-label>Lost - {{stat.statistics.lost}}</ion-label>\n                    \n                 </ion-item>\n                <ion-item>\n                  <ion-label>Abandoned - {{stat.statistics.abandoned}}</ion-label>\n                  \n                </ion-item>\n                <ion-item>\n                    <ion-label>Highest Total - {{stat.statistics.highestTotal}}</ion-label>\n                    \n                </ion-item>\n                <ion-item>\n                      <ion-label>Lowest Total - {{stat.statistics.lowestTotal}}</ion-label>\n                      \n                </ion-item>\n              </ion-card-content>\n            \n            </ion-card>\n\n</ion-content>\n'/*ion-inline-end:"/Users/balasivagnanam/codes/crickify/src/pages/list/list.html"*/
+        selector: 'page-list',template:/*ion-inline-start:"/Users/balasivagnanam/codes/crickify/src/pages/list/list.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Team Stats</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <ion-segment [(ngModel)]="tabsvalues">\n        <ion-segment-button value="team">\n          Team Stats\n        </ion-segment-button>\n        <ion-segment-button value="batting">\n          Batting Stats\n        </ion-segment-button>\n        <ion-segment-button value="bowling">\n            Bowling Stats\n        </ion-segment-button>\n        <ion-segment-button value="fielding">\n              Fielding Stats\n        </ion-segment-button>\n      </ion-segment>\n    \n    <div [ngSwitch]="tabsvalues">\n      <div *ngSwitchCase="\'team\'">\n          <ion-item>\n              <ion-label>Pick a Team</ion-label>\n              <ion-select [(ngModel)]="selectedTeam" (ionChange)="teamSelected($event)">\n                <ion-option *ngFor="let team of teams" [value]="team">{{team.teamname}}</ion-option>\n              </ion-select>\n          </ion-item>\n          \n          <ion-card *ngFor="let stat of statsArray">\n              \n                <ion-card-header>\n                    {{stat.name}}\n                </ion-card-header>\n              \n                <ion-card-content>\n                  <ion-item>\n                      <ion-label>Played- {{stat.statistics.played}}</ion-label>\n                      \n                    </ion-item>\n                  <ion-item>\n                    <ion-label>Won -  {{stat.statistics.won}}</ion-label>\n                   \n                  </ion-item>\n                  <ion-item>\n                      <ion-label>Lost - {{stat.statistics.lost}}</ion-label>\n                      \n                   </ion-item>\n                  <ion-item>\n                    <ion-label>Abandoned - {{stat.statistics.abandoned}}</ion-label>\n                    \n                  </ion-item>\n                  <ion-item>\n                      <ion-label>Highest Total - {{stat.statistics.highestTotal}}</ion-label>\n                      \n                  </ion-item>\n                  <ion-item>\n                        <ion-label>Lowest Total - {{stat.statistics.lowestTotal}}</ion-label>\n                        \n                  </ion-item>\n                </ion-card-content>\n              \n              </ion-card>\n            </div>\n    \n      <div *ngSwitchCase="\'batting\'">\n          <ion-item>\n              <ion-label>Pick a Team</ion-label>\n              <ion-select [(ngModel)]="selectedTeam" (ionChange)="teamSelected($event)">\n                <ion-option *ngFor="let team of teams" [value]="team">{{team.teamname}}</ion-option>\n              </ion-select>\n          </ion-item>\n          \n          <ion-card *ngFor="let stat of statsArray">\n              \n                <ion-card-header>\n                    {{stat.name}}\n                </ion-card-header>\n              \n                <ion-card-content>\n                  <ion-card *ngFor="let player of stat.battingStatistics" class="cric-player-card">\n                      <ion-card-header>\n                        {{player.player.name}}\n                      </ion-card-header>\n                      <ion-card-content>\n                        <div class="cric-cards">\n                          <p>Mat</p>\n                          <h5>{{player.matches}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                          <p>Inn</p>\n                          <h5>{{player.innings}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                          <p>N/O</p>\n                          <h5>{{player.notout}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                          <p>Runs</p>\n                          <h5>{{player.run}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                            <p>Balls</p>\n                            <h5>{{player.ball}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                            <p>Avg</p>\n                            <h5>{{player.average}}</h5>\n                          </div>\n                          <div class="cric-cards">\n                              <p>4s</p>\n                              <h5>{{player.four}}</h5>\n                            </div>\n                            <div class="cric-cards">\n                                <p>6s</p>\n                                <h5>{{player.six}}</h5>\n                              </div>\n                              <div class="cric-cards">\n                                  <p>S.R</p>\n                                  <h5>{{player.sr}}</h5>\n                                </div>\n                      </ion-card-content>\n                  </ion-card>\n                </ion-card-content>\n              \n              </ion-card>\n      </div>\n\n      <div *ngSwitchCase="\'bowling\'">\n          <ion-item>\n              <ion-label>Pick a Team</ion-label>\n              <ion-select [(ngModel)]="selectedTeam" (ionChange)="teamSelected($event)">\n                <ion-option *ngFor="let team of teams" [value]="team">{{team.teamname}}</ion-option>\n              </ion-select>\n          </ion-item>\n          \n          <ion-card *ngFor="let stat of statsArray">\n              \n                <ion-card-header>\n                    {{stat.name}}\n                </ion-card-header>\n              \n                <ion-card-content>\n                  <ion-card *ngFor="let player of stat.bowlingStatistics" class="cric-player-card">\n                      <ion-card-header>\n                        {{player.player.name}}\n                      </ion-card-header>\n                      <ion-card-content>\n                        <div class="cric-cards">\n                          <p>Matches</p>\n                          <h5>{{player.matches}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                          <p>Overs</p>\n                          <h5>{{player.overs}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                          <p>Runs</p>\n                          <h5>{{player.run}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                          <p>Wickets</p>\n                          <h5>{{player.wickets}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                            <p>Wides</p>\n                            <h5>{{player.wide}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                            <p>Econ</p>\n                            <h5>{{player.economy}}</h5>\n                          </div>\n                      </ion-card-content>\n                  </ion-card>\n                </ion-card-content>\n              \n              </ion-card>\n      </div>\n\n        <div *ngSwitchCase="\'fielding\'">\n            <ion-item>\n                <ion-label>Pick a Team</ion-label>\n                <ion-select [(ngModel)]="selectedTeam" (ionChange)="teamSelected($event)">\n                  <ion-option *ngFor="let team of teams" [value]="team">{{team.teamname}}</ion-option>\n                </ion-select>\n            </ion-item>\n            \n            <ion-card *ngFor="let stat of statsArray">\n                \n                  <ion-card-header>\n                      {{stat.name}}\n                  </ion-card-header>\n                \n                  <ion-card-content>\n                    <ion-card *ngFor="let player of stat.bowlingStatistics" class="cric-player-card">\n                        <ion-card-header>\n                          {{player.player.name}}\n                        </ion-card-header>\n                        <ion-card-content>\n                          <div class="cric-cards">\n                            <p>Matches</p>\n                            <h5>{{player.matches}}</h5>\n                          </div>\n                          <div class="cric-cards">\n                            <p>Catches</p>\n                            <h5>{{player.catches}}</h5>\n                          </div>\n                          <div class="cric-cards">\n                            <p>Run outs</p>\n                            <h5>{{player.runOuts}}</h5>\n                          </div>\n                          <div class="cric-cards">\n                            <p>Stumpings</p>\n                            <h5>{{player.stumpings}}</h5>\n                          </div>\n                        </ion-card-content>\n                    </ion-card>\n                  </ion-card-content>\n                \n                </ion-card>\n        </div>\n\n      </div> \n\n</ion-content>\n'/*ion-inline-end:"/Users/balasivagnanam/codes/crickify/src/pages/list/list.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__["a" /* TeamService */], __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__["a" /* StatsService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
 ], ListPage);
@@ -485,14 +502,18 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_welcome_welcome__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_signup_signup__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_login_login__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_battingstats_battingstats__ = __webpack_require__(274);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_bowlingstats_bowlingstats__ = __webpack_require__(275);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_my_profile_my_profile__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_my_account_my_account__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_previous_matches_previous_matches__ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_my_teams_my_teams__ = __webpack_require__(285);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -525,8 +546,10 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_13__pages_welcome_welcome__["a" /* WelcomePage */],
             __WEBPACK_IMPORTED_MODULE_14__pages_signup_signup__["a" /* SignupPage */],
             __WEBPACK_IMPORTED_MODULE_15__pages_login_login__["a" /* LoginPage */],
-            __WEBPACK_IMPORTED_MODULE_16__pages_battingstats_battingstats__["a" /* BattingstatsPage */],
-            __WEBPACK_IMPORTED_MODULE_17__pages_bowlingstats_bowlingstats__["a" /* BowlingstatsPage */]
+            __WEBPACK_IMPORTED_MODULE_16__pages_my_profile_my_profile__["a" /* MyProfilePage */],
+            __WEBPACK_IMPORTED_MODULE_17__pages_my_account_my_account__["a" /* MyAccountPage */],
+            __WEBPACK_IMPORTED_MODULE_18__pages_previous_matches_previous_matches__["a" /* PreviousMatchesPage */],
+            __WEBPACK_IMPORTED_MODULE_19__pages_my_teams_my_teams__["a" /* MyTeamsPage */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */], __WEBPACK_IMPORTED_MODULE_3__angular_http__["c" /* HttpModule */],
@@ -534,7 +557,11 @@ AppModule = __decorate([
                 links: [
                     { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/welcome/welcome.module#WelcomePageModule', name: 'WelcomePage', segment: 'welcome', priority: 'low', defaultHistory: [] }
+                    { loadChildren: '../pages/welcome/welcome.module#WelcomePageModule', name: 'WelcomePage', segment: 'welcome', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/previous-matches/previous-matches.module#PreviousMatchesPageModule', name: 'PreviousMatchesPage', segment: 'previous-matches', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/my-profile/my-profile.module#MyProfilePageModule', name: 'MyProfilePage', segment: 'my-profile', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/my-account/my-account.module#MyAccountPageModule', name: 'MyAccountPage', segment: 'my-account', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/my-teams/my-teams.module#MyTeamsPageModule', name: 'MyTeamsPage', segment: 'my-teams', priority: 'low', defaultHistory: [] }
                 ]
             }),
         ],
@@ -546,8 +573,10 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_13__pages_welcome_welcome__["a" /* WelcomePage */],
             __WEBPACK_IMPORTED_MODULE_15__pages_login_login__["a" /* LoginPage */],
             __WEBPACK_IMPORTED_MODULE_14__pages_signup_signup__["a" /* SignupPage */],
-            __WEBPACK_IMPORTED_MODULE_16__pages_battingstats_battingstats__["a" /* BattingstatsPage */],
-            __WEBPACK_IMPORTED_MODULE_17__pages_bowlingstats_bowlingstats__["a" /* BowlingstatsPage */]
+            __WEBPACK_IMPORTED_MODULE_16__pages_my_profile_my_profile__["a" /* MyProfilePage */],
+            __WEBPACK_IMPORTED_MODULE_17__pages_my_account_my_account__["a" /* MyAccountPage */],
+            __WEBPACK_IMPORTED_MODULE_18__pages_previous_matches_previous_matches__["a" /* PreviousMatchesPage */],
+            __WEBPACK_IMPORTED_MODULE_19__pages_my_teams_my_teams__["a" /* MyTeamsPage */]
         ],
         providers: [
             __WEBPACK_IMPORTED_MODULE_11__ionic_native_status_bar__["a" /* StatusBar */],
@@ -574,8 +603,10 @@ AppModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_welcome_welcome__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_battingstats_battingstats__ = __webpack_require__(274);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_bowlingstats_bowlingstats__ = __webpack_require__(275);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_my_profile_my_profile__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_my_account_my_account__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_previous_matches_previous_matches__ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_my_teams_my_teams__ = __webpack_require__(285);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -585,6 +616,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
+
 
 
 
@@ -604,9 +637,11 @@ var MyApp = (function () {
         // used for an example of ngFor and navigation
         this.pages = [
             { title: 'Upcoming Matches', component: __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */] },
+            { title: 'Completed Matches', component: __WEBPACK_IMPORTED_MODULE_9__pages_previous_matches_previous_matches__["a" /* PreviousMatchesPage */] },
             { title: 'Team Stats', component: __WEBPACK_IMPORTED_MODULE_5__pages_list_list__["a" /* ListPage */] },
-            { title: 'Batting Stats', component: __WEBPACK_IMPORTED_MODULE_7__pages_battingstats_battingstats__["a" /* BattingstatsPage */] },
-            { title: 'Bowling Stats', component: __WEBPACK_IMPORTED_MODULE_8__pages_bowlingstats_bowlingstats__["a" /* BowlingstatsPage */] }
+            { title: 'My Profile', component: __WEBPACK_IMPORTED_MODULE_7__pages_my_profile_my_profile__["a" /* MyProfilePage */] },
+            { title: 'My Teams', component: __WEBPACK_IMPORTED_MODULE_10__pages_my_teams_my_teams__["a" /* MyTeamsPage */] },
+            { title: 'Account Details', component: __WEBPACK_IMPORTED_MODULE_8__pages_my_account_my_account__["a" /* MyAccountPage */] },
         ];
     }
     MyApp.prototype.initializeApp = function () {
@@ -627,28 +662,26 @@ var MyApp = (function () {
 }());
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Nav */]),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Nav */])
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Nav */]) === "function" && _a || Object)
 ], MyApp.prototype, "nav", void 0);
 MyApp = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"/Users/balasivagnanam/codes/crickify/src/app/app.html"*/'<ion-menu [content]="content">\n  <ion-header>\n    <ion-toolbar>\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{p.title}}\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"/Users/balasivagnanam/codes/crickify/src/app/app.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _d || Object])
 ], MyApp);
 
+var _a, _b, _c, _d;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
 
-/***/ 274:
+/***/ 281:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BattingstatsPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PreviousMatchesPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__ = __webpack_require__(196);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__ = __webpack_require__(197);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -660,135 +693,88 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-//import { MatchService } from '../../providers/matches/matches';
-
-
 /**
- * Generated class for the BattingstatsPage page.
+ * Generated class for the PreviousMatchesPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var BattingstatsPage = (function () {
-    function BattingstatsPage(navCtrl, navParams, authService, teamService, statsService, app, loadingController) {
+var PreviousMatchesPage = (function () {
+    function PreviousMatchesPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.authService = authService;
-        this.teamService = teamService;
-        this.statsService = statsService;
-        this.app = app;
-        this.loadingController = loadingController;
-        this.userPostData = { "user_id": "", "token": "" };
-        if (this.authService.getAuthenticated()) {
-            var data = JSON.parse(localStorage.getItem('userData'));
-            console.log("fetch data", data);
-            this.userDetails = data;
-            // console.log("user data from storage", this.userDetails)
-            this.userPostData.user_id = this.userDetails.id;
-            this.userPostData.token = this.userDetails.token;
-        }
-        else {
-            var root = this.app.getRootNav();
-            root.popToRoot();
-        }
     }
-    BattingstatsPage.prototype.ionViewDidLoad = function () {
-        var _this = this;
-        console.log('ionViewDidLoad home page');
-        if (this.authService.getAuthenticated()) {
-            console.log("token", this.authService.getToken());
-        }
-        var loading = this.loadingController.create({
-            content: 'Please wait...'
-        });
-        loading.present();
-        this.teamService.getAllTeams().then(function (result) {
-            _this.responseData = result;
-            console.log(_this.responseData);
-            if (_this.responseData.statusCode == '200') {
-                loading.dismiss();
-                console.log("test 200");
-                _this.teams = _this.responseData.results.teams;
-                console.log("result teams", JSON.stringify(_this.responseData.results));
-            }
-            else if (_this.responseData.statusCode == "404") {
-                console.log("unauthorrised");
-                localStorage.clear();
-                //  this.backToWelcome();
-            }
-            else {
-                loading.dismiss();
-                console.log("error", _this.responseData);
-            }
-        }, function (err) {
-            // Error log
-        });
+    PreviousMatchesPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad PreviousMatchesPage');
     };
-    BattingstatsPage.prototype.teamSelected = function (team) {
-        console.log("selected team", team);
-        console.log("team id", team.id);
-        this.getStats(team);
-    };
-    BattingstatsPage.prototype.changeMenus = function (index) {
-        this.selectedRestaurantIdx = index;
-    };
-    BattingstatsPage.prototype.getStats = function (team) {
-        var _this = this;
-        var loading = this.loadingController.create({
-            content: 'Please wait...'
-        });
-        this.statsArray = [];
-        this.statsService.getTeamStats(team.id).then(function (result) {
-            _this.responseData = result;
-            console.log(_this.responseData);
-            if (_this.responseData.statusCode == '200') {
-                loading.dismiss();
-                console.log("stats test 200");
-                if (_this.responseData.results.stats.length == 0) {
-                }
-                else {
-                    _this.statsArray = _this.responseData.results.stats;
-                    console.log("result", _this.responseData.results.stats);
-                    // console.log("arrary", JSON.parse(this.statsArray));
-                }
-            }
-            else if (_this.responseData.statusCode == "404") {
-                console.log("unauthorrised");
-                localStorage.clear();
-                //  this.backToWelcome();
-            }
-            else {
-                loading.dismiss();
-                console.log("error", _this.responseData);
-            }
-        }, function (err) {
-            // Error log
-        });
-    };
-    return BattingstatsPage;
+    return PreviousMatchesPage;
 }());
-BattingstatsPage = __decorate([
+PreviousMatchesPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-battingstats',template:/*ion-inline-start:"/Users/balasivagnanam/codes/crickify/src/pages/battingstats/battingstats.html"*/'<!--\n  Generated template for the BattingstatsPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar>\n      <button ion-button menuToggle>\n        <ion-icon name="menu"></ion-icon>\n      </button>\n      <ion-title>Batting Stats</ion-title>\n    </ion-navbar>\n  </ion-header>\n\n<ion-content>\n    <ion-item>\n        <ion-label>Pick a Team</ion-label>\n        <ion-select [(ngModel)]="selectedTeam" (ionChange)="teamSelected($event)">\n          <ion-option *ngFor="let team of teams" [value]="team">{{team.teamname}}</ion-option>\n        </ion-select>\n    </ion-item>\n    \n    <ion-card *ngFor="let stat of statsArray">\n        \n          <ion-card-header>\n              {{stat.name}}\n          </ion-card-header>\n        \n          <ion-card-content>\n            <ion-card *ngFor="let player of stat.battingStatistics" class="cric-player-card">\n                <ion-card-header>\n                  {{player.player.name}}\n                </ion-card-header>\n                <ion-card-content>\n                  <div class="cric-cards">\n                    <p>Mat</p>\n                    <h5>{{player.matches}}</h5>\n                  </div>\n                  <div class="cric-cards">\n                    <p>Inn</p>\n                    <h5>{{player.innings}}</h5>\n                  </div>\n                  <div class="cric-cards">\n                    <p>N/O</p>\n                    <h5>{{player.notout}}</h5>\n                  </div>\n                  <div class="cric-cards">\n                    <p>Runs</p>\n                    <h5>{{player.run}}</h5>\n                  </div>\n                  <div class="cric-cards">\n                      <p>Balls</p>\n                      <h5>{{player.ball}}</h5>\n                  </div>\n                  <div class="cric-cards">\n                      <p>Avg</p>\n                      <h5>{{player.average}}</h5>\n                    </div>\n                    <div class="cric-cards">\n                        <p>4s</p>\n                        <h5>{{player.four}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                          <p>6s</p>\n                          <h5>{{player.six}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                            <p>S.R</p>\n                            <h5>{{player.sr}}</h5>\n                          </div>\n                </ion-card-content>\n            </ion-card>\n          </ion-card-content>\n        \n        </ion-card>\n\n</ion-content>\n'/*ion-inline-end:"/Users/balasivagnanam/codes/crickify/src/pages/battingstats/battingstats.html"*/,
+        selector: 'page-previous-matches',template:/*ion-inline-start:"/Users/balasivagnanam/codes/crickify/src/pages/previous-matches/previous-matches.html"*/'<!--\n  Generated template for the PreviousMatchesPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n    <ion-navbar>\n        <button ion-button menuToggle>\n          <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>Completed Matches</ion-title>\n      </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n  Completed matches coming soon\n</ion-content>\n'/*ion-inline-end:"/Users/balasivagnanam/codes/crickify/src/pages/previous-matches/previous-matches.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__["a" /* TeamService */], __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__["a" /* StatsService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
-], BattingstatsPage);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]])
+], PreviousMatchesPage);
 
-//# sourceMappingURL=battingstats.js.map
+//# sourceMappingURL=previous-matches.js.map
 
 /***/ }),
 
-/***/ 275:
+/***/ 282:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BowlingstatsPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyProfilePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(24);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the MyProfilePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var MyProfilePage = (function () {
+    function MyProfilePage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+    }
+    MyProfilePage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad MyProfilePage');
+    };
+    return MyProfilePage;
+}());
+MyProfilePage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-my-profile',template:/*ion-inline-start:"/Users/balasivagnanam/codes/crickify/src/pages/my-profile/my-profile.html"*/'<!--\n  Generated template for the MyProfilePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n    <ion-navbar>\n        <button ion-button menuToggle>\n          <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>My Profile</ion-title>\n      </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n  My Profile coming soon\n</ion-content>\n'/*ion-inline-end:"/Users/balasivagnanam/codes/crickify/src/pages/my-profile/my-profile.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]])
+], MyProfilePage);
+
+//# sourceMappingURL=my-profile.js.map
+
+/***/ }),
+
+/***/ 283:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyAccountPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__ = __webpack_require__(196);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__ = __webpack_require__(197);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -801,25 +787,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-//import { MatchService } from '../../providers/matches/matches';
-
-
 /**
- * Generated class for the BowlingstatsPage page.
+ * Generated class for the MyAccountPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var BowlingstatsPage = (function () {
-    function BowlingstatsPage(navCtrl, navParams, authService, teamService, statsService, app, loadingController) {
+var MyAccountPage = (function () {
+    function MyAccountPage(navCtrl, navParams, authService, loadingController) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.authService = authService;
-        this.teamService = teamService;
-        this.statsService = statsService;
-        this.app = app;
         this.loadingController = loadingController;
         this.userPostData = { "user_id": "", "token": "" };
+        this.user = " ";
         if (this.authService.getAuthenticated()) {
             var data = JSON.parse(localStorage.getItem('userData'));
             console.log("fetch data", data);
@@ -828,94 +809,72 @@ var BowlingstatsPage = (function () {
             this.userPostData.user_id = this.userDetails.id;
             this.userPostData.token = this.userDetails.token;
         }
-        else {
-            var root = this.app.getRootNav();
-            root.popToRoot();
-        }
     }
-    BowlingstatsPage.prototype.ionViewDidLoad = function () {
-        var _this = this;
+    MyAccountPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad MyAccountPage');
         console.log('ionViewDidLoad home page');
         if (this.authService.getAuthenticated()) {
-            console.log("token", this.authService.getToken());
+            console.log("user", this.authService.getUser());
+            this.user = JSON.parse(JSON.stringify(this.authService.getUser()));
         }
-        var loading = this.loadingController.create({
-            content: 'Please wait...'
-        });
-        loading.present();
-        this.teamService.getAllTeams().then(function (result) {
-            _this.responseData = result;
-            console.log(_this.responseData);
-            if (_this.responseData.statusCode == '200') {
-                loading.dismiss();
-                console.log("test 200");
-                _this.teams = _this.responseData.results.teams;
-                console.log("result teams", JSON.stringify(_this.responseData.results));
-            }
-            else if (_this.responseData.statusCode == "404") {
-                console.log("unauthorrised");
-                localStorage.clear();
-                //  this.backToWelcome();
-            }
-            else {
-                loading.dismiss();
-                console.log("error", _this.responseData);
-            }
-        }, function (err) {
-            // Error log
-        });
     };
-    BowlingstatsPage.prototype.teamSelected = function (team) {
-        console.log("selected team", team);
-        console.log("team id", team.id);
-        this.getStats(team);
-    };
-    BowlingstatsPage.prototype.changeMenus = function (index) {
-        this.selectedRestaurantIdx = index;
-    };
-    BowlingstatsPage.prototype.getStats = function (team) {
-        var _this = this;
-        var loading = this.loadingController.create({
-            content: 'Please wait...'
-        });
-        this.statsArray = [];
-        this.statsService.getTeamStats(team.id).then(function (result) {
-            _this.responseData = result;
-            console.log(_this.responseData);
-            if (_this.responseData.statusCode == '200') {
-                loading.dismiss();
-                console.log("stats test 200");
-                if (_this.responseData.results.stats.length == 0) {
-                }
-                else {
-                    _this.statsArray = _this.responseData.results.stats;
-                    console.log("result", _this.responseData.results.stats);
-                    // console.log("arrary", JSON.parse(this.statsArray));
-                }
-            }
-            else if (_this.responseData.statusCode == "404") {
-                console.log("unauthorrised");
-                localStorage.clear();
-                //  this.backToWelcome();
-            }
-            else {
-                loading.dismiss();
-                console.log("error", _this.responseData);
-            }
-        }, function (err) {
-            // Error log
-        });
-    };
-    return BowlingstatsPage;
+    return MyAccountPage;
 }());
-BowlingstatsPage = __decorate([
+MyAccountPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-bowlingstats',template:/*ion-inline-start:"/Users/balasivagnanam/codes/crickify/src/pages/bowlingstats/bowlingstats.html"*/'<!--\n  Generated template for the BowlingstatsPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar>\n      <button ion-button menuToggle>\n        <ion-icon name="menu"></ion-icon>\n      </button>\n      <ion-title>Bowling Stats</ion-title>\n    </ion-navbar>\n  </ion-header>\n\n<ion-content>\n    <ion-item>\n        <ion-label>Pick a Team</ion-label>\n        <ion-select [(ngModel)]="selectedTeam" (ionChange)="teamSelected($event)">\n          <ion-option *ngFor="let team of teams" [value]="team">{{team.teamname}}</ion-option>\n        </ion-select>\n    </ion-item>\n    \n    <ion-card *ngFor="let stat of statsArray">\n        \n          <ion-card-header>\n              {{stat.name}}\n          </ion-card-header>\n        \n          <ion-card-content>\n            <ion-card *ngFor="let player of stat.bowlingStatistics" class="cric-player-card">\n                <ion-card-header>\n                  {{player.player.name}}\n                </ion-card-header>\n                <ion-card-content>\n                  <div class="cric-cards">\n                    <p>Matches</p>\n                    <h5>{{player.matches}}</h5>\n                  </div>\n                  <div class="cric-cards">\n                    <p>Overs</p>\n                    <h5>{{player.overs}}</h5>\n                  </div>\n                  <div class="cric-cards">\n                    <p>Runs</p>\n                    <h5>{{player.run}}</h5>\n                  </div>\n                  <div class="cric-cards">\n                    <p>Wickets</p>\n                    <h5>{{player.wickets}}</h5>\n                  </div>\n                  <div class="cric-cards">\n                      <p>Wides</p>\n                      <h5>{{player.wide}}</h5>\n                  </div>\n                  <div class="cric-cards">\n                      <p>Econ</p>\n                      <h5>{{player.economy}}</h5>\n                    </div>\n                </ion-card-content>\n            </ion-card>\n          </ion-card-content>\n        \n        </ion-card>\n</ion-content>\n'/*ion-inline-end:"/Users/balasivagnanam/codes/crickify/src/pages/bowlingstats/bowlingstats.html"*/,
+        selector: 'page-my-account',template:/*ion-inline-start:"/Users/balasivagnanam/codes/crickify/src/pages/my-account/my-account.html"*/'<!--\n  Generated template for the MyAccountPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n    <ion-navbar>\n        <button ion-button menuToggle>\n          <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>My Account</ion-title>\n      </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <p>Name  : {{user.name}}</p>\n  <p>Phone  : {{user.phone}}</p>\n  <p>Username  : {{user.username}}</p>\n  <p> Roles  : </p><p> <span *ngFor="let role of user.roles">\n                {{role}}</span> </p>\n      \n              \n</ion-content>\n'/*ion-inline-end:"/Users/balasivagnanam/codes/crickify/src/pages/my-account/my-account.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__["a" /* TeamService */], __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__["a" /* StatsService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
-], BowlingstatsPage);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
+], MyAccountPage);
 
-//# sourceMappingURL=bowlingstats.js.map
+//# sourceMappingURL=my-account.js.map
+
+/***/ }),
+
+/***/ 285:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyTeamsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(24);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the MyTeamsPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var MyTeamsPage = (function () {
+    function MyTeamsPage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+    }
+    MyTeamsPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad MyTeamsPage');
+    };
+    return MyTeamsPage;
+}());
+MyTeamsPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-my-teams',template:/*ion-inline-start:"/Users/balasivagnanam/codes/crickify/src/pages/my-teams/my-teams.html"*/'<!--\n  Generated template for the MyTeamsPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n    <ion-navbar>\n        <button ion-button menuToggle>\n          <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>My Teams</ion-title>\n      </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  My Teams coming soon\n</ion-content>\n'/*ion-inline-end:"/Users/balasivagnanam/codes/crickify/src/pages/my-teams/my-teams.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]])
+], MyTeamsPage);
+
+//# sourceMappingURL=my-teams.js.map
 
 /***/ }),
 

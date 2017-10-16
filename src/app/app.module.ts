@@ -19,9 +19,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {WelcomePage} from '../pages/welcome/welcome';
 import { SignupPage } from '../pages/signup/signup';
 import { LoginPage } from '../pages/login/login';
-import {BattingstatsPage} from '../pages/battingstats/battingstats';
-import {BowlingstatsPage} from '../pages/bowlingstats/bowlingstats';
-
+import {MyProfilePage} from '../pages/my-profile/my-profile';
+import {MyAccountPage} from '../pages/my-account/my-account';
+import {PreviousMatchesPage} from '../pages/previous-matches/previous-matches';
+import {MyTeamsPage} from '../pages/my-teams/my-teams';
 
 
 @NgModule({
@@ -32,8 +33,10 @@ import {BowlingstatsPage} from '../pages/bowlingstats/bowlingstats';
     WelcomePage,
     SignupPage,
     LoginPage,
-    BattingstatsPage,
-    BowlingstatsPage
+    MyProfilePage,
+    MyAccountPage,
+    PreviousMatchesPage,
+    MyTeamsPage
   ],
   imports: [
     BrowserModule, HttpModule,
@@ -47,8 +50,10 @@ import {BowlingstatsPage} from '../pages/bowlingstats/bowlingstats';
     WelcomePage,
     LoginPage,
     SignupPage,
-    BattingstatsPage,
-    BowlingstatsPage
+    MyProfilePage,
+    MyAccountPage,
+    PreviousMatchesPage,
+    MyTeamsPage
   ],
   providers: [
     StatusBar,
