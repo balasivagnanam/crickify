@@ -36,6 +36,26 @@ export class MatchService {
 
   }
 
+  getPreviousMatches() {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set("token",this.getToken());
+      this.http.get(apiUrl + '/playedmatches', {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("auth response matches", res.json()); 
+          if(res.json().statusCode == '200'){
+            console.log("played matches", res.json());
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
+
+  }
+
   postAvailability(data) {
     return new Promise((resolve, reject) => {
       let headers = new Headers();
