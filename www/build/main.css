@@ -25213,3 +25213,10 @@ ion-navbar.toolbar {
 .cric-player-card .card-header {
   padding: 5px;
 }
+
+page-my-profile .cric-cards {
+  float: left;
+  margin-right: 5px;
+  width: 22%;
+  margin-bottom: 20px;
+}

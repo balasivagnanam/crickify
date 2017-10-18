@@ -23,6 +23,7 @@ import {MyProfilePage} from '../pages/my-profile/my-profile';
 import {MyAccountPage} from '../pages/my-account/my-account';
 import {PreviousMatchesPage} from '../pages/previous-matches/previous-matches';
 import {MyTeamsPage} from '../pages/my-teams/my-teams';
+import { PlayersProvider } from '../providers/players/players';
 
 
 @NgModule({
@@ -58,8 +59,9 @@ import {MyTeamsPage} from '../pages/my-teams/my-teams';
   providers: [
     StatusBar,
     SplashScreen,
-    AuthService,MatchService,StatsService, TeamService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    AuthService,MatchService,StatsService, TeamService,PlayersProvider,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    PlayersProvider
   ]
 })
 export class AppModule {}

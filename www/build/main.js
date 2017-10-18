@@ -525,12 +525,14 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_my_account_my_account__ = __webpack_require__(283);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_previous_matches_previous_matches__ = __webpack_require__(281);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_my_teams_my_teams__ = __webpack_require__(285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__providers_players_players__ = __webpack_require__(286);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -600,8 +602,9 @@ AppModule = __decorate([
         providers: [
             __WEBPACK_IMPORTED_MODULE_11__ionic_native_status_bar__["a" /* StatusBar */],
             __WEBPACK_IMPORTED_MODULE_12__ionic_native_splash_screen__["a" /* SplashScreen */],
-            __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_5__providers_matches_matches__["a" /* MatchService */], __WEBPACK_IMPORTED_MODULE_6__providers_stats_stats__["a" /* StatsService */], __WEBPACK_IMPORTED_MODULE_7__providers_teams_teams__["a" /* TeamService */],
-            { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["v" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicErrorHandler */] }
+            __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_5__providers_matches_matches__["a" /* MatchService */], __WEBPACK_IMPORTED_MODULE_6__providers_stats_stats__["a" /* StatsService */], __WEBPACK_IMPORTED_MODULE_7__providers_teams_teams__["a" /* TeamService */], __WEBPACK_IMPORTED_MODULE_20__providers_players_players__["a" /* PlayersProvider */],
+            { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["v" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicErrorHandler */] },
+            __WEBPACK_IMPORTED_MODULE_20__providers_players_players__["a" /* PlayersProvider */]
         ]
     })
 ], AppModule);
@@ -729,14 +732,10 @@ var PreviousMatchesPage = (function () {
         this.authService = authService;
         this.matchService = matchService;
         this.matches = '';
+        this.getData();
     }
-    PreviousMatchesPage.prototype.ionViewDidLoad = function () {
+    PreviousMatchesPage.prototype.getData = function () {
         var _this = this;
-        console.log('ionViewDidLoad PreviousMatchesPage');
-        console.log('ionViewDidLoad home page');
-        if (this.authService.getAuthenticated()) {
-            console.log("token", this.authService.getToken());
-        }
         var loading = this.loadingController.create({
             content: 'Please wait...'
         });
@@ -762,6 +761,13 @@ var PreviousMatchesPage = (function () {
             // Error log
         });
     };
+    PreviousMatchesPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad PreviousMatchesPage');
+        console.log('ionViewDidLoad home page');
+        if (this.authService.getAuthenticated()) {
+            console.log("token", this.authService.getToken());
+        }
+    };
     return PreviousMatchesPage;
 }());
 PreviousMatchesPage = __decorate([
@@ -769,9 +775,10 @@ PreviousMatchesPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-previous-matches',template:/*ion-inline-start:"/Users/balasivagnanam/codes/crickify/src/pages/previous-matches/previous-matches.html"*/'<!--\n  Generated template for the PreviousMatchesPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n    <ion-navbar>\n        <button ion-button menuToggle>\n          <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>Completed Matches</ion-title>\n      </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n    <ion-card *ngFor="let match of matches">\n        <ion-card-header>\n          {{match.team.teamname}} Vs\n          {{match.opponent}}\n          <p>{{match.tournament.name}}</p>\n        </ion-card-header>\n        <ion-card-content>\n          <p>{{match.matchTime | date:\'fullDate\'}}, {{match.matchTime | date:\'shortTime\'}}</p>\n          <p>{{match.location.name}}, {{match.location.address}}</p>\n          <p>Toss won by <span *ngIf="match.tossWon">{{match.team.teamname}}</span><span *ngIf="!match.tossWon">{{match.opponent}}</span>\n          <p>Result : {{match.result}}, {{match.remarks}}</p>\n          <p>{{match.team.teamname}}: {{match.score}}/{{match.wickets}}</p>\n          <p>{{match.opponent}}:{{match.oppositionScore}}/{{match.oppositionWickets}}</p>\n        </ion-card-content>\n      </ion-card>\n    </ion-content>\n'/*ion-inline-end:"/Users/balasivagnanam/codes/crickify/src/pages/previous-matches/previous-matches.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_3__providers_matches_matches__["a" /* MatchService */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__providers_matches_matches__["a" /* MatchService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_matches_matches__["a" /* MatchService */]) === "function" && _e || Object])
 ], PreviousMatchesPage);
 
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=previous-matches.js.map
 
 /***/ }),
@@ -783,6 +790,8 @@ PreviousMatchesPage = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyProfilePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_players_players__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth__ = __webpack_require__(31);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -794,6 +803,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
 /**
  * Generated class for the MyProfilePage page.
  *
@@ -801,10 +812,54 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var MyProfilePage = (function () {
-    function MyProfilePage(navCtrl, navParams) {
+    function MyProfilePage(navCtrl, navParams, playersService, loadingController, authService) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.playersService = playersService;
+        this.loadingController = loadingController;
+        this.authService = authService;
+        this.tabsvalues = "batting";
+        this.userPostData = { "user_id": "", "token": "" };
+        this.playerStats = " ";
+        this.battingStats = "";
+        this.bowlingStats = "";
+        if (this.authService.getAuthenticated()) {
+            var data = JSON.parse(localStorage.getItem('userData'));
+            console.log("fetch data", data);
+            this.userDetails = data;
+            // console.log("user data from storage", this.userDetails)
+            this.userPostData.user_id = this.userDetails.id;
+            this.userPostData.token = this.userDetails.token;
+            this.getData();
+        }
     }
+    MyProfilePage.prototype.getData = function () {
+        var _this = this;
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.playersService.getPlayerStats().then(function (result) {
+            _this.responseData = result;
+            console.log(_this.responseData);
+            if (_this.responseData.statusCode == '200') {
+                loading.dismiss();
+                console.log("test 200");
+                console.log("result", _this.responseData.results.Stats);
+                _this.playerStats = _this.responseData.results.Stats;
+                _this.battingStats = _this.responseData.results.Stats.battingStatistics;
+                _this.bowlingStats = _this.responseData.results.Stats.bowlingStatistics;
+            }
+            else if (_this.responseData.statusCode == "404") {
+                console.log("unauthorrised");
+                localStorage.clear();
+            }
+            else {
+                loading.dismiss();
+                console.log("error", _this.responseData);
+            }
+        });
+    };
     MyProfilePage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad MyProfilePage');
     };
@@ -813,11 +868,12 @@ var MyProfilePage = (function () {
 MyProfilePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-my-profile',template:/*ion-inline-start:"/Users/balasivagnanam/codes/crickify/src/pages/my-profile/my-profile.html"*/'<!--\n  Generated template for the MyProfilePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n    <ion-navbar>\n        <button ion-button menuToggle>\n          <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>My Profile</ion-title>\n      </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n  My Profile coming soon\n</ion-content>\n'/*ion-inline-end:"/Users/balasivagnanam/codes/crickify/src/pages/my-profile/my-profile.html"*/,
+        selector: 'page-my-profile',template:/*ion-inline-start:"/Users/balasivagnanam/codes/crickify/src/pages/my-profile/my-profile.html"*/'<!--\n  Generated template for the MyProfilePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n    <ion-navbar>\n        <button ion-button menuToggle>\n          <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>My Profile</ion-title>\n      </ion-navbar>\n</ion-header>\n\n\n<ion-content padding class="crickify-my-profile">\n  <h3>{{playerStats.battingStatistics?.player.name}}</h3>\n  <ion-segment [(ngModel)]="tabsvalues">\n      <ion-segment-button value="batting">\n        Batting Stats\n      </ion-segment-button>\n      <ion-segment-button value="bowling">\n          Bowling Stats\n      </ion-segment-button>\n      <ion-segment-button value="fielding">\n            Fielding Stats\n      </ion-segment-button>\n    </ion-segment>\n  \n  <div [ngSwitch]="tabsvalues"> \n    <div *ngSwitchCase="\'batting\'">\n                <ion-card class="cric-player-card">\n                    <ion-card-content>\n                      <div class="cric-cards">\n                        <p>Mat</p>\n                        <h5>{{playerStats.battingStatistics?.matches}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                        <p>Inn</p>\n                        <h5>{{playerStats.battingStatistics?.innings}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                        <p>N/O</p>\n                        <h5>{{playerStats.battingStatistics?.notout}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                        <p>Runs</p>\n                        <h5>{{playerStats.battingStatistics?.run}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                          <p>Balls</p>\n                          <h5>{{playerStats.battingStatistics?.ball}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                          <p>Avg</p>\n                          <h5>{{playerStats.battingStatistics?.average}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                            <p>4s</p>\n                            <h5>{{playerStats.battingStatistics?.four}}</h5>\n                          </div>\n                          <div class="cric-cards">\n                              <p>6s</p>\n                              <h5>{{playerStats.battingStatistics?.six}}</h5>\n                            </div>\n                            <div class="cric-cards">\n                                <p>S.R</p>\n                                <h5>{{playerStats.battingStatistics?.sr}}</h5>\n                              </div>\n                              <div class="cric-cards">\n                                  <p>Highest</p>\n                                  <h5>{{playerStats.battingStatistics?.highest}}</h5>\n                                </div>\n                    </ion-card-content>\n                </ion-card>\n    </div>\n\n    <div *ngSwitchCase="\'bowling\'">\n      \n                <ion-card class="cric-player-card">\n                   \n                    <ion-card-content>\n                      <div class="cric-cards">\n                        <p>Matches</p>\n                        <h5>{{playerStats.bowlingStatistics.matches}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                        <p>Overs</p>\n                        <h5>{{playerStats.bowlingStatistics.overs}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                        <p>Runs</p>\n                        <h5>{{playerStats.bowlingStatistics.run}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                        <p>Wickets</p>\n                        <h5>{{playerStats.bowlingStatistics.wickets}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                          <p>Wides</p>\n                          <h5>{{playerStats.bowlingStatistics.wide}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                          <p>No Balls</p>\n                          <h5>{{playerStats.bowlingStatistics.noBall}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                          <p>Econ</p>\n                          <h5>{{playerStats.bowlingStatistics.economy}}</h5>\n                        </div>\n                    </ion-card-content>\n                </ion-card>\n             \n    </div>\n\n      <div *ngSwitchCase="\'fielding\'">\n          \n          \n          \n                  <ion-card class="cric-player-card">\n                      <ion-card-content>\n                        <div class="cric-cards">\n                          <p>Matches</p>\n                          <h5>{{playerStats.bowlingStatistics.matches}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                          <p>Catches</p>\n                          <h5>{{playerStats.bowlingStatistics.catches}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                          <p>Run outs</p>\n                          <h5>{{playerStats.bowlingStatistics.runOuts}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                          <p>Stumpings</p>\n                          <h5>{{playerStats.bowlingStatistics.stumpings}}</h5>\n                        </div>\n                      </ion-card-content>\n                  </ion-card>\n      </div>\n\n    </div> \n</ion-content>\n'/*ion-inline-end:"/Users/balasivagnanam/codes/crickify/src/pages/my-profile/my-profile.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_players_players__["a" /* PlayersProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_players_players__["a" /* PlayersProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth__["a" /* AuthService */]) === "function" && _e || Object])
 ], MyProfilePage);
 
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=my-profile.js.map
 
 /***/ }),
@@ -930,6 +986,72 @@ MyTeamsPage = __decorate([
 ], MyTeamsPage);
 
 //# sourceMappingURL=my-teams.js.map
+
+/***/ }),
+
+/***/ 286:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PlayersProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/*
+  Generated class for the PlayersProvider provider.
+
+  See https://angular.io/guide/dependency-injection for more info on providers
+  and Angular DI.
+*/
+var apiUrl = 'https://crickify.herokuapp.com/player';
+var PlayersProvider = (function () {
+    function PlayersProvider(http) {
+        this.http = http;
+        console.log('Hello PlayersProvider Provider');
+    }
+    PlayersProvider.prototype.getToken = function () {
+        return JSON.parse(localStorage.getItem('userData')).user.token;
+    };
+    PlayersProvider.prototype.getPlayerStats = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.get(apiUrl + '/stats', { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("auth response matches", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("player stats", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    return PlayersProvider;
+}());
+PlayersProvider = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
+], PlayersProvider);
+
+//# sourceMappingURL=players.js.map
 
 /***/ }),
 

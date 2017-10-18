@@ -20,16 +20,10 @@ export class PreviousMatchesPage {
   matches: any = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingController:LoadingController,public authService:AuthService, public matchService:MatchService) {
+    this.getData();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PreviousMatchesPage');
-
-    console.log('ionViewDidLoad home page');
-    if (this.authService.getAuthenticated()){
-      console.log("token", this.authService.getToken());
-    }
-
+  getData(){
     const loading = this.loadingController.create({
       content: 'Please wait...'
     });
@@ -55,6 +49,16 @@ export class PreviousMatchesPage {
     });
 
 
+  }
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad PreviousMatchesPage');
+
+    console.log('ionViewDidLoad home page');
+    if (this.authService.getAuthenticated()){
+      console.log("token", this.authService.getToken());
+    }
+
+    
   }
 
 }
