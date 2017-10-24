@@ -16,7 +16,15 @@
 
 
 <ion-content padding class="crickify-my-profile">
-  <h3>{{playerStats.battingStatistics?.player.name}}</h3>
+    <ion-item>
+        <ion-label>Pick a Team</ion-label>
+        <ion-select [(ngModel)]="selectedTeam" (ionChange)="teamSelected($event)">
+          <ion-option *ngFor="let team of teams" [value]="team">{{team.teamname}}</ion-option>
+        </ion-select>
+    </ion-item>
+
+
+  <h3>{{statsArray[0]?.stats.battingStatistics?.player.name}}</h3>
   <ion-segment [(ngModel)]="tabsvalues">
       <ion-segment-button value="batting">
         Batting Stats
@@ -31,7 +39,54 @@
   
   <div [ngSwitch]="tabsvalues"> 
     <div *ngSwitchCase="'batting'">
-                <ion-card class="cric-player-card">
+      <div class="cric-tournament-card" *ngFor="let tournament of statsArray">
+          {{tournament.name}}
+          <ion-card class="cric-player-card">
+              <ion-card-content>
+                <div class="cric-cards">
+                  <p>Mat</p>
+                  <h5>{{tournament.stats.battingStatistics?.matches}}</h5>
+                </div>
+                <div class="cric-cards">
+                  <p>Inn</p>
+                  <h5>{{tournament.stats.battingStatistics?.innings}}</h5>
+                </div>
+                <div class="cric-cards">
+                  <p>N/O</p>
+                  <h5>{{tournament.stats.battingStatistics?.notout}}</h5>
+                </div>
+                <div class="cric-cards">
+                  <p>Runs</p>
+                  <h5>{{tournament.stats.battingStatistics?.run}}</h5>
+                </div>
+                <div class="cric-cards">
+                    <p>Balls</p>
+                    <h5>{{tournament.stats.battingStatistics?.ball}}</h5>
+                </div>
+                <div class="cric-cards">
+                    <p>Avg</p>
+                    <h5>{{tournament.stats.battingStatistics?.average}}</h5>
+                  </div>
+                  <div class="cric-cards">
+                      <p>4s</p>
+                      <h5>{{tournament.stats.battingStatistics?.four}}</h5>
+                    </div>
+                    <div class="cric-cards">
+                        <p>6s</p>
+                        <h5>{{tournament.stats.battingStatistics?.six}}</h5>
+                      </div>
+                      <div class="cric-cards">
+                          <p>S.R</p>
+                          <h5>{{tournament.stats.battingStatistics?.sr}}</h5>
+                        </div>
+                        <div class="cric-cards">
+                            <p>Highest</p>
+                            <h5>{{tournament.stats.battingStatistics?.highest}}</h5>
+                          </div>
+              </ion-card-content>
+          </ion-card>
+      </div>
+                <!-- <ion-card class="cric-player-card">
                     <ion-card-content>
                       <div class="cric-cards">
                         <p>Mat</p>
@@ -74,12 +129,12 @@
                                   <h5>{{playerStats.battingStatistics?.highest}}</h5>
                                 </div>
                     </ion-card-content>
-                </ion-card>
+                </ion-card> -->
     </div>
 
     <div *ngSwitchCase="'bowling'">
       
-                <ion-card class="cric-player-card">
+                <!-- <ion-card class="cric-player-card">
                    
                     <ion-card-content>
                       <div class="cric-cards">
@@ -111,34 +166,71 @@
                           <h5>{{playerStats.bowlingStatistics.economy}}</h5>
                         </div>
                     </ion-card-content>
-                </ion-card>
-             
+                </ion-card> -->
+                <div class="cric-tournament-card" *ngFor="let tournament of statsArray">
+                    {{tournament.name}}
+                    <ion-card class="cric-player-card">
+                        <ion-card-content>
+                          <div class="cric-cards">
+                            <p>Matches</p>
+                            <h5>{{tournament.stats.bowlingStatistics?.matches}}</h5>
+                          </div>
+                          <div class="cric-cards">
+                            <p>Overs</p>
+                            <h5>{{tournament.stats.bowlingStatistics?.overs}}</h5>
+                          </div>
+                          <div class="cric-cards">
+                            <p>Runs</p>
+                            <h5>{{tournament.stats.bowlingStatistics?.run}}</h5>
+                          </div>
+                          <div class="cric-cards">
+                              <p>Wickets</p>
+                              <h5>{{tournament.stats.bowlingStatistics?.wickets}}</h5>
+                          </div>
+                          <div class="cric-cards">
+                              <p>Wides</p>
+                              <h5>{{tournament.stats.bowlingStatistics?.wide}}</h5>
+                            </div>
+                            <div class="cric-cards">
+                                <p>NoBall</p>
+                                <h5>{{tournament.stats.bowlingStatistics?.noBall}}</h5>
+                              </div>
+                              <div class="cric-cards">
+                                  <p>Econ</p>
+                                  <h5>{{tournament.stats.bowlingStatistics?.economy}}</h5>
+                                </div>
+                               
+                        </ion-card-content>
+                    </ion-card>
+                </div>
     </div>
 
       <div *ngSwitchCase="'fielding'">
           
-          
+          <div class="cric-tournament-card" *ngFor="let tournament of statsArray">
+              {{tournament.name}}
           
                   <ion-card class="cric-player-card">
                       <ion-card-content>
                         <div class="cric-cards">
                           <p>Matches</p>
-                          <h5>{{playerStats.bowlingStatistics.matches}}</h5>
+                          <h5>{{tournament.stats.bowlingStatistics?.matches}}</h5>
                         </div>
                         <div class="cric-cards">
                           <p>Catches</p>
-                          <h5>{{playerStats.bowlingStatistics.catches}}</h5>
+                          <h5>{{tournament.stats.bowlingStatistics?.catches}}</h5>
                         </div>
                         <div class="cric-cards">
                           <p>Run outs</p>
-                          <h5>{{playerStats.bowlingStatistics.runOuts}}</h5>
+                          <h5>{{tournament.stats.bowlingStatistics?.runOuts}}</h5>
                         </div>
                         <div class="cric-cards">
                           <p>Stumpings</p>
-                          <h5>{{playerStats.bowlingStatistics.stumpings}}</h5>
+                          <h5>{{tournament.stats.bowlingStatistics?.stumpings}}</h5>
                         </div>
                       </ion-card-content>
                   </ion-card>
+                  </div>
       </div>
 
     </div> 

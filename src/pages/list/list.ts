@@ -19,7 +19,9 @@ export class ListPage {
   statsArray: any;
   allStats: any;
 
-  selectedRestaurantIdx : any;
+  //selectedTeam : any;
+
+
  
   userPostData = {"user_id":"","token":""};
 
@@ -54,6 +56,8 @@ export class ListPage {
         loading.dismiss();
         console.log("test 200");
         this.teams = this.responseData.results.teams;
+        this.selectedTeam = this.responseData.results.teams[0];
+        this.teamSelected(this.responseData.results.teams[0]);
         console.log("result teams", JSON.stringify(this.responseData.results));
       }  else if(this.responseData.statusCode == "404") {
         console.log("unauthorrised");
@@ -79,7 +83,7 @@ export class ListPage {
 
   changeMenus(index:number)
   {
-      this.selectedRestaurantIdx=index;
+      this.selectedTeam=index;
   }
 
   getStats(team){

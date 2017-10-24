@@ -10,6 +10,7 @@ import 'rxjs/add/operator/map';
 */
 
 let apiUrl = 'https://crickify.herokuapp.com/player';
+let apiUrlTeam = 'https://crickify.herokuapp.com/teamplayer';
 
 @Injectable()
 export class PlayersProvider {
@@ -28,6 +29,26 @@ getPlayerStats() {
   headers.set('Content-Type', 'application/json');
   headers.set("token",this.getToken());
     this.http.get(apiUrl + '/stats' , {headers: headers})
+      .subscribe(res => {
+        resolve(res.json());
+        console.log("auth response matches", res.json()); 
+        if(res.json().statusCode == '200'){
+          console.log("player stats", res.json());
+        }
+      }, (err) => {
+        reject(err);
+        console.log("error",err);
+      });
+  });
+
+}
+
+getPlayerTournamentStats(teamid) {
+  return new Promise((resolve, reject) => {
+    let headers = new Headers();
+  headers.set('Content-Type', 'application/json');
+  headers.set("token",this.getToken());
+    this.http.get(apiUrlTeam+ '/tournament/stats/' + teamid + "/player" , {headers: headers})
       .subscribe(res => {
         resolve(res.json());
         console.log("auth response matches", res.json()); 

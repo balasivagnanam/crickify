@@ -386,6 +386,7 @@ var ListPage = (function () {
         this.app = app;
         this.loadingController = loadingController;
         this.tabsvalues = "team";
+        //selectedTeam : any;
         this.userPostData = { "user_id": "", "token": "" };
         if (this.authService.getAuthenticated()) {
             var data = JSON.parse(localStorage.getItem('userData'));
@@ -417,6 +418,8 @@ var ListPage = (function () {
                 loading.dismiss();
                 console.log("test 200");
                 _this.teams = _this.responseData.results.teams;
+                _this.selectedTeam = _this.responseData.results.teams[0];
+                _this.teamSelected(_this.responseData.results.teams[0]);
                 console.log("result teams", JSON.stringify(_this.responseData.results));
             }
             else if (_this.responseData.statusCode == "404") {
@@ -438,7 +441,7 @@ var ListPage = (function () {
         this.getStats(team);
     };
     ListPage.prototype.changeMenus = function (index) {
-        this.selectedRestaurantIdx = index;
+        this.selectedTeam = index;
     };
     ListPage.prototype.getStats = function (team) {
         var _this = this;
@@ -479,9 +482,10 @@ ListPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-list',template:/*ion-inline-start:"/Users/balasivagnanam/codes/crickify/src/pages/list/list.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Team Stats</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <ion-segment [(ngModel)]="tabsvalues">\n        <ion-segment-button value="team">\n          Team Stats\n        </ion-segment-button>\n        <ion-segment-button value="batting">\n          Batting Stats\n        </ion-segment-button>\n        <ion-segment-button value="bowling">\n            Bowling Stats\n        </ion-segment-button>\n        <ion-segment-button value="fielding">\n              Fielding Stats\n        </ion-segment-button>\n      </ion-segment>\n    \n    <div [ngSwitch]="tabsvalues">\n      <div *ngSwitchCase="\'team\'">\n          <ion-item>\n              <ion-label>Pick a Team</ion-label>\n              <ion-select [(ngModel)]="selectedTeam" (ionChange)="teamSelected($event)">\n                <ion-option *ngFor="let team of teams" [value]="team">{{team.teamname}}</ion-option>\n              </ion-select>\n          </ion-item>\n          \n          <ion-card *ngFor="let stat of statsArray">\n              \n                <ion-card-header>\n                    {{stat.name}}\n                </ion-card-header>\n              \n                <ion-card-content>\n                  <ion-item>\n                      <ion-label>Played- {{stat.statistics.played}}</ion-label>\n                      \n                    </ion-item>\n                  <ion-item>\n                    <ion-label>Won -  {{stat.statistics.won}}</ion-label>\n                   \n                  </ion-item>\n                  <ion-item>\n                      <ion-label>Lost - {{stat.statistics.lost}}</ion-label>\n                      \n                   </ion-item>\n                  <ion-item>\n                    <ion-label>Abandoned - {{stat.statistics.abandoned}}</ion-label>\n                    \n                  </ion-item>\n                  <ion-item>\n                      <ion-label>Highest Total - {{stat.statistics.highestTotal}}</ion-label>\n                      \n                  </ion-item>\n                  <ion-item>\n                        <ion-label>Lowest Total - {{stat.statistics.lowestTotal}}</ion-label>\n                        \n                  </ion-item>\n                </ion-card-content>\n              \n              </ion-card>\n            </div>\n    \n      <div *ngSwitchCase="\'batting\'">\n          <ion-item>\n              <ion-label>Pick a Team</ion-label>\n              <ion-select [(ngModel)]="selectedTeam" (ionChange)="teamSelected($event)">\n                <ion-option *ngFor="let team of teams" [value]="team">{{team.teamname}}</ion-option>\n              </ion-select>\n          </ion-item>\n          \n          <ion-card *ngFor="let stat of statsArray">\n              \n                <ion-card-header>\n                    {{stat.name}}\n                </ion-card-header>\n              \n                <ion-card-content>\n                  <ion-card *ngFor="let player of stat.battingStatistics" class="cric-player-card">\n                      <ion-card-header>\n                        {{player.player.name}}\n                      </ion-card-header>\n                      <ion-card-content>\n                        <div class="cric-cards">\n                          <p>Mat</p>\n                          <h5>{{player.matches}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                          <p>Inn</p>\n                          <h5>{{player.innings}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                          <p>N/O</p>\n                          <h5>{{player.notout}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                          <p>Runs</p>\n                          <h5>{{player.run}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                            <p>Balls</p>\n                            <h5>{{player.ball}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                            <p>Avg</p>\n                            <h5>{{player.average}}</h5>\n                          </div>\n                          <div class="cric-cards">\n                              <p>4s</p>\n                              <h5>{{player.four}}</h5>\n                            </div>\n                            <div class="cric-cards">\n                                <p>6s</p>\n                                <h5>{{player.six}}</h5>\n                              </div>\n                              <div class="cric-cards">\n                                  <p>S.R</p>\n                                  <h5>{{player.sr}}</h5>\n                                </div>\n                      </ion-card-content>\n                  </ion-card>\n                </ion-card-content>\n              \n              </ion-card>\n      </div>\n\n      <div *ngSwitchCase="\'bowling\'">\n          <ion-item>\n              <ion-label>Pick a Team</ion-label>\n              <ion-select [(ngModel)]="selectedTeam" (ionChange)="teamSelected($event)">\n                <ion-option *ngFor="let team of teams" [value]="team">{{team.teamname}}</ion-option>\n              </ion-select>\n          </ion-item>\n          \n          <ion-card *ngFor="let stat of statsArray">\n              \n                <ion-card-header>\n                    {{stat.name}}\n                </ion-card-header>\n              \n                <ion-card-content>\n                  <ion-card *ngFor="let player of stat.bowlingStatistics" class="cric-player-card">\n                      <ion-card-header>\n                        {{player.player.name}}\n                      </ion-card-header>\n                      <ion-card-content>\n                        <div class="cric-cards">\n                          <p>Matches</p>\n                          <h5>{{player.matches}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                          <p>Overs</p>\n                          <h5>{{player.overs}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                          <p>Runs</p>\n                          <h5>{{player.run}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                          <p>Wickets</p>\n                          <h5>{{player.wickets}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                            <p>Wides</p>\n                            <h5>{{player.wide}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                            <p>Econ</p>\n                            <h5>{{player.economy}}</h5>\n                          </div>\n                      </ion-card-content>\n                  </ion-card>\n                </ion-card-content>\n              \n              </ion-card>\n      </div>\n\n        <div *ngSwitchCase="\'fielding\'">\n            <ion-item>\n                <ion-label>Pick a Team</ion-label>\n                <ion-select [(ngModel)]="selectedTeam" (ionChange)="teamSelected($event)">\n                  <ion-option *ngFor="let team of teams" [value]="team">{{team.teamname}}</ion-option>\n                </ion-select>\n            </ion-item>\n            \n            <ion-card *ngFor="let stat of statsArray">\n                \n                  <ion-card-header>\n                      {{stat.name}}\n                  </ion-card-header>\n                \n                  <ion-card-content>\n                    <ion-card *ngFor="let player of stat.bowlingStatistics" class="cric-player-card">\n                        <ion-card-header>\n                          {{player.player.name}}\n                        </ion-card-header>\n                        <ion-card-content>\n                          <div class="cric-cards">\n                            <p>Matches</p>\n                            <h5>{{player.matches}}</h5>\n                          </div>\n                          <div class="cric-cards">\n                            <p>Catches</p>\n                            <h5>{{player.catches}}</h5>\n                          </div>\n                          <div class="cric-cards">\n                            <p>Run outs</p>\n                            <h5>{{player.runOuts}}</h5>\n                          </div>\n                          <div class="cric-cards">\n                            <p>Stumpings</p>\n                            <h5>{{player.stumpings}}</h5>\n                          </div>\n                        </ion-card-content>\n                    </ion-card>\n                  </ion-card-content>\n                \n                </ion-card>\n        </div>\n\n      </div> \n\n</ion-content>\n'/*ion-inline-end:"/Users/balasivagnanam/codes/crickify/src/pages/list/list.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__["a" /* TeamService */], __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__["a" /* StatsService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__["a" /* TeamService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__["a" /* TeamService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__["a" /* StatsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__["a" /* StatsService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _g || Object])
 ], ListPage);
 
+var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=list.js.map
 
 /***/ }),
@@ -775,10 +779,9 @@ PreviousMatchesPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-previous-matches',template:/*ion-inline-start:"/Users/balasivagnanam/codes/crickify/src/pages/previous-matches/previous-matches.html"*/'<!--\n  Generated template for the PreviousMatchesPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n    <ion-navbar>\n        <button ion-button menuToggle>\n          <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>Completed Matches</ion-title>\n      </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n    <ion-card *ngFor="let match of matches">\n        <ion-card-header>\n          {{match.team.teamname}} Vs\n          {{match.opponent}}\n          <p>{{match.tournament.name}}</p>\n        </ion-card-header>\n        <ion-card-content>\n          <p>{{match.matchTime | date:\'fullDate\'}}, {{match.matchTime | date:\'shortTime\'}}</p>\n          <p>{{match.location.name}}, {{match.location.address}}</p>\n          <p>Toss won by <span *ngIf="match.tossWon">{{match.team.teamname}}</span><span *ngIf="!match.tossWon">{{match.opponent}}</span>\n          <p>Result : {{match.result}}, {{match.remarks}}</p>\n          <p>{{match.team.teamname}}: {{match.score}}/{{match.wickets}}</p>\n          <p>{{match.opponent}}:{{match.oppositionScore}}/{{match.oppositionWickets}}</p>\n        </ion-card-content>\n      </ion-card>\n    </ion-content>\n'/*ion-inline-end:"/Users/balasivagnanam/codes/crickify/src/pages/previous-matches/previous-matches.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__providers_matches_matches__["a" /* MatchService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_matches_matches__["a" /* MatchService */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_3__providers_matches_matches__["a" /* MatchService */]])
 ], PreviousMatchesPage);
 
-var _a, _b, _c, _d, _e;
 //# sourceMappingURL=previous-matches.js.map
 
 /***/ }),
@@ -792,6 +795,7 @@ var _a, _b, _c, _d, _e;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_players_players__ = __webpack_require__(286);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__ = __webpack_require__(197);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -805,6 +809,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
  * Generated class for the MyProfilePage page.
  *
@@ -812,17 +817,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var MyProfilePage = (function () {
-    function MyProfilePage(navCtrl, navParams, playersService, loadingController, authService) {
+    function MyProfilePage(navCtrl, navParams, playersService, loadingController, authService, teamService) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.playersService = playersService;
         this.loadingController = loadingController;
         this.authService = authService;
+        this.teamService = teamService;
         this.tabsvalues = "batting";
         this.userPostData = { "user_id": "", "token": "" };
         this.playerStats = " ";
         this.battingStats = "";
         this.bowlingStats = "";
+        this.teams = "";
+        this.statsArray = [];
         if (this.authService.getAuthenticated()) {
             var data = JSON.parse(localStorage.getItem('userData'));
             console.log("fetch data", data);
@@ -839,41 +847,103 @@ var MyProfilePage = (function () {
             content: 'Please wait...'
         });
         loading.present();
-        this.playersService.getPlayerStats().then(function (result) {
+        //   this.playersService.getPlayerStats().then((result) => {
+        //     this.responseData = result;
+        //     console.log(this.responseData); 
+        //     if (this.responseData.statusCode == '200'){
+        //       loading.dismiss();
+        //       console.log("test 200");
+        //       console.log("result", this.responseData.results.Stats);
+        //       this.playerStats = this.responseData.results.Stats;
+        //       this.battingStats = this.responseData.results.Stats.battingStatistics;
+        //       this.bowlingStats = this.responseData.results.Stats.bowlingStatistics;
+        //     }  else if(this.responseData.statusCode == "404") {
+        //       console.log("unauthorrised");
+        //       localStorage.clear();
+        //     } else {
+        //       loading.dismiss();
+        //       console.log("error", this.responseData)
+        //     }
+        // });
+        this.teamService.getAllTeams().then(function (result) {
             _this.responseData = result;
             console.log(_this.responseData);
             if (_this.responseData.statusCode == '200') {
                 loading.dismiss();
                 console.log("test 200");
-                console.log("result", _this.responseData.results.Stats);
-                _this.playerStats = _this.responseData.results.Stats;
-                _this.battingStats = _this.responseData.results.Stats.battingStatistics;
-                _this.bowlingStats = _this.responseData.results.Stats.bowlingStatistics;
+                _this.teams = _this.responseData.results.teams;
+                _this.selectedTeam = _this.responseData.results.teams[0];
+                _this.teamSelected(_this.responseData.results.teams[0]);
+                console.log("result teams", JSON.stringify(_this.responseData.results));
             }
             else if (_this.responseData.statusCode == "404") {
                 console.log("unauthorrised");
                 localStorage.clear();
+                //  this.backToWelcome();
             }
             else {
                 loading.dismiss();
                 console.log("error", _this.responseData);
             }
+        }, function (err) {
+            // Error log
         });
     };
     MyProfilePage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad MyProfilePage');
+    };
+    MyProfilePage.prototype.teamSelected = function (team) {
+        console.log("selected team", team);
+        console.log("team id", team.id);
+        this.getStats(team);
+    };
+    MyProfilePage.prototype.changeMenus = function (index) {
+        this.teamSelectedIndex = index;
+    };
+    MyProfilePage.prototype.getStats = function (team) {
+        var _this = this;
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        this.statsArray = [];
+        this.playersService.getPlayerTournamentStats(team.id).then(function (result) {
+            _this.responseData = result;
+            console.log(_this.responseData);
+            if (_this.responseData.statusCode == '200') {
+                loading.dismiss();
+                console.log("stats test 200");
+                if (_this.responseData.results.stats.length == 0) {
+                }
+                else {
+                    _this.statsArray = _this.responseData.results.stats;
+                    console.log("result", _this.responseData.results.stats);
+                    // console.log("arrary", JSON.parse(this.statsArray));
+                }
+            }
+            else if (_this.responseData.statusCode == "404") {
+                console.log("unauthorrised");
+                localStorage.clear();
+                //  this.backToWelcome();
+            }
+            else {
+                loading.dismiss();
+                console.log("error", _this.responseData);
+            }
+        }, function (err) {
+            // Error log
+        });
     };
     return MyProfilePage;
 }());
 MyProfilePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-my-profile',template:/*ion-inline-start:"/Users/balasivagnanam/codes/crickify/src/pages/my-profile/my-profile.html"*/'<!--\n  Generated template for the MyProfilePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n    <ion-navbar>\n        <button ion-button menuToggle>\n          <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>My Profile</ion-title>\n      </ion-navbar>\n</ion-header>\n\n\n<ion-content padding class="crickify-my-profile">\n  <h3>{{playerStats.battingStatistics?.player.name}}</h3>\n  <ion-segment [(ngModel)]="tabsvalues">\n      <ion-segment-button value="batting">\n        Batting Stats\n      </ion-segment-button>\n      <ion-segment-button value="bowling">\n          Bowling Stats\n      </ion-segment-button>\n      <ion-segment-button value="fielding">\n            Fielding Stats\n      </ion-segment-button>\n    </ion-segment>\n  \n  <div [ngSwitch]="tabsvalues"> \n    <div *ngSwitchCase="\'batting\'">\n                <ion-card class="cric-player-card">\n                    <ion-card-content>\n                      <div class="cric-cards">\n                        <p>Mat</p>\n                        <h5>{{playerStats.battingStatistics?.matches}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                        <p>Inn</p>\n                        <h5>{{playerStats.battingStatistics?.innings}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                        <p>N/O</p>\n                        <h5>{{playerStats.battingStatistics?.notout}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                        <p>Runs</p>\n                        <h5>{{playerStats.battingStatistics?.run}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                          <p>Balls</p>\n                          <h5>{{playerStats.battingStatistics?.ball}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                          <p>Avg</p>\n                          <h5>{{playerStats.battingStatistics?.average}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                            <p>4s</p>\n                            <h5>{{playerStats.battingStatistics?.four}}</h5>\n                          </div>\n                          <div class="cric-cards">\n                              <p>6s</p>\n                              <h5>{{playerStats.battingStatistics?.six}}</h5>\n                            </div>\n                            <div class="cric-cards">\n                                <p>S.R</p>\n                                <h5>{{playerStats.battingStatistics?.sr}}</h5>\n                              </div>\n                              <div class="cric-cards">\n                                  <p>Highest</p>\n                                  <h5>{{playerStats.battingStatistics?.highest}}</h5>\n                                </div>\n                    </ion-card-content>\n                </ion-card>\n    </div>\n\n    <div *ngSwitchCase="\'bowling\'">\n      \n                <ion-card class="cric-player-card">\n                   \n                    <ion-card-content>\n                      <div class="cric-cards">\n                        <p>Matches</p>\n                        <h5>{{playerStats.bowlingStatistics.matches}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                        <p>Overs</p>\n                        <h5>{{playerStats.bowlingStatistics.overs}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                        <p>Runs</p>\n                        <h5>{{playerStats.bowlingStatistics.run}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                        <p>Wickets</p>\n                        <h5>{{playerStats.bowlingStatistics.wickets}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                          <p>Wides</p>\n                          <h5>{{playerStats.bowlingStatistics.wide}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                          <p>No Balls</p>\n                          <h5>{{playerStats.bowlingStatistics.noBall}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                          <p>Econ</p>\n                          <h5>{{playerStats.bowlingStatistics.economy}}</h5>\n                        </div>\n                    </ion-card-content>\n                </ion-card>\n             \n    </div>\n\n      <div *ngSwitchCase="\'fielding\'">\n          \n          \n          \n                  <ion-card class="cric-player-card">\n                      <ion-card-content>\n                        <div class="cric-cards">\n                          <p>Matches</p>\n                          <h5>{{playerStats.bowlingStatistics.matches}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                          <p>Catches</p>\n                          <h5>{{playerStats.bowlingStatistics.catches}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                          <p>Run outs</p>\n                          <h5>{{playerStats.bowlingStatistics.runOuts}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                          <p>Stumpings</p>\n                          <h5>{{playerStats.bowlingStatistics.stumpings}}</h5>\n                        </div>\n                      </ion-card-content>\n                  </ion-card>\n      </div>\n\n    </div> \n</ion-content>\n'/*ion-inline-end:"/Users/balasivagnanam/codes/crickify/src/pages/my-profile/my-profile.html"*/,
+        selector: 'page-my-profile',template:/*ion-inline-start:"/Users/balasivagnanam/codes/crickify/src/pages/my-profile/my-profile.html"*/'<!--\n  Generated template for the MyProfilePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n    <ion-navbar>\n        <button ion-button menuToggle>\n          <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>My Profile</ion-title>\n      </ion-navbar>\n</ion-header>\n\n\n<ion-content padding class="crickify-my-profile">\n    <ion-item>\n        <ion-label>Pick a Team</ion-label>\n        <ion-select [(ngModel)]="selectedTeam" (ionChange)="teamSelected($event)">\n          <ion-option *ngFor="let team of teams" [value]="team">{{team.teamname}}</ion-option>\n        </ion-select>\n    </ion-item>\n\n\n  <h3>{{statsArray[0]?.stats.battingStatistics?.player.name}}</h3>\n  <ion-segment [(ngModel)]="tabsvalues">\n      <ion-segment-button value="batting">\n        Batting Stats\n      </ion-segment-button>\n      <ion-segment-button value="bowling">\n          Bowling Stats\n      </ion-segment-button>\n      <ion-segment-button value="fielding">\n            Fielding Stats\n      </ion-segment-button>\n    </ion-segment>\n  \n  <div [ngSwitch]="tabsvalues"> \n    <div *ngSwitchCase="\'batting\'">\n      <div class="cric-tournament-card" *ngFor="let tournament of statsArray">\n          {{tournament.name}}\n          <ion-card class="cric-player-card">\n              <ion-card-content>\n                <div class="cric-cards">\n                  <p>Mat</p>\n                  <h5>{{tournament.stats.battingStatistics?.matches}}</h5>\n                </div>\n                <div class="cric-cards">\n                  <p>Inn</p>\n                  <h5>{{tournament.stats.battingStatistics?.innings}}</h5>\n                </div>\n                <div class="cric-cards">\n                  <p>N/O</p>\n                  <h5>{{tournament.stats.battingStatistics?.notout}}</h5>\n                </div>\n                <div class="cric-cards">\n                  <p>Runs</p>\n                  <h5>{{tournament.stats.battingStatistics?.run}}</h5>\n                </div>\n                <div class="cric-cards">\n                    <p>Balls</p>\n                    <h5>{{tournament.stats.battingStatistics?.ball}}</h5>\n                </div>\n                <div class="cric-cards">\n                    <p>Avg</p>\n                    <h5>{{tournament.stats.battingStatistics?.average}}</h5>\n                  </div>\n                  <div class="cric-cards">\n                      <p>4s</p>\n                      <h5>{{tournament.stats.battingStatistics?.four}}</h5>\n                    </div>\n                    <div class="cric-cards">\n                        <p>6s</p>\n                        <h5>{{tournament.stats.battingStatistics?.six}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                          <p>S.R</p>\n                          <h5>{{tournament.stats.battingStatistics?.sr}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                            <p>Highest</p>\n                            <h5>{{tournament.stats.battingStatistics?.highest}}</h5>\n                          </div>\n              </ion-card-content>\n          </ion-card>\n      </div>\n                <!-- <ion-card class="cric-player-card">\n                    <ion-card-content>\n                      <div class="cric-cards">\n                        <p>Mat</p>\n                        <h5>{{playerStats.battingStatistics?.matches}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                        <p>Inn</p>\n                        <h5>{{playerStats.battingStatistics?.innings}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                        <p>N/O</p>\n                        <h5>{{playerStats.battingStatistics?.notout}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                        <p>Runs</p>\n                        <h5>{{playerStats.battingStatistics?.run}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                          <p>Balls</p>\n                          <h5>{{playerStats.battingStatistics?.ball}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                          <p>Avg</p>\n                          <h5>{{playerStats.battingStatistics?.average}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                            <p>4s</p>\n                            <h5>{{playerStats.battingStatistics?.four}}</h5>\n                          </div>\n                          <div class="cric-cards">\n                              <p>6s</p>\n                              <h5>{{playerStats.battingStatistics?.six}}</h5>\n                            </div>\n                            <div class="cric-cards">\n                                <p>S.R</p>\n                                <h5>{{playerStats.battingStatistics?.sr}}</h5>\n                              </div>\n                              <div class="cric-cards">\n                                  <p>Highest</p>\n                                  <h5>{{playerStats.battingStatistics?.highest}}</h5>\n                                </div>\n                    </ion-card-content>\n                </ion-card> -->\n    </div>\n\n    <div *ngSwitchCase="\'bowling\'">\n      \n                <!-- <ion-card class="cric-player-card">\n                   \n                    <ion-card-content>\n                      <div class="cric-cards">\n                        <p>Matches</p>\n                        <h5>{{playerStats.bowlingStatistics.matches}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                        <p>Overs</p>\n                        <h5>{{playerStats.bowlingStatistics.overs}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                        <p>Runs</p>\n                        <h5>{{playerStats.bowlingStatistics.run}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                        <p>Wickets</p>\n                        <h5>{{playerStats.bowlingStatistics.wickets}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                          <p>Wides</p>\n                          <h5>{{playerStats.bowlingStatistics.wide}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                          <p>No Balls</p>\n                          <h5>{{playerStats.bowlingStatistics.noBall}}</h5>\n                      </div>\n                      <div class="cric-cards">\n                          <p>Econ</p>\n                          <h5>{{playerStats.bowlingStatistics.economy}}</h5>\n                        </div>\n                    </ion-card-content>\n                </ion-card> -->\n                <div class="cric-tournament-card" *ngFor="let tournament of statsArray">\n                    {{tournament.name}}\n                    <ion-card class="cric-player-card">\n                        <ion-card-content>\n                          <div class="cric-cards">\n                            <p>Matches</p>\n                            <h5>{{tournament.stats.bowlingStatistics?.matches}}</h5>\n                          </div>\n                          <div class="cric-cards">\n                            <p>Overs</p>\n                            <h5>{{tournament.stats.bowlingStatistics?.overs}}</h5>\n                          </div>\n                          <div class="cric-cards">\n                            <p>Runs</p>\n                            <h5>{{tournament.stats.bowlingStatistics?.run}}</h5>\n                          </div>\n                          <div class="cric-cards">\n                              <p>Wickets</p>\n                              <h5>{{tournament.stats.bowlingStatistics?.wickets}}</h5>\n                          </div>\n                          <div class="cric-cards">\n                              <p>Wides</p>\n                              <h5>{{tournament.stats.bowlingStatistics?.wide}}</h5>\n                            </div>\n                            <div class="cric-cards">\n                                <p>NoBall</p>\n                                <h5>{{tournament.stats.bowlingStatistics?.noBall}}</h5>\n                              </div>\n                              <div class="cric-cards">\n                                  <p>Econ</p>\n                                  <h5>{{tournament.stats.bowlingStatistics?.economy}}</h5>\n                                </div>\n                               \n                        </ion-card-content>\n                    </ion-card>\n                </div>\n    </div>\n\n      <div *ngSwitchCase="\'fielding\'">\n          \n          <div class="cric-tournament-card" *ngFor="let tournament of statsArray">\n              {{tournament.name}}\n          \n                  <ion-card class="cric-player-card">\n                      <ion-card-content>\n                        <div class="cric-cards">\n                          <p>Matches</p>\n                          <h5>{{tournament.stats.bowlingStatistics?.matches}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                          <p>Catches</p>\n                          <h5>{{tournament.stats.bowlingStatistics?.catches}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                          <p>Run outs</p>\n                          <h5>{{tournament.stats.bowlingStatistics?.runOuts}}</h5>\n                        </div>\n                        <div class="cric-cards">\n                          <p>Stumpings</p>\n                          <h5>{{tournament.stats.bowlingStatistics?.stumpings}}</h5>\n                        </div>\n                      </ion-card-content>\n                  </ion-card>\n                  </div>\n      </div>\n\n    </div> \n</ion-content>\n'/*ion-inline-end:"/Users/balasivagnanam/codes/crickify/src/pages/my-profile/my-profile.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_players_players__["a" /* PlayersProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_players_players__["a" /* PlayersProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth__["a" /* AuthService */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_players_players__["a" /* PlayersProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_players_players__["a" /* PlayersProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth__["a" /* AuthService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__["a" /* TeamService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__["a" /* TeamService */]) === "function" && _f || Object])
 ], MyProfilePage);
 
-var _a, _b, _c, _d, _e;
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=my-profile.js.map
 
 /***/ }),
@@ -1017,6 +1087,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
   and Angular DI.
 */
 var apiUrl = 'https://crickify.herokuapp.com/player';
+var apiUrlTeam = 'https://crickify.herokuapp.com/teamplayer';
 var PlayersProvider = (function () {
     function PlayersProvider(http) {
         this.http = http;
@@ -1032,6 +1103,25 @@ var PlayersProvider = (function () {
             headers.set('Content-Type', 'application/json');
             headers.set("token", _this.getToken());
             _this.http.get(apiUrl + '/stats', { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("auth response matches", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("player stats", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    PlayersProvider.prototype.getPlayerTournamentStats = function (teamid) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.get(apiUrlTeam + '/tournament/stats/' + teamid + "/player", { headers: headers })
                 .subscribe(function (res) {
                 resolve(res.json());
                 console.log("auth response matches", res.json());
