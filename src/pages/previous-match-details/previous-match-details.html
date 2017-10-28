@@ -52,6 +52,7 @@
                 <p>B</p>
                 <p>4's</p>
                 <p>6's</p>
+                <p class="cric-values-decimals">SR</p>
             </li>
             <li *ngFor="let stat of (batting ? batting.slice(0,3) : [])">
                 <p class="cric-player-name">{{stat?.player?.name}}</p>
@@ -59,6 +60,7 @@
                 <p>{{stat?.ball}}</p>
                 <p>{{stat?.four}}</p>
                 <p>{{stat?.six}}</p>
+                <p class="cric-values-decimals">{{stat?.sr | number : '1.2-2'}}</p>
             </li>
           </ul>
         </div>
@@ -71,7 +73,7 @@
                   <p>R</p>
                   <p>W</p>
                   <p>Wd</p>
-                  <p>EC</p>
+                  <p class="cric-values-decimals">EC</p>
               </li>
               <li *ngFor="let stat of (bowling ? bowling.slice(0,3) : [])">
                   <p class="cric-player-name">{{stat?.player?.name}}</p>
@@ -79,7 +81,7 @@
                   <p>{{stat?.run}}</p>
                   <p>{{stat?.wickets}}</p>
                   <p>{{stat?.wide}}</p>
-                  <p>{{stat?.economy}}</p>
+                  <p class="cric-values-decimals">{{stat?.economy | number : '1.2-2'}}</p>
               </li>
             </ul>
           </div>
@@ -121,7 +123,7 @@
                     <p>{{stat?.run}}</p>
                     <p>{{stat?.wickets}}</p>
                     <p>{{stat?.wide}}</p>
-                    <p>{{stat?.economy}}</p>
+                    <p>{{stat?.economy | number : '1.2-2'}}</p>
                 </li>
               </ul>
             </div>

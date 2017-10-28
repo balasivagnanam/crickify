@@ -56,8 +56,8 @@
                   <p>{{tournament.stats.battingStatistics?.innings}}</p>
                   <p>{{tournament.stats.battingStatistics?.run}}</p>
                   <p>{{tournament.stats.battingStatistics?.ball}}</p>
-                  <p class="cric-values-decimals">{{tournament.stats.battingStatistics?.average}}</p>
-                  <p class="cric-values-decimals">{{tournament.stats.battingStatistics?.sr}}</p>
+                  <p class="cric-values-decimals">{{tournament.stats.battingStatistics?.average | number : '1.2-2' }}</p>
+                  <p class="cric-values-decimals">{{tournament.stats.battingStatistics?.sr | number : '1.2-2' }}</p>
               </li>
             </ul>
           </div>
@@ -73,7 +73,7 @@
                   <p>R</p>
                   <p>W</p>
                   <p>Wd</p>
-                  <p>EC</p>
+                  <p class="cric-values-decimals">EC</p>
               </li>
               <li *ngFor="let tournament of statsArray">
                   <p class="cric-player-name">{{tournament?.name}}</p>
@@ -82,7 +82,7 @@
                   <p>{{tournament.stats.bowlingStatistics?.run}}</p>
                   <p>{{tournament.stats.bowlingStatistics?.wickets}}</p>
                   <p>{{tournament.stats.bowlingStatistics?.wide}}</p>
-                  <p>{{tournament.stats.bowlingStatistics?.economy}}</p>
+                  <p class="cric-values-decimals">{{tournament.stats.bowlingStatistics?.economy | number : '1.2-2'}}</p>
               </li>
             </ul>
           </div>

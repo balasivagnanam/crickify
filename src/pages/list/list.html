@@ -93,8 +93,8 @@
                         <p>{{player.innings}}</p>
                         <p>{{player.run}}</p>
                         <p>{{player.ball}}</p>
-                        <p class="cric-values-decimals">{{player.average}}</p>
-                        <p class="cric-values-decimals">{{player.sr}}</p>
+                        <p class="cric-values-decimals">{{player.average | number : '1.2-2'}}</p>
+                        <p class="cric-values-decimals">{{player.sr | number : '1.2-2'}}</p>
                     </li>
                   </ul>
                 </div>
