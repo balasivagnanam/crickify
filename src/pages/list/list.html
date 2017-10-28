@@ -32,41 +32,39 @@
               </ion-select>
           </ion-item>
           
-          <ion-card *ngFor="let stat of statsArray">
-              
-                <ion-card-header>
-                    {{stat.name}}
-                </ion-card-header>
-              
+          <ion-card *ngFor="let stat of statsArray">  
                 <ion-card-content>
-                  <ion-item>
-                      <ion-label>Played- {{stat.statistics.played}}</ion-label>
-                      
-                    </ion-item>
-                  <ion-item>
-                    <ion-label>Won -  {{stat.statistics.won}}</ion-label>
-                   
-                  </ion-item>
-                  <ion-item>
-                      <ion-label>Lost - {{stat.statistics.lost}}</ion-label>
-                      
-                   </ion-item>
-                  <ion-item>
-                    <ion-label>Abandoned - {{stat.statistics.abandoned}}</ion-label>
-                    
-                  </ion-item>
-                  <ion-item>
-                      <ion-label>Highest Total - {{stat.statistics.highestTotal}}</ion-label>
-                      
-                  </ion-item>
-                  <ion-item>
-                        <ion-label>Lowest Total - {{stat.statistics.lowestTotal}}</ion-label>
-                        
-                  </ion-item>
+                    <h4>
+                        {{stat.name}}
+                    </h4>
+                  <div class="cric-cards">
+                      <p>Played</p>
+                      <h4>{{stat.statistics.played}}</h4>
+                  </div>
+                  <div class="cric-cards">
+                    <p>Won</p>
+                    <h4>{{stat.statistics.won}}</h4>
+                  </div>
+                  <div class="cric-cards">
+                      <p>Lost</p>
+                      <h4>{{stat.statistics.lost}}</h4>
+                  </div>
+                  <div class="cric-cards">
+                    <p>No Result</p>
+                    <h4>{{stat.statistics.abandoned}}</h4>
+                  </div>
+                  <div class="cric-cards">
+                      <p>High Total</p>
+                      <h4>{{stat.statistics.highestTotal}}</h4>
+                  </div>
+                  <div class="cric-cards">
+                        <p>Low Total</p>
+                        <h4>{{stat.statistics.lowestTotal}}</h4>
+                  </div>
                 </ion-card-content>
               
               </ion-card>
-            </div>
+      </div>
     
       <div *ngSwitchCase="'batting'">
           <ion-item>
@@ -76,59 +74,31 @@
               </ion-select>
           </ion-item>
           
-          <ion-card *ngFor="let stat of statsArray">
-              
-                <ion-card-header>
-                    {{stat.name}}
-                </ion-card-header>
-              
-                <ion-card-content>
-                  <ion-card *ngFor="let player of stat.battingStatistics" class="cric-player-card">
-                      <ion-card-header>
-                        {{player.player.name}}
-                      </ion-card-header>
-                      <ion-card-content>
-                        <div class="cric-cards">
-                          <p>Mat</p>
-                          <h5>{{player.matches}}</h5>
-                        </div>
-                        <div class="cric-cards">
-                          <p>Inn</p>
-                          <h5>{{player.innings}}</h5>
-                        </div>
-                        <div class="cric-cards">
-                          <p>N/O</p>
-                          <h5>{{player.notout}}</h5>
-                        </div>
-                        <div class="cric-cards">
-                          <p>Runs</p>
-                          <h5>{{player.run}}</h5>
-                        </div>
-                        <div class="cric-cards">
-                            <p>Balls</p>
-                            <h5>{{player.ball}}</h5>
-                        </div>
-                        <div class="cric-cards">
-                            <p>Avg</p>
-                            <h5>{{player.average}}</h5>
-                          </div>
-                          <div class="cric-cards">
-                              <p>4s</p>
-                              <h5>{{player.four}}</h5>
-                            </div>
-                            <div class="cric-cards">
-                                <p>6s</p>
-                                <h5>{{player.six}}</h5>
-                              </div>
-                              <div class="cric-cards">
-                                  <p>S.R</p>
-                                  <h5>{{player.sr}}</h5>
-                                </div>
-                      </ion-card-content>
-                  </ion-card>
-                </ion-card-content>
-              
-              </ion-card>
+          <div *ngFor="let stat of statsArray">
+              <div class="cric-stat-batting-table">
+                  <h4>{{stat.name}}</h4>
+                  <ul>
+                    <li class="header">
+                        <p class="cric-player-name">Name</p>
+                        <p>M</p>
+                        <p>I</p>
+                        <p>R</p>
+                        <p>B</p>
+                        <p class="cric-values-decimals">Av</p>
+                        <p class="cric-values-decimals">SR</p>
+                    </li>
+                    <li *ngFor="let player of stat.battingStatistics">
+                        <p class="cric-player-name">{{player.player.name}}</p>
+                        <p>{{player.matches}}</p>
+                        <p>{{player.innings}}</p>
+                        <p>{{player.run}}</p>
+                        <p>{{player.ball}}</p>
+                        <p class="cric-values-decimals">{{player.average}}</p>
+                        <p class="cric-values-decimals">{{player.sr}}</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
       </div>
 
       <div *ngSwitchCase="'bowling'">
@@ -139,47 +109,32 @@
               </ion-select>
           </ion-item>
           
-          <ion-card *ngFor="let stat of statsArray">
+          <div *ngFor="let stat of statsArray">
               
-                <ion-card-header>
-                    {{stat.name}}
-                </ion-card-header>
-              
-                <ion-card-content>
-                  <ion-card *ngFor="let player of stat.bowlingStatistics" class="cric-player-card">
-                      <ion-card-header>
-                        {{player.player.name}}
-                      </ion-card-header>
-                      <ion-card-content>
-                        <div class="cric-cards">
-                          <p>Matches</p>
-                          <h5>{{player.matches}}</h5>
-                        </div>
-                        <div class="cric-cards">
-                          <p>Overs</p>
-                          <h5>{{player.overs}}</h5>
-                        </div>
-                        <div class="cric-cards">
-                          <p>Runs</p>
-                          <h5>{{player.run}}</h5>
-                        </div>
-                        <div class="cric-cards">
-                          <p>Wickets</p>
-                          <h5>{{player.wickets}}</h5>
-                        </div>
-                        <div class="cric-cards">
-                            <p>Wides</p>
-                            <h5>{{player.wide}}</h5>
-                        </div>
-                        <div class="cric-cards">
-                            <p>Econ</p>
-                            <h5>{{player.economy}}</h5>
-                          </div>
-                      </ion-card-content>
-                  </ion-card>
-                </ion-card-content>
-              
-              </ion-card>
+              <div class="cric-stat-bowling-table">
+                  <h4>{{stat.name}}</h4>
+                  <ul>
+                    <li class="header">
+                        <p class="cric-player-name">Name</p>
+                        <p>M</p>
+                        <p>O</p>
+                        <p>R</p>
+                        <p>W</p>
+                        <p>Wd</p>
+                        <p>EC</p>
+                    </li>
+                    <li *ngFor="let player of stat.bowlingStatistics">
+                        <p class="cric-player-name">{{player.player.name}}</p>
+                        <p>{{player.matches}}</p>
+                        <p>{{player.overs}}</p>
+                        <p>{{player.run}}</p>
+                        <p>{{player.wickets}}</p>
+                        <p>{{player.wide}}</p>
+                        <p>{{player.economy}}</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
       </div>
 
         <div *ngSwitchCase="'fielding'">
@@ -190,39 +145,27 @@
                 </ion-select>
             </ion-item>
             
-            <ion-card *ngFor="let stat of statsArray">
-                
-                  <ion-card-header>
-                      {{stat.name}}
-                  </ion-card-header>
-                
-                  <ion-card-content>
-                    <ion-card *ngFor="let player of stat.bowlingStatistics" class="cric-player-card">
-                        <ion-card-header>
-                          {{player.player.name}}
-                        </ion-card-header>
-                        <ion-card-content>
-                          <div class="cric-cards">
-                            <p>Matches</p>
-                            <h5>{{player.matches}}</h5>
-                          </div>
-                          <div class="cric-cards">
-                            <p>Catches</p>
-                            <h5>{{player.catches}}</h5>
-                          </div>
-                          <div class="cric-cards">
-                            <p>Run outs</p>
-                            <h5>{{player.runOuts}}</h5>
-                          </div>
-                          <div class="cric-cards">
-                            <p>Stumpings</p>
-                            <h5>{{player.stumpings}}</h5>
-                          </div>
-                        </ion-card-content>
-                    </ion-card>
-                  </ion-card-content>
-                
-                </ion-card>
+            <div *ngFor="let stat of statsArray">
+                <div class="cric-stat-bowling-table">
+                    <h4>{{stat.name}}</h4>
+                    <ul>
+                      <li class="header">
+                          <p class="cric-player-name">Name</p>
+                          <p>M</p>
+                          <p>Ct</p>
+                          <p>R/O</p>
+                          <p>St</p>
+                      </li>
+                      <li *ngFor="let player of stat.bowlingStatistics">
+                          <p class="cric-player-name">{{player.player.name}}</p>
+                          <p>{{player.matches}}</p>
+                          <p>{{player.catches}}</p>
+                          <p>{{player.runOuts}}</p>
+                          <p>{{player.stumpings}}</p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
         </div>
 
       </div> 

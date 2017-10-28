@@ -25214,6 +25214,96 @@ ion-navbar.toolbar {
   padding: 5px;
 }
 
+.cric-stat-batting-table {
+  float: left;
+  width: 100%;
+}
+
+.cric-stat-batting-table h4 {
+  font-size: 1.5rem;
+  margin: 1rem 0rem 0rem 0rem !important;
+}
+
+.cric-stat-batting-table ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0rem;
+}
+
+.cric-stat-batting-table ul li.header {
+  background: #eee;
+}
+
+.cric-stat-batting-table ul li.header p {
+  font-weight: bold;
+}
+
+.cric-stat-batting-table ul li {
+  list-style: none;
+  padding: 0px;
+  width: 100%;
+  float: left;
+  border-bottom: 1px solid #eee;
+}
+
+.cric-stat-batting-table ul li p {
+  width: 7%;
+  float: left;
+  margin-right: 3px;
+  margin: 3px 3px 3px 0px;
+}
+
+.cric-stat-batting-table ul li p.cric-player-name {
+  width: 40%;
+}
+
+.cric-stat-batting-table ul li p.cric-values-decimals {
+  width: 12%;
+}
+
+.cric-stat-bowling-table {
+  float: left;
+  width: 100%;
+}
+
+.cric-stat-bowling-table h4 {
+  font-size: 1.5rem;
+  margin: 1rem 0rem 0rem 0rem !important;
+}
+
+.cric-stat-bowling-table ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0rem;
+}
+
+.cric-stat-bowling-table ul li.header {
+  background: #eee;
+}
+
+.cric-stat-bowling-table ul li.header p {
+  font-weight: bold;
+}
+
+.cric-stat-bowling-table ul li {
+  list-style: none;
+  padding: 0px;
+  width: 100%;
+  float: left;
+  border-bottom: 1px solid #eee;
+}
+
+.cric-stat-bowling-table ul li p {
+  width: 8%;
+  float: left;
+  margin-right: 3px;
+  margin: 3px 3px 3px 0px;
+}
+
+.cric-stat-bowling-table ul li p.cric-player-name {
+  width: 40%;
+}
+
 page-my-profile .cric-cards {
   float: left;
   margin-right: 5px;

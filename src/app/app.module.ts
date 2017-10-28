@@ -24,6 +24,7 @@ import {MyAccountPage} from '../pages/my-account/my-account';
 import {PreviousMatchesPage} from '../pages/previous-matches/previous-matches';
 import {MyTeamsPage} from '../pages/my-teams/my-teams';
 import { PlayersProvider } from '../providers/players/players';
+import {PreviousMatchDetailsPage} from '../pages/previous-match-details/previous-match-details';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { PlayersProvider } from '../providers/players/players';
     MyProfilePage,
     MyAccountPage,
     PreviousMatchesPage,
-    MyTeamsPage
+    MyTeamsPage,
+    PreviousMatchDetailsPage
   ],
   imports: [
     BrowserModule, HttpModule,
@@ -54,7 +56,8 @@ import { PlayersProvider } from '../providers/players/players';
     MyProfilePage,
     MyAccountPage,
     PreviousMatchesPage,
-    MyTeamsPage
+    MyTeamsPage,
+    PreviousMatchDetailsPage
   ],
   providers: [
     StatusBar,

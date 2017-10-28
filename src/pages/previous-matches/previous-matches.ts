@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-angular';
 import {AuthService} from '../../providers/auth/auth';
 import {MatchService} from '../../providers/matches/matches';
+import {PreviousMatchDetailsPage} from '../previous-match-details/previous-match-details';
+
 
 /**
  * Generated class for the PreviousMatchesPage page.
@@ -47,9 +49,9 @@ export class PreviousMatchesPage {
     }, (err) => {
       // Error log
     });
-
-
   }
+
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad PreviousMatchesPage');
 
@@ -59,6 +61,11 @@ export class PreviousMatchesPage {
     }
 
     
+  }
+
+  goToMatchDetails(event){
+    console.log("clicked match", event);
+    this.navCtrl.push(PreviousMatchDetailsPage, {"matchId": event});
   }
 
 }
