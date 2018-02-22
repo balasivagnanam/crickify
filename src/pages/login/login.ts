@@ -44,7 +44,7 @@ export class LoginPage {
         loading.dismiss();
         let alert = this.alertController.create({
           title: 'Wrong login/password',
-          subTitle: 'your loging and password combination doesnt seem to work. Please try again or contact us to reset',
+          subTitle: 'your login and password combination doesnt seem to work. Please try again or contact us to reset',
           buttons: [
           {
             text: 'OK',
