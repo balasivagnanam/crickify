@@ -3,6 +3,8 @@ import { NavController, App, LoadingController } from 'ionic-angular';
 import { AuthService} from '../../providers/auth/auth';
 import { MatchService } from '../../providers/matches/matches';
 import {MatchTeamPage} from '../match-team/match-team';
+import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -16,7 +18,7 @@ export class HomePage {
 
 matches : any;
 
-  constructor(public navCtrl: NavController, public app:App, public authService:AuthService, public matchService:MatchService, public loadingController: LoadingController) {
+  constructor(public navCtrl: NavController, public app:App, public authService:AuthService, public matchService:MatchService, public loadingController: LoadingController,public admob: AdMobFree) {
     if (this.authService.getAuthenticated()){
       const data = JSON.parse(localStorage.getItem('userData'));
       console.log("fetch data", data);
@@ -26,8 +28,23 @@ matches : any;
       this.userPostData.token = this.userDetails.token;
     }
   }
-
+showBanner() {
+ 
+        let bannerConfig: AdMobFreeBannerConfig = {
+            isTesting: true, // Remove in production
+            autoShow: true
+            //id: Your Ad Unit ID goes here
+        };
+ 
+        this.admob.banner.config(bannerConfig);
+ 
+        this.admob.banner.prepare().then(() => {
+            // success
+        }).catch(e => console.log(e));
+ 
+    }
   ionViewCanEnter(){
+	  this.showBanner();
     console.log("view did enter", this.authService.getAuthenticated());
       return this.authService.getAuthenticated();
   }

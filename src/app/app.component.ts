@@ -18,6 +18,7 @@ import {FinancePage} from '../pages/finance/finance';
 import {ForgotPage} from '../pages/forgot/forgot';
 import {ResetPage} from '../pages/reset/reset';
 import {LogoutPage} from '../pages/logout/logout';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 @Component({
   templateUrl: 'app.html'
 })
@@ -28,7 +29,17 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,androidPermissions: AndroidPermissions) {
+	  platform.ready().then(() => {
+
+         androidPermissions.requestPermissions(
+           [
+             androidPermissions.PERMISSION.INTERNET,
+			 androidPermissions.PERMISSION.ACCESS_NETWORK_STATE
+           ]
+         );
+
+    }) 
     this.initializeApp();
 
     // used for an example of ngFor and navigation

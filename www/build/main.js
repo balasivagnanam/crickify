@@ -1,6 +1,6 @@
 webpackJsonp([12],{
 
-/***/ 107:
+/***/ 108:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -125,15 +125,15 @@ ForgotPage = __decorate([
 
 /***/ }),
 
-/***/ 108:
+/***/ 109:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WelcomePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__signup_signup__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__signup_signup__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__login_login__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__forgot_forgot__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__forgot_forgot__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(10);
@@ -196,16 +196,16 @@ WelcomePage = __decorate([
 
 /***/ }),
 
-/***/ 109:
+/***/ 110:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyProfilePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_players_players__ = __webpack_require__(167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_players_players__ = __webpack_require__(171);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__ = __webpack_require__(86);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -357,7 +357,7 @@ MyProfilePage = __decorate([
 
 /***/ }),
 
-/***/ 110:
+/***/ 111:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -422,7 +422,7 @@ MyAccountPage = __decorate([
 
 /***/ }),
 
-/***/ 111:
+/***/ 112:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -509,7 +509,7 @@ PreviousMatchDetailsPage = __decorate([
 
 /***/ }),
 
-/***/ 112:
+/***/ 113:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -518,7 +518,7 @@ PreviousMatchDetailsPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_matches_matches__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__previous_match_details_previous_match_details__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__previous_match_details_previous_match_details__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__match_team_match_team__ = __webpack_require__(45);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -607,7 +607,7 @@ PreviousMatchesPage = __decorate([
 
 /***/ }),
 
-/***/ 113:
+/***/ 114:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -653,7 +653,7 @@ MyTeamsPage = __decorate([
 
 /***/ }),
 
-/***/ 114:
+/***/ 115:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -785,7 +785,7 @@ ResetPage = __decorate([
 
 /***/ }),
 
-/***/ 115:
+/***/ 116:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -854,7 +854,7 @@ LogoutPage = __decorate([
 
 /***/ }),
 
-/***/ 124:
+/***/ 125:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -867,7 +867,7 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 124;
+webpackEmptyAsyncContext.id = 125;
 
 /***/ }),
 
@@ -1023,56 +1023,56 @@ AuthService = __decorate([
 
 /***/ }),
 
-/***/ 166:
+/***/ 167:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/forgot/forgot.module": [
-		286,
+		288,
 		11
 	],
 	"../pages/login/login.module": [
-		284,
+		286,
 		10
 	],
 	"../pages/logout/logout.module": [
-		294,
+		296,
 		9
 	],
 	"../pages/match-team/match-team.module": [
-		283,
+		285,
 		8
 	],
 	"../pages/my-account/my-account.module": [
-		289,
+		291,
 		7
 	],
 	"../pages/my-profile/my-profile.module": [
-		288,
+		290,
 		6
 	],
 	"../pages/my-teams/my-teams.module": [
-		292,
+		294,
 		5
 	],
 	"../pages/previous-match-details/previous-match-details.module": [
-		290,
+		292,
 		4
 	],
 	"../pages/previous-matches/previous-matches.module": [
-		291,
+		293,
 		3
 	],
 	"../pages/reset/reset.module": [
-		293,
+		295,
 		2
 	],
 	"../pages/signup/signup.module": [
-		285,
+		287,
 		1
 	],
 	"../pages/welcome/welcome.module": [
-		287,
+		289,
 		0
 	]
 };
@@ -1087,12 +1087,12 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 166;
+webpackAsyncContext.id = 167;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 167:
+/***/ 171:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1178,7 +1178,7 @@ PlayersProvider = __decorate([
 
 /***/ }),
 
-/***/ 207:
+/***/ 211:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1240,7 +1240,7 @@ StatsService = __decorate([
 
 /***/ }),
 
-/***/ 212:
+/***/ 214:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1248,8 +1248,8 @@ StatsService = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__ = __webpack_require__(207);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__ = __webpack_require__(86);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1378,7 +1378,7 @@ ListPage = __decorate([
 
 /***/ }),
 
-/***/ 213:
+/***/ 215:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1386,7 +1386,7 @@ ListPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_finance_finance__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_finance_finance__ = __webpack_require__(216);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__match_team_match_team__ = __webpack_require__(45);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1511,7 +1511,7 @@ FinancePage = __decorate([
 
 /***/ }),
 
-/***/ 214:
+/***/ 216:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1588,13 +1588,13 @@ FinanceProvider = __decorate([
 
 /***/ }),
 
-/***/ 215:
+/***/ 218:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(216);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(234);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(237);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -1602,7 +1602,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 234:
+/***/ 237:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1610,37 +1610,41 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_matches_matches__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_stats_stats__ = __webpack_require__(207);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_teams_teams__ = __webpack_require__(84);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_component__ = __webpack_require__(274);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_home_home__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_list_list__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_status_bar__ = __webpack_require__(208);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_splash_screen__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_welcome_welcome__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_signup_signup__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_login_login__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_my_profile_my_profile__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_my_account_my_account__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_previous_matches_previous_matches__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_my_teams_my_teams__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__providers_players_players__ = __webpack_require__(167);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__providers_finance_finance__ = __webpack_require__(214);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_previous_match_details_previous_match_details__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_match_team_match_team__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_finance_finance__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_forgot_forgot__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_reset_reset__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_logout_logout__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_admob_free__ = __webpack_require__(168);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_auth_auth__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_matches_matches__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_stats_stats__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_teams_teams__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_home_home__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_list_list__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_status_bar__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_android_permissions__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_welcome_welcome__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_signup_signup__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_login_login__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_my_profile_my_profile__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_my_account_my_account__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_previous_matches_previous_matches__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_my_teams_my_teams__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__providers_players_players__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__providers_finance_finance__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_previous_match_details_previous_match_details__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_match_team_match_team__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_finance_finance__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_forgot_forgot__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_reset_reset__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_logout_logout__ = __webpack_require__(116);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -1677,26 +1681,26 @@ var AppModule = (function () {
 AppModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["L" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* MyApp */],
-            __WEBPACK_IMPORTED_MODULE_9__pages_home_home__["a" /* HomePage */],
-            __WEBPACK_IMPORTED_MODULE_10__pages_list_list__["a" /* ListPage */],
-            __WEBPACK_IMPORTED_MODULE_13__pages_welcome_welcome__["a" /* WelcomePage */],
-            __WEBPACK_IMPORTED_MODULE_14__pages_signup_signup__["a" /* SignupPage */],
-            __WEBPACK_IMPORTED_MODULE_15__pages_login_login__["a" /* LoginPage */],
-            __WEBPACK_IMPORTED_MODULE_16__pages_my_profile_my_profile__["a" /* MyProfilePage */],
-            __WEBPACK_IMPORTED_MODULE_17__pages_my_account_my_account__["a" /* MyAccountPage */],
-            __WEBPACK_IMPORTED_MODULE_18__pages_previous_matches_previous_matches__["a" /* PreviousMatchesPage */],
-            __WEBPACK_IMPORTED_MODULE_19__pages_my_teams_my_teams__["a" /* MyTeamsPage */],
-            __WEBPACK_IMPORTED_MODULE_22__pages_previous_match_details_previous_match_details__["a" /* PreviousMatchDetailsPage */],
-            __WEBPACK_IMPORTED_MODULE_23__pages_match_team_match_team__["a" /* MatchTeamPage */],
-            __WEBPACK_IMPORTED_MODULE_24__pages_finance_finance__["a" /* FinancePage */],
-            __WEBPACK_IMPORTED_MODULE_25__pages_forgot_forgot__["a" /* ForgotPage */],
-            __WEBPACK_IMPORTED_MODULE_26__pages_reset_reset__["a" /* ResetPage */],
-            __WEBPACK_IMPORTED_MODULE_27__pages_logout_logout__["a" /* LogoutPage */]
+            __WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* MyApp */],
+            __WEBPACK_IMPORTED_MODULE_10__pages_home_home__["a" /* HomePage */],
+            __WEBPACK_IMPORTED_MODULE_11__pages_list_list__["a" /* ListPage */],
+            __WEBPACK_IMPORTED_MODULE_15__pages_welcome_welcome__["a" /* WelcomePage */],
+            __WEBPACK_IMPORTED_MODULE_16__pages_signup_signup__["a" /* SignupPage */],
+            __WEBPACK_IMPORTED_MODULE_17__pages_login_login__["a" /* LoginPage */],
+            __WEBPACK_IMPORTED_MODULE_18__pages_my_profile_my_profile__["a" /* MyProfilePage */],
+            __WEBPACK_IMPORTED_MODULE_19__pages_my_account_my_account__["a" /* MyAccountPage */],
+            __WEBPACK_IMPORTED_MODULE_20__pages_previous_matches_previous_matches__["a" /* PreviousMatchesPage */],
+            __WEBPACK_IMPORTED_MODULE_21__pages_my_teams_my_teams__["a" /* MyTeamsPage */],
+            __WEBPACK_IMPORTED_MODULE_24__pages_previous_match_details_previous_match_details__["a" /* PreviousMatchDetailsPage */],
+            __WEBPACK_IMPORTED_MODULE_25__pages_match_team_match_team__["a" /* MatchTeamPage */],
+            __WEBPACK_IMPORTED_MODULE_26__pages_finance_finance__["a" /* FinancePage */],
+            __WEBPACK_IMPORTED_MODULE_27__pages_forgot_forgot__["a" /* ForgotPage */],
+            __WEBPACK_IMPORTED_MODULE_28__pages_reset_reset__["a" /* ResetPage */],
+            __WEBPACK_IMPORTED_MODULE_29__pages_logout_logout__["a" /* LogoutPage */]
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */], __WEBPACK_IMPORTED_MODULE_3__angular_http__["c" /* HttpModule */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* MyApp */], {}, {
+            __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */], __WEBPACK_IMPORTED_MODULE_4__angular_http__["c" /* HttpModule */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* MyApp */], {}, {
                 links: [
                     { loadChildren: '../pages/match-team/match-team.module#MatchTeamPageModule', name: 'MatchTeamPage', segment: 'match-team', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
@@ -1715,29 +1719,29 @@ AppModule = __decorate([
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicApp */]],
         entryComponents: [
-            __WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* MyApp */],
-            __WEBPACK_IMPORTED_MODULE_9__pages_home_home__["a" /* HomePage */],
-            __WEBPACK_IMPORTED_MODULE_10__pages_list_list__["a" /* ListPage */],
-            __WEBPACK_IMPORTED_MODULE_13__pages_welcome_welcome__["a" /* WelcomePage */],
-            __WEBPACK_IMPORTED_MODULE_15__pages_login_login__["a" /* LoginPage */],
-            __WEBPACK_IMPORTED_MODULE_14__pages_signup_signup__["a" /* SignupPage */],
-            __WEBPACK_IMPORTED_MODULE_16__pages_my_profile_my_profile__["a" /* MyProfilePage */],
-            __WEBPACK_IMPORTED_MODULE_17__pages_my_account_my_account__["a" /* MyAccountPage */],
-            __WEBPACK_IMPORTED_MODULE_18__pages_previous_matches_previous_matches__["a" /* PreviousMatchesPage */],
-            __WEBPACK_IMPORTED_MODULE_19__pages_my_teams_my_teams__["a" /* MyTeamsPage */],
-            __WEBPACK_IMPORTED_MODULE_22__pages_previous_match_details_previous_match_details__["a" /* PreviousMatchDetailsPage */],
-            __WEBPACK_IMPORTED_MODULE_23__pages_match_team_match_team__["a" /* MatchTeamPage */],
-            __WEBPACK_IMPORTED_MODULE_24__pages_finance_finance__["a" /* FinancePage */],
-            __WEBPACK_IMPORTED_MODULE_25__pages_forgot_forgot__["a" /* ForgotPage */],
-            __WEBPACK_IMPORTED_MODULE_26__pages_reset_reset__["a" /* ResetPage */],
-            __WEBPACK_IMPORTED_MODULE_27__pages_logout_logout__["a" /* LogoutPage */]
+            __WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* MyApp */],
+            __WEBPACK_IMPORTED_MODULE_10__pages_home_home__["a" /* HomePage */],
+            __WEBPACK_IMPORTED_MODULE_11__pages_list_list__["a" /* ListPage */],
+            __WEBPACK_IMPORTED_MODULE_15__pages_welcome_welcome__["a" /* WelcomePage */],
+            __WEBPACK_IMPORTED_MODULE_17__pages_login_login__["a" /* LoginPage */],
+            __WEBPACK_IMPORTED_MODULE_16__pages_signup_signup__["a" /* SignupPage */],
+            __WEBPACK_IMPORTED_MODULE_18__pages_my_profile_my_profile__["a" /* MyProfilePage */],
+            __WEBPACK_IMPORTED_MODULE_19__pages_my_account_my_account__["a" /* MyAccountPage */],
+            __WEBPACK_IMPORTED_MODULE_20__pages_previous_matches_previous_matches__["a" /* PreviousMatchesPage */],
+            __WEBPACK_IMPORTED_MODULE_21__pages_my_teams_my_teams__["a" /* MyTeamsPage */],
+            __WEBPACK_IMPORTED_MODULE_24__pages_previous_match_details_previous_match_details__["a" /* PreviousMatchDetailsPage */],
+            __WEBPACK_IMPORTED_MODULE_25__pages_match_team_match_team__["a" /* MatchTeamPage */],
+            __WEBPACK_IMPORTED_MODULE_26__pages_finance_finance__["a" /* FinancePage */],
+            __WEBPACK_IMPORTED_MODULE_27__pages_forgot_forgot__["a" /* ForgotPage */],
+            __WEBPACK_IMPORTED_MODULE_28__pages_reset_reset__["a" /* ResetPage */],
+            __WEBPACK_IMPORTED_MODULE_29__pages_logout_logout__["a" /* LogoutPage */]
         ],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_11__ionic_native_status_bar__["a" /* StatusBar */],
-            __WEBPACK_IMPORTED_MODULE_12__ionic_native_splash_screen__["a" /* SplashScreen */],
-            __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_5__providers_matches_matches__["a" /* MatchService */], __WEBPACK_IMPORTED_MODULE_6__providers_stats_stats__["a" /* StatsService */], __WEBPACK_IMPORTED_MODULE_7__providers_teams_teams__["a" /* TeamService */], __WEBPACK_IMPORTED_MODULE_20__providers_players_players__["a" /* PlayersProvider */], __WEBPACK_IMPORTED_MODULE_21__providers_finance_finance__["a" /* FinanceProvider */],
+            __WEBPACK_IMPORTED_MODULE_12__ionic_native_status_bar__["a" /* StatusBar */],
+            __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__["a" /* SplashScreen */],
+            __WEBPACK_IMPORTED_MODULE_5__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_6__providers_matches_matches__["a" /* MatchService */], __WEBPACK_IMPORTED_MODULE_7__providers_stats_stats__["a" /* StatsService */], __WEBPACK_IMPORTED_MODULE_8__providers_teams_teams__["a" /* TeamService */], __WEBPACK_IMPORTED_MODULE_22__providers_players_players__["a" /* PlayersProvider */], __WEBPACK_IMPORTED_MODULE_23__providers_finance_finance__["a" /* FinanceProvider */],
             { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["v" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicErrorHandler */] },
-            __WEBPACK_IMPORTED_MODULE_20__providers_players_players__["a" /* PlayersProvider */]
+            __WEBPACK_IMPORTED_MODULE_22__providers_players_players__["a" /* PlayersProvider */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_admob_free__["a" /* AdMobFree */], __WEBPACK_IMPORTED_MODULE_14__ionic_native_android_permissions__["a" /* AndroidPermissions */]
         ]
     })
 ], AppModule);
@@ -1746,25 +1750,26 @@ AppModule = __decorate([
 
 /***/ }),
 
-/***/ 274:
+/***/ 284:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(208);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(213);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_welcome_welcome__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_my_profile_my_profile__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_my_account_my_account__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_previous_matches_previous_matches__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_my_teams_my_teams__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_finance_finance__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_reset_reset__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_logout_logout__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_welcome_welcome__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_my_profile_my_profile__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_my_account_my_account__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_previous_matches_previous_matches__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_my_teams_my_teams__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_finance_finance__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_reset_reset__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_logout_logout__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_android_permissions__ = __webpack_require__(217);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1788,12 +1793,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var MyApp = (function () {
-    function MyApp(platform, statusBar, splashScreen) {
+    function MyApp(platform, statusBar, splashScreen, androidPermissions) {
         this.platform = platform;
         this.statusBar = statusBar;
         this.splashScreen = splashScreen;
         this.rootPage = __WEBPACK_IMPORTED_MODULE_6__pages_welcome_welcome__["a" /* WelcomePage */];
+        platform.ready().then(function () {
+            androidPermissions.requestPermissions([
+                androidPermissions.PERMISSION.INTERNET,
+                androidPermissions.PERMISSION.ACCESS_NETWORK_STATE
+            ]);
+        });
         this.initializeApp();
         // used for an example of ngFor and navigation
         this.pages = [
@@ -1831,7 +1843,7 @@ __decorate([
 MyApp = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"D:\ionicapp\crickify\src\app\app.html"*/'<ion-menu [content]="content">\n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title>Menu</ion-title>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        {{p.title}}\n\n      </button>\n\n    </ion-list>\n\n  </ion-content>\n\n\n\n</ion-menu>\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"D:\ionicapp\crickify\src\app\app.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_14__ionic_native_android_permissions__["a" /* AndroidPermissions */]])
 ], MyApp);
 
 //# sourceMappingURL=app.component.js.map
@@ -1847,7 +1859,7 @@ MyApp = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__signup_signup__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__signup_signup__ = __webpack_require__(57);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2082,6 +2094,7 @@ MatchService = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_matches_matches__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__match_team_match_team__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_admob_free__ = __webpack_require__(168);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2096,13 +2109,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var HomePage = (function () {
-    function HomePage(navCtrl, app, authService, matchService, loadingController) {
+    function HomePage(navCtrl, app, authService, matchService, loadingController, admob) {
         this.navCtrl = navCtrl;
         this.app = app;
         this.authService = authService;
         this.matchService = matchService;
         this.loadingController = loadingController;
+        this.admob = admob;
         this.userPostData = { "user_id": "", "token": "" };
         if (this.authService.getAuthenticated()) {
             var data = JSON.parse(localStorage.getItem('userData'));
@@ -2113,7 +2128,19 @@ var HomePage = (function () {
             this.userPostData.token = this.userDetails.token;
         }
     }
+    HomePage.prototype.showBanner = function () {
+        var bannerConfig = {
+            isTesting: true,
+            autoShow: true
+            //id: Your Ad Unit ID goes here
+        };
+        this.admob.banner.config(bannerConfig);
+        this.admob.banner.prepare().then(function () {
+            // success
+        }).catch(function (e) { return console.log(e); });
+    };
     HomePage.prototype.ionViewCanEnter = function () {
+        this.showBanner();
         console.log("view did enter", this.authService.getAuthenticated());
         return this.authService.getAuthenticated();
     };
@@ -2198,7 +2225,7 @@ HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-home',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Upcoming Matches</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-card *ngFor="let match of matches">\n\n    <ion-card-header>\n\n      {{match.match.team.teamname}} versus\n\n      {{match.match.opponent}}\n\n      <p>{{match.match.tournament.name}}</p>\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <p>{{match.match.matchTime | date:\'fullDate\'}}, {{match.matchTime | date:\'shortTime\'}}</p>\n\n      <p>{{match.match.location.name}}, {{match.match.location.address}}</p>\n\n	  \n\n         <ion-label>\n\n          Select Attendance\n\n        </ion-label>\n\n		\n\n		   <ion-item>\n\n      <ion-select [(ngModel)]="match.status" (ionChange)="availabilitySelected($event, match)">\n\n          <ion-option value="0">Not Provided</ion-option>\n\n        <ion-option value="1">IN</ion-option>\n\n        <ion-option value="2">OUT</ion-option>\n\n        <ion-option value="3">Waitlist</ion-option>\n\n      </ion-select>\n\n	 \n\n    </ion-item>\n\n	<p><ion-label>Comment</ion-label></p>\n\n      <ion-item>\n\n	  \n\n	       \n\n    <ion-input [(ngModel)]="match.comments" (ionChange)="availabilitySelected($event, match)"></ion-input>\n\n	 </ion-item>\n\n	 <button ion-button icon-left clear small (click)="goToMatchTeam(match.id)">\n\n            <ion-icon name="text"></ion-icon>\n\n            <div>Match Team</div>\n\n          </button>\n\n    </ion-card-content>\n\n  </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\home\home.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_3__providers_matches_matches__["a" /* MatchService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_3__providers_matches_matches__["a" /* MatchService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_admob_free__["a" /* AdMobFree */]])
 ], HomePage);
 
 //# sourceMappingURL=home.js.map
@@ -2287,7 +2314,7 @@ MatchTeamPage = __decorate([
 
 /***/ }),
 
-/***/ 56:
+/***/ 57:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2417,7 +2444,7 @@ SignupPage = __decorate([
 
 /***/ }),
 
-/***/ 84:
+/***/ 86:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2478,5 +2505,5 @@ TeamService = __decorate([
 
 /***/ })
 
-},[215]);
+},[218]);
 //# sourceMappingURL=main.js.map
