@@ -24,9 +24,13 @@ import {MyAccountPage} from '../pages/my-account/my-account';
 import {PreviousMatchesPage} from '../pages/previous-matches/previous-matches';
 import {MyTeamsPage} from '../pages/my-teams/my-teams';
 import { PlayersProvider } from '../providers/players/players';
+import { FinanceProvider } from '../providers/finance/finance';
 import {PreviousMatchDetailsPage} from '../pages/previous-match-details/previous-match-details';
-
-
+import {MatchTeamPage} from '../pages/match-team/match-team';
+import {FinancePage} from '../pages/finance/finance';
+import {ForgotPage} from '../pages/forgot/forgot';
+import {ResetPage} from '../pages/reset/reset';
+import {LogoutPage} from '../pages/logout/logout';
 @NgModule({
   declarations: [
     MyApp,
@@ -39,7 +43,12 @@ import {PreviousMatchDetailsPage} from '../pages/previous-match-details/previous
     MyAccountPage,
     PreviousMatchesPage,
     MyTeamsPage,
-    PreviousMatchDetailsPage
+    PreviousMatchDetailsPage,
+	MatchTeamPage,
+	FinancePage,
+	ForgotPage,
+	ResetPage,
+	LogoutPage
   ],
   imports: [
     BrowserModule, HttpModule,
@@ -57,12 +66,17 @@ import {PreviousMatchDetailsPage} from '../pages/previous-match-details/previous
     MyAccountPage,
     PreviousMatchesPage,
     MyTeamsPage,
-    PreviousMatchDetailsPage
+    PreviousMatchDetailsPage,
+	MatchTeamPage,
+	FinancePage,
+	ForgotPage,
+	ResetPage,
+	LogoutPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    AuthService,MatchService,StatsService, TeamService,PlayersProvider,
+    AuthService,MatchService,StatsService, TeamService,PlayersProvider,FinanceProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PlayersProvider
   ]

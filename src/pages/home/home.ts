@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, App, LoadingController } from 'ionic-angular';
 import { AuthService} from '../../providers/auth/auth';
 import { MatchService } from '../../providers/matches/matches';
-
+import {MatchTeamPage} from '../match-team/match-team';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -108,5 +108,8 @@ matches : any;
       localStorage.clear();
       setTimeout(() => this.backToWelcome(), 1000);
  }
-
+ goToMatchTeam(event){
+    console.log("clicked match team", event);
+    this.navCtrl.push(MatchTeamPage, {"matchId": event});
+  }
 }

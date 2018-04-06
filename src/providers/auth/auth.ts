@@ -21,7 +21,11 @@ export class AuthService {
     }
 
   getToken(){
-      return JSON.parse(localStorage.getItem('userData')).user.token;
+	  if(JSON.parse(localStorage.getItem('userData')).user!=null){
+  return JSON.parse(localStorage.getItem('userData')).user.token;}
+  else{
+	  return null;
+  }
   }
 
   getUser(){
@@ -49,7 +53,51 @@ export class AuthService {
 
   }
 
+forgot(credentials) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+	console.log("input",credentials.username);
+      this.http.post(apiUrl + '/forgotpassword', credentials.username, {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("auth response signup", res.json()); 
+          if(res.json().statusCode == '200' || res.json().statusCode == '401'){
+            isAuthenticated = false;
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+          isAuthenticated = false;
+          localStorage.clear();
+        });
+    });
 
+  }
+  
+  reset(credentials) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+	headers.set("token",this.getToken());
+	 console.log("token", this.getToken());
+      this.http.post(apiUrl + '/updatepassword', JSON.stringify(credentials), {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("auth response update", res.json()); 
+          if(res.json().statusCode == '200' || res.json().statusCode == '401'){
+            isAuthenticated = false;
+			localStorage.clear();
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+          isAuthenticated = false;
+          localStorage.clear();
+        });
+    });
+
+  }
   login(credentials) {
     return new Promise((resolve, reject) => {
       let headers = new Headers();
@@ -72,7 +120,12 @@ export class AuthService {
   }
 
   getAuthenticated(){
+	  if(this.getToken()==null){
+		  return false;
+	  }
       return isAuthenticated;
   }
-
+ logout(){
+      isAuthenticated = false;
+  }
 }

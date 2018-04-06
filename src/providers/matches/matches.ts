@@ -36,6 +36,7 @@ export class MatchService {
 
   }
 
+
   getPreviousMatches() {
     return new Promise((resolve, reject) => {
       let headers = new Headers();
@@ -75,7 +76,25 @@ export class MatchService {
     });
 
   }
+  getMatchTeam(matchid) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set("token",this.getToken());
+      this.http.get(apiUrl + '/team/' + matchid, {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("auth response players", res.json()); 
+          if(res.json().statusCode == '200'){
+            console.log("players", res.json());
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
 
+  }
   postAvailability(data) {
     return new Promise((resolve, reject) => {
       let headers = new Headers();
