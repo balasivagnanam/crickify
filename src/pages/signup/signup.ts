@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import {AuthService} from '../../providers/auth/auth';
 import {HomePage} from '../home/home';
 import {LoginPage} from '../login/login';
@@ -16,9 +17,16 @@ import {LoginPage} from '../login/login';
   templateUrl: 'signup.html',
 })
 export class SignupPage {
-  
+   
+  private signupForm: FormGroup;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public alertController: AlertController, public loadingController: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public alertController: AlertController, public loadingController: LoadingController, formBuilder: FormBuilder) {
+    this.signupForm = formBuilder.group({
+      username: ['', Validators.compose([Validators.maxLength(25), Validators.required])],
+      password: ['', Validators.compose([Validators.maxLength(25), Validators.required])],
+      name: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+      phone: ['', Validators.compose([Validators.maxLength(10), Validators.pattern('[0-9]*'), Validators.required])]
+  });
   }
 
   ionViewDidLoad() {
@@ -32,11 +40,23 @@ export class SignupPage {
 
   signup(){
 
+    //  this.submitAttempt = true;
+    
+       if(!this.signupForm.valid){
+           //this.signupForm.slideTo(0);
+           console.log("not valid")
+       }
+       else {
+           console.log("success!")
+           console.log(this.signupForm.value);
+           //console.log(this.signupForm.value);
+       }
+
     const loading = this.loadingController.create({
       content: 'Please wait...'
     });
     loading.present();
-     this.authService.signup(this.userData).then((result) => {
+     this.authService.signup(this.signupForm).then((result) => {
       this.responseData = result;
       console.log("response in signup", this.responseData);
       console.log("response code", this.responseData.statusCode);
