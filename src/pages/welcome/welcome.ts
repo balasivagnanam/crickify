@@ -1,6 +1,7 @@
 import { SignupPage } from '../signup/signup';
 import { LoginPage } from '../login/login';
 import {HomePage} from '../home/home';
+import {ForgotPage} from '../forgot/forgot';
 import {AuthService} from '../../providers/auth/auth';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -38,5 +39,7 @@ export class WelcomePage {
     signup(){
     this.navCtrl.push(SignupPage);
     }
-
+ forgot(){
+    this.navCtrl.push(ForgotPage);
+    }
 }

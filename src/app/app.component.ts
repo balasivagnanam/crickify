@@ -13,8 +13,12 @@ import {MyProfilePage} from '../pages/my-profile/my-profile';
 import {MyAccountPage} from '../pages/my-account/my-account';
 import {PreviousMatchesPage} from '../pages/previous-matches/previous-matches';
 import {MyTeamsPage} from '../pages/my-teams/my-teams';
-
-
+import {MatchTeamPage} from '../pages/match-team/match-team';
+import {FinancePage} from '../pages/finance/finance';
+import {ForgotPage} from '../pages/forgot/forgot';
+import {ResetPage} from '../pages/reset/reset';
+import {LogoutPage} from '../pages/logout/logout';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 @Component({
   templateUrl: 'app.html'
 })
@@ -25,17 +29,30 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,androidPermissions: AndroidPermissions) {
+	  platform.ready().then(() => {
+
+         androidPermissions.requestPermissions(
+           [
+             androidPermissions.PERMISSION.INTERNET,
+			 androidPermissions.PERMISSION.ACCESS_NETWORK_STATE
+           ]
+         );
+
+    }) 
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Upcoming Matches', component: HomePage },
       {title: 'Completed Matches', component: PreviousMatchesPage},
-      { title: 'Team Stats', component: ListPage },
+	  { title: 'Team Stats', component: ListPage },
       {title: 'My Profile', component: MyProfilePage},
       {title:'My Teams', component: MyTeamsPage},
       {title: 'Account Details', component: MyAccountPage},
+	  {title: 'Finance Details', component: FinancePage},
+	  {title: 'Update Password', component: ResetPage},
+	  {title: 'Logout', component: LogoutPage},
     ];
 
   }

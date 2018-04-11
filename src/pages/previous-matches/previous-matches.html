@@ -30,6 +30,10 @@
           <p>{{match.team.teamname}}: {{match.score}}/{{match.wickets}}</p>
           <p>{{match.opponent}}:{{match.oppositionScore}}/{{match.oppositionWickets}}</p>
         </ion-card-content>
+		 <button ion-button icon-left clear small (click)="goToMatchTeam(match.id)">
+            <ion-icon name="text"></ion-icon>
+            <div>Match Team</div>
+          </button>
         <button ion-button icon-left clear small (click)="goToMatchDetails(match.id)">
             <ion-icon name="text"></ion-icon>
             <div>Match Details</div>

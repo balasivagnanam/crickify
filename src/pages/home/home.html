@@ -10,24 +10,37 @@
 <ion-content padding>
   <ion-card *ngFor="let match of matches">
     <ion-card-header>
-      {{match.match.team.teamname}} Vs
+      {{match.match.team.teamname}} versus
       {{match.match.opponent}}
       <p>{{match.match.tournament.name}}</p>
     </ion-card-header>
     <ion-card-content>
       <p>{{match.match.matchTime | date:'fullDate'}}, {{match.matchTime | date:'shortTime'}}</p>
       <p>{{match.match.location.name}}, {{match.match.location.address}}</p>
-      <ion-item>
-        <ion-label>
+	  
+         <ion-label>
           Select Attendance
         </ion-label>
+		
+		   <ion-item>
       <ion-select [(ngModel)]="match.status" (ionChange)="availabilitySelected($event, match)">
           <ion-option value="0">Not Provided</ion-option>
         <ion-option value="1">IN</ion-option>
         <ion-option value="2">OUT</ion-option>
         <ion-option value="3">Waitlist</ion-option>
       </ion-select>
+	 
     </ion-item>
+	<p><ion-label>Comment</ion-label></p>
+      <ion-item>
+	  
+	       
+    <ion-input [(ngModel)]="match.comments" (ionChange)="availabilitySelected($event, match)"></ion-input>
+	 </ion-item>
+	 <button ion-button icon-left clear small (click)="goToMatchTeam(match.id)">
+            <ion-icon name="text"></ion-icon>
+            <div>Match Team</div>
+          </button>
     </ion-card-content>
   </ion-card>
 </ion-content>

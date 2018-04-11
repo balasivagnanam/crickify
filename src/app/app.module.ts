@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-
+import { AdMobFree } from '@ionic-native/admob-free';
 import {HttpModule} from '@angular/http';
 
 import {AuthService} from '../providers/auth/auth';
@@ -15,7 +15,7 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 import {WelcomePage} from '../pages/welcome/welcome';
 import { SignupPage } from '../pages/signup/signup';
 import { LoginPage } from '../pages/login/login';
@@ -24,9 +24,13 @@ import {MyAccountPage} from '../pages/my-account/my-account';
 import {PreviousMatchesPage} from '../pages/previous-matches/previous-matches';
 import {MyTeamsPage} from '../pages/my-teams/my-teams';
 import { PlayersProvider } from '../providers/players/players';
+import { FinanceProvider } from '../providers/finance/finance';
 import {PreviousMatchDetailsPage} from '../pages/previous-match-details/previous-match-details';
-
-
+import {MatchTeamPage} from '../pages/match-team/match-team';
+import {FinancePage} from '../pages/finance/finance';
+import {ForgotPage} from '../pages/forgot/forgot';
+import {ResetPage} from '../pages/reset/reset';
+import {LogoutPage} from '../pages/logout/logout';
 @NgModule({
   declarations: [
     MyApp,
@@ -39,7 +43,12 @@ import {PreviousMatchDetailsPage} from '../pages/previous-match-details/previous
     MyAccountPage,
     PreviousMatchesPage,
     MyTeamsPage,
-    PreviousMatchDetailsPage
+    PreviousMatchDetailsPage,
+	MatchTeamPage,
+	FinancePage,
+	ForgotPage,
+	ResetPage,
+	LogoutPage
   ],
   imports: [
     BrowserModule, HttpModule,
@@ -57,14 +66,19 @@ import {PreviousMatchDetailsPage} from '../pages/previous-match-details/previous
     MyAccountPage,
     PreviousMatchesPage,
     MyTeamsPage,
-    PreviousMatchDetailsPage
+    PreviousMatchDetailsPage,
+	MatchTeamPage,
+	FinancePage,
+	ForgotPage,
+	ResetPage,
+	LogoutPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    AuthService,MatchService,StatsService, TeamService,PlayersProvider,
+    AuthService,MatchService,StatsService, TeamService,PlayersProvider,FinanceProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    PlayersProvider
+    PlayersProvider,AdMobFree,AndroidPermissions
   ]
 })
 export class AppModule {}
