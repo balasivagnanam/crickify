@@ -17,42 +17,54 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import {WelcomePage} from '../pages/welcome/welcome';
+import {WelcomePageModule} from '../pages/welcome/welcome.module';
 import { SignupPage } from '../pages/signup/signup';
+import { SignupPageModule } from '../pages/signup/signup.module';
 import { LoginPage } from '../pages/login/login';
+import { LoginPageModule } from '../pages/login/login.module';
 import {MyProfilePage} from '../pages/my-profile/my-profile';
+import {MyProfilePageModule} from '../pages/my-profile/my-profile.module';
 import {MyAccountPage} from '../pages/my-account/my-account';
+import {MyAccountPageModule} from '../pages/my-account/my-account.module';
 import {PreviousMatchesPage} from '../pages/previous-matches/previous-matches';
+import {PreviousMatchesPageModule} from '../pages/previous-matches/previous-matches.module';
 import {MyTeamsPage} from '../pages/my-teams/my-teams';
+import {MyTeamsPageModule} from '../pages/my-teams/my-teams.module';
 import { PlayersProvider } from '../providers/players/players';
 import { FinanceProvider } from '../providers/finance/finance';
 import {PreviousMatchDetailsPage} from '../pages/previous-match-details/previous-match-details';
+import {PreviousMatchDetailsPageModule} from '../pages/previous-match-details/previous-match-details.module';
 import {MatchTeamPage} from '../pages/match-team/match-team';
+import {MatchTeamPageModule} from '../pages/match-team/match-team.module';
 import {FinancePage} from '../pages/finance/finance';
 import {ForgotPage} from '../pages/forgot/forgot';
+import {ForgotPageModule} from '../pages/forgot/forgot.module';
+import {FinancePageModule} from '../pages/finance/finance.module';
 import {ResetPage} from '../pages/reset/reset';
+import {ResetPageModule} from '../pages/reset/reset.module';
 import {LogoutPage} from '../pages/logout/logout';
+import {LogoutPageModule} from '../pages/logout/logout.module';
+import { Push, PushObject, PushOptions } from '@ionic-native/push';
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    WelcomePage,
-    SignupPage,
-    LoginPage,
-    MyProfilePage,
-    MyAccountPage,
-    PreviousMatchesPage,
-    MyTeamsPage,
-    PreviousMatchDetailsPage,
-	MatchTeamPage,
-	FinancePage,
-	ForgotPage,
-	ResetPage,
-	LogoutPage
+    
+   
   ],
   imports: [
     BrowserModule, HttpModule,
     IonicModule.forRoot(MyApp),
+	FinancePageModule,ForgotPageModule,LoginPageModule, SignupPageModule,
+    MyProfilePageModule,
+    MyAccountPageModule,
+    PreviousMatchesPageModule,
+    MyTeamsPageModule,
+    PreviousMatchDetailsPageModule,
+	MatchTeamPageModule,
+	ResetPageModule,
+	LogoutPageModule,WelcomePageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -78,7 +90,7 @@ import {LogoutPage} from '../pages/logout/logout';
     SplashScreen,
     AuthService,MatchService,StatsService, TeamService,PlayersProvider,FinanceProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    PlayersProvider,AdMobFree,AndroidPermissions
+    PlayersProvider,AdMobFree,AndroidPermissions,Push
   ]
 })
 export class AppModule {}

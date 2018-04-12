@@ -10,4 +10,4 @@ import { LogoutPage } from './logout';
     IonicPageModule.forChild(LogoutPage),
   ],
 })
-export class ResetPageModule {}
+export class LogoutPageModule {}

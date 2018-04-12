@@ -31,9 +31,9 @@ matches : any;
 showBanner() {
  
         let bannerConfig: AdMobFreeBannerConfig = {
-            isTesting: true, // Remove in production
-            autoShow: true
-            //id: Your Ad Unit ID goes here
+             // Remove in production
+            autoShow: true,
+           id:'ca-app-pub-7720772047232561~3441613572'
         };
  
         this.admob.banner.config(bannerConfig);

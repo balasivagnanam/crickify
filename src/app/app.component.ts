@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { AlertController } from 'ionic-angular';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 
@@ -19,6 +19,7 @@ import {ForgotPage} from '../pages/forgot/forgot';
 import {ResetPage} from '../pages/reset/reset';
 import {LogoutPage} from '../pages/logout/logout';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
+import { Push, PushObject, PushOptions } from '@ionic-native/push';
 @Component({
   templateUrl: 'app.html'
 })
@@ -29,7 +30,8 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,androidPermissions: AndroidPermissions) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,androidPermissions: AndroidPermissions,public push: Push,private alertCtrl: AlertController) {
+	  
 	  platform.ready().then(() => {
 
          androidPermissions.requestPermissions(
@@ -39,9 +41,10 @@ export class MyApp {
            ]
          );
 
-    }) 
+    }
+	) 
     this.initializeApp();
-
+this.initPushNotification();
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Upcoming Matches', component: HomePage },
@@ -56,7 +59,58 @@ export class MyApp {
     ];
 
   }
+initPushNotification(){
 
+  const options: PushOptions = {
+    android: {
+      senderID: "402670322623"
+    }
+  };
+
+  const pushObject: PushObject = this.push.init(options);
+
+    pushObject.on('registration').subscribe((data: any) => {
+      console.log("device token:", data.registrationId);
+
+      let alert = this.alertCtrl.create({
+                  title: 'device token',
+                  subTitle: data.registrationId,
+                  buttons: ['OK']
+                });
+                alert.present();
+
+    });
+
+    pushObject.on('notification').subscribe((data: any) => {
+      console.log('message', data.message);
+      if (data.additionalData.foreground) {
+        let confirmAlert = this.alertCtrl.create({
+          title: 'New Notification',
+          message: data.message,
+          buttons: [{
+            text: 'Ignore',
+            role: 'cancel'
+          }, {
+            text: 'View',
+            handler: () => {
+              //TODO: Your logic here
+            }
+          }]
+        });
+        confirmAlert.present();
+      } else {
+      let alert = this.alertCtrl.create({
+                  title: 'clicked on',
+                  subTitle: "you clicked on the notification!",
+                 buttons: ['OK']
+                });
+                alert.present();
+        console.log("Push notification clicked");
+      }
+   });
+
+    pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
+  }
   initializeApp() {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

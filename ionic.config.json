@@ -1,6 +1,6 @@
 {
   "name": "crickify",
-  "app_id": "3a1b9c9e",
+  "app_id": "fe30c8eb",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
