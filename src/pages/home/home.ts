@@ -69,6 +69,7 @@ showBanner() {
         this.matches = this.responseData.results.matches;
       }  else if(this.responseData.statusCode == "404") {
         console.log("unauthorrised");
+		loading.dismiss();
         localStorage.clear();
         this.backToWelcome();
       } else {
@@ -77,6 +78,7 @@ showBanner() {
       }
       
     }, (err) => {
+		loading.dismiss();
       // Error log
     });
 
@@ -102,6 +104,7 @@ showBanner() {
         //this.matches = this.responseData.results.matches;
       }  else if(this.responseData.statusCode == "404") {
         console.log("unauthorrised");
+		loading.dismiss();
         localStorage.clear();
         this.backToWelcome();
       } else {
@@ -110,6 +113,7 @@ showBanner() {
       }
       
     }, (err) => {
+		loading.dismiss();
       // Error log
     });
 

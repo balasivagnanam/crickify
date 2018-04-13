@@ -3,14 +3,14 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Upcoming Matches</ion-title>
+    <ion-title>Upcoming Matches </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-card *ngFor="let match of matches">
     <ion-card-header>
-      {{match.match.team.teamname}} versus
+      {{match.match.team.teamname}} vs
       {{match.match.opponent}}
       <p>{{match.match.tournament.name}}</p>
     </ion-card-header>
@@ -31,7 +31,7 @@
       </ion-select>
 	 
     </ion-item>
-	<p><ion-label>Comment</ion-label></p>
+	<p><ion-label>Comments</ion-label></p>
       <ion-item>
 	  
 	       

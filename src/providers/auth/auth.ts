@@ -21,7 +21,7 @@ export class AuthService {
     }
 
   getToken(){
-	  if(JSON.parse(localStorage.getItem('userData')).user!=null){
+	  if(JSON.parse(localStorage.getItem('userData'))!=null&& JSON.parse(localStorage.getItem('userData')).user!=null){
   return JSON.parse(localStorage.getItem('userData')).user.token;}
   else{
 	  return null;
@@ -29,9 +29,12 @@ export class AuthService {
   }
 
   getUser(){
-      return JSON.parse(localStorage.getItem('userData')).user;
+      if(JSON.parse(localStorage.getItem('userData'))!=null){
+  return JSON.parse(localStorage.getItem('userData')).user;}
+  else{
+	  return null;
   }
-
+  }
   signup(credentials) {
     return new Promise((resolve, reject) => {
       let headers = new Headers();
