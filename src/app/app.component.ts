@@ -20,6 +20,9 @@ import {ResetPage} from '../pages/reset/reset';
 import {LogoutPage} from '../pages/logout/logout';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
+import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
+import {BrowserModule} from "@angular/platform-browser";
+import {FormsModule} from "@angular/forms";
 @Component({
   templateUrl: 'app.html'
 })

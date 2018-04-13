@@ -45,6 +45,9 @@ import {ResetPageModule} from '../pages/reset/reset.module';
 import {LogoutPage} from '../pages/logout/logout';
 import {LogoutPageModule} from '../pages/logout/logout.module';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
+import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
+
+import {FormsModule} from "@angular/forms";
 @NgModule({
   declarations: [
     MyApp,
@@ -54,7 +57,7 @@ import { Push, PushObject, PushOptions } from '@ionic-native/push';
    
   ],
   imports: [
-    BrowserModule, HttpModule,
+    BrowserModule, FormsModule, HttpModule,
     IonicModule.forRoot(MyApp),
 	FinancePageModule,ForgotPageModule,LoginPageModule, SignupPageModule,
     MyProfilePageModule,
