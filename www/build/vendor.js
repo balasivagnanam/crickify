@@ -61,6 +61,55 @@
 /******/ 		return module.exports;
 /******/ 	}
 /******/
+/******/ 	// This file contains only the entry chunk.
+/******/ 	// The chunk loading function for additional chunks
+/******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
+/******/ 		var installedChunkData = installedChunks[chunkId];
+/******/ 		if(installedChunkData === 0) {
+/******/ 			return new Promise(function(resolve) { resolve(); });
+/******/ 		}
+/******/
+/******/ 		// a Promise means "currently loading".
+/******/ 		if(installedChunkData) {
+/******/ 			return installedChunkData[2];
+/******/ 		}
+/******/
+/******/ 		// setup Promise in chunk cache
+/******/ 		var promise = new Promise(function(resolve, reject) {
+/******/ 			installedChunkData = installedChunks[chunkId] = [resolve, reject];
+/******/ 		});
+/******/ 		installedChunkData[2] = promise;
+/******/
+/******/ 		// start chunk loading
+/******/ 		var head = document.getElementsByTagName('head')[0];
+/******/ 		var script = document.createElement('script');
+/******/ 		script.type = 'text/javascript';
+/******/ 		script.charset = 'utf-8';
+/******/ 		script.async = true;
+/******/ 		script.timeout = 120000;
+/******/
+/******/ 		if (__webpack_require__.nc) {
+/******/ 			script.setAttribute("nonce", __webpack_require__.nc);
+/******/ 		}
+/******/ 		script.src = __webpack_require__.p + "" + chunkId + ".js";
+/******/ 		var timeout = setTimeout(onScriptComplete, 120000);
+/******/ 		script.onerror = script.onload = onScriptComplete;
+/******/ 		function onScriptComplete() {
+/******/ 			// avoid mem leaks in IE.
+/******/ 			script.onerror = script.onload = null;
+/******/ 			clearTimeout(timeout);
+/******/ 			var chunk = installedChunks[chunkId];
+/******/ 			if(chunk !== 0) {
+/******/ 				if(chunk) {
+/******/ 					chunk[1](new Error('Loading chunk ' + chunkId + ' failed.'));
+/******/ 				}
+/******/ 				installedChunks[chunkId] = undefined;
+/******/ 			}
+/******/ 		};
+/******/ 		head.appendChild(script);
+/******/
+/******/ 		return promise;
+/******/ 	};
 /******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
@@ -40516,7 +40565,7 @@ function Navbar_tsickle_Closure_declarations() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugin__ = __webpack_require__(172);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugin__ = __webpack_require__(173);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_0__plugin__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__decorators__ = __webpack_require__(276);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__decorators__["a"]; });
@@ -67824,12 +67873,12 @@ function loadPrecompiledFactory(modulePath, ngModuleExport) {
 /* unused harmony export AdMobFreeBanner */
 /* unused harmony export AdMobFreeInterstitial */
 /* unused harmony export AdMobFreeRewardVideo */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_native_core__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_observable_fromEvent__ = __webpack_require__(172);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_observable_fromEvent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_add_observable_fromEvent__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_fromEvent__ = __webpack_require__(173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_fromEvent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_fromEvent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_core__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -67944,7 +67993,7 @@ var AdMobFree = (function (_super) {
      * @return {Observable<any>}
      */
     AdMobFree.prototype.on = function (event) {
-        return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].fromEvent(document, event);
+        return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].fromEvent(document, event);
     };
     AdMobFree.decorators = [
         { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["B" /* Injectable */] },
@@ -67952,7 +68001,7 @@ var AdMobFree = (function (_super) {
     /** @nocollapse */
     AdMobFree.ctorParameters = function () { return []; };
     AdMobFree = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__ionic_native_core__["e" /* Plugin */])({
+        Object(__WEBPACK_IMPORTED_MODULE_2__ionic_native_core__["e" /* Plugin */])({
             pluginName: 'AdMobFree',
             plugin: 'cordova-plugin-admob-free',
             pluginRef: 'admob',
@@ -67961,7 +68010,7 @@ var AdMobFree = (function (_super) {
         })
     ], AdMobFree);
     return AdMobFree;
-}(__WEBPACK_IMPORTED_MODULE_0__ionic_native_core__["d" /* IonicNativePlugin */]));
+}(__WEBPACK_IMPORTED_MODULE_2__ionic_native_core__["d" /* IonicNativePlugin */]));
 
 /**
  * @hidden
@@ -67970,66 +68019,76 @@ var AdMobFreeBanner = (function () {
     function AdMobFreeBanner() {
     }
     /**
-     * Update config.
+     * Update config
      * @param options
      * @return {AdMobFreeBannerConfig}
      */
-    AdMobFreeBanner.prototype.config = function (options) { return; };
+    AdMobFreeBanner.prototype.config = function (options) {
+        return;
+    };
     /**
-     * Hide the banner.
+     * Hide the banner
      * @return {Promise<any>}
      */
-    AdMobFreeBanner.prototype.hide = function () { return; };
+    AdMobFreeBanner.prototype.hide = function () {
+        return;
+    };
     /**
-     * Create banner.
+     * Create banner
      * @return {Promise<any>}
      */
-    AdMobFreeBanner.prototype.prepare = function () { return; };
+    AdMobFreeBanner.prototype.prepare = function () {
+        return;
+    };
     /**
-     * Remove the banner.
+     * Remove the banner
      * @return {Promise<any>}
      */
-    AdMobFreeBanner.prototype.remove = function () { return; };
+    AdMobFreeBanner.prototype.remove = function () {
+        return;
+    };
     /**
-     * Show the banner.
+     * Show the banner
      * @return {Promise<any>}
      */
-    AdMobFreeBanner.prototype.show = function () { return; };
+    AdMobFreeBanner.prototype.show = function () {
+        return;
+    };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__ionic_native_core__["a" /* Cordova */])({ sync: true }),
+        Object(__WEBPACK_IMPORTED_MODULE_2__ionic_native_core__["a" /* Cordova */])({ sync: true }),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [Object]),
         __metadata("design:returntype", Object)
     ], AdMobFreeBanner.prototype, "config", null);
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__ionic_native_core__["a" /* Cordova */])({ otherPromise: true }),
+        Object(__WEBPACK_IMPORTED_MODULE_2__ionic_native_core__["a" /* Cordova */])({ otherPromise: true }),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", []),
         __metadata("design:returntype", Promise)
     ], AdMobFreeBanner.prototype, "hide", null);
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__ionic_native_core__["a" /* Cordova */])({ otherPromise: true }),
+        Object(__WEBPACK_IMPORTED_MODULE_2__ionic_native_core__["a" /* Cordova */])({ otherPromise: true }),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", []),
         __metadata("design:returntype", Promise)
     ], AdMobFreeBanner.prototype, "prepare", null);
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__ionic_native_core__["a" /* Cordova */])({ otherPromise: true }),
+        Object(__WEBPACK_IMPORTED_MODULE_2__ionic_native_core__["a" /* Cordova */])({ otherPromise: true }),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", []),
         __metadata("design:returntype", Promise)
     ], AdMobFreeBanner.prototype, "remove", null);
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__ionic_native_core__["a" /* Cordova */])({ otherPromise: true }),
+        Object(__WEBPACK_IMPORTED_MODULE_2__ionic_native_core__["a" /* Cordova */])({ otherPromise: true }),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", []),
         __metadata("design:returntype", Promise)
     ], AdMobFreeBanner.prototype, "show", null);
     AdMobFreeBanner = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__ionic_native_core__["e" /* Plugin */])({
+        Object(__WEBPACK_IMPORTED_MODULE_2__ionic_native_core__["e" /* Plugin */])({
             pluginName: 'AdMobFree',
             plugin: 'cordova-plugin-admob-free',
-            pluginRef: 'admob.banner',
+            pluginRef: 'admob.banner'
         })
     ], AdMobFreeBanner);
     return AdMobFreeBanner;
@@ -68042,55 +68101,63 @@ var AdMobFreeInterstitial = (function () {
     function AdMobFreeInterstitial() {
     }
     /**
-     * Update config.
+     * Update config
      * @param options
      * @return {AdMobFreeInterstitialConfig}
      */
-    AdMobFreeInterstitial.prototype.config = function (options) { return; };
+    AdMobFreeInterstitial.prototype.config = function (options) {
+        return;
+    };
     /**
      * Check if interstitial is ready
      * @return {Promise<any>}
      */
-    AdMobFreeInterstitial.prototype.isReady = function () { return; };
+    AdMobFreeInterstitial.prototype.isReady = function () {
+        return;
+    };
     /**
      * Prepare interstitial
      * @return {Promise<any>}
      */
-    AdMobFreeInterstitial.prototype.prepare = function () { return; };
+    AdMobFreeInterstitial.prototype.prepare = function () {
+        return;
+    };
     /**
      * Show the interstitial
      * @return {Promise<any>}
      */
-    AdMobFreeInterstitial.prototype.show = function () { return; };
+    AdMobFreeInterstitial.prototype.show = function () {
+        return;
+    };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__ionic_native_core__["a" /* Cordova */])({ sync: true }),
+        Object(__WEBPACK_IMPORTED_MODULE_2__ionic_native_core__["a" /* Cordova */])({ sync: true }),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [Object]),
         __metadata("design:returntype", Object)
     ], AdMobFreeInterstitial.prototype, "config", null);
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__ionic_native_core__["a" /* Cordova */])({ otherPromise: true }),
+        Object(__WEBPACK_IMPORTED_MODULE_2__ionic_native_core__["a" /* Cordova */])({ otherPromise: true }),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", []),
         __metadata("design:returntype", Promise)
     ], AdMobFreeInterstitial.prototype, "isReady", null);
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__ionic_native_core__["a" /* Cordova */])({ otherPromise: true }),
+        Object(__WEBPACK_IMPORTED_MODULE_2__ionic_native_core__["a" /* Cordova */])({ otherPromise: true }),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", []),
         __metadata("design:returntype", Promise)
     ], AdMobFreeInterstitial.prototype, "prepare", null);
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__ionic_native_core__["a" /* Cordova */])({ otherPromise: true }),
+        Object(__WEBPACK_IMPORTED_MODULE_2__ionic_native_core__["a" /* Cordova */])({ otherPromise: true }),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", []),
         __metadata("design:returntype", Promise)
     ], AdMobFreeInterstitial.prototype, "show", null);
     AdMobFreeInterstitial = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__ionic_native_core__["e" /* Plugin */])({
+        Object(__WEBPACK_IMPORTED_MODULE_2__ionic_native_core__["e" /* Plugin */])({
             pluginName: 'AdMobFree',
             plugin: 'cordova-plugin-admob-free',
-            pluginRef: 'admob.interstitial',
+            pluginRef: 'admob.interstitial'
         })
     ], AdMobFreeInterstitial);
     return AdMobFreeInterstitial;
@@ -68103,55 +68170,63 @@ var AdMobFreeRewardVideo = (function () {
     function AdMobFreeRewardVideo() {
     }
     /**
-     * Update config.
-     * @param options
+     * Update config
+     * @param {AdMobFreeRewardVideoConfig} options Admob reward config
      * @return {AdMobFreeRewardVideoConfig}
      */
-    AdMobFreeRewardVideo.prototype.config = function (options) { return; };
+    AdMobFreeRewardVideo.prototype.config = function (options) {
+        return;
+    };
     /**
      * Check if reward video is ready
      * @return {Promise<any>}
      */
-    AdMobFreeRewardVideo.prototype.isReady = function () { return; };
+    AdMobFreeRewardVideo.prototype.isReady = function () {
+        return;
+    };
     /**
      * Prepare reward video
      * @return {Promise<any>}
      */
-    AdMobFreeRewardVideo.prototype.prepare = function () { return; };
+    AdMobFreeRewardVideo.prototype.prepare = function () {
+        return;
+    };
     /**
      * Show the reward video
      * @return {Promise<any>}
      */
-    AdMobFreeRewardVideo.prototype.show = function () { return; };
+    AdMobFreeRewardVideo.prototype.show = function () {
+        return;
+    };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__ionic_native_core__["a" /* Cordova */])({ sync: true }),
+        Object(__WEBPACK_IMPORTED_MODULE_2__ionic_native_core__["a" /* Cordova */])({ sync: true }),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [Object]),
         __metadata("design:returntype", Object)
     ], AdMobFreeRewardVideo.prototype, "config", null);
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__ionic_native_core__["a" /* Cordova */])({ otherPromise: true }),
+        Object(__WEBPACK_IMPORTED_MODULE_2__ionic_native_core__["a" /* Cordova */])({ otherPromise: true }),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", []),
         __metadata("design:returntype", Promise)
     ], AdMobFreeRewardVideo.prototype, "isReady", null);
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__ionic_native_core__["a" /* Cordova */])({ otherPromise: true }),
+        Object(__WEBPACK_IMPORTED_MODULE_2__ionic_native_core__["a" /* Cordova */])({ otherPromise: true }),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", []),
         __metadata("design:returntype", Promise)
     ], AdMobFreeRewardVideo.prototype, "prepare", null);
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__ionic_native_core__["a" /* Cordova */])({ otherPromise: true }),
+        Object(__WEBPACK_IMPORTED_MODULE_2__ionic_native_core__["a" /* Cordova */])({ otherPromise: true }),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", []),
         __metadata("design:returntype", Promise)
     ], AdMobFreeRewardVideo.prototype, "show", null);
     AdMobFreeRewardVideo = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__ionic_native_core__["e" /* Plugin */])({
+        Object(__WEBPACK_IMPORTED_MODULE_2__ionic_native_core__["e" /* Plugin */])({
             pluginName: 'AdMobFree',
             plugin: 'cordova-plugin-admob-free',
-            pluginRef: 'admob.rewardvideo',
+            pluginRef: 'admob.rewardvideo'
         })
     ], AdMobFreeRewardVideo);
     return AdMobFreeRewardVideo;
@@ -68161,6 +68236,17 @@ var AdMobFreeRewardVideo = (function () {
 
 /***/ }),
 /* 172 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__(8);
+var fromEvent_1 = __webpack_require__(273);
+Observable_1.Observable.fromEvent = fromEvent_1.fromEvent;
+//# sourceMappingURL=fromEvent.js.map
+
+/***/ }),
+/* 173 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -68173,10 +68259,10 @@ var AdMobFreeRewardVideo = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return wrap; });
 /* harmony export (immutable) */ __webpack_exports__["e"] = wrapInstance;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bootstrap__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bootstrap__ = __webpack_require__(275);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_fromEvent__ = __webpack_require__(173);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_fromEvent__ = __webpack_require__(172);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_fromEvent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_fromEvent__);
 
 
@@ -68470,17 +68556,6 @@ function wrapInstance(pluginObj, methodName, opts) {
     };
 }
 //# sourceMappingURL=plugin.js.map
-
-/***/ }),
-/* 173 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var Observable_1 = __webpack_require__(8);
-var fromEvent_1 = __webpack_require__(274);
-Observable_1.Observable.fromEvent = fromEvent_1.fromEvent;
-//# sourceMappingURL=fromEvent.js.map
 
 /***/ }),
 /* 174 */,
@@ -77533,8 +77608,8 @@ SplashScreen = __decorate([
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AndroidPermissions; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_native_core__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_core__ = __webpack_require__(46);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -77739,65 +77814,73 @@ var AndroidPermissions = (function (_super) {
             WRITE_SOCIAL_STREAM: 'android.permission.WRITE_SOCIAL_STREAM',
             WRITE_SYNC_SETTINGS: 'android.permission.WRITE_SYNC_SETTINGS',
             WRITE_USER_DICTIONARY: 'android.permission.WRITE_USER_DICTIONARY',
-            WRITE_VOICEMAIL: 'com.android.voicemail.permission.WRITE_VOICEMAIL',
+            WRITE_VOICEMAIL: 'com.android.voicemail.permission.WRITE_VOICEMAIL'
         };
         return _this;
     }
     /**
      * Check permission
-     * @param permission {string} The name of the permission
+     * @param {string} permission The name of the permission
      * @return {Promise<any>} Returns a promise
      */
-    AndroidPermissions.prototype.checkPermission = function (permission) { return; };
+    AndroidPermissions.prototype.checkPermission = function (permission) {
+        return;
+    };
     /**
      * Request permission
-     * @param permission {string} The name of the permission to request
+     * @param {string} permission The name of the permission to request
      * @return {Promise<any>}
      */
-    AndroidPermissions.prototype.requestPermission = function (permission) { return; };
+    AndroidPermissions.prototype.requestPermission = function (permission) {
+        return;
+    };
     /**
      * Request permissions
-     * @param permissions {Array<string>} An array with permissions
+     * @param {Array<string>} permissions An array with permissions
      * @return {Promise<any>} Returns a promise
      */
-    AndroidPermissions.prototype.requestPermissions = function (permissions) { return; };
+    AndroidPermissions.prototype.requestPermissions = function (permissions) {
+        return;
+    };
     /**
      * This function still works now, will not support in the future.
-     * @param permission {string} The name of the permission
+     * @param {string} permission The name of the permission
      * @return {Promise<any>} Returns a promise
      */
-    AndroidPermissions.prototype.hasPermission = function (permission) { return; };
+    AndroidPermissions.prototype.hasPermission = function (permission) {
+        return;
+    };
     AndroidPermissions.decorators = [
-        { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["B" /* Injectable */] },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */] },
     ];
     /** @nocollapse */
     AndroidPermissions.ctorParameters = function () { return []; };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__ionic_native_core__["a" /* Cordova */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])(),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [String]),
         __metadata("design:returntype", Promise)
     ], AndroidPermissions.prototype, "checkPermission", null);
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__ionic_native_core__["a" /* Cordova */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])(),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [String]),
         __metadata("design:returntype", Promise)
     ], AndroidPermissions.prototype, "requestPermission", null);
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__ionic_native_core__["a" /* Cordova */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])(),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [Array]),
         __metadata("design:returntype", Promise)
     ], AndroidPermissions.prototype, "requestPermissions", null);
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__ionic_native_core__["a" /* Cordova */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])(),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [String]),
         __metadata("design:returntype", Promise)
     ], AndroidPermissions.prototype, "hasPermission", null);
     AndroidPermissions = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__ionic_native_core__["e" /* Plugin */])({
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["e" /* Plugin */])({
             pluginName: 'AndroidPermissions',
             plugin: 'cordova-plugin-android-permissions',
             pluginRef: 'cordova.plugins.permissions',
@@ -77806,7 +77889,7 @@ var AndroidPermissions = (function (_super) {
         })
     ], AndroidPermissions);
     return AndroidPermissions;
-}(__WEBPACK_IMPORTED_MODULE_0__ionic_native_core__["d" /* IonicNativePlugin */]));
+}(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["d" /* IonicNativePlugin */]));
 
 //# sourceMappingURL=index.js.map
 
@@ -108768,42 +108851,16 @@ function ModalImpl_tsickle_Closure_declarations() {
 
 /***/ }),
 /* 273 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = checkReady;
-function checkReady() {
-    var DEVICE_READY_TIMEOUT = 5000;
-    // To help developers using cordova, we listen for the device ready event and
-    // log an error if it didn't fire in a reasonable amount of time. Generally,
-    // when this happens, developers should remove and reinstall plugins, since
-    // an inconsistent plugin is often the culprit.
-    var before = Date.now();
-    var didFireReady = false;
-    document.addEventListener('deviceready', function () {
-        console.log("Ionic Native: deviceready event fired after " + (Date.now() - before) + " ms");
-        didFireReady = true;
-    });
-    setTimeout(function () {
-        if (!didFireReady && !!window.cordova) {
-            console.warn("Ionic Native: deviceready did not fire within " + DEVICE_READY_TIMEOUT + "ms. This can happen when plugins are in an inconsistent state. Try removing plugins from plugins/ and reinstalling them.");
-        }
-    }, DEVICE_READY_TIMEOUT);
-}
-//# sourceMappingURL=bootstrap.js.map
-
-/***/ }),
-/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var FromEventObservable_1 = __webpack_require__(275);
+var FromEventObservable_1 = __webpack_require__(274);
 exports.fromEvent = FromEventObservable_1.FromEventObservable.create;
 //# sourceMappingURL=fromEvent.js.map
 
 /***/ }),
-/* 275 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -108949,6 +109006,32 @@ exports.FromEventObservable = FromEventObservable;
 //# sourceMappingURL=FromEventObservable.js.map
 
 /***/ }),
+/* 275 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = checkReady;
+function checkReady() {
+    var DEVICE_READY_TIMEOUT = 5000;
+    // To help developers using cordova, we listen for the device ready event and
+    // log an error if it didn't fire in a reasonable amount of time. Generally,
+    // when this happens, developers should remove and reinstall plugins, since
+    // an inconsistent plugin is often the culprit.
+    var before = Date.now();
+    var didFireReady = false;
+    document.addEventListener('deviceready', function () {
+        console.log("Ionic Native: deviceready event fired after " + (Date.now() - before) + " ms");
+        didFireReady = true;
+    });
+    setTimeout(function () {
+        if (!didFireReady && !!window.cordova) {
+            console.warn("Ionic Native: deviceready did not fire within " + DEVICE_READY_TIMEOUT + "ms. This can happen when plugins are in an inconsistent state. Try removing plugins from plugins/ and reinstalling them.");
+        }
+    }, DEVICE_READY_TIMEOUT);
+}
+//# sourceMappingURL=bootstrap.js.map
+
+/***/ }),
 /* 276 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -108962,7 +109045,7 @@ exports.FromEventObservable = FromEventObservable;
 /* unused harmony export InstanceProperty */
 /* unused harmony export CordovaFunctionOverride */
 /* unused harmony export CordovaFiniteObservable */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugin__ = __webpack_require__(172);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugin__ = __webpack_require__(173);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(85);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
