@@ -4,6 +4,7 @@ import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import {AuthService} from '../../providers/auth/auth';
 import {HomePage} from '../home/home';
 import {LoginPage} from '../login/login';
+import {WelcomePage} from '../welcome/welcome';
 /**
  * Generated class for the SignupPage page.
  *
@@ -130,5 +131,9 @@ phone : any;
   login(){
     //Login page link
     this.navCtrl.push(LoginPage);
+  }
+   homePage(){
+    //Login page link
+    this.navCtrl.push(WelcomePage);
   }
 }

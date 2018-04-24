@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController, LoadingController
 import {HomePage} from '../home/home';
 import {AuthService} from '../../providers/auth/auth';
 import {SignupPage} from '../signup/signup';
+import {WelcomePage} from '../welcome/welcome';
 /**
  * Generated class for the LoginPage page.
  *
@@ -70,6 +71,9 @@ export class LoginPage {
   signup(){
     this.navCtrl.push(SignupPage);
   }
-
+   homePage(){
+    //Login page link
+    this.navCtrl.push(WelcomePage);
+  }
 
 }
