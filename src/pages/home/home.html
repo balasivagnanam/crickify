@@ -7,8 +7,8 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-card *ngFor="let match of matches">
+<ion-content padding class="appBackground">
+  <ion-card *ngFor="let match of matches" color="primary">
     <ion-card-header>
       {{match.match.team.teamname}} versus
       {{match.match.opponent}}

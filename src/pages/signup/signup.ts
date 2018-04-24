@@ -19,7 +19,10 @@ import {LoginPage} from '../login/login';
 export class SignupPage {
    
   private signupForm: FormGroup;
-
+username : any;
+password : any;
+name : any;
+phone : any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public alertController: AlertController, public loadingController: LoadingController, formBuilder: FormBuilder) {
     this.signupForm = formBuilder.group({
       username: ['', Validators.compose([Validators.maxLength(25), Validators.required])],
@@ -27,6 +30,10 @@ export class SignupPage {
       name: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
       phone: ['', Validators.compose([Validators.maxLength(10), Validators.pattern('[0-9]*'), Validators.required])]
   });
+  this.username=this.signupForm.controls['username'];
+  this.password=this.signupForm.controls['password'];
+  this.name=this.signupForm.controls['name'];
+  this.phone=this.signupForm.controls['phone'];
   }
 
   ionViewDidLoad() {

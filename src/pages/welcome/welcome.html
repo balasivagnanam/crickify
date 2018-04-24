@@ -4,39 +4,131 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>welcome</ion-title>
-  </ion-navbar>
-
-</ion-header>
 
 
-<ion-content padding>
-    <ion-grid>
+
+<ion-content padding class="login-background">
+    <ion-grid  >
         <ion-row>
-          <ion-col>
-            <h1>Welcome to Your App</h1>
+          <ion-col col-2>
+            <img src="../assets/img/icon.png"/>
+			 </ion-col >
+			 <ion-col col-6 >
+			<h1 >Crickify</h1>
           </ion-col>
-        </ion-row>
-      </ion-grid>
-    
-      <ion-grid >
-        <ion-row>
+   
           <ion-col center text-center>
             <button ion-button full color="success" (click)="signup()">Sign up</button>
           </ion-col>
-        </ion-row>
-        <ion-row>
+        
+        
           <ion-col center text-center>
             <button ion-button full color="lightText" (click)="login()">Log in</button>
           </ion-col>
-        </ion-row>
-		 <ion-row>
+        
+		 
           <ion-col center text-center>
             <button ion-button full color="lightText" (click)="forgot()">Forgot Password</button>
           </ion-col>
         </ion-row>
       </ion-grid>
+	  <h1>Best Batsman </h1>
+	 <ion-grid >
+        <ion-row > 
+		<ion-col *ngFor="let batting of battings| slice:0:4;">
+	<ion-card color="primary">
+    <ion-card-header>
+      <b>{{batting.player.name}} </b>
+      
+    </ion-card-header>
+	<img src="../assets/img/batsman.png"/>
+    <ion-card-content>
+      <p>{{batting.run}}({{batting.ball}})</p>
+     <p>{{batting.match.team.teamname}} vs
+      {{batting.match.opponent}}</p>
+
+    </ion-card-content>
+  </ion-card>
+   </ion-col>
+   </ion-row>
+      </ion-grid>
+	  
+	  <h1>Best Bowler</h1>
+	   <ion-grid >
+        <ion-row > 
+		<ion-col *ngFor="let bowling of bowlings| slice:0:4;">
+  	<ion-card color="primary">
+    <ion-card-header>
+      <b>{{bowling.player.name}} </b>
+      
+    </ion-card-header>
+	<img src="../assets/img/bowler.png"/>
+    <ion-card-content>
+      <p>{{bowling.wickets}}/{{bowling.run}}</p>
+     <p>{{bowling.match.team.teamname}} vs
+      {{bowling.match.opponent}}</p>
+
+    </ion-card-content>
+ </ion-card>
+   </ion-col>
+   </ion-row>
+      </ion-grid>
+
+<br>
+<br><br>
+<br>
+    <ion-grid >
+        <ion-row color="primary" row-20 center text-center>
+         <ion-col>
+			<h2>About Crickify</h2>
+			</ion-col>
+          </ion-row>
+		  
+		  <ion-row row-60 center text-center>
+		  <ion-col>
+		  Manage your entire cricket landscape. From league schedules to player registrations, Player availability to result management, all available under one convenient account.Finance Mangement for the players.Take the hassle out of your club or league site. 
+		  With integrated cricket data it will always be up to date and looking sharp.Announce your team and get your best team through interface.
+		 </ion-col>
+<br>
+<br>		 </ion-row>
+		  <ion-row row-20 center text-center>
+		  <ion-col>
+		  <h2>What are you waiting for?! Join thousands of other clubs, schools and leagues and get started with Crickify today.</h2>
+		 </ion-col>
+		 </ion-row>
+		   </ion-grid>
+
+<br>
+<br><br>
+<br>
+<ion-card color="primary">
+    <ion-card-header>
+	
+	 </ion-card-header>
+	
+    <ion-card-content>
+    <ion-grid color="primary">
+        <ion-row   center text-center>
+         <ion-col >
+			<h2>Contact Us</h2>
+			</ion-col>
+          </ion-row>
+		  <br>
+<br>
+		  <ion-row   center text-center>
+		  <ion-col>
+		  <b>Website Issues or Suggestions? Contact US @ crickify@gmail.com</b>
+		  </ion-col>
+		  <br>
+<br>
+		
+		  </ion-row >
+		  <ion-row  center text-center>
+		  <ion-col>
+		  Copyright © 2018 All rights reserved by Crickify
+		  </ion-col>
+		  </ion-row>
+		   </ion-grid>
+		     </ion-card-content>
+  </ion-card>
 </ion-content>

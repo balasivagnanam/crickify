@@ -3,7 +3,8 @@ import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 let apiUrl = 'https://crickify.herokuapp.com/match';
-
+let battingapiUrl = 'https://crickify.herokuapp.com/batting';
+let bowlingapiUrl = 'https://crickify.herokuapp.com/Bowling';
 //let isLoggedIn : boolean;
 let isAuthenticated : boolean;
 @Injectable()
@@ -36,7 +37,41 @@ export class MatchService {
 
   }
 
+getBestBatting() {
+    return new Promise((resolve, reject) => {
+ 
+      this.http.get(battingapiUrl + '/top')
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("auth response matches", res.json()); 
+          if(res.json().statusCode == '200'){
+            console.log("matches", res.json());
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
 
+  }
+  
+  getBestBowling() {
+    return new Promise((resolve, reject) => {
+ 
+      this.http.get(bowlingapiUrl + '/top')
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("auth response matches", res.json()); 
+          if(res.json().statusCode == '200'){
+            console.log("matches", res.json());
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
+
+  }
   getPreviousMatches() {
     return new Promise((resolve, reject) => {
       let headers = new Headers();

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import {AuthService} from '../../providers/auth/auth';
 import {HomePage} from '../home/home';
-import {LoginPage} from '../login/login';
+import {WelcomePage} from '../welcome/welcome';
 /**
  * Generated class for the Forgot page.
  *
@@ -43,8 +43,8 @@ userPostData = {"user_id":"","token":""};
   logout(){
 localStorage.clear();
 this.authService.logout();
-              this.navCtrl.push(LoginPage);
-              this.navCtrl.setRoot(LoginPage);
+              this.navCtrl.push(WelcomePage);
+              this.navCtrl.setRoot(WelcomePage);
          
 
   }
