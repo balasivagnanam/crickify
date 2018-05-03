@@ -4,6 +4,7 @@ import {HomePage} from '../home/home';
 import {AuthService} from '../../providers/auth/auth';
 import {SignupPage} from '../signup/signup';
 import {WelcomePage} from '../welcome/welcome';
+import {ForgotPage} from '../forgot/forgot';
 /**
  * Generated class for the LoginPage page.
  *
@@ -75,5 +76,8 @@ export class LoginPage {
     //Login page link
     this.navCtrl.push(WelcomePage);
   }
+   forgot(){
+    this.navCtrl.push(ForgotPage);
+    }
 
 }

@@ -1,1 +1,3195 @@
-webpackJsonp([12],[,,,,,,,,,,,function(l,n,u){"use strict";u.d(n,"a",function(){return c});var t,e,a=u(0),o=u(51),i=u(62),s=(u.n(i),this&&this.__decorate||function(l,n,u,t){var e,a=arguments.length,o=a<3?n:null===t?t=Object.getOwnPropertyDescriptor(n,u):t;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(l,n,u,t);else for(var i=l.length-1;i>=0;i--)(e=l[i])&&(o=(a<3?e(o):a>3?e(n,u,o):e(n,u))||o);return a>3&&o&&Object.defineProperty(n,u,o),o}),r=this&&this.__metadata||function(l,n){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(l,n)},_="https://crickify.herokuapp.com/login",c=function(){function l(l){this.http=l,console.log("Hello AuthService Provider"),null==JSON.parse(localStorage.getItem("userData"))?t=!1:(console.log("user data presnet"),t=!0)}return l.prototype.getToken=function(){return null!=JSON.parse(localStorage.getItem("userData"))&&null!=JSON.parse(localStorage.getItem("userData")).user?JSON.parse(localStorage.getItem("userData")).user.token:null},l.prototype.getUser=function(){return null!=JSON.parse(localStorage.getItem("userData"))?JSON.parse(localStorage.getItem("userData")).user:null},l.prototype.signup=function(l){var n=this;return new Promise(function(u,e){var a=new o.d;a.set("Content-Type","application/json"),n.http.post(_+"/create",JSON.stringify(l),{headers:a}).subscribe(function(l){u(l.json()),console.log("auth response signup",l.json()),"200"!=l.json().statusCode&&"401"!=l.json().statusCode||(t=!0)},function(l){e(l),console.log("error",l),t=!1,localStorage.clear()})})},l.prototype.forgot=function(l){var n=this;return new Promise(function(u,e){var a=new o.d;a.set("Content-Type","application/json"),console.log("input",l.username),n.http.post(_+"/forgotpassword",l.username,{headers:a}).subscribe(function(l){u(l.json()),console.log("auth response signup",l.json()),"200"!=l.json().statusCode&&"401"!=l.json().statusCode||(t=!1)},function(l){e(l),console.log("error",l),t=!1,localStorage.clear()})})},l.prototype.reset=function(l){var n=this;return new Promise(function(u,e){var a=new o.d;a.set("Content-Type","application/json"),a.set("token",n.getToken()),console.log("token",n.getToken()),n.http.post(_+"/updatepassword",JSON.stringify(l),{headers:a}).subscribe(function(l){u(l.json()),console.log("auth response update",l.json()),"200"!=l.json().statusCode&&"401"!=l.json().statusCode||(t=!1,localStorage.clear())},function(l){e(l),console.log("error",l),t=!1,localStorage.clear()})})},l.prototype.login=function(l){var n=this;return new Promise(function(u,e){var a=new o.d;a.set("Content-Type","application/json"),n.http.post(_+"/userLogin",JSON.stringify(l),{headers:a}).subscribe(function(l){u(l.json()),console.log("auth response login",l.json()),"200"!=l.json().statusCode&&"401"!=l.json().statusCode||(t=!0)},function(l){e(l),console.log("error",l),t=!1,localStorage.clear()})})},l.prototype.getAuthenticated=function(){return null!=this.getToken()&&t},l.prototype.logout=function(){t=!1},l}();c=s([Object(a.q)(),r("design:paramtypes",["function"==typeof(e=void 0!==o.e&&o.e)&&e||Object])],c)},,,,,,,,,,,,,,,,,,,,,,,,,,,,,function(l,n,u){"use strict";u.d(n,"a",function(){return _});var t,e=u(0),a=u(51),o=u(62),i=(u.n(o),this&&this.__decorate||function(l,n,u,t){var e,a=arguments.length,o=a<3?n:null===t?t=Object.getOwnPropertyDescriptor(n,u):t;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(l,n,u,t);else for(var i=l.length-1;i>=0;i--)(e=l[i])&&(o=(a<3?e(o):a>3?e(n,u,o):e(n,u))||o);return a>3&&o&&Object.defineProperty(n,u,o),o}),s=this&&this.__metadata||function(l,n){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(l,n)},r="https://crickify.herokuapp.com/match",_=function(){function l(l){this.http=l}return l.prototype.getToken=function(){return JSON.parse(localStorage.getItem("userData")).user.token},l.prototype.getAllMatches=function(){var l=this;return new Promise(function(n,u){var t=new a.d;t.set("Content-Type","application/json"),t.set("token",l.getToken()),l.http.get(r+"/matches/availabilities",{headers:t}).subscribe(function(l){n(l.json()),console.log("auth response matches",l.json()),"200"==l.json().statusCode&&console.log("matches",l.json())},function(l){u(l),console.log("error",l)})})},l.prototype.getBestBatting=function(){var l=this;return new Promise(function(n,u){l.http.get("https://crickify.herokuapp.com/batting/top").subscribe(function(l){n(l.json()),console.log("auth response matches",l.json()),"200"==l.json().statusCode&&console.log("matches",l.json())},function(l){u(l),console.log("error",l)})})},l.prototype.getBestBowling=function(){var l=this;return new Promise(function(n,u){l.http.get("https://crickify.herokuapp.com/Bowling/top").subscribe(function(l){n(l.json()),console.log("auth response matches",l.json()),"200"==l.json().statusCode&&console.log("matches",l.json())},function(l){u(l),console.log("error",l)})})},l.prototype.getPreviousMatches=function(){var l=this;return new Promise(function(n,u){var t=new a.d;t.set("Content-Type","application/json"),t.set("token",l.getToken()),l.http.get(r+"/playedmatches",{headers:t}).subscribe(function(l){n(l.json()),console.log("auth response matches",l.json()),"200"==l.json().statusCode&&console.log("played matches",l.json())},function(l){u(l),console.log("error",l)})})},l.prototype.getMatchSummary=function(l){var n=this;return new Promise(function(u,t){var e=new a.d;e.set("Content-Type","application/json"),e.set("token",n.getToken()),n.http.get(r+"/matchsummary/"+l,{headers:e}).subscribe(function(l){u(l.json()),console.log("auth response matches",l.json()),"200"==l.json().statusCode&&console.log("played matches",l.json())},function(l){t(l),console.log("error",l)})})},l.prototype.getMatchTeam=function(l){var n=this;return new Promise(function(u,t){var e=new a.d;e.set("Content-Type","application/json"),e.set("token",n.getToken()),n.http.get(r+"/team/"+l,{headers:e}).subscribe(function(l){u(l.json()),console.log("auth response players",l.json()),"200"==l.json().statusCode&&console.log("players",l.json())},function(l){t(l),console.log("error",l)})})},l.prototype.postAvailability=function(l){var n=this;return new Promise(function(u,t){var e=new a.d;e.set("Content-Type","application/json"),e.set("token",n.getToken()),n.http.post(r+"/availability",JSON.stringify(l),{headers:e}).subscribe(function(l){u(l.json()),console.log("mast avail post resp",l.json())},function(l){t(l),console.log("error",l)})})},l}();_=i([Object(e.q)(),s("design:paramtypes",["function"==typeof(t=void 0!==a.e&&a.e)&&t||Object])],_)},,,,,function(l,n,u){"use strict";u.d(n,"a",function(){return i});var t=u(67),e=u(53),a=u(63),o=u(77),i=(u(11),u(0),u(7),u(40),function(){function l(l,n,u,t,e){this.navCtrl=l,this.navParams=n,this.authService=u,this.loadingController=t,this.matchService=e}return l.prototype.ionViewDidLoad=function(){var l=this;console.log("ionViewDidLoad WelcomePage"),this.authService.getAuthenticated()&&(this.navCtrl.push(a.a),this.navCtrl.setRoot(a.a));var n=this.loadingController.create({content:"Please wait..."});n.present(),this.matchService.getBestBatting().then(function(n){l.responseData=n,console.log(l.responseData),"200"==l.responseData.statusCode?(console.log("test 200"),console.log("result",l.responseData.results.Batting),l.battings=l.responseData.results.Batting):console.log("error",l.responseData)},function(l){}),this.matchService.getBestBowling().then(function(n){l.responseData=n,console.log(l.responseData),"200"==l.responseData.statusCode?(console.log("test 200"),console.log("result",l.responseData.results.Bowling),l.bowlings=l.responseData.results.Bowling):console.log("error",l.responseData)},function(l){}),n.dismiss()},l.prototype.login=function(){this.navCtrl.push(e.a)},l.prototype.signup=function(){this.navCtrl.push(t.a)},l.prototype.forgot=function(){this.navCtrl.push(o.a)},l}())},,,,,,,,function(l,n,u){"use strict";u.d(n,"a",function(){return f});var t,e,a,o,i,s,r=u(0),_=u(7),c=u(63),p=u(11),g=u(67),d=u(45),h=this&&this.__decorate||function(l,n,u,t){var e,a=arguments.length,o=a<3?n:null===t?t=Object.getOwnPropertyDescriptor(n,u):t;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(l,n,u,t);else for(var i=l.length-1;i>=0;i--)(e=l[i])&&(o=(a<3?e(o):a>3?e(n,u,o):e(n,u))||o);return a>3&&o&&Object.defineProperty(n,u,o),o},m=this&&this.__metadata||function(l,n){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(l,n)},f=t=function(){function l(l,n,u,t,e){this.navCtrl=l,this.navParams=n,this.authService=u,this.alertController=t,this.loadingController=e,this.userData={username:"",password:""}}return l.prototype.login=function(){var l=this,n=this.loadingController.create({content:"Please wait..."});n.present(),this.authService.login(this.userData).then(function(u){(l.responseData=u,console.log(l.responseData),localStorage.setItem("userData",JSON.stringify(l.responseData)),"200"==l.responseData.statusCode)?(n.dismiss(),console.log("test 200"),console.log("result",l.responseData.results),localStorage.setItem("userData",JSON.stringify(l.responseData.results)),l.navCtrl.push(c.a),l.navCtrl.setRoot(c.a)):(n.dismiss(),l.alertController.create({title:"Wrong login/password",subTitle:"your login and password combination doesnt seem to work. Please try again or contact us to reset",buttons:[{text:"OK",handler:function(n){console.log("ok clicked"),l.navCtrl.push(t)}}]}).present())},function(l){})},l.prototype.ionViewDidLoad=function(){console.log("ionViewDidLoad LoginPage")},l.prototype.signup=function(){this.navCtrl.push(g.a)},l.prototype.homePage=function(){this.navCtrl.push(d.a)},l}();f=t=h([Object(_.b)(),Object(r.j)({selector:"page-login",templateUrl:"login.html"}),m("design:paramtypes",["function"==typeof(e=void 0!==_.d&&_.d)&&e||Object,"function"==typeof(a=void 0!==_.e&&_.e)&&a||Object,"function"==typeof(o=void 0!==p.a&&p.a)&&o||Object,"function"==typeof(i=void 0!==_.a&&_.a)&&i||Object,"function"==typeof(s=void 0!==_.c&&_.c)&&s||Object])],f)},,,,,,function(l,n,u){"use strict";u.d(n,"a",function(){return t});u(0),u(7),u(40);var t=function(){function l(l,n,u,t){this.navCtrl=l,this.navParams=n,this.matchService=u,this.loadingController=t,this.batting=[],this.tabsvalues="summary",console.log("passed data",n.get("matchId")),this.matchId=n.get("matchId"),this.getData(this.matchId)}return l.prototype.ionViewDidLoad=function(){console.log("ionViewDidLoad PreviousMatchDetailsPage")},l.prototype.getData=function(l){var n=this,u=this.loadingController.create({content:"Please wait..."});u.present(),this.matchService.getMatchTeam(l).then(function(l){n.responseData=l,console.log(n.responseData),"200"==n.responseData.statusCode?(u.dismiss(),console.log("test 200"),console.log("result",n.responseData.results.players),n.batting=n.responseData.results.players):"404"==n.responseData.statusCode?(console.log("unauthorrised"),localStorage.clear()):(u.dismiss(),console.log("error",n.responseData))},function(l){})},l}()},,,,function(l,n,u){"use strict";u.d(n,"a",function(){return e});u(0),u(7),u(11),u(40);var t=u(59),e=(u(95),function(){function l(l,n,u,t,e,a){if(this.navCtrl=l,this.app=n,this.authService=u,this.matchService=t,this.loadingController=e,this.admob=a,this.userPostData={user_id:"",token:""},this.authService.getAuthenticated()){var o=JSON.parse(localStorage.getItem("userData"));console.log("fetch data",o),this.userDetails=o,this.userPostData.user_id=this.userDetails.id,this.userPostData.token=this.userDetails.token}}return l.prototype.showBanner=function(){this.admob.banner.config({autoShow:!0,id:"ca-app-pub-7720772047232561~3441613572"}),this.admob.banner.prepare().then(function(){}).catch(function(l){return console.log(l)})},l.prototype.ionViewCanEnter=function(){return this.showBanner(),console.log("view did enter",this.authService.getAuthenticated()),this.authService.getAuthenticated()},l.prototype.ionViewDidLoad=function(){var l=this;console.log("ionViewDidLoad home page"),this.authService.getAuthenticated()&&console.log("token",this.authService.getToken());var n=this.loadingController.create({content:"Please wait..."});n.present(),this.matchService.getAllMatches().then(function(u){l.responseData=u,console.log(l.responseData),"200"==l.responseData.statusCode?(n.dismiss(),console.log("test 200"),console.log("result",l.responseData.results.matches),l.matches=l.responseData.results.matches):"404"==l.responseData.statusCode?(console.log("unauthorrised"),n.dismiss(),localStorage.clear(),l.backToWelcome()):(n.dismiss(),console.log("error",l.responseData))},function(l){n.dismiss()})},l.prototype.availabilitySelected=function(l,n){var u=this;console.log("selected",l,n),n.player=this.authService.getUser(),console.log("after change",n);var t=this.loadingController.create({content:"Please wait..."});this.matchService.postAvailability(n).then(function(l){u.responseData=l,console.log(u.responseData),"200"==u.responseData.statusCode?(t.dismiss(),console.log("test 200",u.responseData)):"404"==u.responseData.statusCode?(console.log("unauthorrised"),t.dismiss(),localStorage.clear(),u.backToWelcome()):(t.dismiss(),console.log("error",u.responseData))},function(l){t.dismiss()})},l.prototype.backToWelcome=function(){this.app.getRootNav().popToRoot()},l.prototype.logout=function(){var l=this;localStorage.clear(),setTimeout(function(){return l.backToWelcome()},1e3)},l.prototype.goToMatchTeam=function(l){console.log("clicked match team",l),this.navCtrl.push(t.a,{matchId:l})},l}())},,,function(l,n,u){"use strict";u.d(n,"a",function(){return r});var t,e=u(0),a=u(51),o=u(62),i=(u.n(o),this&&this.__decorate||function(l,n,u,t){var e,a=arguments.length,o=a<3?n:null===t?t=Object.getOwnPropertyDescriptor(n,u):t;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(l,n,u,t);else for(var i=l.length-1;i>=0;i--)(e=l[i])&&(o=(a<3?e(o):a>3?e(n,u,o):e(n,u))||o);return a>3&&o&&Object.defineProperty(n,u,o),o}),s=this&&this.__metadata||function(l,n){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(l,n)},r=function(){function l(l){this.http=l}return l.prototype.getToken=function(){return JSON.parse(localStorage.getItem("userData")).user.token},l.prototype.getAllTeams=function(){var l=this;return new Promise(function(n,u){var t=new a.d;t.set("Content-Type","application/json"),t.set("token",l.getToken()),l.http.get("https://crickify.herokuapp.com/teamplayer/teams",{headers:t}).subscribe(function(l){n(l.json()),console.log("auth response matches",l.json()),"200"==l.json().statusCode&&console.log("matches",l.json())},function(l){u(l),console.log("error",l)})})},l}();r=i([Object(e.q)(),s("design:paramtypes",["function"==typeof(t=void 0!==a.e&&a.e)&&t||Object])],r)},function(l,n,u){"use strict";u.d(n,"a",function(){return i});u(0),u(7);var t=u(13),e=(u(11),u(63)),a=u(53),o=u(45),i=function(){function l(l,n,u,e,a,o){this.navCtrl=l,this.navParams=n,this.authService=u,this.alertController=e,this.loadingController=a,this.userData={username:"",password:"",name:"",phone:""},this.signupForm=o.group({username:["",t.n.compose([t.n.maxLength(25),t.n.required])],password:["",t.n.compose([t.n.maxLength(25),t.n.required])],name:["",t.n.compose([t.n.pattern("[a-zA-Z ]*"),t.n.required])],phone:["",t.n.compose([t.n.maxLength(10),t.n.pattern("[0-9]*"),t.n.required])]}),this.username=this.signupForm.controls.username,this.password=this.signupForm.controls.password,this.name=this.signupForm.controls.name,this.phone=this.signupForm.controls.phone}return l.prototype.ionViewDidLoad=function(){console.log("ionViewDidLoad SignupPage")},l.prototype.signup=function(){var l=this;this.signupForm.valid?(console.log("success!"),console.log(this.signupForm.value)):console.log("not valid");var n=this.loadingController.create({content:"Please wait..."});n.present(),this.authService.signup(this.signupForm).then(function(u){if(l.responseData=u,console.log("response in signup",l.responseData),console.log("response code",l.responseData.statusCode),n.dismiss(),"200"==l.responseData.statusCode)console.log("test 200"),console.log("result",l.responseData.results),localStorage.setItem("userData",JSON.stringify(l.responseData.results.user)),l.alertController.create({title:"Registration Successful",subTitle:"Your Registration is successful",buttons:[{text:"OK",handler:function(n){console.log("ok clicked"),l.navCtrl.push(e.a),l.navCtrl.setRoot(e.a)}}]}).present();else if("401"==l.responseData.statusCode){n.dismiss(),l.alertController.create({title:"User account exists!",subTitle:"This user account exists in the list. Please login or reset your password!",buttons:[{text:"OK",handler:function(n){console.log("ok clicked"),l.navCtrl.push(a.a)}}]}).present()}else{n.dismiss(),l.alertController.create({title:"Server Unavailable!",subTitle:"There seems to be some problem with our servers. Please try later, if the problem persists. Contact Us",buttons:[{text:"OK",handler:function(n){console.log("ok clicked"),l.navCtrl.push(a.a)}}]}).present()}},function(l){})},l.prototype.login=function(){this.navCtrl.push(a.a)},l.prototype.homePage=function(){this.navCtrl.push(o.a)},l}()},,,,,,,,,,function(l,n,u){"use strict";u.d(n,"a",function(){return a});u(0),u(7),u(11);var t=u(53),e=u(45),a=function(){function l(l,n,u,t,e){this.navCtrl=l,this.navParams=n,this.authService=u,this.alertController=t,this.loadingController=e,this.userData={username:"",password:"",name:"",phone:""}}return l.prototype.ionViewDidLoad=function(){console.log("ionViewDidLoad Forgot")},l.prototype.forgot=function(){var l=this,n=this.loadingController.create({content:"Please wait..."});n.present(),this.authService.forgot(this.userData).then(function(u){if(l.responseData=u,console.log("response in signup",l.responseData),console.log("response code",l.responseData.statusCode),n.dismiss(),"200"==l.responseData.statusCode)console.log("test 200"),console.log("result",l.responseData.results),l.alertController.create({title:"Email sent Successful",subTitle:"Email sent is successful",buttons:[{text:"OK",handler:function(n){console.log("ok clicked"),l.navCtrl.push(t.a),l.navCtrl.setRoot(t.a)}}]}).present();else if("401"==l.responseData.statusCode){l.alertController.create({title:"User account exists!",subTitle:"This user does not exists in the list. Please Register!",buttons:[{text:"OK",handler:function(n){console.log("ok clicked"),l.navCtrl.push(t.a)}}]}).present()}else{l.alertController.create({title:"Server Unavailable!",subTitle:"There seems to be some problem with our servers. Please try later, if the problem persists. Contact Us",buttons:[{text:"OK",handler:function(n){console.log("ok clicked"),l.navCtrl.push(t.a)}}]}).present()}},function(l){})},l.prototype.login=function(){this.navCtrl.push(t.a)},l.prototype.homePage=function(){this.navCtrl.push(e.a)},l}()},function(l,n,u){"use strict";u.d(n,"a",function(){return e});u(0),u(7),u(11);var t=u(45),e=function(){function l(l,n,u,t,e){if(this.navCtrl=l,this.navParams=n,this.authService=u,this.alertController=t,this.loadingController=e,this.userPostData={user_id:"",token:""},this.userData={username:"",password:"",name:"",phone:""},this.authService.getAuthenticated()){var a=JSON.parse(localStorage.getItem("userData"));console.log("fetch data",a),this.userDetails=a,this.userPostData.user_id=this.userDetails.id,this.userPostData.token=this.userDetails.token}}return l.prototype.ionViewDidLoad=function(){console.log("ionViewDidLoad Forgot")},l.prototype.logout=function(){localStorage.clear(),this.authService.logout(),this.navCtrl.push(t.a),this.navCtrl.setRoot(t.a)},l}()},function(l,n,u){"use strict";u.d(n,"a",function(){return t});u(0),u(7),u(11);var t=function(){function l(l,n,u,t){if(this.navCtrl=l,this.navParams=n,this.authService=u,this.loadingController=t,this.userPostData={user_id:"",token:""},this.user=" ",this.authService.getAuthenticated()){var e=JSON.parse(localStorage.getItem("userData"));console.log("fetch data",e),this.userDetails=e,this.userPostData.user_id=this.userDetails.id,this.userPostData.token=this.userDetails.token}}return l.prototype.ionViewDidLoad=function(){console.log("ionViewDidLoad MyAccountPage"),console.log("ionViewDidLoad home page"),this.authService.getAuthenticated()&&(console.log("user",this.authService.getUser()),this.user=JSON.parse(JSON.stringify(this.authService.getUser())))},l}()},function(l,n,u){"use strict";u.d(n,"a",function(){return t});u(0),u(7),u(99),u(11),u(66);var t=function(){function l(l,n,u,t,e,a){if(this.navCtrl=l,this.navParams=n,this.playersService=u,this.loadingController=t,this.authService=e,this.teamService=a,this.tabsvalues="batting",this.userPostData={user_id:"",token:""},this.playerStats=" ",this.battingStats="",this.bowlingStats="",this.teams="",this.statsArray=[],this.authService.getAuthenticated()){var o=JSON.parse(localStorage.getItem("userData"));console.log("fetch data",o),this.userDetails=o,this.userPostData.user_id=this.userDetails.id,this.userPostData.token=this.userDetails.token,this.getData()}}return l.prototype.getData=function(){var l=this,n=this.loadingController.create({content:"Please wait..."});n.present(),this.teamService.getAllTeams().then(function(u){l.responseData=u,console.log(l.responseData),"200"==l.responseData.statusCode?(n.dismiss(),console.log("test 200"),l.teams=l.responseData.results.teams,l.selectedTeam=l.responseData.results.teams[0],l.teamSelected(l.responseData.results.teams[0]),console.log("result teams",JSON.stringify(l.responseData.results))):"404"==l.responseData.statusCode?(console.log("unauthorrised"),localStorage.clear()):(n.dismiss(),console.log("error",l.responseData))},function(l){})},l.prototype.ionViewDidLoad=function(){console.log("ionViewDidLoad MyProfilePage")},l.prototype.teamSelected=function(l){console.log("selected team",l),console.log("team id",l.id),this.getStats(l)},l.prototype.changeMenus=function(l){this.teamSelectedIndex=l},l.prototype.getStats=function(l){var n=this,u=this.loadingController.create({content:"Please wait..."});this.statsArray=[],this.playersService.getPlayerTournamentStats(l.id).then(function(l){n.responseData=l,console.log(n.responseData),"200"==n.responseData.statusCode?(u.dismiss(),console.log("stats test 200"),0==n.responseData.results.stats.length||(n.statsArray=n.responseData.results.stats,console.log("result",n.responseData.results.stats))):"404"==n.responseData.statusCode?(console.log("unauthorrised"),localStorage.clear()):(u.dismiss(),console.log("error",n.responseData))},function(l){})},l}()},function(l,n,u){"use strict";u.d(n,"a",function(){return t});u(0),u(7);var t=function(){function l(l,n){this.navCtrl=l,this.navParams=n}return l.prototype.ionViewDidLoad=function(){console.log("ionViewDidLoad MyTeamsPage")},l}()},function(l,n,u){"use strict";u.d(n,"a",function(){return t});u(0),u(7),u(40);var t=function(){function l(l,n,u,t){this.navCtrl=l,this.navParams=n,this.matchService=u,this.loadingController=t,this.batting=[],this.bowling=[],this.match="",this.tabsvalues="summary",console.log("passed data",n.get("matchId")),this.matchId=n.get("matchId"),this.getData(this.matchId)}return l.prototype.ionViewDidLoad=function(){console.log("ionViewDidLoad PreviousMatchDetailsPage")},l.prototype.getData=function(l){var n=this,u=this.loadingController.create({content:"Please wait..."});u.present(),this.matchService.getMatchSummary(l).then(function(l){n.responseData=l,console.log(n.responseData),"200"==n.responseData.statusCode?(u.dismiss(),console.log("test 200"),console.log("result",n.responseData.results.matchSummary),n.matchSummary=n.responseData.results.matchSummary,n.match=n.responseData.results.matchSummary.match,n.batting=n.responseData.results.matchSummary.batting,n.bowling=n.responseData.results.matchSummary.bowling):"404"==n.responseData.statusCode?(console.log("unauthorrised"),localStorage.clear()):(u.dismiss(),console.log("error",n.responseData))},function(l){})},l}()},function(l,n,u){"use strict";u.d(n,"a",function(){return a});u(0),u(7),u(11),u(40);var t=u(82),e=u(59),a=function(){function l(l,n,u,t,e){this.navCtrl=l,this.navParams=n,this.loadingController=u,this.authService=t,this.matchService=e,this.matches="",this.getData()}return l.prototype.getData=function(){var l=this,n=this.loadingController.create({content:"Please wait..."});n.present(),this.matchService.getPreviousMatches().then(function(u){l.responseData=u,console.log(l.responseData),"200"==l.responseData.statusCode?(n.dismiss(),console.log("test 200"),console.log("result",l.responseData.results.matches),l.matches=l.responseData.results.matches):"404"==l.responseData.statusCode?(console.log("unauthorrised"),localStorage.clear()):(n.dismiss(),console.log("error",l.responseData))},function(l){})},l.prototype.ionViewDidLoad=function(){console.log("ionViewDidLoad PreviousMatchesPage"),console.log("ionViewDidLoad home page"),this.authService.getAuthenticated()&&console.log("token",this.authService.getToken())},l.prototype.goToMatchDetails=function(l){console.log("clicked match",l),this.navCtrl.push(t.a,{matchId:l})},l.prototype.goToMatchTeam=function(l){console.log("clicked match team",l),this.navCtrl.push(e.a,{matchId:l})},l}()},function(l,n,u){"use strict";u.d(n,"a",function(){return e});u(0),u(7),u(11);var t=u(53),e=function(){function l(l,n,u,t,e){if(this.navCtrl=l,this.navParams=n,this.authService=u,this.alertController=t,this.loadingController=e,this.userPostData={user_id:"",token:""},this.userData={username:"",password:"",name:"",phone:""},this.authService.getAuthenticated()){var a=JSON.parse(localStorage.getItem("userData"));console.log("fetch data",a),this.userDetails=a,this.userPostData.user_id=this.userDetails.id,this.userPostData.token=this.userDetails.token}}return l.prototype.ionViewDidLoad=function(){console.log("ionViewDidLoad Forgot")},l.prototype.reset=function(){var l=this,n=this.loadingController.create({content:"Please wait..."});n.present(),this.authService.reset(this.userData).then(function(u){if(l.responseData=u,console.log("response in signup",l.responseData),console.log("response code",l.responseData.statusCode),n.dismiss(),"200"==l.responseData.statusCode)console.log("test 200"),console.log("result",l.responseData.results),l.alertController.create({title:"Password change Successful",subTitle:"Password change successful",buttons:[{text:"OK",handler:function(n){console.log("ok clicked"),l.navCtrl.push(t.a),l.navCtrl.setRoot(t.a)}}]}).present();else if("401"==l.responseData.statusCode){l.alertController.create({title:"User account exists!",subTitle:"This user does not exists in the list. Please Register!",buttons:[{text:"OK",handler:function(l){console.log("ok clicked")}}]}).present()}else{l.alertController.create({title:"Server Unavailable!",subTitle:"There seems to be some problem with our servers. Please try later, if the problem persists. Contact Us",buttons:[{text:"OK",handler:function(l){console.log("ok clicked")}}]}).present()}},function(l){})},l.prototype.login=function(){this.navCtrl.push(t.a)},l}()},,,,,,,,,,,,,,,function(l,n,u){"use strict";u.d(n,"a",function(){return r});var t,e=u(0),a=u(51),o=u(62),i=(u.n(o),this&&this.__decorate||function(l,n,u,t){var e,a=arguments.length,o=a<3?n:null===t?t=Object.getOwnPropertyDescriptor(n,u):t;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(l,n,u,t);else for(var i=l.length-1;i>=0;i--)(e=l[i])&&(o=(a<3?e(o):a>3?e(n,u,o):e(n,u))||o);return a>3&&o&&Object.defineProperty(n,u,o),o}),s=this&&this.__metadata||function(l,n){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(l,n)},r=function(){function l(l){this.http=l,console.log("Hello PlayersProvider Provider")}return l.prototype.getToken=function(){return JSON.parse(localStorage.getItem("userData")).user.token},l.prototype.getPlayerStats=function(){var l=this;return new Promise(function(n,u){var t=new a.d;t.set("Content-Type","application/json"),t.set("token",l.getToken()),l.http.get("https://crickify.herokuapp.com/player/stats",{headers:t}).subscribe(function(l){n(l.json()),console.log("auth response matches",l.json()),"200"==l.json().statusCode&&console.log("player stats",l.json())},function(l){u(l),console.log("error",l)})})},l.prototype.getPlayerTournamentStats=function(l){var n=this;return new Promise(function(u,t){var e=new a.d;e.set("Content-Type","application/json"),e.set("token",n.getToken()),n.http.get("https://crickify.herokuapp.com/teamplayer/tournament/stats/"+l+"/player",{headers:e}).subscribe(function(l){u(l.json()),console.log("auth response matches",l.json()),"200"==l.json().statusCode&&console.log("player stats",l.json())},function(l){t(l),console.log("error",l)})})},l}();r=i([Object(e.q)(),s("design:paramtypes",["function"==typeof(t=void 0!==a.e&&a.e)&&t||Object])],r)},,,,,,,,,,,,,,,,,,,,,,,,,,,,function(l,n,u){"use strict";u.d(n,"a",function(){return t});u(0),u(7),u(77);var t=function(){return function(){}}()},function(l,n,u){"use strict";u.d(n,"a",function(){return t});u(0),u(7),u(53);var t=function(){return function(){}}()},function(l,n,u){"use strict";u.d(n,"a",function(){return t});u(0),u(7),u(78);var t=function(){return function(){}}()},function(l,n,u){"use strict";u.d(n,"a",function(){return t});u(0),u(7),u(59);var t=function(){return function(){}}()},function(l,n,u){"use strict";u.d(n,"a",function(){return t});u(0),u(7),u(79);var t=function(){return function(){}}()},function(l,n,u){"use strict";u.d(n,"a",function(){return t});u(0),u(7),u(80);var t=function(){return function(){}}()},function(l,n,u){"use strict";u.d(n,"a",function(){return t});u(0),u(7),u(81);var t=function(){return function(){}}()},function(l,n,u){"use strict";u.d(n,"a",function(){return t});u(0),u(7),u(82);var t=function(){return function(){}}()},function(l,n,u){"use strict";u.d(n,"a",function(){return t});u(0),u(7),u(83);var t=function(){return function(){}}()},function(l,n,u){"use strict";u.d(n,"a",function(){return t});u(0),u(7),u(84);var t=function(){return function(){}}()},function(l,n,u){"use strict";u.d(n,"a",function(){return t});u(0),u(7),u(67);var t=function(){return function(){}}()},function(l,n,u){"use strict";u.d(n,"a",function(){return t});u(0),u(7),u(45);var t=function(){return function(){}}()},,,,,,,,,function(l,n){function u(l){return Promise.resolve().then(function(){throw new Error("Cannot find module '"+l+"'.")})}u.keys=function(){return[]},u.resolve=u,l.exports=u,u.id=147},,,,,,,,,,,function(l,n,u){var t={"../pages/forgot/forgot.module.ngfactory":[211,11],"../pages/login/login.module.ngfactory":[212,10],"../pages/logout/logout.module.ngfactory":[213,9],"../pages/match-team/match-team.module.ngfactory":[214,8],"../pages/my-account/my-account.module.ngfactory":[215,7],"../pages/my-profile/my-profile.module.ngfactory":[216,6],"../pages/my-teams/my-teams.module.ngfactory":[217,5],"../pages/previous-match-details/previous-match-details.module.ngfactory":[218,4],"../pages/previous-matches/previous-matches.module.ngfactory":[219,3],"../pages/reset/reset.module.ngfactory":[220,2],"../pages/signup/signup.module.ngfactory":[221,1],"../pages/welcome/welcome.module.ngfactory":[222,0]};function e(l){var n=t[l];return n?u.e(n[1]).then(function(){return u(n[0])}):Promise.reject(new Error("Cannot find module '"+l+"'."))}e.keys=function(){return Object.keys(t)},e.id=158,l.exports=e},,,,,,,,,,function(l,n,u){"use strict";u.d(n,"a",function(){return L});var t=u(0),e=u(28),a=u(16),o=u(1),i=u(3),s=u(6),r=u(5),_=u(17),c=u(4),p=u(14),g=u(34),d=u(38),h=u(35),m=u(48),f=u(8),b=u(44),v=u(19),y=u(15),C=u(31),P=u(39),S=u(36),w=u(77),k=u(65),D=u(13),F=u(47),M=u(23),T=u(10),x=u(9),O=u(11),j=u(46),$=u(25),R=t._4({encapsulation:2,styles:[],data:{}});function A(l){return t._29(0,[(l()(),t._27(null,["\n\n\n"])),(l()(),t._6(0,null,null,46,"ion-content",[["class","appBackground"],["padding",""]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,e.b,e.a)),t._5(4374528,null,0,a.a,[o.a,i.a,s.a,t.l,t.F,r.a,_.a,t.z,[2,c.a],[2,p.a]],null,null),(l()(),t._27(1,["\n  "])),(l()(),t._6(0,null,1,42,"ion-card",[],null,null,null,null,null)),t._5(16384,null,0,g.a,[o.a,t.l,t.F],null,null),(l()(),t._27(null,["\n    "])),(l()(),t._6(0,null,null,2,"ion-card-header",[],null,null,null,null,null)),t._5(16384,null,0,d.a,[o.a,t.l,t.F],null,null),(l()(),t._27(null,["\n      Forgot Password\n    "])),(l()(),t._27(null,["\n    "])),(l()(),t._6(0,null,null,34,"ion-card-content",[],null,null,null,null,null)),t._5(16384,null,0,h.a,[o.a,t.l,t.F],null,null),(l()(),t._27(null,["\n      "])),(l()(),t._6(0,null,null,30,"ion-list",[],null,null,null,null,null)),t._5(16384,null,0,m.a,[o.a,t.l,t.F,i.a,f.h,s.a],null,null),(l()(),t._27(null,["\n      \n        "])),(l()(),t._6(0,null,null,16,"ion-item",[["class","item item-block"]],null,null,null,b.b,b.a)),t._5(1097728,null,3,v.a,[y.a,o.a,t.l,t.F,[2,C.a]],null,null),t._25(335544320,1,{contentLabel:0}),t._25(603979776,2,{_buttons:1}),t._25(603979776,3,{_icons:1}),t._5(16384,null,0,P.a,[],null,null),(l()(),t._27(2,["\n          "])),(l()(),t._6(0,null,1,2,"ion-label",[["stacked",""]],null,null,null,null,null)),t._5(16384,[[1,4]],0,S.a,[o.a,t.l,t.F,[8,null],[8,""],[8,null],[8,null]],null,null),(l()(),t._27(null,["Email"])),(l()(),t._27(2,["\n          "])),(l()(),t._6(0,null,3,4,"ion-input",[["type","text"]],[[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],[[null,"ngModelChange"]],function(l,n,u){var t=!0;"ngModelChange"===n&&(t=!1!==(l.component.userData.username=u)&&t);return t},k.b,k.a)),t._5(671744,null,0,D.l,[[8,null],[8,null],[8,null],[8,null]],{model:[0,"model"]},{update:"ngModelChange"}),t._24(2048,null,D.i,null,[D.l]),t._5(16384,null,0,D.j,[D.i],null,null),t._5(5423104,null,0,F.a,[o.a,i.a,y.a,r.a,t.l,t.F,[2,a.a],[2,v.a],[2,D.i],s.a],{type:[0,"type"]},null),(l()(),t._27(2,["\n        "])),(l()(),t._27(null,["\n\n      \n\n        "])),(l()(),t._6(0,null,null,2,"button",[["color","success"],["full",""],["ion-button",""]],null,[[null,"click"]],function(l,n,u){var t=!0;"click"===n&&(t=!1!==l.component.forgot()&&t);return t},M.b,M.a)),t._5(1097728,null,0,T.a,[[8,""],o.a,t.l,t.F],{color:[0,"color"],full:[1,"full"]},null),(l()(),t._27(0,["Reset Password"])),(l()(),t._27(null,["\n        "])),(l()(),t._6(0,null,null,1,"a",[["href","#"]],null,[[null,"click"]],function(l,n,u){var t=!0;"click"===n&&(t=!1!==l.component.login()&&t);return t},null,null)),(l()(),t._27(null,["Login Page"])),(l()(),t._27(null,["\n\t\t"])),(l()(),t._6(0,null,null,1,"a",[["href","#"]],null,[[null,"click"]],function(l,n,u){var t=!0;"click"===n&&(t=!1!==l.component.homePage()&&t);return t},null,null)),(l()(),t._27(null,["Home Page"])),(l()(),t._27(null,["\n      "])),(l()(),t._27(null,["\n    "])),(l()(),t._27(null,["\n  "])),(l()(),t._27(1,["\n"])),(l()(),t._27(null,["\n"]))],function(l,n){l(n,29,0,n.component.userData.username);l(n,32,0,"text");l(n,36,0,"success","")},function(l,n){l(n,1,0,t._19(n,2).statusbarPadding,t._19(n,2)._hasRefresher),l(n,28,0,t._19(n,31).ngClassUntouched,t._19(n,31).ngClassTouched,t._19(n,31).ngClassPristine,t._19(n,31).ngClassDirty,t._19(n,31).ngClassValid,t._19(n,31).ngClassInvalid,t._19(n,31).ngClassPending)})}var L=t._3("forgot",w.a,function(l){return t._29(0,[(l()(),t._6(0,null,null,1,"forgot",[],null,null,null,A,R)),t._5(49152,null,0,w.a,[p.a,x.a,O.a,j.a,$.a],null,null)],null,null)},{},{},[])},function(l,n,u){"use strict";u.d(n,"a",function(){return V});var t=u(0),e=u(27),a=u(1),o=u(4),i=u(37),s=u(20),r=u(5),_=u(14),c=u(32),p=u(26),g=u(22),d=u(28),h=u(16),m=u(3),f=u(6),b=u(17),v=u(34),y=u(38),C=u(35),P=u(48),S=u(8),w=u(44),k=u(19),D=u(15),F=u(31),M=u(39),T=u(36),x=u(53),O=u(65),j=u(13),$=u(47),R=u(23),A=u(10),L=u(9),I=u(11),N=u(46),E=u(25),H=t._4({encapsulation:2,styles:[],data:{}});function B(l){return t._29(0,[(l()(),t._27(null,["\n"])),(l()(),t._6(0,null,null,10,"ion-header",[],null,null,null,null,null)),t._5(16384,null,0,e.a,[a.a,t.l,t.F,[2,o.a]],null,null),(l()(),t._27(null,["\n\n  "])),(l()(),t._6(0,null,null,6,"ion-navbar",[["class","toolbar"]],[[8,"hidden",0],[2,"statusbar-padding",null]],null,null,i.b,i.a)),t._5(49152,null,0,s.a,[r.a,[2,o.a],[2,_.a],a.a,t.l,t.F],null,null),(l()(),t._27(3,["\n    "])),(l()(),t._6(0,null,3,2,"ion-title",[],null,null,null,c.b,c.a)),t._5(49152,null,0,p.a,[a.a,t.l,t.F,[2,g.a],[2,s.a]],null,null),(l()(),t._27(0,["Login"])),(l()(),t._27(3,["\n  "])),(l()(),t._27(null,["\n\n"])),(l()(),t._27(null,["\n"])),(l()(),t._6(0,null,null,64,"ion-content",[["class","appBackground"],["padding",""]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,d.b,d.a)),t._5(4374528,null,0,h.a,[a.a,m.a,f.a,t.l,t.F,r.a,b.a,t.z,[2,o.a],[2,_.a]],null,null),(l()(),t._27(1,["\n  "])),(l()(),t._6(0,null,1,60,"ion-card",[],null,null,null,null,null)),t._5(16384,null,0,v.a,[a.a,t.l,t.F],null,null),(l()(),t._27(null,["\n    "])),(l()(),t._6(0,null,null,2,"ion-card-header",[],null,null,null,null,null)),t._5(16384,null,0,y.a,[a.a,t.l,t.F],null,null),(l()(),t._27(null,["\n      Login\n    "])),(l()(),t._27(null,["\n    "])),(l()(),t._6(0,null,null,52,"ion-card-content",[],null,null,null,null,null)),t._5(16384,null,0,C.a,[a.a,t.l,t.F],null,null),(l()(),t._27(null,["\n      "])),(l()(),t._6(0,null,null,48,"ion-list",[],null,null,null,null,null)),t._5(16384,null,0,P.a,[a.a,t.l,t.F,m.a,S.h,f.a],null,null),(l()(),t._27(null,["\n        \n          "])),(l()(),t._6(0,null,null,16,"ion-item",[["class","item item-block"]],null,null,null,w.b,w.a)),t._5(1097728,null,3,k.a,[D.a,a.a,t.l,t.F,[2,F.a]],null,null),t._25(335544320,1,{contentLabel:0}),t._25(603979776,2,{_buttons:1}),t._25(603979776,3,{_icons:1}),t._5(16384,null,0,M.a,[],null,null),(l()(),t._27(2,["\n            "])),(l()(),t._6(0,null,1,2,"ion-label",[["floating",""]],null,null,null,null,null)),t._5(16384,[[1,4]],0,T.a,[a.a,t.l,t.F,[8,""],[8,null],[8,null],[8,null]],null,null),(l()(),t._27(null,["Username"])),(l()(),t._27(2,["\n            "])),(l()(),t._6(0,null,3,4,"ion-input",[["type","text"]],[[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],[[null,"ngModelChange"]],function(l,n,u){var t=!0;"ngModelChange"===n&&(t=!1!==(l.component.userData.username=u)&&t);return t},O.b,O.a)),t._5(671744,null,0,j.l,[[8,null],[8,null],[8,null],[8,null]],{model:[0,"model"]},{update:"ngModelChange"}),t._24(2048,null,j.i,null,[j.l]),t._5(16384,null,0,j.j,[j.i],null,null),t._5(5423104,null,0,$.a,[a.a,m.a,D.a,r.a,t.l,t.F,[2,h.a],[2,k.a],[2,j.i],f.a],{type:[0,"type"]},null),(l()(),t._27(2,["\n          "])),(l()(),t._27(null,["\n\n          "])),(l()(),t._6(0,null,null,16,"ion-item",[["class","item item-block"]],null,null,null,w.b,w.a)),t._5(1097728,null,3,k.a,[D.a,a.a,t.l,t.F,[2,F.a]],null,null),t._25(335544320,4,{contentLabel:0}),t._25(603979776,5,{_buttons:1}),t._25(603979776,6,{_icons:1}),t._5(16384,null,0,M.a,[],null,null),(l()(),t._27(2,["\n            "])),(l()(),t._6(0,null,1,2,"ion-label",[["floating",""]],null,null,null,null,null)),t._5(16384,[[4,4]],0,T.a,[a.a,t.l,t.F,[8,""],[8,null],[8,null],[8,null]],null,null),(l()(),t._27(null,["Password"])),(l()(),t._27(2,["\n            "])),(l()(),t._6(0,null,3,4,"ion-input",[["type","password"]],[[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],[[null,"ngModelChange"]],function(l,n,u){var t=!0;"ngModelChange"===n&&(t=!1!==(l.component.userData.password=u)&&t);return t},O.b,O.a)),t._5(671744,null,0,j.l,[[8,null],[8,null],[8,null],[8,null]],{model:[0,"model"]},{update:"ngModelChange"}),t._24(2048,null,j.i,null,[j.l]),t._5(16384,null,0,j.j,[j.i],null,null),t._5(5423104,null,0,$.a,[a.a,m.a,D.a,r.a,t.l,t.F,[2,h.a],[2,k.a],[2,j.i],f.a],{type:[0,"type"]},null),(l()(),t._27(2,["\n          "])),(l()(),t._27(null,["\n\n          "])),(l()(),t._6(0,null,null,2,"button",[["color","success"],["full",""],["ion-button",""]],null,[[null,"click"]],function(l,n,u){var t=!0;"click"===n&&(t=!1!==l.component.login()&&t);return t},R.b,R.a)),t._5(1097728,null,0,A.a,[[8,""],a.a,t.l,t.F],{color:[0,"color"],full:[1,"full"]},null),(l()(),t._27(0,["Login"])),(l()(),t._27(null,["\n          "])),(l()(),t._6(0,null,null,1,"a",[["href","#"]],null,[[null,"click"]],function(l,n,u){var t=!0;"click"===n&&(t=!1!==l.component.signup()&&t);return t},null,null)),(l()(),t._27(null,["Sign Up"])),(l()(),t._27(null,["\n        "])),(l()(),t._6(0,null,null,1,"a",[["href","#"]],null,[[null,"click"]],function(l,n,u){var t=!0;"click"===n&&(t=!1!==l.component.homePage()&&t);return t},null,null)),(l()(),t._27(null,["Home Page"])),(l()(),t._27(null,["\n      "])),(l()(),t._27(null,["\n    "])),(l()(),t._27(null,["\n  "])),(l()(),t._27(1,["\n"])),(l()(),t._27(null,["\n"]))],function(l,n){var u=n.component;l(n,41,0,u.userData.username);l(n,44,0,"text"),l(n,59,0,u.userData.password);l(n,62,0,"password");l(n,66,0,"success","")},function(l,n){l(n,4,0,t._19(n,5)._hidden,t._19(n,5)._sbPadding),l(n,13,0,t._19(n,14).statusbarPadding,t._19(n,14)._hasRefresher),l(n,40,0,t._19(n,43).ngClassUntouched,t._19(n,43).ngClassTouched,t._19(n,43).ngClassPristine,t._19(n,43).ngClassDirty,t._19(n,43).ngClassValid,t._19(n,43).ngClassInvalid,t._19(n,43).ngClassPending),l(n,58,0,t._19(n,61).ngClassUntouched,t._19(n,61).ngClassTouched,t._19(n,61).ngClassPristine,t._19(n,61).ngClassDirty,t._19(n,61).ngClassValid,t._19(n,61).ngClassInvalid,t._19(n,61).ngClassPending)})}var V=t._3("page-login",x.a,function(l){return t._29(0,[(l()(),t._6(0,null,null,1,"page-login",[],null,null,null,B,H)),t._5(49152,null,0,x.a,[_.a,L.a,I.a,N.a,E.a],null,null)],null,null)},{},{},[])},function(l,n,u){"use strict";u.d(n,"a",function(){return $});var t=u(0),e=u(27),a=u(1),o=u(4),i=u(37),s=u(20),r=u(5),_=u(14),c=u(32),p=u(26),g=u(22),d=u(28),h=u(16),m=u(3),f=u(6),b=u(17),v=u(34),y=u(38),C=u(35),P=u(48),S=u(8),w=u(78),k=u(23),D=u(10),F=u(9),M=u(11),T=u(46),x=u(25),O=t._4({encapsulation:2,styles:[],data:{}});function j(l){return t._29(0,[(l()(),t._27(null,["\n"])),(l()(),t._6(0,null,null,10,"ion-header",[],null,null,null,null,null)),t._5(16384,null,0,e.a,[a.a,t.l,t.F,[2,o.a]],null,null),(l()(),t._27(null,["\n\n  "])),(l()(),t._6(0,null,null,6,"ion-navbar",[["class","toolbar"]],[[8,"hidden",0],[2,"statusbar-padding",null]],null,null,i.b,i.a)),t._5(49152,null,0,s.a,[r.a,[2,o.a],[2,_.a],a.a,t.l,t.F],null,null),(l()(),t._27(3,["\n    "])),(l()(),t._6(0,null,3,2,"ion-title",[],null,null,null,c.b,c.a)),t._5(49152,null,0,p.a,[a.a,t.l,t.F,[2,g.a],[2,s.a]],null,null),(l()(),t._27(0,["Log Out"])),(l()(),t._27(3,["\n  "])),(l()(),t._27(null,["\n\n"])),(l()(),t._27(null,["\n\n\n"])),(l()(),t._6(0,null,null,22,"ion-content",[["class","appBackground"],["padding",""]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,d.b,d.a)),t._5(4374528,null,0,h.a,[a.a,m.a,f.a,t.l,t.F,r.a,b.a,t.z,[2,o.a],[2,_.a]],null,null),(l()(),t._27(1,["\n  "])),(l()(),t._6(0,null,1,18,"ion-card",[],null,null,null,null,null)),t._5(16384,null,0,v.a,[a.a,t.l,t.F],null,null),(l()(),t._27(null,["\n    "])),(l()(),t._6(0,null,null,2,"ion-card-header",[],null,null,null,null,null)),t._5(16384,null,0,y.a,[a.a,t.l,t.F],null,null),(l()(),t._27(null,["\n      Log Out\n    "])),(l()(),t._27(null,["\n    "])),(l()(),t._6(0,null,null,10,"ion-card-content",[],null,null,null,null,null)),t._5(16384,null,0,C.a,[a.a,t.l,t.F],null,null),(l()(),t._27(null,["\n      "])),(l()(),t._6(0,null,null,6,"ion-list",[],null,null,null,null,null)),t._5(16384,null,0,P.a,[a.a,t.l,t.F,m.a,S.h,f.a],null,null),(l()(),t._27(null,["\n      \n      \n\n      \n\n        "])),(l()(),t._6(0,null,null,2,"button",[["color","success"],["full",""],["ion-button",""]],null,[[null,"click"]],function(l,n,u){var t=!0;"click"===n&&(t=!1!==l.component.logout()&&t);return t},k.b,k.a)),t._5(1097728,null,0,D.a,[[8,""],a.a,t.l,t.F],{color:[0,"color"],full:[1,"full"]},null),(l()(),t._27(0,["Log Out"])),(l()(),t._27(null,["\n        \n      "])),(l()(),t._27(null,["\n    "])),(l()(),t._27(null,["\n  "])),(l()(),t._27(1,["\n"])),(l()(),t._27(null,["\n"]))],function(l,n){l(n,30,0,"success","")},function(l,n){l(n,4,0,t._19(n,5)._hidden,t._19(n,5)._sbPadding),l(n,13,0,t._19(n,14).statusbarPadding,t._19(n,14)._hasRefresher)})}var $=t._3("logout",w.a,function(l){return t._29(0,[(l()(),t._6(0,null,null,1,"logout",[],null,null,null,j,O)),t._5(49152,null,0,w.a,[_.a,F.a,M.a,T.a,x.a],null,null)],null,null)},{},{},[])},function(l,n,u){"use strict";u.d(n,"a",function(){return j});var t=u(0),e=u(12),a=u(27),o=u(1),i=u(4),s=u(37),r=u(20),_=u(5),c=u(14),p=u(32),g=u(26),d=u(22),h=u(28),m=u(16),f=u(3),b=u(6),v=u(17),y=u(59),C=u(13),P=u(64),S=u(98),w=u(52),k=u(9),D=u(40),F=u(25),M=t._4({encapsulation:2,styles:[],data:{}});function T(l){return t._29(0,[(l()(),t._6(0,null,null,4,"li",[],null,null,null,null,null)),(l()(),t._27(null,["\n                "])),(l()(),t._6(0,null,null,1,"p",[["class","cric-player-name"]],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n              \n            "]))],null,function(l,n){l(n,3,0,null==n.context.$implicit?null:n.context.$implicit.name)})}function x(l){return t._29(0,[(l()(),t._6(0,null,null,19,"div",[],null,null,null,null,null)),(l()(),t._27(null,["\n        "])),(l()(),t._6(0,null,null,16,"div",[["class","cric-stat-batting-table"]],null,null,null,null,null)),(l()(),t._27(null,["\n          "])),(l()(),t._6(0,null,null,1,"h4",[],null,null,null,null,null)),(l()(),t._27(null,["Team"])),(l()(),t._27(null,["\n          "])),(l()(),t._6(0,null,null,10,"ul",[],null,null,null,null,null)),(l()(),t._27(null,["\n            "])),(l()(),t._6(0,null,null,4,"li",[["class","header"]],null,null,null,null,null)),(l()(),t._27(null,["\n                "])),(l()(),t._6(0,null,null,1,"p",[["class","cric-player-name"]],null,null,null,null,null)),(l()(),t._27(null,["Name"])),(l()(),t._27(null,["\n              \n            "])),(l()(),t._27(null,["\n            "])),(l()(),t._2(16777216,null,null,1,null,T)),t._5(802816,null,0,e.i,[t.P,t.M,t.t],{ngForOf:[0,"ngForOf"]},null),(l()(),t._27(null,["\n          "])),(l()(),t._27(null,["\n        "])),(l()(),t._27(null,["\n       "]))],function(l,n){l(n,16,0,n.component.batting)},null)}function O(l){return t._29(0,[(l()(),t._27(null,["\n"])),(l()(),t._6(0,null,null,10,"ion-header",[],null,null,null,null,null)),t._5(16384,null,0,a.a,[o.a,t.l,t.F,[2,i.a]],null,null),(l()(),t._27(null,["\n\n  "])),(l()(),t._6(0,null,null,6,"ion-navbar",[["class","toolbar"]],[[8,"hidden",0],[2,"statusbar-padding",null]],null,null,s.b,s.a)),t._5(49152,null,0,r.a,[_.a,[2,i.a],[2,c.a],o.a,t.l,t.F],null,null),(l()(),t._27(3,["\n    "])),(l()(),t._6(0,null,3,2,"ion-title",[],null,null,null,p.b,p.a)),t._5(49152,null,0,g.a,[o.a,t.l,t.F,[2,d.a],[2,r.a]],null,null),(l()(),t._27(0,["Match Team Details"])),(l()(),t._27(3,["\n  "])),(l()(),t._27(null,["\n\n"])),(l()(),t._27(null,["\n\n\n"])),(l()(),t._6(0,null,null,21,"ion-content",[["class","appBackground"],["padding",""]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,h.b,h.a)),t._5(4374528,null,0,m.a,[o.a,f.a,b.a,t.l,t.F,_.a,v.a,t.z,[2,i.a],[2,c.a]],null,null),(l()(),t._27(1,["\n\n  "])),(l()(),t._6(0,null,1,10,"ion-segment",[],[[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null],[2,"segment-disabled",null]],[[null,"ngModelChange"]],function(l,n,u){var t=!0;"ngModelChange"===n&&(t=!1!==(l.component.tabsvalues=u)&&t);return t},null,null)),t._5(671744,null,0,C.l,[[8,null],[8,null],[8,null],[8,null]],{model:[0,"model"]},{update:"ngModelChange"}),t._24(2048,null,C.i,null,[C.l]),t._5(16384,null,0,C.j,[C.i],null,null),t._5(1196032,null,1,P.a,[o.a,t.l,t.F,[2,C.i]],null,null),t._25(603979776,1,{_buttons:1}),(l()(),t._27(null,["\n      "])),(l()(),t._6(0,null,null,2,"ion-segment-button",[["class","segment-button"],["role","button"],["tappable",""],["value","summary"]],[[2,"segment-button-disabled",null],[2,"segment-activated",null],[1,"aria-pressed",0]],[[null,"click"]],function(l,n,u){var e=!0;"click"===n&&(e=!1!==t._19(l,24).onClick()&&e);return e},S.b,S.a)),t._5(114688,[[1,4]],0,w.a,[],{value:[0,"value"]},null),(l()(),t._27(0,["\n        Team List\n      "])),(l()(),t._27(null,["\n     \n    "])),(l()(),t._27(1,["\n  \n  "])),(l()(),t._6(0,null,1,5,"div",[],null,null,null,null,null)),t._5(16384,null,0,e.n,[],{ngSwitch:[0,"ngSwitch"]},null),(l()(),t._27(null,[" \n      "])),(l()(),t._2(16777216,null,null,1,null,x)),t._5(278528,null,0,e.o,[t.P,t.M,e.n],{ngSwitchCase:[0,"ngSwitchCase"]},null),(l()(),t._27(null,["\n  "])),(l()(),t._27(1,["\n"])),(l()(),t._27(null,["\n"]))],function(l,n){var u=n.component;l(n,17,0,u.tabsvalues);l(n,24,0,"summary"),l(n,29,0,u.tabsvalues);l(n,32,0,"summary")},function(l,n){l(n,4,0,t._19(n,5)._hidden,t._19(n,5)._sbPadding),l(n,13,0,t._19(n,14).statusbarPadding,t._19(n,14)._hasRefresher),l(n,16,0,t._19(n,19).ngClassUntouched,t._19(n,19).ngClassTouched,t._19(n,19).ngClassPristine,t._19(n,19).ngClassDirty,t._19(n,19).ngClassValid,t._19(n,19).ngClassInvalid,t._19(n,19).ngClassPending,t._19(n,20)._disabled),l(n,23,0,t._19(n,24)._disabled,t._19(n,24).isActive,t._19(n,24).isActive)})}var j=t._3("page-match-team",y.a,function(l){return t._29(0,[(l()(),t._6(0,null,null,1,"page-match-team",[],null,null,null,O,M)),t._5(49152,null,0,y.a,[c.a,k.a,D.a,F.a],null,null)],null,null)},{},{},[])},function(l,n,u){"use strict";u.d(n,"a",function(){return O});var t=u(0),e=u(27),a=u(1),o=u(4),i=u(37),s=u(20),r=u(5),_=u(14),c=u(23),p=u(10),g=u(42),d=u(24),h=u(43),m=u(22),f=u(30),b=u(32),v=u(26),y=u(28),C=u(16),P=u(3),S=u(6),w=u(17),k=u(79),D=u(9),F=u(11),M=u(25),T=t._4({encapsulation:2,styles:[],data:{}});function x(l){return t._29(0,[(l()(),t._27(null,["\n"])),(l()(),t._6(0,null,null,20,"ion-header",[],null,null,null,null,null)),t._5(16384,null,0,e.a,[a.a,t.l,t.F,[2,o.a]],null,null),(l()(),t._27(null,["\n\n    "])),(l()(),t._6(0,null,null,16,"ion-navbar",[["class","toolbar"]],[[8,"hidden",0],[2,"statusbar-padding",null]],null,null,i.b,i.a)),t._5(49152,null,0,s.a,[r.a,[2,o.a],[2,_.a],a.a,t.l,t.F],null,null),(l()(),t._27(3,["\n        "])),(l()(),t._6(0,null,0,8,"button",[["ion-button",""],["menuToggle",""]],[[8,"hidden",0]],[[null,"click"]],function(l,n,u){var e=!0;"click"===n&&(e=!1!==t._19(l,9).toggle()&&e);return e},c.b,c.a)),t._5(1097728,[[1,4]],0,p.a,[[8,""],a.a,t.l,t.F],null,null),t._5(1064960,null,0,g.a,[d.a,[2,o.a],[2,p.a],[2,s.a]],{menuToggle:[0,"menuToggle"]},null),t._5(16384,null,1,h.a,[a.a,t.l,t.F,[2,m.a],[2,s.a]],null,null),t._25(603979776,1,{_buttons:1}),(l()(),t._27(0,["\n          "])),(l()(),t._6(0,null,0,1,"ion-icon",[["name","menu"],["role","img"]],[[2,"hide",null]],null,null,null,null)),t._5(147456,null,0,f.a,[a.a,t.l,t.F],{name:[0,"name"]},null),(l()(),t._27(0,["\n        "])),(l()(),t._27(3,["\n        "])),(l()(),t._6(0,null,3,2,"ion-title",[],null,null,null,b.b,b.a)),t._5(49152,null,0,v.a,[a.a,t.l,t.F,[2,m.a],[2,s.a]],null,null),(l()(),t._27(0,["My Account"])),(l()(),t._27(3,["\n      "])),(l()(),t._27(null,["\n\n"])),(l()(),t._27(null,["\n\n\n"])),(l()(),t._6(0,null,null,11,"ion-content",[["class","appBackground"],["padding",""]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,y.b,y.a)),t._5(4374528,null,0,C.a,[a.a,P.a,S.a,t.l,t.F,r.a,w.a,t.z,[2,o.a],[2,_.a]],null,null),(l()(),t._27(1,["\n  "])),(l()(),t._6(0,null,1,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["Name  : ",""])),(l()(),t._27(1,["\n  "])),(l()(),t._6(0,null,1,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["Phone  : ",""])),(l()(),t._27(1,["\n  "])),(l()(),t._6(0,null,1,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["Username  : ",""])),(l()(),t._27(1,["\n  \n      \n              \n"])),(l()(),t._27(null,["\n"]))],function(l,n){l(n,9,0,"");l(n,14,0,"menu")},function(l,n){var u=n.component;l(n,4,0,t._19(n,5)._hidden,t._19(n,5)._sbPadding),l(n,7,0,t._19(n,9).isHidden),l(n,13,0,t._19(n,14)._hidden),l(n,23,0,t._19(n,24).statusbarPadding,t._19(n,24)._hasRefresher),l(n,27,0,u.user.name),l(n,30,0,u.user.phone),l(n,33,0,u.user.username)})}var O=t._3("page-my-account",k.a,function(l){return t._29(0,[(l()(),t._6(0,null,null,1,"page-my-account",[],null,null,null,x,T)),t._5(49152,null,0,k.a,[_.a,D.a,F.a,M.a],null,null)],null,null)},{},{},[])},function(l,n,u){"use strict";u.d(n,"a",function(){return nl});var t=u(0),e=u(57),a=u(12),o=u(27),i=u(1),s=u(4),r=u(37),_=u(20),c=u(5),p=u(14),g=u(23),d=u(10),h=u(42),m=u(24),f=u(43),b=u(22),v=u(30),y=u(32),C=u(26),P=u(28),S=u(16),w=u(3),k=u(6),D=u(17),F=u(44),M=u(19),T=u(15),x=u(31),O=u(39),j=u(36),$=u(80),R=u(100),A=u(58),L=u(29),I=u(13),N=u(64),E=u(98),H=u(52),B=u(9),V=u(99),U=u(25),z=u(11),W=u(66),J=t._4({encapsulation:2,styles:[],data:{}});function G(l){return t._29(0,[(l()(),t._6(0,null,null,2,"ion-option",[],null,null,null,null,null)),t._5(16384,[[5,4]],0,e.a,[t.l],{value:[0,"value"]},null),(l()(),t._27(null,["",""]))],function(l,n){l(n,1,0,n.context.$implicit)},function(l,n){l(n,2,0,n.context.$implicit.teamname)})}function K(l){return t._29(0,[(l()(),t._6(0,null,null,24,"li",[],null,null,null,null,null)),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[["class","cric-player-name"]],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,2,"p",[["class","cric-values-decimals"]],null,null,null,null,null)),(l()(),t._27(null,["",""])),t._23(2),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,2,"p",[["class","cric-values-decimals"]],null,null,null,null,null)),(l()(),t._27(null,["",""])),t._23(2),(l()(),t._27(null,["\n              "]))],null,function(l,n){l(n,3,0,null==n.context.$implicit?null:n.context.$implicit.name),l(n,6,0,null==n.context.$implicit.stats.battingStatistics?null:n.context.$implicit.stats.battingStatistics.matches),l(n,9,0,null==n.context.$implicit.stats.battingStatistics?null:n.context.$implicit.stats.battingStatistics.innings),l(n,12,0,null==n.context.$implicit.stats.battingStatistics?null:n.context.$implicit.stats.battingStatistics.run),l(n,15,0,null==n.context.$implicit.stats.battingStatistics?null:n.context.$implicit.stats.battingStatistics.ball),l(n,18,0,t._28(n,18,0,l(n,19,0,t._19(n.parent.parent,0),null==n.context.$implicit.stats.battingStatistics?null:n.context.$implicit.stats.battingStatistics.average,"1.2-2"))),l(n,22,0,t._28(n,22,0,l(n,23,0,t._19(n.parent.parent,0),null==n.context.$implicit.stats.battingStatistics?null:n.context.$implicit.stats.battingStatistics.sr,"1.2-2")))})}function q(l){return t._29(0,[(l()(),t._6(0,null,null,34,"div",[],null,null,null,null,null)),(l()(),t._27(null,["\n        "])),(l()(),t._6(0,null,null,31,"div",[["class","cric-stat-batting-table"]],null,null,null,null,null)),(l()(),t._27(null,["\n            "])),(l()(),t._6(0,null,null,28,"ul",[],null,null,null,null,null)),(l()(),t._27(null,["\n              "])),(l()(),t._6(0,null,null,22,"li",[["class","header"]],null,null,null,null,null)),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[["class","cric-player-name"]],null,null,null,null,null)),(l()(),t._27(null,["Tournament"])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["M"])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["I"])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["R"])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["B"])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[["class","cric-values-decimals"]],null,null,null,null,null)),(l()(),t._27(null,["Av"])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[["class","cric-values-decimals"]],null,null,null,null,null)),(l()(),t._27(null,["SR"])),(l()(),t._27(null,["\n              "])),(l()(),t._27(null,["\n              "])),(l()(),t._2(16777216,null,null,1,null,K)),t._5(802816,null,0,a.i,[t.P,t.M,t.t],{ngForOf:[0,"ngForOf"]},null),(l()(),t._27(null,["\n            "])),(l()(),t._27(null,["\n          "])),(l()(),t._27(null,["\n    "]))],function(l,n){l(n,31,0,n.component.statsArray)},null)}function X(l){return t._29(0,[(l()(),t._6(0,null,null,23,"li",[],null,null,null,null,null)),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[["class","cric-player-name"]],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,2,"p",[["class","cric-values-decimals"]],null,null,null,null,null)),(l()(),t._27(null,["",""])),t._23(2),(l()(),t._27(null,["\n              "]))],null,function(l,n){l(n,3,0,null==n.context.$implicit?null:n.context.$implicit.name),l(n,6,0,null==n.context.$implicit.stats.bowlingStatistics?null:n.context.$implicit.stats.bowlingStatistics.matches),l(n,9,0,null==n.context.$implicit.stats.bowlingStatistics?null:n.context.$implicit.stats.bowlingStatistics.overs),l(n,12,0,null==n.context.$implicit.stats.bowlingStatistics?null:n.context.$implicit.stats.bowlingStatistics.run),l(n,15,0,null==n.context.$implicit.stats.bowlingStatistics?null:n.context.$implicit.stats.bowlingStatistics.wickets),l(n,18,0,null==n.context.$implicit.stats.bowlingStatistics?null:n.context.$implicit.stats.bowlingStatistics.wide),l(n,21,0,t._28(n,21,0,l(n,22,0,t._19(n.parent.parent,0),null==n.context.$implicit.stats.bowlingStatistics?null:n.context.$implicit.stats.bowlingStatistics.economy,"1.2-2")))})}function Z(l){return t._29(0,[(l()(),t._6(0,null,null,34,"div",[],null,null,null,null,null)),(l()(),t._27(null,["\n        "])),(l()(),t._6(0,null,null,31,"div",[["class","cric-stat-bowling-table"]],null,null,null,null,null)),(l()(),t._27(null,["\n            "])),(l()(),t._6(0,null,null,28,"ul",[],null,null,null,null,null)),(l()(),t._27(null,["\n              "])),(l()(),t._6(0,null,null,22,"li",[["class","header"]],null,null,null,null,null)),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[["class","cric-player-name"]],null,null,null,null,null)),(l()(),t._27(null,["Tournament"])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["M"])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["O"])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["R"])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["W"])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["Wd"])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[["class","cric-values-decimals"]],null,null,null,null,null)),(l()(),t._27(null,["EC"])),(l()(),t._27(null,["\n              "])),(l()(),t._27(null,["\n              "])),(l()(),t._2(16777216,null,null,1,null,X)),t._5(802816,null,0,a.i,[t.P,t.M,t.t],{ngForOf:[0,"ngForOf"]},null),(l()(),t._27(null,["\n            "])),(l()(),t._27(null,["\n          "])),(l()(),t._27(null,["\n    "]))],function(l,n){l(n,31,0,n.component.statsArray)},null)}function Y(l){return t._29(0,[(l()(),t._6(0,null,null,16,"li",[],null,null,null,null,null)),(l()(),t._27(null,["\n                    "])),(l()(),t._6(0,null,null,1,"p",[["class","cric-player-name"]],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                    "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                    "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                    "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                    "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                "]))],null,function(l,n){l(n,3,0,null==n.context.$implicit?null:n.context.$implicit.name),l(n,6,0,null==n.context.$implicit.stats.bowlingStatistics?null:n.context.$implicit.stats.bowlingStatistics.matches),l(n,9,0,null==n.context.$implicit.stats.bowlingStatistics?null:n.context.$implicit.stats.bowlingStatistics.catches),l(n,12,0,null==n.context.$implicit.stats.bowlingStatistics?null:n.context.$implicit.stats.bowlingStatistics.runOuts),l(n,15,0,null==n.context.$implicit.stats.bowlingStatistics?null:n.context.$implicit.stats.bowlingStatistics.stumpings)})}function Q(l){return t._29(0,[(l()(),t._6(0,null,null,28,"div",[],null,null,null,null,null)),(l()(),t._27(null,["\n          "])),(l()(),t._6(0,null,null,25,"div",[["class","cric-stat-bowling-table"]],null,null,null,null,null)),(l()(),t._27(null,["\n              "])),(l()(),t._6(0,null,null,22,"ul",[],null,null,null,null,null)),(l()(),t._27(null,["\n                "])),(l()(),t._6(0,null,null,16,"li",[["class","header"]],null,null,null,null,null)),(l()(),t._27(null,["\n                    "])),(l()(),t._6(0,null,null,1,"p",[["class","cric-player-name"]],null,null,null,null,null)),(l()(),t._27(null,["Tournament"])),(l()(),t._27(null,["\n                    "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["M"])),(l()(),t._27(null,["\n                    "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["Ct"])),(l()(),t._27(null,["\n                    "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["R/O"])),(l()(),t._27(null,["\n                    "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["St"])),(l()(),t._27(null,["\n                "])),(l()(),t._27(null,["\n                "])),(l()(),t._2(16777216,null,null,1,null,Y)),t._5(802816,null,0,a.i,[t.P,t.M,t.t],{ngForOf:[0,"ngForOf"]},null),(l()(),t._27(null,["\n              "])),(l()(),t._27(null,["\n            "])),(l()(),t._27(null,["\n      "]))],function(l,n){l(n,25,0,n.component.statsArray)},null)}function ll(l){return t._29(0,[t._21(0,a.d,[t.v]),(l()(),t._27(null,["\n"])),(l()(),t._6(0,null,null,20,"ion-header",[],null,null,null,null,null)),t._5(16384,null,0,o.a,[i.a,t.l,t.F,[2,s.a]],null,null),(l()(),t._27(null,["\n\n    "])),(l()(),t._6(0,null,null,16,"ion-navbar",[["class","toolbar"]],[[8,"hidden",0],[2,"statusbar-padding",null]],null,null,r.b,r.a)),t._5(49152,null,0,_.a,[c.a,[2,s.a],[2,p.a],i.a,t.l,t.F],null,null),(l()(),t._27(3,["\n        "])),(l()(),t._6(0,null,0,8,"button",[["ion-button",""],["menuToggle",""]],[[8,"hidden",0]],[[null,"click"]],function(l,n,u){var e=!0;"click"===n&&(e=!1!==t._19(l,10).toggle()&&e);return e},g.b,g.a)),t._5(1097728,[[1,4]],0,d.a,[[8,""],i.a,t.l,t.F],null,null),t._5(1064960,null,0,h.a,[m.a,[2,s.a],[2,d.a],[2,_.a]],{menuToggle:[0,"menuToggle"]},null),t._5(16384,null,1,f.a,[i.a,t.l,t.F,[2,b.a],[2,_.a]],null,null),t._25(603979776,1,{_buttons:1}),(l()(),t._27(0,["\n          "])),(l()(),t._6(0,null,0,1,"ion-icon",[["name","menu"],["role","img"]],[[2,"hide",null]],null,null,null,null)),t._5(147456,null,0,v.a,[i.a,t.l,t.F],{name:[0,"name"]},null),(l()(),t._27(0,["\n        "])),(l()(),t._27(3,["\n        "])),(l()(),t._6(0,null,3,2,"ion-title",[],null,null,null,y.b,y.a)),t._5(49152,null,0,C.a,[i.a,t.l,t.F,[2,b.a],[2,_.a]],null,null),(l()(),t._27(0,["My Profile"])),(l()(),t._27(3,["\n      "])),(l()(),t._27(null,["\n"])),(l()(),t._27(null,["\n\n\n"])),(l()(),t._6(0,null,null,62,"ion-content",[["class","appBackground"],["padding",""]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,P.b,P.a)),t._5(4374528,null,0,S.a,[i.a,w.a,k.a,t.l,t.F,c.a,D.a,t.z,[2,s.a],[2,p.a]],null,null),(l()(),t._27(1,["\n    "])),(l()(),t._6(0,null,1,22,"ion-item",[["class","item item-block"]],null,null,null,F.b,F.a)),t._5(1097728,null,3,M.a,[T.a,i.a,t.l,t.F,[2,x.a]],null,null),t._25(335544320,2,{contentLabel:0}),t._25(603979776,3,{_buttons:1}),t._25(603979776,4,{_icons:1}),t._5(16384,null,0,O.a,[],null,null),(l()(),t._27(2,["\n        "])),(l()(),t._6(0,null,1,2,"ion-label",[],null,null,null,null,null)),t._5(16384,[[2,4]],0,j.a,[i.a,t.l,t.F,[8,null],[8,null],[8,null],[8,null]],null,null),(l()(),t._27(null,["Pick a Team"])),(l()(),t._27(2,["\n        "])),(l()(),t._6(0,null,3,10,"ion-select",[],[[2,"select-disabled",null],[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],[[null,"ngModelChange"],[null,"ionChange"],[null,"click"],[null,"keyup.space"]],function(l,n,u){var e=!0,a=l.component;"click"===n&&(e=!1!==t._19(l,39)._click(u)&&e);"keyup.space"===n&&(e=!1!==t._19(l,39)._keyup()&&e);"ngModelChange"===n&&(e=!1!==(a.selectedTeam=u)&&e);"ionChange"===n&&(e=!1!==a.teamSelected(u)&&e);return e},R.b,R.a)),t._5(1228800,null,1,A.a,[c.a,T.a,i.a,t.l,t.F,[2,M.a],L.a],null,{ionChange:"ionChange"}),t._25(603979776,5,{options:1}),t._24(1024,null,I.h,function(l){return[l]},[A.a]),t._5(671744,null,0,I.l,[[8,null],[8,null],[8,null],[2,I.h]],{model:[0,"model"]},{update:"ngModelChange"}),t._24(2048,null,I.i,null,[I.l]),t._5(16384,null,0,I.j,[I.i],null,null),(l()(),t._27(null,["\n          "])),(l()(),t._2(16777216,null,null,1,null,G)),t._5(802816,null,0,a.i,[t.P,t.M,t.t],{ngForOf:[0,"ngForOf"]},null),(l()(),t._27(null,["\n        "])),(l()(),t._27(2,["\n    "])),(l()(),t._27(1,["\n\n\n  "])),(l()(),t._6(0,null,1,1,"h3",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(1,["\n  "])),(l()(),t._6(0,null,1,18,"ion-segment",[],[[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null],[2,"segment-disabled",null]],[[null,"ngModelChange"]],function(l,n,u){var t=!0;"ngModelChange"===n&&(t=!1!==(l.component.tabsvalues=u)&&t);return t},null,null)),t._5(671744,null,0,I.l,[[8,null],[8,null],[8,null],[8,null]],{model:[0,"model"]},{update:"ngModelChange"}),t._24(2048,null,I.i,null,[I.l]),t._5(16384,null,0,I.j,[I.i],null,null),t._5(1196032,null,1,N.a,[i.a,t.l,t.F,[2,I.i]],null,null),t._25(603979776,6,{_buttons:1}),(l()(),t._27(null,["\n      "])),(l()(),t._6(0,null,null,2,"ion-segment-button",[["class","segment-button"],["role","button"],["tappable",""],["value","batting"]],[[2,"segment-button-disabled",null],[2,"segment-activated",null],[1,"aria-pressed",0]],[[null,"click"]],function(l,n,u){var e=!0;"click"===n&&(e=!1!==t._19(l,62).onClick()&&e);return e},E.b,E.a)),t._5(114688,[[6,4]],0,H.a,[],{value:[0,"value"]},null),(l()(),t._27(0,["\n        Batting Stats\n      "])),(l()(),t._27(null,["\n      "])),(l()(),t._6(0,null,null,2,"ion-segment-button",[["class","segment-button"],["role","button"],["tappable",""],["value","bowling"]],[[2,"segment-button-disabled",null],[2,"segment-activated",null],[1,"aria-pressed",0]],[[null,"click"]],function(l,n,u){var e=!0;"click"===n&&(e=!1!==t._19(l,66).onClick()&&e);return e},E.b,E.a)),t._5(114688,[[6,4]],0,H.a,[],{value:[0,"value"]},null),(l()(),t._27(0,["\n          Bowling Stats\n      "])),(l()(),t._27(null,["\n      "])),(l()(),t._6(0,null,null,2,"ion-segment-button",[["class","segment-button"],["role","button"],["tappable",""],["value","fielding"]],[[2,"segment-button-disabled",null],[2,"segment-activated",null],[1,"aria-pressed",0]],[[null,"click"]],function(l,n,u){var e=!0;"click"===n&&(e=!1!==t._19(l,70).onClick()&&e);return e},E.b,E.a)),t._5(114688,[[6,4]],0,H.a,[],{value:[0,"value"]},null),(l()(),t._27(0,["\n            Fielding Stats\n      "])),(l()(),t._27(null,["\n    "])),(l()(),t._27(1,["\n  \n  "])),(l()(),t._6(0,null,1,11,"div",[],null,null,null,null,null)),t._5(16384,null,0,a.n,[],{ngSwitch:[0,"ngSwitch"]},null),(l()(),t._27(null,[" \n    "])),(l()(),t._2(16777216,null,null,1,null,q)),t._5(278528,null,0,a.o,[t.P,t.M,a.n],{ngSwitchCase:[0,"ngSwitchCase"]},null),(l()(),t._27(null,["\n\n    "])),(l()(),t._2(16777216,null,null,1,null,Z)),t._5(278528,null,0,a.o,[t.P,t.M,a.n],{ngSwitchCase:[0,"ngSwitchCase"]},null),(l()(),t._27(null,["\n\n      "])),(l()(),t._2(16777216,null,null,1,null,Q)),t._5(278528,null,0,a.o,[t.P,t.M,a.n],{ngSwitchCase:[0,"ngSwitchCase"]},null),(l()(),t._27(null,["\n\n    "])),(l()(),t._27(1,[" \n"])),(l()(),t._27(null,["\n"]))],function(l,n){var u=n.component;l(n,10,0,"");l(n,15,0,"menu"),l(n,42,0,u.selectedTeam),l(n,47,0,u.teams),l(n,55,0,u.tabsvalues);l(n,62,0,"batting");l(n,66,0,"bowling");l(n,70,0,"fielding"),l(n,75,0,u.tabsvalues);l(n,78,0,"batting");l(n,81,0,"bowling");l(n,84,0,"fielding")},function(l,n){var u=n.component;l(n,5,0,t._19(n,6)._hidden,t._19(n,6)._sbPadding),l(n,8,0,t._19(n,10).isHidden),l(n,14,0,t._19(n,15)._hidden),l(n,24,0,t._19(n,25).statusbarPadding,t._19(n,25)._hasRefresher),l(n,38,0,t._19(n,39)._disabled,t._19(n,44).ngClassUntouched,t._19(n,44).ngClassTouched,t._19(n,44).ngClassPristine,t._19(n,44).ngClassDirty,t._19(n,44).ngClassValid,t._19(n,44).ngClassInvalid,t._19(n,44).ngClassPending),l(n,52,0,null==u.statsArray[0]?null:null==u.statsArray[0].stats.battingStatistics?null:u.statsArray[0].stats.battingStatistics.player.name),l(n,54,0,t._19(n,57).ngClassUntouched,t._19(n,57).ngClassTouched,t._19(n,57).ngClassPristine,t._19(n,57).ngClassDirty,t._19(n,57).ngClassValid,t._19(n,57).ngClassInvalid,t._19(n,57).ngClassPending,t._19(n,58)._disabled),l(n,61,0,t._19(n,62)._disabled,t._19(n,62).isActive,t._19(n,62).isActive),l(n,65,0,t._19(n,66)._disabled,t._19(n,66).isActive,t._19(n,66).isActive),l(n,69,0,t._19(n,70)._disabled,t._19(n,70).isActive,t._19(n,70).isActive)})}var nl=t._3("page-my-profile",$.a,function(l){return t._29(0,[(l()(),t._6(0,null,null,1,"page-my-profile",[],null,null,null,ll,J)),t._5(49152,null,0,$.a,[p.a,B.a,V.a,U.a,z.a,W.a],null,null)],null,null)},{},{},[])},function(l,n,u){"use strict";u.d(n,"a",function(){return T});var t=u(0),e=u(27),a=u(1),o=u(4),i=u(37),s=u(20),r=u(5),_=u(14),c=u(23),p=u(10),g=u(42),d=u(24),h=u(43),m=u(22),f=u(30),b=u(32),v=u(26),y=u(28),C=u(16),P=u(3),S=u(6),w=u(17),k=u(81),D=u(9),F=t._4({encapsulation:2,styles:[],data:{}});function M(l){return t._29(0,[(l()(),t._27(null,["\n"])),(l()(),t._6(0,null,null,20,"ion-header",[],null,null,null,null,null)),t._5(16384,null,0,e.a,[a.a,t.l,t.F,[2,o.a]],null,null),(l()(),t._27(null,["\n\n    "])),(l()(),t._6(0,null,null,16,"ion-navbar",[["class","toolbar"]],[[8,"hidden",0],[2,"statusbar-padding",null]],null,null,i.b,i.a)),t._5(49152,null,0,s.a,[r.a,[2,o.a],[2,_.a],a.a,t.l,t.F],null,null),(l()(),t._27(3,["\n        "])),(l()(),t._6(0,null,0,8,"button",[["ion-button",""],["menuToggle",""]],[[8,"hidden",0]],[[null,"click"]],function(l,n,u){var e=!0;"click"===n&&(e=!1!==t._19(l,9).toggle()&&e);return e},c.b,c.a)),t._5(1097728,[[1,4]],0,p.a,[[8,""],a.a,t.l,t.F],null,null),t._5(1064960,null,0,g.a,[d.a,[2,o.a],[2,p.a],[2,s.a]],{menuToggle:[0,"menuToggle"]},null),t._5(16384,null,1,h.a,[a.a,t.l,t.F,[2,m.a],[2,s.a]],null,null),t._25(603979776,1,{_buttons:1}),(l()(),t._27(0,["\n          "])),(l()(),t._6(0,null,0,1,"ion-icon",[["name","menu"],["role","img"]],[[2,"hide",null]],null,null,null,null)),t._5(147456,null,0,f.a,[a.a,t.l,t.F],{name:[0,"name"]},null),(l()(),t._27(0,["\n        "])),(l()(),t._27(3,["\n        "])),(l()(),t._6(0,null,3,2,"ion-title",[],null,null,null,b.b,b.a)),t._5(49152,null,0,v.a,[a.a,t.l,t.F,[2,m.a],[2,s.a]],null,null),(l()(),t._27(0,["My Teams"])),(l()(),t._27(3,["\n      "])),(l()(),t._27(null,["\n\n"])),(l()(),t._27(null,["\n\n\n"])),(l()(),t._6(0,null,null,2,"ion-content",[["class","appBackground"],["padding",""]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,y.b,y.a)),t._5(4374528,null,0,C.a,[a.a,P.a,S.a,t.l,t.F,r.a,w.a,t.z,[2,o.a],[2,_.a]],null,null),(l()(),t._27(1,["\n  My Teams coming soon.Team List will be Added \n"])),(l()(),t._27(null,["\n"]))],function(l,n){l(n,9,0,"");l(n,14,0,"menu")},function(l,n){l(n,4,0,t._19(n,5)._hidden,t._19(n,5)._sbPadding),l(n,7,0,t._19(n,9).isHidden),l(n,13,0,t._19(n,14)._hidden),l(n,23,0,t._19(n,24).statusbarPadding,t._19(n,24)._hasRefresher)})}var T=t._3("page-my-teams",k.a,function(l){return t._29(0,[(l()(),t._6(0,null,null,1,"page-my-teams",[],null,null,null,M,F)),t._5(49152,null,0,k.a,[_.a,D.a],null,null)],null,null)},{},{},[])},function(l,n,u){"use strict";u.d(n,"a",function(){return V});var t=u(0),e=u(12),a=u(27),o=u(1),i=u(4),s=u(37),r=u(20),_=u(5),c=u(14),p=u(32),g=u(26),d=u(22),h=u(28),m=u(16),f=u(3),b=u(6),v=u(17),y=u(34),C=u(38),P=u(35),S=u(82),w=u(13),k=u(64),D=u(98),F=u(52),M=u(9),T=u(40),x=u(25),O=t._4({encapsulation:2,styles:[],data:{}});function j(l){return t._29(0,[(l()(),t._6(0,null,null,1,"span",[],null,null,null,null,null)),(l()(),t._27(null,["",""]))],null,function(l,n){var u=n.component;l(n,1,0,null==u.match?null:null==u.match.team?null:u.match.team.teamname)})}function $(l){return t._29(0,[(l()(),t._6(0,null,null,1,"span",[],null,null,null,null,null)),(l()(),t._27(null,["",""]))],null,function(l,n){var u=n.component;l(n,1,0,null==u.match?null:u.match.opponent)})}function R(l){return t._29(0,[(l()(),t._6(0,null,null,20,"li",[],null,null,null,null,null)),(l()(),t._27(null,["\n                "])),(l()(),t._6(0,null,null,1,"p",[["class","cric-player-name"]],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                "])),(l()(),t._6(0,null,null,2,"p",[["class","cric-values-decimals"]],null,null,null,null,null)),(l()(),t._27(null,["",""])),t._23(2),(l()(),t._27(null,["\n            "]))],null,function(l,n){l(n,3,0,null==n.context.$implicit?null:null==n.context.$implicit.player?null:n.context.$implicit.player.name),l(n,6,0,null==n.context.$implicit?null:n.context.$implicit.run),l(n,9,0,null==n.context.$implicit?null:n.context.$implicit.ball),l(n,12,0,null==n.context.$implicit?null:n.context.$implicit.four),l(n,15,0,null==n.context.$implicit?null:n.context.$implicit.six),l(n,18,0,t._28(n,18,0,l(n,19,0,t._19(n.parent.parent,1),null==n.context.$implicit?null:n.context.$implicit.sr,"1.2-2")))})}function A(l){return t._29(0,[(l()(),t._6(0,null,null,20,"li",[],null,null,null,null,null)),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[["class","cric-player-name"]],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,2,"p",[["class","cric-values-decimals"]],null,null,null,null,null)),(l()(),t._27(null,["",""])),t._23(2),(l()(),t._27(null,["\n              "]))],null,function(l,n){l(n,3,0,null==n.context.$implicit?null:null==n.context.$implicit.player?null:n.context.$implicit.player.name),l(n,6,0,null==n.context.$implicit?null:n.context.$implicit.overs),l(n,9,0,null==n.context.$implicit?null:n.context.$implicit.run),l(n,12,0,null==n.context.$implicit?null:n.context.$implicit.wickets),l(n,15,0,null==n.context.$implicit?null:n.context.$implicit.wide),l(n,18,0,t._28(n,18,0,l(n,19,0,t._19(n.parent.parent,1),null==n.context.$implicit?null:n.context.$implicit.economy,"1.2-2")))})}function L(l){return t._29(0,[(l()(),t._6(0,null,null,67,"div",[],null,null,null,null,null)),(l()(),t._27(null,["\n        "])),(l()(),t._6(0,null,null,31,"div",[["class","cric-stat-batting-table"]],null,null,null,null,null)),(l()(),t._27(null,["\n          "])),(l()(),t._6(0,null,null,1,"h4",[],null,null,null,null,null)),(l()(),t._27(null,["Batting"])),(l()(),t._27(null,["\n          "])),(l()(),t._6(0,null,null,25,"ul",[],null,null,null,null,null)),(l()(),t._27(null,["\n            "])),(l()(),t._6(0,null,null,19,"li",[["class","header"]],null,null,null,null,null)),(l()(),t._27(null,["\n                "])),(l()(),t._6(0,null,null,1,"p",[["class","cric-player-name"]],null,null,null,null,null)),(l()(),t._27(null,["Name"])),(l()(),t._27(null,["\n                "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["R"])),(l()(),t._27(null,["\n                "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["B"])),(l()(),t._27(null,["\n                "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["4's"])),(l()(),t._27(null,["\n                "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["6's"])),(l()(),t._27(null,["\n                "])),(l()(),t._6(0,null,null,1,"p",[["class","cric-values-decimals"]],null,null,null,null,null)),(l()(),t._27(null,["SR"])),(l()(),t._27(null,["\n            "])),(l()(),t._27(null,["\n            "])),(l()(),t._2(16777216,null,null,1,null,R)),t._5(802816,null,0,e.i,[t.P,t.M,t.t],{ngForOf:[0,"ngForOf"]},null),(l()(),t._27(null,["\n          "])),(l()(),t._27(null,["\n        "])),(l()(),t._27(null,["\n        "])),(l()(),t._6(0,null,null,31,"div",[["class","cric-stat-bowling-table"]],null,null,null,null,null)),(l()(),t._27(null,["\n            "])),(l()(),t._6(0,null,null,1,"h4",[],null,null,null,null,null)),(l()(),t._27(null,["Bowling"])),(l()(),t._27(null,["\n            "])),(l()(),t._6(0,null,null,25,"ul",[],null,null,null,null,null)),(l()(),t._27(null,["\n              "])),(l()(),t._6(0,null,null,19,"li",[["class","header"]],null,null,null,null,null)),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[["class","cric-player-name"]],null,null,null,null,null)),(l()(),t._27(null,["Name"])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["O"])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["R"])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["W"])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["Wd"])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[["class","cric-values-decimals"]],null,null,null,null,null)),(l()(),t._27(null,["EC"])),(l()(),t._27(null,["\n              "])),(l()(),t._27(null,["\n              "])),(l()(),t._2(16777216,null,null,1,null,A)),t._5(802816,null,0,e.i,[t.P,t.M,t.t],{ngForOf:[0,"ngForOf"]},null),(l()(),t._27(null,["\n            "])),(l()(),t._27(null,["\n          "])),(l()(),t._27(null,["\n      "]))],function(l,n){var u=n.component;l(n,31,0,u.batting?u.batting.slice(0,3):t._0),l(n,64,0,u.bowling?u.bowling.slice(0,3):t._0)},null)}function I(l){return t._29(0,[(l()(),t._6(0,null,null,16,"li",[],null,null,null,null,null)),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[["class","cric-player-name"]],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n              "]))],null,function(l,n){l(n,3,0,null==n.context.$implicit?null:null==n.context.$implicit.player?null:n.context.$implicit.player.name),l(n,6,0,null==n.context.$implicit?null:n.context.$implicit.run),l(n,9,0,null==n.context.$implicit?null:n.context.$implicit.ball),l(n,12,0,null==n.context.$implicit?null:n.context.$implicit.four),l(n,15,0,null==n.context.$implicit?null:n.context.$implicit.six)})}function N(l){return t._29(0,[(l()(),t._6(0,null,null,28,"div",[],null,null,null,null,null)),(l()(),t._27(null,["\n        "])),(l()(),t._6(0,null,null,25,"div",[["class","cric-stat-batting-table"]],null,null,null,null,null)),(l()(),t._27(null,["\n            "])),(l()(),t._6(0,null,null,22,"ul",[],null,null,null,null,null)),(l()(),t._27(null,["\n              "])),(l()(),t._6(0,null,null,16,"li",[["class","header"]],null,null,null,null,null)),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[["class","cric-player-name"]],null,null,null,null,null)),(l()(),t._27(null,["Name"])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["R"])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["B"])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["4's"])),(l()(),t._27(null,["\n                  "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["6's"])),(l()(),t._27(null,["\n              "])),(l()(),t._27(null,["\n              "])),(l()(),t._2(16777216,null,null,1,null,I)),t._5(802816,null,0,e.i,[t.P,t.M,t.t],{ngForOf:[0,"ngForOf"]},null),(l()(),t._27(null,["\n            "])),(l()(),t._27(null,["\n          "])),(l()(),t._27(null,["\n      "]))],function(l,n){l(n,25,0,n.component.batting)},null)}function E(l){return t._29(0,[(l()(),t._6(0,null,null,20,"li",[],null,null,null,null,null)),(l()(),t._27(null,["\n                    "])),(l()(),t._6(0,null,null,1,"p",[["class","cric-player-name"]],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                    "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                    "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                    "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                    "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n                    "])),(l()(),t._6(0,null,null,2,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),t._23(2),(l()(),t._27(null,["\n                "]))],null,function(l,n){l(n,3,0,null==n.context.$implicit?null:null==n.context.$implicit.player?null:n.context.$implicit.player.name),l(n,6,0,null==n.context.$implicit?null:n.context.$implicit.overs),l(n,9,0,null==n.context.$implicit?null:n.context.$implicit.run),l(n,12,0,null==n.context.$implicit?null:n.context.$implicit.wickets),l(n,15,0,null==n.context.$implicit?null:n.context.$implicit.wide),l(n,18,0,t._28(n,18,0,l(n,19,0,t._19(n.parent.parent,1),null==n.context.$implicit?null:n.context.$implicit.economy,"1.2-2")))})}function H(l){return t._29(0,[(l()(),t._6(0,null,null,31,"div",[],null,null,null,null,null)),(l()(),t._27(null,["\n          "])),(l()(),t._6(0,null,null,28,"div",[["class","cric-stat-bowling-table"]],null,null,null,null,null)),(l()(),t._27(null,["\n              "])),(l()(),t._6(0,null,null,25,"ul",[],null,null,null,null,null)),(l()(),t._27(null,["\n                "])),(l()(),t._6(0,null,null,19,"li",[["class","header"]],null,null,null,null,null)),(l()(),t._27(null,["\n                    "])),(l()(),t._6(0,null,null,1,"p",[["class","cric-player-name"]],null,null,null,null,null)),(l()(),t._27(null,["Name"])),(l()(),t._27(null,["\n                    "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["O"])),(l()(),t._27(null,["\n                    "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["R"])),(l()(),t._27(null,["\n                    "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["W"])),(l()(),t._27(null,["\n                    "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["Wd"])),(l()(),t._27(null,["\n                    "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["EC"])),(l()(),t._27(null,["\n                "])),(l()(),t._27(null,["\n                "])),(l()(),t._2(16777216,null,null,1,null,E)),t._5(802816,null,0,e.i,[t.P,t.M,t.t],{ngForOf:[0,"ngForOf"]},null),(l()(),t._27(null,["\n              "])),(l()(),t._27(null,["\n            "])),(l()(),t._27(null,["\n      "]))],function(l,n){l(n,28,0,n.component.bowling)},null)}function B(l){return t._29(0,[t._21(0,e.c,[t.v]),t._21(0,e.d,[t.v]),(l()(),t._27(null,["\n"])),(l()(),t._6(0,null,null,10,"ion-header",[],null,null,null,null,null)),t._5(16384,null,0,a.a,[o.a,t.l,t.F,[2,i.a]],null,null),(l()(),t._27(null,["\n\n  "])),(l()(),t._6(0,null,null,6,"ion-navbar",[["class","toolbar"]],[[8,"hidden",0],[2,"statusbar-padding",null]],null,null,s.b,s.a)),t._5(49152,null,0,r.a,[_.a,[2,i.a],[2,c.a],o.a,t.l,t.F],null,null),(l()(),t._27(3,["\n    "])),(l()(),t._6(0,null,3,2,"ion-title",[],null,null,null,p.b,p.a)),t._5(49152,null,0,g.a,[o.a,t.l,t.F,[2,d.a],[2,r.a]],null,null),(l()(),t._27(0,["Match Details"])),(l()(),t._27(3,["\n  "])),(l()(),t._27(null,["\n\n"])),(l()(),t._27(null,["\n\n\n"])),(l()(),t._6(0,null,null,74,"ion-content",[["class","appBackground"],["padding",""]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,h.b,h.a)),t._5(4374528,null,0,m.a,[o.a,f.a,b.a,t.l,t.F,_.a,v.a,t.z,[2,i.a],[2,c.a]],null,null),(l()(),t._27(1,["\n"])),(l()(),t._6(0,null,1,37,"ion-card",[],null,null,null,null,null)),t._5(16384,null,0,y.a,[o.a,t.l,t.F],null,null),(l()(),t._27(null,["\n  "])),(l()(),t._6(0,null,null,5,"ion-card-header",[],null,null,null,null,null)),t._5(16384,null,0,C.a,[o.a,t.l,t.F],null,null),(l()(),t._27(null,["\n      "," Vs\n      ","\n      "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n    "])),(l()(),t._27(null,["\n    "])),(l()(),t._6(0,null,null,26,"ion-card-content",[],null,null,null,null,null)),t._5(16384,null,0,P.a,[o.a,t.l,t.F],null,null),(l()(),t._27(null,["\n      "])),(l()(),t._6(0,null,null,3,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",", ",""])),t._23(2),t._23(2),(l()(),t._27(null,["\n      "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",", ",""])),(l()(),t._27(null,["\n      "])),(l()(),t._6(0,null,null,6,"p",[],null,null,null,null,null)),(l()(),t._27(null,["Toss won by "])),(l()(),t._2(16777216,null,null,1,null,j)),t._5(16384,null,0,e.j,[t.P,t.M],{ngIf:[0,"ngIf"]},null),(l()(),t._2(16777216,null,null,1,null,$)),t._5(16384,null,0,e.j,[t.P,t.M],{ngIf:[0,"ngIf"]},null),(l()(),t._27(null,["\n      "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["Result : ",", ",""])),(l()(),t._27(null,["\n      "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",": ","/",""])),(l()(),t._27(null,["\n      "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",":","/",""])),(l()(),t._27(null,["\n      "])),(l()(),t._27(null,["\n  "])),(l()(),t._27(1,["\n  "])),(l()(),t._6(0,null,1,18,"ion-segment",[],[[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null],[2,"segment-disabled",null]],[[null,"ngModelChange"]],function(l,n,u){var t=!0;"ngModelChange"===n&&(t=!1!==(l.component.tabsvalues=u)&&t);return t},null,null)),t._5(671744,null,0,w.l,[[8,null],[8,null],[8,null],[8,null]],{model:[0,"model"]},{update:"ngModelChange"}),t._24(2048,null,w.i,null,[w.l]),t._5(16384,null,0,w.j,[w.i],null,null),t._5(1196032,null,1,k.a,[o.a,t.l,t.F,[2,w.i]],null,null),t._25(603979776,1,{_buttons:1}),(l()(),t._27(null,["\n      "])),(l()(),t._6(0,null,null,2,"ion-segment-button",[["class","segment-button"],["role","button"],["tappable",""],["value","summary"]],[[2,"segment-button-disabled",null],[2,"segment-activated",null],[1,"aria-pressed",0]],[[null,"click"]],function(l,n,u){var e=!0;"click"===n&&(e=!1!==t._19(l,65).onClick()&&e);return e},D.b,D.a)),t._5(114688,[[1,4]],0,F.a,[],{value:[0,"value"]},null),(l()(),t._27(0,["\n        Summary\n      "])),(l()(),t._27(null,["\n      "])),(l()(),t._6(0,null,null,2,"ion-segment-button",[["class","segment-button"],["role","button"],["tappable",""],["value","batting"]],[[2,"segment-button-disabled",null],[2,"segment-activated",null],[1,"aria-pressed",0]],[[null,"click"]],function(l,n,u){var e=!0;"click"===n&&(e=!1!==t._19(l,69).onClick()&&e);return e},D.b,D.a)),t._5(114688,[[1,4]],0,F.a,[],{value:[0,"value"]},null),(l()(),t._27(0,["\n          Batting\n      "])),(l()(),t._27(null,["\n      "])),(l()(),t._6(0,null,null,2,"ion-segment-button",[["class","segment-button"],["role","button"],["tappable",""],["value","bowling"]],[[2,"segment-button-disabled",null],[2,"segment-activated",null],[1,"aria-pressed",0]],[[null,"click"]],function(l,n,u){var e=!0;"click"===n&&(e=!1!==t._19(l,73).onClick()&&e);return e},D.b,D.a)),t._5(114688,[[1,4]],0,F.a,[],{value:[0,"value"]},null),(l()(),t._27(0,["\n          Bowling\n      "])),(l()(),t._27(null,["\n    "])),(l()(),t._27(1,["\n  \n  "])),(l()(),t._6(0,null,1,11,"div",[],null,null,null,null,null)),t._5(16384,null,0,e.n,[],{ngSwitch:[0,"ngSwitch"]},null),(l()(),t._27(null,[" \n      "])),(l()(),t._2(16777216,null,null,1,null,L)),t._5(278528,null,0,e.o,[t.P,t.M,e.n],{ngSwitchCase:[0,"ngSwitchCase"]},null),(l()(),t._27(null,["\n    "])),(l()(),t._2(16777216,null,null,1,null,N)),t._5(278528,null,0,e.o,[t.P,t.M,e.n],{ngSwitchCase:[0,"ngSwitchCase"]},null),(l()(),t._27(null,["\n      "])),(l()(),t._2(16777216,null,null,1,null,H)),t._5(278528,null,0,e.o,[t.P,t.M,e.n],{ngSwitchCase:[0,"ngSwitchCase"]},null),(l()(),t._27(null,["\n  "])),(l()(),t._27(1,["\n"])),(l()(),t._27(null,["\n"]))],function(l,n){var u=n.component;l(n,42,0,u.match.tossWon),l(n,44,0,!u.match.tossWon),l(n,58,0,u.tabsvalues);l(n,65,0,"summary");l(n,69,0,"batting");l(n,73,0,"bowling"),l(n,78,0,u.tabsvalues);l(n,81,0,"summary");l(n,84,0,"batting");l(n,87,0,"bowling")},function(l,n){var u=n.component;l(n,6,0,t._19(n,7)._hidden,t._19(n,7)._sbPadding),l(n,15,0,t._19(n,16).statusbarPadding,t._19(n,16)._hasRefresher),l(n,23,0,null==u.match?null:null==u.match.team?null:u.match.team.teamname,null==u.match?null:u.match.opponent),l(n,25,0,null==u.match?null:null==u.match.tournament?null:u.match.tournament.name),l(n,32,0,t._28(n,32,0,l(n,33,0,t._19(n,0),null==u.match?null:u.match.matchTime,"fullDate")),t._28(n,32,1,l(n,34,0,t._19(n,0),null==u.match?null:u.match.matchTime,"shortTime"))),l(n,37,0,null==u.match?null:null==u.match.location?null:u.match.location.name,null==u.match?null:null==u.match.location?null:u.match.location.address),l(n,47,0,null==u.match?null:u.match.result,null==u.match?null:u.match.remarks),l(n,50,0,null==u.match?null:null==u.match.team?null:u.match.team.teamname,null==u.match?null:u.match.score,null==u.match?null:u.match.wickets),l(n,53,0,null==u.match?null:u.match.opponent,null==u.match?null:u.match.oppositionScore,null==u.match?null:u.match.oppositionWickets),l(n,57,0,t._19(n,60).ngClassUntouched,t._19(n,60).ngClassTouched,t._19(n,60).ngClassPristine,t._19(n,60).ngClassDirty,t._19(n,60).ngClassValid,t._19(n,60).ngClassInvalid,t._19(n,60).ngClassPending,t._19(n,61)._disabled),l(n,64,0,t._19(n,65)._disabled,t._19(n,65).isActive,t._19(n,65).isActive),l(n,68,0,t._19(n,69)._disabled,t._19(n,69).isActive,t._19(n,69).isActive),l(n,72,0,t._19(n,73)._disabled,t._19(n,73).isActive,t._19(n,73).isActive)})}var V=t._3("page-previous-match-details",S.a,function(l){return t._29(0,[(l()(),t._6(0,null,null,1,"page-previous-match-details",[],null,null,null,B,O)),t._5(49152,null,0,S.a,[c.a,M.a,T.a,x.a],null,null)],null,null)},{},{},[])},function(l,n,u){"use strict";u.d(n,"a",function(){return E});var t=u(0),e=u(34),a=u(1),o=u(38),i=u(35),s=u(12),r=u(23),_=u(10),c=u(30),p=u(27),g=u(4),d=u(37),h=u(20),m=u(5),f=u(14),b=u(42),v=u(24),y=u(43),C=u(22),P=u(32),S=u(26),w=u(28),k=u(16),D=u(3),F=u(6),M=u(17),T=u(83),x=u(9),O=u(25),j=u(11),$=u(40),R=t._4({encapsulation:2,styles:[],data:{}});function A(l){return t._29(0,[(l()(),t._6(0,null,null,1,"span",[],null,null,null,null,null)),(l()(),t._27(null,["",""]))],null,function(l,n){l(n,1,0,n.parent.context.$implicit.team.teamname)})}function L(l){return t._29(0,[(l()(),t._6(0,null,null,1,"span",[],null,null,null,null,null)),(l()(),t._27(null,["",""]))],null,function(l,n){l(n,1,0,n.parent.context.$implicit.opponent)})}function I(l){return t._29(0,[(l()(),t._6(0,null,null,57,"ion-card",[],null,null,null,null,null)),t._5(16384,null,0,e.a,[a.a,t.l,t.F],null,null),(l()(),t._27(null,["\n        "])),(l()(),t._6(0,null,null,5,"ion-card-header",[],null,null,null,null,null)),t._5(16384,null,0,o.a,[a.a,t.l,t.F],null,null),(l()(),t._27(null,["\n          "," Vs\n          ","\n          "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",""])),(l()(),t._27(null,["\n        "])),(l()(),t._27(null,["\n        "])),(l()(),t._6(0,null,null,26,"ion-card-content",[],null,null,null,null,null)),t._5(16384,null,0,i.a,[a.a,t.l,t.F],null,null),(l()(),t._27(null,["\n          "])),(l()(),t._6(0,null,null,3,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",", ",""])),t._23(2),t._23(2),(l()(),t._27(null,["\n          "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",", ",""])),(l()(),t._27(null,["\n          "])),(l()(),t._6(0,null,null,6,"p",[],null,null,null,null,null)),(l()(),t._27(null,["Toss won by "])),(l()(),t._2(16777216,null,null,1,null,A)),t._5(16384,null,0,s.j,[t.P,t.M],{ngIf:[0,"ngIf"]},null),(l()(),t._2(16777216,null,null,1,null,L)),t._5(16384,null,0,s.j,[t.P,t.M],{ngIf:[0,"ngIf"]},null),(l()(),t._27(null,["\n          "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["Result : ",", ",""])),(l()(),t._27(null,["\n          "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",": ","/",""])),(l()(),t._27(null,["\n          "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["",":","/",""])),(l()(),t._27(null,["\n        "])),(l()(),t._27(null,["\n\t\t "])),(l()(),t._6(0,null,null,8,"button",[["clear",""],["icon-left",""],["ion-button",""],["small",""]],null,[[null,"click"]],function(l,n,u){var t=!0;"click"===n&&(t=!1!==l.component.goToMatchTeam(l.context.$implicit.id)&&t);return t},r.b,r.a)),t._5(1097728,null,0,_.a,[[8,""],a.a,t.l,t.F],{small:[0,"small"],clear:[1,"clear"]},null),(l()(),t._27(0,["\n            "])),(l()(),t._6(0,null,0,1,"ion-icon",[["name","text"],["role","img"]],[[2,"hide",null]],null,null,null,null)),t._5(147456,null,0,c.a,[a.a,t.l,t.F],{name:[0,"name"]},null),(l()(),t._27(0,["\n            "])),(l()(),t._6(0,null,0,1,"div",[],null,null,null,null,null)),(l()(),t._27(null,["Match Team"])),(l()(),t._27(0,["\n          "])),(l()(),t._27(null,["\n        "])),(l()(),t._6(0,null,null,8,"button",[["clear",""],["icon-left",""],["ion-button",""],["small",""]],null,[[null,"click"]],function(l,n,u){var t=!0;"click"===n&&(t=!1!==l.component.goToMatchDetails(l.context.$implicit.id)&&t);return t},r.b,r.a)),t._5(1097728,null,0,_.a,[[8,""],a.a,t.l,t.F],{small:[0,"small"],clear:[1,"clear"]},null),(l()(),t._27(0,["\n            "])),(l()(),t._6(0,null,0,1,"ion-icon",[["name","text"],["role","img"]],[[2,"hide",null]],null,null,null,null)),t._5(147456,null,0,c.a,[a.a,t.l,t.F],{name:[0,"name"]},null),(l()(),t._27(0,["\n            "])),(l()(),t._6(0,null,0,1,"div",[],null,null,null,null,null)),(l()(),t._27(null,["Match Details"])),(l()(),t._27(0,["\n          "])),(l()(),t._27(null,["\n      "]))],function(l,n){l(n,24,0,n.context.$implicit.tossWon),l(n,26,0,!n.context.$implicit.tossWon);l(n,39,0,"","");l(n,42,0,"text");l(n,49,0,"","");l(n,52,0,"text")},function(l,n){l(n,5,0,n.context.$implicit.team.teamname,n.context.$implicit.opponent),l(n,7,0,n.context.$implicit.tournament.name),l(n,14,0,t._28(n,14,0,l(n,15,0,t._19(n.parent,0),n.context.$implicit.matchTime,"fullDate")),t._28(n,14,1,l(n,16,0,t._19(n.parent,0),n.context.$implicit.matchTime,"shortTime"))),l(n,19,0,n.context.$implicit.location.name,n.context.$implicit.location.address),l(n,29,0,n.context.$implicit.result,n.context.$implicit.remarks),l(n,32,0,n.context.$implicit.team.teamname,n.context.$implicit.score,n.context.$implicit.wickets),l(n,35,0,n.context.$implicit.opponent,n.context.$implicit.oppositionScore,n.context.$implicit.oppositionWickets),l(n,41,0,t._19(n,42)._hidden),l(n,51,0,t._19(n,52)._hidden)})}function N(l){return t._29(0,[t._21(0,s.c,[t.v]),(l()(),t._27(null,["\n"])),(l()(),t._6(0,null,null,20,"ion-header",[],null,null,null,null,null)),t._5(16384,null,0,p.a,[a.a,t.l,t.F,[2,g.a]],null,null),(l()(),t._27(null,["\n\n    "])),(l()(),t._6(0,null,null,16,"ion-navbar",[["class","toolbar"]],[[8,"hidden",0],[2,"statusbar-padding",null]],null,null,d.b,d.a)),t._5(49152,null,0,h.a,[m.a,[2,g.a],[2,f.a],a.a,t.l,t.F],null,null),(l()(),t._27(3,["\n        "])),(l()(),t._6(0,null,0,8,"button",[["ion-button",""],["menuToggle",""]],[[8,"hidden",0]],[[null,"click"]],function(l,n,u){var e=!0;"click"===n&&(e=!1!==t._19(l,10).toggle()&&e);return e},r.b,r.a)),t._5(1097728,[[1,4]],0,_.a,[[8,""],a.a,t.l,t.F],null,null),t._5(1064960,null,0,b.a,[v.a,[2,g.a],[2,_.a],[2,h.a]],{menuToggle:[0,"menuToggle"]},null),t._5(16384,null,1,y.a,[a.a,t.l,t.F,[2,C.a],[2,h.a]],null,null),t._25(603979776,1,{_buttons:1}),(l()(),t._27(0,["\n          "])),(l()(),t._6(0,null,0,1,"ion-icon",[["name","menu"],["role","img"]],[[2,"hide",null]],null,null,null,null)),t._5(147456,null,0,c.a,[a.a,t.l,t.F],{name:[0,"name"]},null),(l()(),t._27(0,["\n        "])),(l()(),t._27(3,["\n        "])),(l()(),t._6(0,null,3,2,"ion-title",[],null,null,null,P.b,P.a)),t._5(49152,null,0,S.a,[a.a,t.l,t.F,[2,C.a],[2,h.a]],null,null),(l()(),t._27(0,["Completed Matches"])),(l()(),t._27(3,["\n      "])),(l()(),t._27(null,["\n"])),(l()(),t._27(null,["\n\n\n"])),(l()(),t._6(0,null,null,5,"ion-content",[["class","appBackground"],["padding",""]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,w.b,w.a)),t._5(4374528,null,0,k.a,[a.a,D.a,F.a,t.l,t.F,m.a,M.a,t.z,[2,g.a],[2,f.a]],null,null),(l()(),t._27(1,["\n    "])),(l()(),t._2(16777216,null,1,1,null,I)),t._5(802816,null,0,s.i,[t.P,t.M,t.t],{ngForOf:[0,"ngForOf"]},null),(l()(),t._27(1,["\n    "])),(l()(),t._27(null,["\n"]))],function(l,n){var u=n.component;l(n,10,0,"");l(n,15,0,"menu"),l(n,28,0,u.matches)},function(l,n){l(n,5,0,t._19(n,6)._hidden,t._19(n,6)._sbPadding),l(n,8,0,t._19(n,10).isHidden),l(n,14,0,t._19(n,15)._hidden),l(n,24,0,t._19(n,25).statusbarPadding,t._19(n,25)._hasRefresher)})}var E=t._3("page-previous-matches",T.a,function(l){return t._29(0,[(l()(),t._6(0,null,null,1,"page-previous-matches",[],null,null,null,N,R)),t._5(49152,null,0,T.a,[f.a,x.a,O.a,j.a,$.a],null,null)],null,null)},{},{},[])},function(l,n,u){"use strict";u.d(n,"a",function(){return J});var t=u(0),e=u(27),a=u(1),o=u(4),i=u(37),s=u(20),r=u(5),_=u(14),c=u(23),p=u(10),g=u(42),d=u(24),h=u(43),m=u(22),f=u(30),b=u(32),v=u(26),y=u(28),C=u(16),P=u(3),S=u(6),w=u(17),k=u(34),D=u(38),F=u(35),M=u(48),T=u(8),x=u(44),O=u(19),j=u(15),$=u(31),R=u(39),A=u(36),L=u(84),I=u(65),N=u(13),E=u(47),H=u(9),B=u(11),V=u(46),U=u(25),z=t._4({encapsulation:2,styles:[],data:{}});function W(l){return t._29(0,[(l()(),t._27(null,["\n"])),(l()(),t._6(0,null,null,20,"ion-header",[],null,null,null,null,null)),t._5(16384,null,0,e.a,[a.a,t.l,t.F,[2,o.a]],null,null),(l()(),t._27(null,["\n\n  "])),(l()(),t._6(0,null,null,16,"ion-navbar",[["class","toolbar"]],[[8,"hidden",0],[2,"statusbar-padding",null]],null,null,i.b,i.a)),t._5(49152,null,0,s.a,[r.a,[2,o.a],[2,_.a],a.a,t.l,t.F],null,null),(l()(),t._27(3,["\n    "])),(l()(),t._6(0,null,0,8,"button",[["ion-button",""],["menuToggle",""]],[[8,"hidden",0]],[[null,"click"]],function(l,n,u){var e=!0;"click"===n&&(e=!1!==t._19(l,9).toggle()&&e);return e},c.b,c.a)),t._5(1097728,[[1,4]],0,p.a,[[8,""],a.a,t.l,t.F],null,null),t._5(1064960,null,0,g.a,[d.a,[2,o.a],[2,p.a],[2,s.a]],{menuToggle:[0,"menuToggle"]},null),t._5(16384,null,1,h.a,[a.a,t.l,t.F,[2,m.a],[2,s.a]],null,null),t._25(603979776,1,{_buttons:1}),(l()(),t._27(0,["\n          "])),(l()(),t._6(0,null,0,1,"ion-icon",[["name","menu"],["role","img"]],[[2,"hide",null]],null,null,null,null)),t._5(147456,null,0,f.a,[a.a,t.l,t.F],{name:[0,"name"]},null),(l()(),t._27(0,["\n        "])),(l()(),t._27(3,["\n    "])),(l()(),t._6(0,null,3,2,"ion-title",[],null,null,null,b.b,b.a)),t._5(49152,null,0,v.a,[a.a,t.l,t.F,[2,m.a],[2,s.a]],null,null),(l()(),t._27(0,["Reset Password"])),(l()(),t._27(3,["\n  "])),(l()(),t._27(null,["\n\n"])),(l()(),t._27(null,["\n\n\n"])),(l()(),t._6(0,null,null,40,"ion-content",[["class","appBackground"],["padding",""]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,y.b,y.a)),t._5(4374528,null,0,C.a,[a.a,P.a,S.a,t.l,t.F,r.a,w.a,t.z,[2,o.a],[2,_.a]],null,null),(l()(),t._27(1,["\n  "])),(l()(),t._6(0,null,1,36,"ion-card",[],null,null,null,null,null)),t._5(16384,null,0,k.a,[a.a,t.l,t.F],null,null),(l()(),t._27(null,["\n    "])),(l()(),t._6(0,null,null,2,"ion-card-header",[],null,null,null,null,null)),t._5(16384,null,0,D.a,[a.a,t.l,t.F],null,null),(l()(),t._27(null,["\n      Reset Password\n    "])),(l()(),t._27(null,["\n    "])),(l()(),t._6(0,null,null,28,"ion-card-content",[],null,null,null,null,null)),t._5(16384,null,0,F.a,[a.a,t.l,t.F],null,null),(l()(),t._27(null,["\n      "])),(l()(),t._6(0,null,null,24,"ion-list",[],null,null,null,null,null)),t._5(16384,null,0,M.a,[a.a,t.l,t.F,P.a,T.h,S.a],null,null),(l()(),t._27(null,["\n      \n        "])),(l()(),t._6(0,null,null,16,"ion-item",[["class","item item-block"]],null,null,null,x.b,x.a)),t._5(1097728,null,3,O.a,[j.a,a.a,t.l,t.F,[2,$.a]],null,null),t._25(335544320,2,{contentLabel:0}),t._25(603979776,3,{_buttons:1}),t._25(603979776,4,{_icons:1}),t._5(16384,null,0,R.a,[],null,null),(l()(),t._27(2,["\n          "])),(l()(),t._6(0,null,1,2,"ion-label",[["stacked",""]],null,null,null,null,null)),t._5(16384,[[2,4]],0,A.a,[a.a,t.l,t.F,[8,null],[8,""],[8,null],[8,null]],null,null),(l()(),t._27(null,["Password"])),(l()(),t._27(2,["\n          "])),(l()(),t._6(0,null,3,4,"ion-input",[["type","text"]],[[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],[[null,"ngModelChange"]],function(l,n,u){var t=!0;"ngModelChange"===n&&(t=!1!==(l.component.userData.password=u)&&t);return t},I.b,I.a)),t._5(671744,null,0,N.l,[[8,null],[8,null],[8,null],[8,null]],{model:[0,"model"]},{update:"ngModelChange"}),t._24(2048,null,N.i,null,[N.l]),t._5(16384,null,0,N.j,[N.i],null,null),t._5(5423104,null,0,E.a,[a.a,P.a,j.a,r.a,t.l,t.F,[2,C.a],[2,O.a],[2,N.i],S.a],{type:[0,"type"]},null),(l()(),t._27(2,["\n        "])),(l()(),t._27(null,["\n\n      \n\n        "])),(l()(),t._6(0,null,null,2,"button",[["color","success"],["full",""],["ion-button",""]],null,[[null,"click"]],function(l,n,u){var t=!0;"click"===n&&(t=!1!==l.component.reset()&&t);return t},c.b,c.a)),t._5(1097728,null,0,p.a,[[8,""],a.a,t.l,t.F],{color:[0,"color"],full:[1,"full"]},null),(l()(),t._27(0,["Reset Password"])),(l()(),t._27(null,["\n        \n      "])),(l()(),t._27(null,["\n    "])),(l()(),t._27(null,["\n  "])),(l()(),t._27(1,["\n"])),(l()(),t._27(null,["\n"]))],function(l,n){var u=n.component;l(n,9,0,"");l(n,14,0,"menu"),l(n,51,0,u.userData.password);l(n,54,0,"text");l(n,58,0,"success","")},function(l,n){l(n,4,0,t._19(n,5)._hidden,t._19(n,5)._sbPadding),l(n,7,0,t._19(n,9).isHidden),l(n,13,0,t._19(n,14)._hidden),l(n,23,0,t._19(n,24).statusbarPadding,t._19(n,24)._hasRefresher),l(n,50,0,t._19(n,53).ngClassUntouched,t._19(n,53).ngClassTouched,t._19(n,53).ngClassPristine,t._19(n,53).ngClassDirty,t._19(n,53).ngClassValid,t._19(n,53).ngClassInvalid,t._19(n,53).ngClassPending)})}var J=t._3("reset",L.a,function(l){return t._29(0,[(l()(),t._6(0,null,null,1,"reset",[],null,null,null,W,z)),t._5(49152,null,0,L.a,[_.a,H.a,B.a,V.a,U.a],null,null)],null,null)},{},{},[])},function(l,n,u){"use strict";u.d(n,"a",function(){return W});var t=u(0),e=u(44),a=u(19),o=u(15),i=u(1),s=u(31),r=u(39),_=u(27),c=u(4),p=u(37),g=u(20),d=u(5),h=u(14),m=u(32),f=u(26),b=u(22),v=u(28),y=u(16),C=u(3),P=u(6),S=u(17),w=u(34),k=u(38),D=u(35),F=u(48),M=u(8),T=u(67),x=u(13),O=u(36),j=u(65),$=u(47),R=u(12),A=u(23),L=u(10),I=u(9),N=u(11),E=u(46),H=u(25),B=t._4({encapsulation:2,styles:[],data:{}});function V(l){return t._29(0,[(l()(),t._6(0,null,null,9,"ion-item",[["class","invalid item item-block"]],null,null,null,e.b,e.a)),t._5(1097728,null,3,a.a,[o.a,i.a,t.l,t.F,[2,s.a]],null,null),t._25(335544320,10,{contentLabel:0}),t._25(603979776,11,{_buttons:1}),t._25(603979776,12,{_icons:1}),t._5(16384,null,0,r.a,[],null,null),(l()(),t._27(2,["\n              "])),(l()(),t._6(0,null,2,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["* Email is required!"])),(l()(),t._27(2,["\n          "]))],null,null)}function U(l){return t._29(0,[(l()(),t._6(0,null,null,9,"ion-item",[["class","invalid item item-block"]],null,null,null,e.b,e.a)),t._5(1097728,null,3,a.a,[o.a,i.a,t.l,t.F,[2,s.a]],null,null),t._25(335544320,16,{contentLabel:0}),t._25(603979776,17,{_buttons:1}),t._25(603979776,18,{_icons:1}),t._5(16384,null,0,r.a,[],null,null),(l()(),t._27(2,["\n              "])),(l()(),t._6(0,null,2,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["* Password is required!"])),(l()(),t._27(2,["\n          "]))],null,null)}function z(l){return t._29(0,[(l()(),t._27(null,["\n"])),(l()(),t._6(0,null,null,10,"ion-header",[],null,null,null,null,null)),t._5(16384,null,0,_.a,[i.a,t.l,t.F,[2,c.a]],null,null),(l()(),t._27(null,["\n\n  "])),(l()(),t._6(0,null,null,6,"ion-navbar",[["class","toolbar"]],[[8,"hidden",0],[2,"statusbar-padding",null]],null,null,p.b,p.a)),t._5(49152,null,0,g.a,[d.a,[2,c.a],[2,h.a],i.a,t.l,t.F],null,null),(l()(),t._27(3,["\n    "])),(l()(),t._6(0,null,3,2,"ion-title",[],null,null,null,m.b,m.a)),t._5(49152,null,0,f.a,[i.a,t.l,t.F,[2,b.a],[2,g.a]],null,null),(l()(),t._27(0,["signup"])),(l()(),t._27(3,["\n  "])),(l()(),t._27(null,["\n\n"])),(l()(),t._27(null,["\n\n\n"])),(l()(),t._6(0,null,null,113,"ion-content",[["class","appBackground"],["padding",""]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,v.b,v.a)),t._5(4374528,null,0,y.a,[i.a,C.a,P.a,t.l,t.F,d.a,S.a,t.z,[2,c.a],[2,h.a]],null,null),(l()(),t._27(1,["\n  "])),(l()(),t._6(0,null,1,109,"ion-card",[],null,null,null,null,null)),t._5(16384,null,0,w.a,[i.a,t.l,t.F],null,null),(l()(),t._27(null,["\n    "])),(l()(),t._6(0,null,null,2,"ion-card-header",[],null,null,null,null,null)),t._5(16384,null,0,k.a,[i.a,t.l,t.F],null,null),(l()(),t._27(null,["\n      Registration\n    "])),(l()(),t._27(null,["\n    "])),(l()(),t._6(0,null,null,101,"ion-card-content",[],null,null,null,null,null)),t._5(16384,null,0,D.a,[i.a,t.l,t.F],null,null),(l()(),t._27(null,["\n      "])),(l()(),t._6(0,null,null,97,"ion-list",[],null,null,null,null,null)),t._5(16384,null,0,F.a,[i.a,t.l,t.F,C.a,M.h,P.a],null,null),(l()(),t._27(null,["\n        "])),(l()(),t._6(0,null,null,93,"form",[["novalidate",""]],[[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],[[null,"submit"],[null,"reset"]],function(l,n,u){var e=!0,a=l.component;"submit"===n&&(e=!1!==t._19(l,31).onSubmit(u)&&e);"reset"===n&&(e=!1!==t._19(l,31).onReset()&&e);"submit"===n&&(e=!1!==a.signup()&&e);return e},null,null)),t._5(16384,null,0,x.p,[],null,null),t._5(540672,null,0,x.f,[[8,null],[8,null]],{form:[0,"form"]},null),t._24(2048,null,x.b,null,[x.f]),t._5(16384,null,0,x.k,[x.b],null,null),(l()(),t._27(null,["\n          "])),(l()(),t._6(0,null,null,16,"ion-item",[["class","item item-block"]],null,null,null,e.b,e.a)),t._5(1097728,null,3,a.a,[o.a,i.a,t.l,t.F,[2,s.a]],null,null),t._25(335544320,1,{contentLabel:0}),t._25(603979776,2,{_buttons:1}),t._25(603979776,3,{_icons:1}),t._5(16384,null,0,r.a,[],null,null),(l()(),t._27(2,["\n            "])),(l()(),t._6(0,null,1,2,"ion-label",[["floating",""]],null,null,null,null,null)),t._5(16384,[[1,4]],0,O.a,[i.a,t.l,t.F,[8,""],[8,null],[8,null],[8,null]],null,null),(l()(),t._27(null,["Name"])),(l()(),t._27(2,["\n            "])),(l()(),t._6(0,null,3,4,"ion-input",[["formControlName","name"],["type","text"]],[[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],null,null,j.b,j.a)),t._5(671744,null,0,x.e,[[3,x.b],[8,null],[8,null],[8,null]],{name:[0,"name"]},null),t._24(2048,null,x.i,null,[x.e]),t._5(16384,null,0,x.j,[x.i],null,null),t._5(5423104,null,0,$.a,[i.a,C.a,o.a,d.a,t.l,t.F,[2,y.a],[2,a.a],[2,x.i],P.a],{type:[0,"type"]},null),(l()(),t._27(2,["\n          "])),(l()(),t._27(null,["\n\n          "])),(l()(),t._6(0,null,null,16,"ion-item",[["class","item item-block"]],null,null,null,e.b,e.a)),t._5(1097728,null,3,a.a,[o.a,i.a,t.l,t.F,[2,s.a]],null,null),t._25(335544320,4,{contentLabel:0}),t._25(603979776,5,{_buttons:1}),t._25(603979776,6,{_icons:1}),t._5(16384,null,0,r.a,[],null,null),(l()(),t._27(2,["\n            "])),(l()(),t._6(0,null,1,2,"ion-label",[["floating",""]],null,null,null,null,null)),t._5(16384,[[4,4]],0,O.a,[i.a,t.l,t.F,[8,""],[8,null],[8,null],[8,null]],null,null),(l()(),t._27(null,["Phone"])),(l()(),t._27(2,["\n            "])),(l()(),t._6(0,null,3,4,"ion-input",[["formControlName","phone"],["type","text"]],[[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],null,null,j.b,j.a)),t._5(671744,null,0,x.e,[[3,x.b],[8,null],[8,null],[8,null]],{name:[0,"name"]},null),t._24(2048,null,x.i,null,[x.e]),t._5(16384,null,0,x.j,[x.i],null,null),t._5(5423104,null,0,$.a,[i.a,C.a,o.a,d.a,t.l,t.F,[2,y.a],[2,a.a],[2,x.i],P.a],{type:[0,"type"]},null),(l()(),t._27(2,["\n          "])),(l()(),t._27(null,["\n\n          "])),(l()(),t._6(0,null,null,16,"ion-item",[["class","item item-block"]],[[2,"invalid",null]],null,null,e.b,e.a)),t._5(1097728,null,3,a.a,[o.a,i.a,t.l,t.F,[2,s.a]],null,null),t._25(335544320,7,{contentLabel:0}),t._25(603979776,8,{_buttons:1}),t._25(603979776,9,{_icons:1}),t._5(16384,null,0,r.a,[],null,null),(l()(),t._27(2,["\n            "])),(l()(),t._6(0,null,1,2,"ion-label",[["floating",""]],null,null,null,null,null)),t._5(16384,[[7,4]],0,O.a,[i.a,t.l,t.F,[8,""],[8,null],[8,null],[8,null]],null,null),(l()(),t._27(null,["Email"])),(l()(),t._27(2,["\n            "])),(l()(),t._6(0,null,3,4,"ion-input",[["autocapitalize","off"],["formControlName","username"],["type","text"]],[[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],null,null,j.b,j.a)),t._5(671744,null,0,x.e,[[3,x.b],[8,null],[8,null],[8,null]],{name:[0,"name"]},null),t._24(2048,null,x.i,null,[x.e]),t._5(16384,null,0,x.j,[x.i],null,null),t._5(5423104,null,0,$.a,[i.a,C.a,o.a,d.a,t.l,t.F,[2,y.a],[2,a.a],[2,x.i],P.a],{type:[0,"type"]},null),(l()(),t._27(2,["\n          "])),(l()(),t._27(null,["\n          "])),(l()(),t._2(16777216,null,null,1,null,V)),t._5(16384,null,0,R.j,[t.P,t.M],{ngIf:[0,"ngIf"]},null),(l()(),t._27(null,["\n\n          "])),(l()(),t._6(0,null,null,16,"ion-item",[["class","item item-block"]],[[2,"invalid",null]],null,null,e.b,e.a)),t._5(1097728,null,3,a.a,[o.a,i.a,t.l,t.F,[2,s.a]],null,null),t._25(335544320,13,{contentLabel:0}),t._25(603979776,14,{_buttons:1}),t._25(603979776,15,{_icons:1}),t._5(16384,null,0,r.a,[],null,null),(l()(),t._27(2,["\n            "])),(l()(),t._6(0,null,1,2,"ion-label",[["floating",""]],null,null,null,null,null)),t._5(16384,[[13,4]],0,O.a,[i.a,t.l,t.F,[8,""],[8,null],[8,null],[8,null]],null,null),(l()(),t._27(null,["Password"])),(l()(),t._27(2,["\n            "])),(l()(),t._6(0,null,3,4,"ion-input",[["formControlName","password"],["type","password"]],[[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],null,null,j.b,j.a)),t._5(671744,null,0,x.e,[[3,x.b],[8,null],[8,null],[8,null]],{name:[0,"name"]},null),t._24(2048,null,x.i,null,[x.e]),t._5(16384,null,0,x.j,[x.i],null,null),t._5(5423104,null,0,$.a,[i.a,C.a,o.a,d.a,t.l,t.F,[2,y.a],[2,a.a],[2,x.i],P.a],{type:[0,"type"]},null),(l()(),t._27(2,["\n          "])),(l()(),t._27(null,["\n\n          "])),(l()(),t._2(16777216,null,null,1,null,U)),t._5(16384,null,0,R.j,[t.P,t.M],{ngIf:[0,"ngIf"]},null),(l()(),t._27(null,["\n  \n          \n\n          "])),(l()(),t._6(0,null,null,2,"button",[["color","success"],["full",""],["ion-button",""],["type","submit"]],[[8,"disabled",0]],null,null,A.b,A.a)),t._5(1097728,null,0,L.a,[[8,""],i.a,t.l,t.F],{color:[0,"color"],full:[1,"full"]},null),(l()(),t._27(0,["Sign up"])),(l()(),t._27(null,["\n          "])),(l()(),t._6(0,null,null,1,"a",[["href","#"]],null,[[null,"click"]],function(l,n,u){var t=!0;"click"===n&&(t=!1!==l.component.login()&&t);return t},null,null)),(l()(),t._27(null,["Login Page"])),(l()(),t._27(null,["\n"])),(l()(),t._6(0,null,null,1,"a",[["href","#"]],null,[[null,"click"]],function(l,n,u){var t=!0;"click"===n&&(t=!1!==l.component.homePage()&&t);return t},null,null)),(l()(),t._27(null,["Home Page"])),(l()(),t._27(null,["\n        "])),(l()(),t._27(null,["\n      "])),(l()(),t._27(null,["\n    "])),(l()(),t._27(null,["\n  "])),(l()(),t._27(1,["\n"])),(l()(),t._27(null,["\n"]))],function(l,n){var u=n.component;l(n,31,0,u.signupForm);l(n,47,0,"name");l(n,50,0,"text");l(n,65,0,"phone");l(n,68,0,"text");l(n,83,0,"username");l(n,86,0,"text"),l(n,90,0,!u.username.valid);l(n,104,0,"password");l(n,107,0,"password"),l(n,111,0,!u.password.valid);l(n,114,0,"success","")},function(l,n){var u=n.component;l(n,4,0,t._19(n,5)._hidden,t._19(n,5)._sbPadding),l(n,13,0,t._19(n,14).statusbarPadding,t._19(n,14)._hasRefresher),l(n,29,0,t._19(n,33).ngClassUntouched,t._19(n,33).ngClassTouched,t._19(n,33).ngClassPristine,t._19(n,33).ngClassDirty,t._19(n,33).ngClassValid,t._19(n,33).ngClassInvalid,t._19(n,33).ngClassPending),l(n,46,0,t._19(n,49).ngClassUntouched,t._19(n,49).ngClassTouched,t._19(n,49).ngClassPristine,t._19(n,49).ngClassDirty,t._19(n,49).ngClassValid,t._19(n,49).ngClassInvalid,t._19(n,49).ngClassPending),l(n,64,0,t._19(n,67).ngClassUntouched,t._19(n,67).ngClassTouched,t._19(n,67).ngClassPristine,t._19(n,67).ngClassDirty,t._19(n,67).ngClassValid,t._19(n,67).ngClassInvalid,t._19(n,67).ngClassPending),l(n,71,0,!u.username.valid),l(n,82,0,t._19(n,85).ngClassUntouched,t._19(n,85).ngClassTouched,t._19(n,85).ngClassPristine,t._19(n,85).ngClassDirty,t._19(n,85).ngClassValid,t._19(n,85).ngClassInvalid,t._19(n,85).ngClassPending),l(n,92,0,!u.password.valid),l(n,103,0,t._19(n,106).ngClassUntouched,t._19(n,106).ngClassTouched,t._19(n,106).ngClassPristine,t._19(n,106).ngClassDirty,t._19(n,106).ngClassValid,t._19(n,106).ngClassInvalid,t._19(n,106).ngClassPending),l(n,113,0,!u.signupForm.valid)})}var W=t._3("page-signup",T.a,function(l){return t._29(0,[(l()(),t._6(0,null,null,1,"page-signup",[],null,null,null,z,B)),t._5(49152,null,0,T.a,[h.a,I.a,N.a,E.a,H.a,x.d],null,null)],null,null)},{},{},[])},function(l,n,u){"use strict";u.d(n,"a",function(){return O});var t=u(0),e=u(116),a=u(34),o=u(1),i=u(38),s=u(35),r=u(28),_=u(16),c=u(3),p=u(6),g=u(5),d=u(17),h=u(4),m=u(14),f=u(117),b=u(118),v=u(45),y=u(23),C=u(10),P=u(12),S=u(9),w=u(11),k=u(25),D=u(40),F=t._4({encapsulation:2,styles:[],data:{}});function M(l){return t._29(0,[(l()(),t._6(0,null,null,25,"ion-col",[["class","col"]],null,null,null,null,null)),t._5(16384,null,0,e.a,[],null,null),(l()(),t._27(null,["\n\t"])),(l()(),t._6(0,null,null,21,"ion-card",[["color","primary"]],null,null,null,null,null)),t._5(16384,null,0,a.a,[o.a,t.l,t.F],{color:[0,"color"]},null),(l()(),t._27(null,["\n    "])),(l()(),t._6(0,null,null,5,"ion-card-header",[],null,null,null,null,null)),t._5(16384,null,0,i.a,[o.a,t.l,t.F],null,null),(l()(),t._27(null,["\n      "])),(l()(),t._6(0,null,null,1,"b",[],null,null,null,null,null)),(l()(),t._27(null,[""," "])),(l()(),t._27(null,["\n      \n    "])),(l()(),t._27(null,["\n\t"])),(l()(),t._6(0,null,null,0,"img",[["src","../assets/img/batsman.png"]],null,null,null,null,null)),(l()(),t._27(null,["\n    "])),(l()(),t._6(0,null,null,8,"ion-card-content",[],null,null,null,null,null)),t._5(16384,null,0,s.a,[o.a,t.l,t.F],null,null),(l()(),t._27(null,["\n      "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["","(",")"])),(l()(),t._27(null,["\n     "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,[""," vs\n      ",""])),(l()(),t._27(null,["\n\n    "])),(l()(),t._27(null,["\n  "])),(l()(),t._27(null,["\n   "]))],function(l,n){l(n,4,0,"primary")},function(l,n){l(n,10,0,n.context.$implicit.player.name),l(n,19,0,n.context.$implicit.run,n.context.$implicit.ball),l(n,22,0,n.context.$implicit.match.team.teamname,n.context.$implicit.match.opponent)})}function T(l){return t._29(0,[(l()(),t._6(0,null,null,25,"ion-col",[["class","col"]],null,null,null,null,null)),t._5(16384,null,0,e.a,[],null,null),(l()(),t._27(null,["\n  \t"])),(l()(),t._6(0,null,null,21,"ion-card",[["color","primary"]],null,null,null,null,null)),t._5(16384,null,0,a.a,[o.a,t.l,t.F],{color:[0,"color"]},null),(l()(),t._27(null,["\n    "])),(l()(),t._6(0,null,null,5,"ion-card-header",[],null,null,null,null,null)),t._5(16384,null,0,i.a,[o.a,t.l,t.F],null,null),(l()(),t._27(null,["\n      "])),(l()(),t._6(0,null,null,1,"b",[],null,null,null,null,null)),(l()(),t._27(null,[""," "])),(l()(),t._27(null,["\n      \n    "])),(l()(),t._27(null,["\n\t"])),(l()(),t._6(0,null,null,0,"img",[["src","../assets/img/bowler.png"]],null,null,null,null,null)),(l()(),t._27(null,["\n    "])),(l()(),t._6(0,null,null,8,"ion-card-content",[],null,null,null,null,null)),t._5(16384,null,0,s.a,[o.a,t.l,t.F],null,null),(l()(),t._27(null,["\n      "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,["","/",""])),(l()(),t._27(null,["\n     "])),(l()(),t._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t._27(null,[""," vs\n      ",""])),(l()(),t._27(null,["\n\n    "])),(l()(),t._27(null,["\n "])),(l()(),t._27(null,["\n   "]))],function(l,n){l(n,4,0,"primary")},function(l,n){l(n,10,0,n.context.$implicit.player.name),l(n,19,0,n.context.$implicit.wickets,n.context.$implicit.run),l(n,22,0,n.context.$implicit.match.team.teamname,n.context.$implicit.match.opponent)})}function x(l){return t._29(0,[(l()(),t._27(null,["\n\n\n\n"])),(l()(),t._6(0,null,null,183,"ion-content",[["class","login-background"],["padding",""]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,r.b,r.a)),t._5(4374528,null,0,_.a,[o.a,c.a,p.a,t.l,t.F,g.a,d.a,t.z,[2,h.a],[2,m.a]],null,null),(l()(),t._27(1,["\n    "])),(l()(),t._6(0,null,1,43,"ion-grid",[["class","grid"]],null,null,null,null,null)),t._5(16384,null,0,f.a,[],null,null),(l()(),t._27(null,["\n        "])),(l()(),t._6(0,null,null,39,"ion-row",[["class","row"]],null,null,null,null,null)),t._5(16384,null,0,b.a,[],null,null),(l()(),t._27(null,["\n          "])),(l()(),t._6(0,null,null,4,"ion-col",[["class","col"],["col-2",""]],null,null,null,null,null)),t._5(16384,null,0,e.a,[],null,null),(l()(),t._27(null,["\n            "])),(l()(),t._6(0,null,null,0,"img",[["src","../assets/img/icon.png"]],null,null,null,null,null)),(l()(),t._27(null,["\n\t\t\t "])),(l()(),t._27(null,["\n\t\t\t "])),(l()(),t._6(0,null,null,5,"ion-col",[["class","col"],["col-6",""]],null,null,null,null,null)),t._5(16384,null,0,e.a,[],null,null),(l()(),t._27(null,["\n\t\t\t"])),(l()(),t._6(0,null,null,1,"h1",[],null,null,null,null,null)),(l()(),t._27(null,["Crickify"])),(l()(),t._27(null,["\n          "])),(l()(),t._27(null,["\n   \n          "])),(l()(),t._6(0,null,null,6,"ion-col",[["center",""],["class","col"],["text-center",""]],null,null,null,null,null)),t._5(16384,null,0,e.a,[],null,null),(l()(),t._27(null,["\n            "])),(l()(),t._6(0,null,null,2,"button",[["color","success"],["full",""],["ion-button",""]],null,[[null,"click"]],function(l,n,u){var t=!0;"click"===n&&(t=!1!==l.component.signup()&&t);return t},y.b,y.a)),t._5(1097728,null,0,C.a,[[8,""],o.a,t.l,t.F],{color:[0,"color"],full:[1,"full"]},null),(l()(),t._27(0,["Sign up"])),(l()(),t._27(null,["\n          "])),(l()(),t._27(null,["\n        \n        \n          "])),(l()(),t._6(0,null,null,6,"ion-col",[["center",""],["class","col"],["text-center",""]],null,null,null,null,null)),t._5(16384,null,0,e.a,[],null,null),(l()(),t._27(null,["\n            "])),(l()(),t._6(0,null,null,2,"button",[["color","lightText"],["full",""],["ion-button",""]],null,[[null,"click"]],function(l,n,u){var t=!0;"click"===n&&(t=!1!==l.component.login()&&t);return t},y.b,y.a)),t._5(1097728,null,0,C.a,[[8,""],o.a,t.l,t.F],{color:[0,"color"],full:[1,"full"]},null),(l()(),t._27(0,["Log in"])),(l()(),t._27(null,["\n          "])),(l()(),t._27(null,["\n        \n\t\t \n          "])),(l()(),t._6(0,null,null,6,"ion-col",[["center",""],["class","col"],["text-center",""]],null,null,null,null,null)),t._5(16384,null,0,e.a,[],null,null),(l()(),t._27(null,["\n            "])),(l()(),t._6(0,null,null,2,"button",[["color","lightText"],["full",""],["ion-button",""]],null,[[null,"click"]],function(l,n,u){var t=!0;"click"===n&&(t=!1!==l.component.forgot()&&t);return t},y.b,y.a)),t._5(1097728,null,0,C.a,[[8,""],o.a,t.l,t.F],{color:[0,"color"],full:[1,"full"]},null),(l()(),t._27(0,["Forgot Password"])),(l()(),t._27(null,["\n          "])),(l()(),t._27(null,["\n        "])),(l()(),t._27(null,["\n      "])),(l()(),t._27(1,["\n\t  "])),(l()(),t._6(0,null,1,1,"h1",[],null,null,null,null,null)),(l()(),t._27(null,["Best Batsman "])),(l()(),t._27(1,["\n\t "])),(l()(),t._6(0,null,1,10,"ion-grid",[["class","grid"]],null,null,null,null,null)),t._5(16384,null,0,f.a,[],null,null),(l()(),t._27(null,["\n        "])),(l()(),t._6(0,null,null,6,"ion-row",[["class","row"]],null,null,null,null,null)),t._5(16384,null,0,b.a,[],null,null),(l()(),t._27(null,[" \n\t\t"])),(l()(),t._2(16777216,null,null,2,null,M)),t._5(802816,null,0,P.i,[t.P,t.M,t.t],{ngForOf:[0,"ngForOf"]},null),t._21(0,P.s,[]),(l()(),t._27(null,["\n   "])),(l()(),t._27(null,["\n      "])),(l()(),t._27(1,["\n\t  \n\t  "])),(l()(),t._6(0,null,1,1,"h1",[],null,null,null,null,null)),(l()(),t._27(null,["Best Bowler"])),(l()(),t._27(1,["\n\t   "])),(l()(),t._6(0,null,1,10,"ion-grid",[["class","grid"]],null,null,null,null,null)),t._5(16384,null,0,f.a,[],null,null),(l()(),t._27(null,["\n        "])),(l()(),t._6(0,null,null,6,"ion-row",[["class","row"]],null,null,null,null,null)),t._5(16384,null,0,b.a,[],null,null),(l()(),t._27(null,[" \n\t\t"])),(l()(),t._2(16777216,null,null,2,null,T)),t._5(802816,null,0,P.i,[t.P,t.M,t.t],{ngForOf:[0,"ngForOf"]},null),t._21(0,P.s,[]),(l()(),t._27(null,["\n   "])),(l()(),t._27(null,["\n      "])),(l()(),t._27(1,["\n\n"])),(l()(),t._6(0,null,1,0,"br",[],null,null,null,null,null)),(l()(),t._27(1,["\n"])),(l()(),t._6(0,null,1,0,"br",[],null,null,null,null,null)),(l()(),t._6(0,null,1,0,"br",[],null,null,null,null,null)),(l()(),t._27(1,["\n"])),(l()(),t._6(0,null,1,0,"br",[],null,null,null,null,null)),(l()(),t._27(1,["\n    "])),(l()(),t._6(0,null,1,36,"ion-grid",[["class","grid"]],null,null,null,null,null)),t._5(16384,null,0,f.a,[],null,null),(l()(),t._27(null,["\n        "])),(l()(),t._6(0,null,null,9,"ion-row",[["center",""],["class","row"],["color","primary"],["row-20",""],["text-center",""]],null,null,null,null,null)),t._5(16384,null,0,b.a,[],null,null),(l()(),t._27(null,["\n         "])),(l()(),t._6(0,null,null,5,"ion-col",[["class","col"]],null,null,null,null,null)),t._5(16384,null,0,e.a,[],null,null),(l()(),t._27(null,["\n\t\t\t"])),(l()(),t._6(0,null,null,1,"h2",[],null,null,null,null,null)),(l()(),t._27(null,["About Crickify"])),(l()(),t._27(null,["\n\t\t\t"])),(l()(),t._27(null,["\n          "])),(l()(),t._27(null,["\n\t\t  \n\t\t  "])),(l()(),t._6(0,null,null,10,"ion-row",[["center",""],["class","row"],["row-60",""],["text-center",""]],null,null,null,null,null)),t._5(16384,null,0,b.a,[],null,null),(l()(),t._27(null,["\n\t\t  "])),(l()(),t._6(0,null,null,2,"ion-col",[["class","col"]],null,null,null,null,null)),t._5(16384,null,0,e.a,[],null,null),(l()(),t._27(null,["\n\t\t  Manage your entire cricket landscape. From league schedules to player registrations, Player availability to result management, all available under one convenient account.Finance Mangement for the players.Take the hassle out of your club or league site. \n\t\t  With integrated cricket data it will always be up to date and looking sharp.Announce your team and get your best team through interface.\n\t\t "])),(l()(),t._27(null,["\n"])),(l()(),t._6(0,null,null,0,"br",[],null,null,null,null,null)),(l()(),t._27(null,["\n"])),(l()(),t._6(0,null,null,0,"br",[],null,null,null,null,null)),(l()(),t._27(null,["\t\t "])),(l()(),t._27(null,["\n\t\t  "])),(l()(),t._6(0,null,null,9,"ion-row",[["center",""],["class","row"],["row-20",""],["text-center",""]],null,null,null,null,null)),t._5(16384,null,0,b.a,[],null,null),(l()(),t._27(null,["\n\t\t  "])),(l()(),t._6(0,null,null,5,"ion-col",[["class","col"]],null,null,null,null,null)),t._5(16384,null,0,e.a,[],null,null),(l()(),t._27(null,["\n\t\t  "])),(l()(),t._6(0,null,null,1,"h2",[],null,null,null,null,null)),(l()(),t._27(null,["What are you waiting for?! Join thousands of other clubs, schools and leagues and get started with Crickify today."])),(l()(),t._27(null,["\n\t\t "])),(l()(),t._27(null,["\n\t\t "])),(l()(),t._27(null,["\n\t\t   "])),(l()(),t._27(1,["\n\n"])),(l()(),t._6(0,null,1,0,"br",[],null,null,null,null,null)),(l()(),t._27(1,["\n"])),(l()(),t._6(0,null,1,0,"br",[],null,null,null,null,null)),(l()(),t._6(0,null,1,0,"br",[],null,null,null,null,null)),(l()(),t._27(1,["\n"])),(l()(),t._6(0,null,1,0,"br",[],null,null,null,null,null)),(l()(),t._27(1,["\n"])),(l()(),t._6(0,null,1,52,"ion-card",[["color","primary"]],null,null,null,null,null)),t._5(16384,null,0,a.a,[o.a,t.l,t.F],{color:[0,"color"]},null),(l()(),t._27(null,["\n    "])),(l()(),t._6(0,null,null,2,"ion-card-header",[],null,null,null,null,null)),t._5(16384,null,0,i.a,[o.a,t.l,t.F],null,null),(l()(),t._27(null,["\n\t\n\t "])),(l()(),t._27(null,["\n\t\n    "])),(l()(),t._6(0,null,null,44,"ion-card-content",[],null,null,null,null,null)),t._5(16384,null,0,s.a,[o.a,t.l,t.F],null,null),(l()(),t._27(null,["\n    "])),(l()(),t._6(0,null,null,40,"ion-grid",[["class","grid"],["color","primary"]],null,null,null,null,null)),t._5(16384,null,0,f.a,[],null,null),(l()(),t._27(null,["\n        "])),(l()(),t._6(0,null,null,9,"ion-row",[["center",""],["class","row"],["text-center",""]],null,null,null,null,null)),t._5(16384,null,0,b.a,[],null,null),(l()(),t._27(null,["\n         "])),(l()(),t._6(0,null,null,5,"ion-col",[["class","col"]],null,null,null,null,null)),t._5(16384,null,0,e.a,[],null,null),(l()(),t._27(null,["\n\t\t\t"])),(l()(),t._6(0,null,null,1,"h2",[],null,null,null,null,null)),(l()(),t._27(null,["Contact Us"])),(l()(),t._27(null,["\n\t\t\t"])),(l()(),t._27(null,["\n          "])),(l()(),t._27(null,["\n\t\t  "])),(l()(),t._6(0,null,null,0,"br",[],null,null,null,null,null)),(l()(),t._27(null,["\n"])),(l()(),t._6(0,null,null,0,"br",[],null,null,null,null,null)),(l()(),t._27(null,["\n\t\t  "])),(l()(),t._6(0,null,null,13,"ion-row",[["center",""],["class","row"],["text-center",""]],null,null,null,null,null)),t._5(16384,null,0,b.a,[],null,null),(l()(),t._27(null,["\n\t\t  "])),(l()(),t._6(0,null,null,5,"ion-col",[["class","col"]],null,null,null,null,null)),t._5(16384,null,0,e.a,[],null,null),(l()(),t._27(null,["\n\t\t  "])),(l()(),t._6(0,null,null,1,"b",[],null,null,null,null,null)),(l()(),t._27(null,["Website Issues or Suggestions? Contact US @ crickify@gmail.com"])),(l()(),t._27(null,["\n\t\t  "])),(l()(),t._27(null,["\n\t\t  "])),(l()(),t._6(0,null,null,0,"br",[],null,null,null,null,null)),(l()(),t._27(null,["\n"])),(l()(),t._6(0,null,null,0,"br",[],null,null,null,null,null)),(l()(),t._27(null,["\n\t\t\n\t\t  "])),(l()(),t._27(null,["\n\t\t  "])),(l()(),t._6(0,null,null,6,"ion-row",[["center",""],["class","row"],["text-center",""]],null,null,null,null,null)),t._5(16384,null,0,b.a,[],null,null),(l()(),t._27(null,["\n\t\t  "])),(l()(),t._6(0,null,null,2,"ion-col",[["class","col"]],null,null,null,null,null)),t._5(16384,null,0,e.a,[],null,null),(l()(),t._27(null,["\n\t\t  Copyright © 2018 All rights reserved by Crickify\n\t\t  "])),(l()(),t._27(null,["\n\t\t  "])),(l()(),t._27(null,["\n\t\t   "])),(l()(),t._27(null,["\n\t\t     "])),(l()(),t._27(null,["\n  "])),(l()(),t._27(1,["\n"]))],function(l,n){var u=n.component;l(n,27,0,"success","");l(n,35,0,"lightText","");l(n,43,0,"lightText",""),l(n,59,0,t._28(n,59,0,t._19(n,60).transform(u.battings,0,4))),l(n,74,0,t._28(n,74,0,t._19(n,75).transform(u.bowlings,0,4)));l(n,132,0,"primary")},function(l,n){l(n,1,0,t._19(n,2).statusbarPadding,t._19(n,2)._hasRefresher)})}var O=t._3("page-welcome",v.a,function(l){return t._29(0,[(l()(),t._6(0,null,null,1,"page-welcome",[],null,null,null,x,F)),t._5(49152,null,0,v.a,[m.a,S.a,w.a,k.a,D.a],null,null)],null,null)},{},{},[])},function(l,n,u){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var t,e=u(49),a=u(0),o=(u(7),u(95)),i=u(51),s=u(11),r=u(40),_=(u(62),this&&this.__decorate||function(l,n,u,t){var e,a=arguments.length,o=a<3?n:null===t?t=Object.getOwnPropertyDescriptor(n,u):t;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(l,n,u,t);else for(var i=l.length-1;i>=0;i--)(e=l[i])&&(o=(a<3?e(o):a>3?e(n,u,o):e(n,u))||o);return a>3&&o&&Object.defineProperty(n,u,o),o}),c=this&&this.__metadata||function(l,n){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(l,n)},p=function(){function l(l){this.http=l}return l.prototype.getToken=function(){return JSON.parse(localStorage.getItem("userData")).user.token},l.prototype.getTeamStats=function(l){var n=this;return console.log("passed team id",l),new Promise(function(u,t){var e=new i.d;e.set("Content-Type","application/json"),e.set("token",n.getToken()),n.http.get("https://crickify.herokuapp.com/teamplayer/tournament/stats/"+l,{headers:e}).subscribe(function(l){u(l.json()),console.log("auth response matches",l.json()),"200"==l.json().statusCode&&console.log("matches",l.json())},function(l){t(l),console.log("error",l)})})},l}();p=_([Object(a.q)(),c("design:paramtypes",["function"==typeof(t=void 0!==i.e&&i.e)&&t||Object])],p);var g,d=u(66),h=u(101),m=u(102),f=u(63),b=function(){function l(l,n,u,t,e,a,o){if(this.navCtrl=l,this.navParams=n,this.authService=u,this.teamService=t,this.statsService=e,this.app=a,this.loadingController=o,this.tabsvalues="team",this.userPostData={user_id:"",token:""},this.authService.getAuthenticated()){var i=JSON.parse(localStorage.getItem("userData"));console.log("fetch data",i),this.userDetails=i,this.userPostData.user_id=this.userDetails.id,this.userPostData.token=this.userDetails.token}else{this.app.getRootNav().popToRoot()}}return l.prototype.ionViewDidLoad=function(){var l=this;console.log("ionViewDidLoad home page"),this.authService.getAuthenticated()&&console.log("token",this.authService.getToken());var n=this.loadingController.create({content:"Please wait..."});n.present(),this.teamService.getAllTeams().then(function(u){l.responseData=u,console.log(l.responseData),"200"==l.responseData.statusCode?(n.dismiss(),console.log("test 200"),l.teams=l.responseData.results.teams,l.selectedTeam=l.responseData.results.teams[0],l.teamSelected(l.responseData.results.teams[0]),console.log("result teams",JSON.stringify(l.responseData.results))):"404"==l.responseData.statusCode?(console.log("unauthorrised"),localStorage.clear()):(n.dismiss(),console.log("error",l.responseData))},function(l){})},l.prototype.teamSelected=function(l){console.log("selected team",l),console.log("team id",l.id),this.getStats(l)},l.prototype.changeMenus=function(l){this.selectedTeam=l},l.prototype.getStats=function(l){var n=this,u=this.loadingController.create({content:"Please wait..."});this.statsArray=[],this.statsService.getTeamStats(l.id).then(function(l){n.responseData=l,console.log(n.responseData),"200"==n.responseData.statusCode?(u.dismiss(),console.log("stats test 200"),0==n.responseData.results.stats.length||(n.statsArray=n.responseData.results.stats,console.log("result",n.responseData.results.stats))):"404"==n.responseData.statusCode?(console.log("unauthorrised"),localStorage.clear()):(u.dismiss(),console.log("error",n.responseData))},function(l){})},l}(),v=u(45),y=u(80),C=u(79),P=u(83),S=u(81),w=this&&this.__decorate||function(l,n,u,t){var e,a=arguments.length,o=a<3?n:null===t?t=Object.getOwnPropertyDescriptor(n,u):t;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(l,n,u,t);else for(var i=l.length-1;i>=0;i--)(e=l[i])&&(o=(a<3?e(o):a>3?e(n,u,o):e(n,u))||o);return a>3&&o&&Object.defineProperty(n,u,o),o},k=this&&this.__metadata||function(l,n){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(l,n)},D="https://crickify.herokuapp.com/finance",F=function(){function l(l){this.http=l}return l.prototype.getToken=function(){return JSON.parse(localStorage.getItem("userData")).user.token},l.prototype.getAllExpense=function(){var l=this;return new Promise(function(n,u){var t=new i.d;t.set("Content-Type","application/json"),t.set("token",l.getToken()),l.http.get(D+"/playerExpense",{headers:t}).subscribe(function(l){n(l.json()),console.log("auth response matches",l.json()),"200"==l.json().statusCode&&console.log("expense",l.json())},function(l){u(l),console.log("error",l)})})},l.prototype.postUpdate=function(l){var n=this;return new Promise(function(u,t){var e=new i.d;e.set("Content-Type","application/json"),e.set("token",n.getToken()),n.http.post(D+"/playerExpense/update",JSON.stringify(l),{headers:e}).subscribe(function(l){u(l.json()),console.log("expense update",l.json())},function(l){t(l),console.log("error",l)})})},l}();F=w([Object(a.q)(),k("design:paramtypes",["function"==typeof(g=void 0!==i.e&&i.e)&&g||Object])],F);var M=u(59),T=function(){function l(l,n,u,t,e){if(this.navCtrl=l,this.app=n,this.authService=u,this.financeService=t,this.loadingController=e,this.userPostData={user_id:"",token:""},this.authService.getAuthenticated()){var a=JSON.parse(localStorage.getItem("userData"));console.log("fetch data",a),this.userDetails=a,this.userPostData.user_id=this.userDetails.id,this.userPostData.token=this.userDetails.token}}return l.prototype.ionViewCanEnter=function(){return console.log("view did enter",this.authService.getAuthenticated()),this.authService.getAuthenticated()},l.prototype.ionViewDidLoad=function(){var l=this;console.log("ionViewDidLoad home page"),this.authService.getAuthenticated()&&console.log("token",this.authService.getToken());var n=this.loadingController.create({content:"Please wait..."});n.present(),this.financeService.getAllExpense().then(function(u){l.responseData=u,console.log(l.responseData),"200"==l.responseData.statusCode?(n.dismiss(),console.log("test 200"),console.log("result",l.responseData.results.result),l.expenses=l.responseData.results.result):"404"==l.responseData.statusCode?(console.log("unauthorrised"),localStorage.clear(),l.backToWelcome()):(n.dismiss(),console.log("error",l.responseData))},function(l){})},l.prototype.availabilitySelected=function(l,n){var u=this;console.log("selected",l,n),n.player=this.authService.getUser(),console.log("after change",n);var t=this.loadingController.create({content:"Please wait..."});this.financeService.postUpdate(n).then(function(l){u.responseData=l,console.log(u.responseData),"200"==u.responseData.statusCode?(t.dismiss(),console.log("test 200",u.responseData)):"404"==u.responseData.statusCode?(console.log("unauthorrised"),localStorage.clear(),u.backToWelcome()):(t.dismiss(),console.log("error",u.responseData))},function(l){})},l.prototype.backToWelcome=function(){this.app.getRootNav().popToRoot()},l.prototype.logout=function(){var l=this;localStorage.clear(),setTimeout(function(){return l.backToWelcome()},1e3)},l.prototype.goToMatchTeam=function(l){console.log("clicked match team",l),this.navCtrl.push(M.a,{matchId:l})},l}(),x=u(84),O=u(78),j=u(103),$=u(104),R=function(){function l(l,n,u,t,e,a){this.platform=l,this.statusBar=n,this.splashScreen=u,this.push=e,this.alertCtrl=a,this.rootPage=v.a,l.ready().then(function(){t.requestPermissions([t.PERMISSION.INTERNET,t.PERMISSION.ACCESS_NETWORK_STATE])}),this.initializeApp(),this.initPushNotification(),this.pages=[{title:"Upcoming Matches",component:f.a},{title:"Completed Matches",component:P.a},{title:"Team Stats",component:b},{title:"My Profile",component:y.a},{title:"My Teams",component:S.a},{title:"Account Details",component:C.a},{title:"Finance Details",component:T},{title:"Update Password",component:x.a},{title:"Logout",component:O.a}]}return l.prototype.initPushNotification=function(){var l=this,n=this.push.init({android:{senderID:"402670322623"}});n.on("registration").subscribe(function(n){console.log("device token:",n.registrationId),l.alertCtrl.create({title:"device token",subTitle:n.registrationId,buttons:["OK"]}).present()}),n.on("notification").subscribe(function(n){(console.log("message",n.message),n.additionalData.foreground)?l.alertCtrl.create({title:"New Notification",message:n.message,buttons:[{text:"Ignore",role:"cancel"},{text:"View",handler:function(){}}]}).present():(l.alertCtrl.create({title:"clicked on",subTitle:"you clicked on the notification!",buttons:["OK"]}).present(),console.log("Push notification clicked"))}),n.on("error").subscribe(function(l){return console.error("Error with Push plugin",l)})},l.prototype.initializeApp=function(){var l=this;this.platform.ready().then(function(){l.statusBar.styleDefault(),l.splashScreen.hide()})},l.prototype.openPage=function(l){this.nav.setRoot(l.component)},l}(),A=u(138),L=(u(67),u(137)),I=(u(53),u(128)),N=u(132),E=u(131),H=u(135),B=u(133),V=u(99),U=(u(82),u(134)),z=u(130),W=(u(77),u(127)),J=function(){return function(){}}(),G=u(136),K=u(129),q=u(13),X=function(){return function(){}}(),Z=u(12),Y=u(161),Q=u(6),ll=u(24),nl=u(5),ul=u(8),tl=u(120),el=u(126),al=u(122),ol=u(46),il=u(121),sl=u(15),rl=u(93),_l=u(17),cl=u(25),pl=u(124),gl=u(55),dl=u(162),hl=u(163),ml=u(164),fl=u(165),bl=u(166),vl=u(167),yl=u(34),Cl=u(1),Pl=u(38),Sl=u(35),wl=u(36),kl=u(44),Dl=u(19),Fl=u(31),Ml=u(39),Tl=u(207),xl=u(89),Ol=u(100),jl=u(58),$l=u(29),Rl=u(57),Al=u(65),Ll=u(47),Il=u(3),Nl=u(16),El=u(27),Hl=u(4),Bl=u(37),Vl=u(20),Ul=u(14),zl=u(23),Wl=u(10),Jl=u(42),Gl=u(43),Kl=u(22),ql=u(30),Xl=u(32),Zl=u(26),Yl=u(28),Ql=a._4({encapsulation:2,styles:[],data:{}});function ln(l){return a._29(0,[(l()(),a._6(0,null,null,93,"ion-card",[],null,null,null,null,null)),a._5(16384,null,0,yl.a,[Cl.a,a.l,a.F],null,null),(l()(),a._27(null,["\n    "])),(l()(),a._6(0,null,null,5,"ion-card-header",[],null,null,null,null,null)),a._5(16384,null,0,Pl.a,[Cl.a,a.l,a.F],null,null),(l()(),a._27(null,["\n      ","\n      "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n    "])),(l()(),a._27(null,["\n    "])),(l()(),a._6(0,null,null,82,"ion-card-content",[],null,null,null,null,null)),a._5(16384,null,0,Sl.a,[Cl.a,a.l,a.F],null,null),(l()(),a._27(null,["\n      "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n      "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["$",""])),(l()(),a._27(null,["\n\t   "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["$",""])),(l()(),a._27(null,["\n         "])),(l()(),a._6(0,null,null,2,"ion-label",[],null,null,null,null,null)),a._5(16384,null,0,wl.a,[Cl.a,a.l,a.F,[8,null],[8,null],[8,null],[8,null]],null,null),(l()(),a._27(null,["\n          Select Payment Status\n        "])),(l()(),a._27(null,["\n\t\t\n\t\t   "])),(l()(),a._6(0,null,null,13,"ion-item",[["class","item item-block"]],null,null,null,kl.b,kl.a)),a._5(1097728,null,3,Dl.a,[sl.a,Cl.a,a.l,a.F,[2,Fl.a]],null,null),a._25(335544320,2,{contentLabel:0}),a._25(603979776,3,{_buttons:1}),a._25(603979776,4,{_icons:1}),a._5(16384,null,0,Ml.a,[],null,null),(l()(),a._27(2,["\n\t\t   "])),(l()(),a._6(0,null,0,5,"ion-checkbox",[],[[2,"checkbox-disabled",null],[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],[[null,"ngModelChange"],[null,"ionChange"],[null,"click"]],function(l,n,u){var t=!0,e=l.component;"click"===n&&(t=!1!==a._19(l,34)._click(u)&&t);"ngModelChange"===n&&(t=!1!==(l.context.$implicit.paid=u)&&t);"ionChange"===n&&(t=!1!==e.availabilitySelected(u,l.context.$implicit)&&t);return t},Tl.b,Tl.a)),a._5(1228800,null,0,xl.a,[Cl.a,sl.a,[2,Dl.a],a.l,a.F],null,{ionChange:"ionChange"}),a._24(1024,null,q.h,function(l){return[l]},[xl.a]),a._5(671744,null,0,q.l,[[8,null],[8,null],[8,null],[2,q.h]],{model:[0,"model"]},{update:"ngModelChange"}),a._24(2048,null,q.i,null,[q.l]),a._5(16384,null,0,q.j,[q.i],null,null),(l()(),a._27(2,["\n     \n\t \n    "])),(l()(),a._27(null,["\n\t\n\t"])),(l()(),a._6(0,null,null,31,"ion-item",[["class","item item-block"]],null,null,null,kl.b,kl.a)),a._5(1097728,null,3,Dl.a,[sl.a,Cl.a,a.l,a.F,[2,Fl.a]],null,null),a._25(335544320,5,{contentLabel:0}),a._25(603979776,6,{_buttons:1}),a._25(603979776,7,{_icons:1}),a._5(16384,null,0,Ml.a,[],null,null),(l()(),a._27(2,["\n      "])),(l()(),a._6(0,null,3,23,"ion-select",[],[[2,"select-disabled",null],[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],[[null,"ngModelChange"],[null,"ionChange"],[null,"click"],[null,"keyup.space"]],function(l,n,u){var t=!0,e=l.component;"click"===n&&(t=!1!==a._19(l,49)._click(u)&&t);"keyup.space"===n&&(t=!1!==a._19(l,49)._keyup()&&t);"ngModelChange"===n&&(t=!1!==(l.context.$implicit.paymentType=u)&&t);"ionChange"===n&&(t=!1!==e.availabilitySelected(u,l.context.$implicit)&&t);return t},Ol.b,Ol.a)),a._5(1228800,null,1,jl.a,[nl.a,sl.a,Cl.a,a.l,a.F,[2,Dl.a],$l.a],null,{ionChange:"ionChange"}),a._25(603979776,8,{options:1}),a._24(1024,null,q.h,function(l){return[l]},[jl.a]),a._5(671744,null,0,q.l,[[8,null],[8,null],[8,null],[2,q.h]],{model:[0,"model"]},{update:"ngModelChange"}),a._24(2048,null,q.i,null,[q.l]),a._5(16384,null,0,q.j,[q.i],null,null),(l()(),a._27(null,["\n          "])),(l()(),a._6(0,null,null,2,"ion-option",[["value","CASH"]],null,null,null,null,null)),a._5(16384,[[8,4]],0,Rl.a,[a.l],{value:[0,"value"]},null),(l()(),a._27(null,["CASH"])),(l()(),a._27(null,["\n        "])),(l()(),a._6(0,null,null,2,"ion-option",[["value","FREE"]],null,null,null,null,null)),a._5(16384,[[8,4]],0,Rl.a,[a.l],{value:[0,"value"]},null),(l()(),a._27(null,["FREE"])),(l()(),a._27(null,["\n      "])),(l()(),a._6(0,null,null,2,"ion-option",[["value","PREPAID"]],null,null,null,null,null)),a._5(16384,[[8,4]],0,Rl.a,[a.l],{value:[0,"value"]},null),(l()(),a._27(null,["PREPAID"])),(l()(),a._27(null,["\n        "])),(l()(),a._6(0,null,null,2,"ion-option",[["value","TRANSFER"]],null,null,null,null,null)),a._5(16384,[[8,4]],0,Rl.a,[a.l],{value:[0,"value"]},null),(l()(),a._27(null,["TRANSFER"])),(l()(),a._27(null,["\n      "])),(l()(),a._27(2,["\n\t \n    "])),(l()(),a._27(null,["\n\t"])),(l()(),a._6(0,null,null,3,"p",[],null,null,null,null,null)),(l()(),a._6(0,null,null,2,"ion-label",[],null,null,null,null,null)),a._5(16384,null,0,wl.a,[Cl.a,a.l,a.F,[8,null],[8,null],[8,null],[8,null]],null,null),(l()(),a._27(null,["Remarks"])),(l()(),a._27(null,["\n      "])),(l()(),a._6(0,null,null,12,"ion-item",[["class","item item-block"]],null,null,null,kl.b,kl.a)),a._5(1097728,null,3,Dl.a,[sl.a,Cl.a,a.l,a.F,[2,Fl.a]],null,null),a._25(335544320,9,{contentLabel:0}),a._25(603979776,10,{_buttons:1}),a._25(603979776,11,{_icons:1}),a._5(16384,null,0,Ml.a,[],null,null),(l()(),a._27(2,["\n\t  \n\t       \n    "])),(l()(),a._6(0,null,3,4,"ion-input",[],[[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],[[null,"ngModelChange"],[null,"ionChange"]],function(l,n,u){var t=!0,e=l.component;"ngModelChange"===n&&(t=!1!==(l.context.$implicit.remark=u)&&t);"ionChange"===n&&(t=!1!==e.availabilitySelected(u,l.context.$implicit)&&t);return t},Al.b,Al.a)),a._5(671744,null,0,q.l,[[8,null],[8,null],[8,null],[8,null]],{model:[0,"model"]},{update:"ngModelChange"}),a._24(2048,null,q.i,null,[q.l]),a._5(16384,null,0,q.j,[q.i],null,null),a._5(5423104,null,0,Ll.a,[Cl.a,Il.a,sl.a,nl.a,a.l,a.F,[2,Nl.a],[2,Dl.a],[2,q.i],Q.a],null,{ionChange:"ionChange"}),(l()(),a._27(2,["\n\t "])),(l()(),a._27(null,["\n\t\n    "])),(l()(),a._27(null,["\n  "]))],function(l,n){l(n,36,0,n.context.$implicit.paid),l(n,52,0,n.context.$implicit.paymentType);l(n,57,0,"CASH");l(n,61,0,"FREE");l(n,65,0,"PREPAID");l(n,69,0,"TRANSFER"),l(n,87,0,n.context.$implicit.remark)},function(l,n){l(n,5,0,n.context.$implicit.expense.description),l(n,7,0,n.context.$implicit.expense.team.name),l(n,14,0,n.context.$implicit.expenseDate),l(n,17,0,n.context.$implicit.amount),l(n,20,0,n.context.$implicit.cmnt),l(n,33,0,a._19(n,34)._disabled,a._19(n,38).ngClassUntouched,a._19(n,38).ngClassTouched,a._19(n,38).ngClassPristine,a._19(n,38).ngClassDirty,a._19(n,38).ngClassValid,a._19(n,38).ngClassInvalid,a._19(n,38).ngClassPending),l(n,48,0,a._19(n,49)._disabled,a._19(n,54).ngClassUntouched,a._19(n,54).ngClassTouched,a._19(n,54).ngClassPristine,a._19(n,54).ngClassDirty,a._19(n,54).ngClassValid,a._19(n,54).ngClassInvalid,a._19(n,54).ngClassPending),l(n,86,0,a._19(n,89).ngClassUntouched,a._19(n,89).ngClassTouched,a._19(n,89).ngClassPristine,a._19(n,89).ngClassDirty,a._19(n,89).ngClassValid,a._19(n,89).ngClassInvalid,a._19(n,89).ngClassPending)})}function nn(l){return a._29(0,[(l()(),a._6(0,null,null,20,"ion-header",[],null,null,null,null,null)),a._5(16384,null,0,El.a,[Cl.a,a.l,a.F,[2,Hl.a]],null,null),(l()(),a._27(null,["\n  "])),(l()(),a._6(0,null,null,16,"ion-navbar",[["class","toolbar"]],[[8,"hidden",0],[2,"statusbar-padding",null]],null,null,Bl.b,Bl.a)),a._5(49152,null,0,Vl.a,[nl.a,[2,Hl.a],[2,Ul.a],Cl.a,a.l,a.F],null,null),(l()(),a._27(3,["\n    "])),(l()(),a._6(0,null,0,8,"button",[["ion-button",""],["menuToggle",""]],[[8,"hidden",0]],[[null,"click"]],function(l,n,u){var t=!0;"click"===n&&(t=!1!==a._19(l,8).toggle()&&t);return t},zl.b,zl.a)),a._5(1097728,[[1,4]],0,Wl.a,[[8,""],Cl.a,a.l,a.F],null,null),a._5(1064960,null,0,Jl.a,[ll.a,[2,Hl.a],[2,Wl.a],[2,Vl.a]],{menuToggle:[0,"menuToggle"]},null),a._5(16384,null,1,Gl.a,[Cl.a,a.l,a.F,[2,Kl.a],[2,Vl.a]],null,null),a._25(603979776,1,{_buttons:1}),(l()(),a._27(0,["\n      "])),(l()(),a._6(0,null,0,1,"ion-icon",[["name","menu"],["role","img"]],[[2,"hide",null]],null,null,null,null)),a._5(147456,null,0,ql.a,[Cl.a,a.l,a.F],{name:[0,"name"]},null),(l()(),a._27(0,["\n    "])),(l()(),a._27(3,["\n    "])),(l()(),a._6(0,null,3,2,"ion-title",[],null,null,null,Xl.b,Xl.a)),a._5(49152,null,0,Zl.a,[Cl.a,a.l,a.F,[2,Kl.a],[2,Vl.a]],null,null),(l()(),a._27(0,["Payments"])),(l()(),a._27(3,["\n  "])),(l()(),a._27(null,["\n"])),(l()(),a._27(null,["\n\n"])),(l()(),a._6(0,null,null,5,"ion-content",[["class","appBackground"],["padding",""]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,Yl.b,Yl.a)),a._5(4374528,null,0,Nl.a,[Cl.a,Il.a,Q.a,a.l,a.F,nl.a,_l.a,a.z,[2,Hl.a],[2,Ul.a]],null,null),(l()(),a._27(1,["\n  "])),(l()(),a._2(16777216,null,1,1,null,ln)),a._5(802816,null,0,Z.i,[a.P,a.M,a.t],{ngForOf:[0,"ngForOf"]},null),(l()(),a._27(1,["\n"])),(l()(),a._27(null,["\n"]))],function(l,n){var u=n.component;l(n,8,0,"");l(n,13,0,"menu"),l(n,26,0,u.expenses)},function(l,n){l(n,3,0,a._19(n,4)._hidden,a._19(n,4)._sbPadding),l(n,6,0,a._19(n,8).isHidden),l(n,12,0,a._19(n,13)._hidden),l(n,22,0,a._19(n,23).statusbarPadding,a._19(n,23)._hasRefresher)})}var un=a._3("page-finance",T,function(l){return a._29(0,[(l()(),a._6(0,null,null,1,"page-finance",[],null,null,null,nn,Ql)),a._5(49152,null,0,T,[Ul.a,nl.a,s.a,F,cl.a],null,null)],null,null)},{},{},[]),tn=u(168),en=u(169),an=u(178),on=u(173),sn=u(172),rn=u(176),_n=u(174),cn=u(175),pn=u(171),gn=u(177),dn=u(170),hn=u(179),mn=u(119),fn=u(208),bn=u(92),vn=u(56),yn=u(209),Cn=u(48),Pn=u(210),Sn=u(74),wn=a._4({encapsulation:2,styles:[],data:{}});function kn(l){return a._29(0,[(l()(),a._6(0,null,null,7,"button",[["class","item item-block"],["ion-item",""],["menuClose",""]],null,[[null,"click"]],function(l,n,u){var t=!0,e=l.component;"click"===n&&(t=!1!==a._19(l,6).close()&&t);"click"===n&&(t=!1!==e.openPage(l.context.$implicit)&&t);return t},kl.b,kl.a)),a._5(1097728,null,3,Dl.a,[sl.a,Cl.a,a.l,a.F,[2,Fl.a]],null,null),a._25(335544320,4,{contentLabel:0}),a._25(603979776,5,{_buttons:1}),a._25(603979776,6,{_icons:1}),a._5(16384,null,0,Ml.a,[],null,null),a._5(16384,null,0,mn.a,[ll.a],{menuClose:[0,"menuClose"]},null),(l()(),a._27(2,["\n        ","\n      "]))],function(l,n){l(n,6,0,"")},function(l,n){l(n,7,0,n.context.$implicit.title)})}function Dn(l){return a._29(0,[a._25(402653184,1,{nav:0}),(l()(),a._6(0,null,null,28,"ion-menu",[["role","navigation"]],null,null,null,fn.b,fn.a)),a._5(245760,null,2,bn.a,[ll.a,a.l,Cl.a,Il.a,a.F,_l.a,ul.h,Q.a,nl.a],{content:[0,"content"]},null),a._25(335544320,2,{menuContent:0}),a._25(335544320,3,{menuNav:0}),a._24(6144,null,vn.a,null,[bn.a]),(l()(),a._27(0,["\n  "])),(l()(),a._6(0,null,0,10,"ion-header",[],null,null,null,null,null)),a._5(16384,null,0,El.a,[Cl.a,a.l,a.F,[2,Hl.a]],null,null),(l()(),a._27(null,["\n    "])),(l()(),a._6(0,null,null,6,"ion-toolbar",[["class","toolbar"]],[[2,"statusbar-padding",null]],null,null,yn.b,yn.a)),a._5(49152,null,0,Kl.a,[Cl.a,a.l,a.F],null,null),(l()(),a._27(3,["\n      "])),(l()(),a._6(0,null,3,2,"ion-title",[],null,null,null,Xl.b,Xl.a)),a._5(49152,null,0,Zl.a,[Cl.a,a.l,a.F,[2,Kl.a],[2,Vl.a]],null,null),(l()(),a._27(0,["Menu"])),(l()(),a._27(3,["\n    "])),(l()(),a._27(null,["\n  "])),(l()(),a._27(0,["\n\n  "])),(l()(),a._6(0,null,0,9,"ion-content",[],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,Yl.b,Yl.a)),a._5(4374528,[[2,4]],0,Nl.a,[Cl.a,Il.a,Q.a,a.l,a.F,nl.a,_l.a,a.z,[2,Hl.a],[2,Ul.a]],null,null),(l()(),a._27(1,["\n    "])),(l()(),a._6(0,null,1,5,"ion-list",[],null,null,null,null,null)),a._5(16384,null,0,Cn.a,[Cl.a,a.l,a.F,Il.a,ul.h,Q.a],null,null),(l()(),a._27(null,["\n      "])),(l()(),a._2(16777216,null,null,1,null,kn)),a._5(802816,null,0,Z.i,[a.P,a.M,a.t],{ngForOf:[0,"ngForOf"]},null),(l()(),a._27(null,["\n    "])),(l()(),a._27(1,["\n  "])),(l()(),a._27(0,["\n\n"])),(l()(),a._27(null,["\n\n"])),(l()(),a._27(null,["\n"])),(l()(),a._6(0,null,null,2,"ion-nav",[["swipeBackEnabled","false"]],null,null,null,Pn.b,Pn.a)),a._5(4374528,[[1,4],["content",4]],0,Sn.a,[[2,Hl.a],[2,Ul.a],nl.a,Cl.a,Il.a,a.l,a.z,a.F,a.k,ul.h,gl.a,[2,$l.a],Q.a,a.m],{swipeBackEnabled:[0,"swipeBackEnabled"],root:[1,"root"]},null),a._24(6144,null,vn.a,null,[Sn.a])],function(l,n){var u=n.component;l(n,2,0,a._19(n,33)),l(n,26,0,u.pages);l(n,33,0,"false",u.rootPage)},function(l,n){l(n,10,0,a._19(n,11)._sbPadding),l(n,19,0,a._19(n,20).statusbarPadding,a._19(n,20)._hasRefresher)})}var Fn=a._3("ng-component",R,function(l){return a._29(0,[(l()(),a._6(0,null,null,1,"ng-component",[],null,null,null,Dn,wn)),a._5(49152,null,0,R,[Il.a,h.a,m.a,j.a,$.a,ol.a],null,null)],null,null)},{},{},[]),Mn=a._4({encapsulation:2,styles:[],data:{}});function Tn(l){return a._29(0,[(l()(),a._6(0,null,null,87,"ion-card",[["color","primary"]],null,null,null,null,null)),a._5(16384,null,0,yl.a,[Cl.a,a.l,a.F],{color:[0,"color"]},null),(l()(),a._27(null,["\n    "])),(l()(),a._6(0,null,null,5,"ion-card-header",[],null,null,null,null,null)),a._5(16384,null,0,Pl.a,[Cl.a,a.l,a.F],null,null),(l()(),a._27(null,["\n      "," versus\n      ","\n      "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n    "])),(l()(),a._27(null,["\n    "])),(l()(),a._6(0,null,null,76,"ion-card-content",[],null,null,null,null,null)),a._5(16384,null,0,Sl.a,[Cl.a,a.l,a.F],null,null),(l()(),a._27(null,["\n      "])),(l()(),a._6(0,null,null,3,"p",[],null,null,null,null,null)),(l()(),a._27(null,["",", ",""])),a._23(2),a._23(2),(l()(),a._27(null,["\n      "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["",", ",""])),(l()(),a._27(null,["\n\t  \n         "])),(l()(),a._6(0,null,null,2,"ion-label",[],null,null,null,null,null)),a._5(16384,null,0,wl.a,[Cl.a,a.l,a.F,[8,null],[8,null],[8,null],[8,null]],null,null),(l()(),a._27(null,["\n          Select Attendance\n        "])),(l()(),a._27(null,["\n\t\t\n\t\t   "])),(l()(),a._6(0,null,null,31,"ion-item",[["class","item item-block"]],null,null,null,kl.b,kl.a)),a._5(1097728,null,3,Dl.a,[sl.a,Cl.a,a.l,a.F,[2,Fl.a]],null,null),a._25(335544320,2,{contentLabel:0}),a._25(603979776,3,{_buttons:1}),a._25(603979776,4,{_icons:1}),a._5(16384,null,0,Ml.a,[],null,null),(l()(),a._27(2,["\n      "])),(l()(),a._6(0,null,3,23,"ion-select",[],[[2,"select-disabled",null],[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],[[null,"ngModelChange"],[null,"ionChange"],[null,"click"],[null,"keyup.space"]],function(l,n,u){var t=!0,e=l.component;"click"===n&&(t=!1!==a._19(l,33)._click(u)&&t);"keyup.space"===n&&(t=!1!==a._19(l,33)._keyup()&&t);"ngModelChange"===n&&(t=!1!==(l.context.$implicit.status=u)&&t);"ionChange"===n&&(t=!1!==e.availabilitySelected(u,l.context.$implicit)&&t);return t},Ol.b,Ol.a)),a._5(1228800,null,1,jl.a,[nl.a,sl.a,Cl.a,a.l,a.F,[2,Dl.a],$l.a],null,{ionChange:"ionChange"}),a._25(603979776,5,{options:1}),a._24(1024,null,q.h,function(l){return[l]},[jl.a]),a._5(671744,null,0,q.l,[[8,null],[8,null],[8,null],[2,q.h]],{model:[0,"model"]},{update:"ngModelChange"}),a._24(2048,null,q.i,null,[q.l]),a._5(16384,null,0,q.j,[q.i],null,null),(l()(),a._27(null,["\n          "])),(l()(),a._6(0,null,null,2,"ion-option",[["value","0"]],null,null,null,null,null)),a._5(16384,[[5,4]],0,Rl.a,[a.l],{value:[0,"value"]},null),(l()(),a._27(null,["Not Provided"])),(l()(),a._27(null,["\n        "])),(l()(),a._6(0,null,null,2,"ion-option",[["value","1"]],null,null,null,null,null)),a._5(16384,[[5,4]],0,Rl.a,[a.l],{value:[0,"value"]},null),(l()(),a._27(null,["IN"])),(l()(),a._27(null,["\n        "])),(l()(),a._6(0,null,null,2,"ion-option",[["value","2"]],null,null,null,null,null)),a._5(16384,[[5,4]],0,Rl.a,[a.l],{value:[0,"value"]},null),(l()(),a._27(null,["OUT"])),(l()(),a._27(null,["\n        "])),(l()(),a._6(0,null,null,2,"ion-option",[["value","3"]],null,null,null,null,null)),a._5(16384,[[5,4]],0,Rl.a,[a.l],{value:[0,"value"]},null),(l()(),a._27(null,["Waitlist"])),(l()(),a._27(null,["\n      "])),(l()(),a._27(2,["\n\t \n    "])),(l()(),a._27(null,["\n\t"])),(l()(),a._6(0,null,null,3,"p",[],null,null,null,null,null)),(l()(),a._6(0,null,null,2,"ion-label",[],null,null,null,null,null)),a._5(16384,null,0,wl.a,[Cl.a,a.l,a.F,[8,null],[8,null],[8,null],[8,null]],null,null),(l()(),a._27(null,["Comments"])),(l()(),a._27(null,["\n      "])),(l()(),a._6(0,null,null,12,"ion-item",[["class","item item-block"]],null,null,null,kl.b,kl.a)),a._5(1097728,null,3,Dl.a,[sl.a,Cl.a,a.l,a.F,[2,Fl.a]],null,null),a._25(335544320,6,{contentLabel:0}),a._25(603979776,7,{_buttons:1}),a._25(603979776,8,{_icons:1}),a._5(16384,null,0,Ml.a,[],null,null),(l()(),a._27(2,["\n\t  \n\t       \n    "])),(l()(),a._6(0,null,3,4,"ion-input",[],[[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],[[null,"ngModelChange"],[null,"ionChange"]],function(l,n,u){var t=!0,e=l.component;"ngModelChange"===n&&(t=!1!==(l.context.$implicit.comments=u)&&t);"ionChange"===n&&(t=!1!==e.availabilitySelected(u,l.context.$implicit)&&t);return t},Al.b,Al.a)),a._5(671744,null,0,q.l,[[8,null],[8,null],[8,null],[8,null]],{model:[0,"model"]},{update:"ngModelChange"}),a._24(2048,null,q.i,null,[q.l]),a._5(16384,null,0,q.j,[q.i],null,null),a._5(5423104,null,0,Ll.a,[Cl.a,Il.a,sl.a,nl.a,a.l,a.F,[2,Nl.a],[2,Dl.a],[2,q.i],Q.a],null,{ionChange:"ionChange"}),(l()(),a._27(2,["\n\t "])),(l()(),a._27(null,["\n\t "])),(l()(),a._6(0,null,null,8,"button",[["clear",""],["icon-left",""],["ion-button",""],["small",""]],null,[[null,"click"]],function(l,n,u){var t=!0;"click"===n&&(t=!1!==l.component.goToMatchTeam(l.context.$implicit.id)&&t);return t},zl.b,zl.a)),a._5(1097728,null,0,Wl.a,[[8,""],Cl.a,a.l,a.F],{small:[0,"small"],clear:[1,"clear"]},null),(l()(),a._27(0,["\n            "])),(l()(),a._6(0,null,0,1,"ion-icon",[["name","text"],["role","img"]],[[2,"hide",null]],null,null,null,null)),a._5(147456,null,0,ql.a,[Cl.a,a.l,a.F],{name:[0,"name"]},null),(l()(),a._27(0,["\n            "])),(l()(),a._6(0,null,0,1,"div",[],null,null,null,null,null)),(l()(),a._27(null,["Match Team"])),(l()(),a._27(0,["\n          "])),(l()(),a._27(null,["\n    "])),(l()(),a._27(null,["\n  "]))],function(l,n){l(n,1,0,"primary"),l(n,36,0,n.context.$implicit.status);l(n,41,0,"0");l(n,45,0,"1");l(n,49,0,"2");l(n,53,0,"3"),l(n,71,0,n.context.$implicit.comments);l(n,78,0,"","");l(n,81,0,"text")},function(l,n){l(n,5,0,n.context.$implicit.match.team.teamname,n.context.$implicit.match.opponent),l(n,7,0,n.context.$implicit.match.tournament.name),l(n,14,0,a._28(n,14,0,l(n,15,0,a._19(n.parent,0),n.context.$implicit.match.matchTime,"fullDate")),a._28(n,14,1,l(n,16,0,a._19(n.parent,0),n.context.$implicit.matchTime,"shortTime"))),l(n,19,0,n.context.$implicit.match.location.name,n.context.$implicit.match.location.address),l(n,32,0,a._19(n,33)._disabled,a._19(n,38).ngClassUntouched,a._19(n,38).ngClassTouched,a._19(n,38).ngClassPristine,a._19(n,38).ngClassDirty,a._19(n,38).ngClassValid,a._19(n,38).ngClassInvalid,a._19(n,38).ngClassPending),l(n,70,0,a._19(n,73).ngClassUntouched,a._19(n,73).ngClassTouched,a._19(n,73).ngClassPristine,a._19(n,73).ngClassDirty,a._19(n,73).ngClassValid,a._19(n,73).ngClassInvalid,a._19(n,73).ngClassPending),l(n,80,0,a._19(n,81)._hidden)})}function xn(l){return a._29(0,[a._21(0,Z.c,[a.v]),(l()(),a._6(0,null,null,20,"ion-header",[],null,null,null,null,null)),a._5(16384,null,0,El.a,[Cl.a,a.l,a.F,[2,Hl.a]],null,null),(l()(),a._27(null,["\n  "])),(l()(),a._6(0,null,null,16,"ion-navbar",[["class","toolbar"]],[[8,"hidden",0],[2,"statusbar-padding",null]],null,null,Bl.b,Bl.a)),a._5(49152,null,0,Vl.a,[nl.a,[2,Hl.a],[2,Ul.a],Cl.a,a.l,a.F],null,null),(l()(),a._27(3,["\n    "])),(l()(),a._6(0,null,0,8,"button",[["ion-button",""],["menuToggle",""]],[[8,"hidden",0]],[[null,"click"]],function(l,n,u){var t=!0;"click"===n&&(t=!1!==a._19(l,9).toggle()&&t);return t},zl.b,zl.a)),a._5(1097728,[[1,4]],0,Wl.a,[[8,""],Cl.a,a.l,a.F],null,null),a._5(1064960,null,0,Jl.a,[ll.a,[2,Hl.a],[2,Wl.a],[2,Vl.a]],{menuToggle:[0,"menuToggle"]},null),a._5(16384,null,1,Gl.a,[Cl.a,a.l,a.F,[2,Kl.a],[2,Vl.a]],null,null),a._25(603979776,1,{_buttons:1}),(l()(),a._27(0,["\n      "])),(l()(),a._6(0,null,0,1,"ion-icon",[["name","menu"],["role","img"]],[[2,"hide",null]],null,null,null,null)),a._5(147456,null,0,ql.a,[Cl.a,a.l,a.F],{name:[0,"name"]},null),(l()(),a._27(0,["\n    "])),(l()(),a._27(3,["\n    "])),(l()(),a._6(0,null,3,2,"ion-title",[],null,null,null,Xl.b,Xl.a)),a._5(49152,null,0,Zl.a,[Cl.a,a.l,a.F,[2,Kl.a],[2,Vl.a]],null,null),(l()(),a._27(0,["Upcoming Matches "])),(l()(),a._27(3,["\n  "])),(l()(),a._27(null,["\n"])),(l()(),a._27(null,["\n\n"])),(l()(),a._6(0,null,null,5,"ion-content",[["class","appBackground"],["padding",""]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,Yl.b,Yl.a)),a._5(4374528,null,0,Nl.a,[Cl.a,Il.a,Q.a,a.l,a.F,nl.a,_l.a,a.z,[2,Hl.a],[2,Ul.a]],null,null),(l()(),a._27(1,["\n  "])),(l()(),a._2(16777216,null,1,1,null,Tn)),a._5(802816,null,0,Z.i,[a.P,a.M,a.t],{ngForOf:[0,"ngForOf"]},null),(l()(),a._27(1,["\n"])),(l()(),a._27(null,["\n"]))],function(l,n){var u=n.component;l(n,9,0,"");l(n,14,0,"menu"),l(n,27,0,u.matches)},function(l,n){l(n,4,0,a._19(n,5)._hidden,a._19(n,5)._sbPadding),l(n,7,0,a._19(n,9).isHidden),l(n,13,0,a._19(n,14)._hidden),l(n,23,0,a._19(n,24).statusbarPadding,a._19(n,24)._hasRefresher)})}var On=a._3("page-home",f.a,function(l){return a._29(0,[(l()(),a._6(0,null,null,1,"page-home",[],null,null,null,xn,Mn)),a._5(49152,null,0,f.a,[Ul.a,nl.a,s.a,r.a,cl.a,o.a],null,null)],null,null)},{},{},[]),jn=u(64),$n=u(98),Rn=u(52),An=u(9),Ln=a._4({encapsulation:2,styles:[],data:{}});function In(l){return a._29(0,[(l()(),a._6(0,null,null,2,"ion-option",[],null,null,null,null,null)),a._5(16384,[[6,4]],0,Rl.a,[a.l],{value:[0,"value"]},null),(l()(),a._27(null,["",""]))],function(l,n){l(n,1,0,n.context.$implicit)},function(l,n){l(n,2,0,n.context.$implicit.teamname)})}function Nn(l){return a._29(0,[(l()(),a._6(0,null,null,63,"ion-card",[],null,null,null,null,null)),a._5(16384,null,0,yl.a,[Cl.a,a.l,a.F],null,null),(l()(),a._27(null,["  \n                "])),(l()(),a._6(0,null,null,59,"ion-card-content",[],null,null,null,null,null)),a._5(16384,null,0,Sl.a,[Cl.a,a.l,a.F],null,null),(l()(),a._27(null,["\n                    "])),(l()(),a._6(0,null,null,1,"h4",[],null,null,null,null,null)),(l()(),a._27(null,["\n                        ","\n                    "])),(l()(),a._27(null,["\n                  "])),(l()(),a._6(0,null,null,7,"div",[["class","cric-cards"]],null,null,null,null,null)),(l()(),a._27(null,["\n                      "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["Played"])),(l()(),a._27(null,["\n                      "])),(l()(),a._6(0,null,null,1,"h4",[],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n                  "])),(l()(),a._27(null,["\n                  "])),(l()(),a._6(0,null,null,7,"div",[["class","cric-cards"]],null,null,null,null,null)),(l()(),a._27(null,["\n                    "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["Won"])),(l()(),a._27(null,["\n                    "])),(l()(),a._6(0,null,null,1,"h4",[],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n                  "])),(l()(),a._27(null,["\n                  "])),(l()(),a._6(0,null,null,7,"div",[["class","cric-cards"]],null,null,null,null,null)),(l()(),a._27(null,["\n                      "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["Lost"])),(l()(),a._27(null,["\n                      "])),(l()(),a._6(0,null,null,1,"h4",[],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n                  "])),(l()(),a._27(null,["\n                  "])),(l()(),a._6(0,null,null,7,"div",[["class","cric-cards"]],null,null,null,null,null)),(l()(),a._27(null,["\n                    "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["No Result"])),(l()(),a._27(null,["\n                    "])),(l()(),a._6(0,null,null,1,"h4",[],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n                  "])),(l()(),a._27(null,["\n                  "])),(l()(),a._6(0,null,null,7,"div",[["class","cric-cards"]],null,null,null,null,null)),(l()(),a._27(null,["\n                      "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["High Total"])),(l()(),a._27(null,["\n                      "])),(l()(),a._6(0,null,null,1,"h4",[],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n                  "])),(l()(),a._27(null,["\n                  "])),(l()(),a._6(0,null,null,7,"div",[["class","cric-cards"]],null,null,null,null,null)),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["Low Total"])),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"h4",[],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n                  "])),(l()(),a._27(null,["\n                "])),(l()(),a._27(null,["\n              \n              "]))],null,function(l,n){l(n,7,0,n.context.$implicit.name),l(n,15,0,n.context.$implicit.statistics.played),l(n,24,0,n.context.$implicit.statistics.won),l(n,33,0,n.context.$implicit.statistics.lost),l(n,42,0,n.context.$implicit.statistics.abandoned),l(n,51,0,n.context.$implicit.statistics.highestTotal),l(n,60,0,n.context.$implicit.statistics.lowestTotal)})}function En(l){return a._29(0,[(l()(),a._6(0,null,null,28,"div",[],null,null,null,null,null)),(l()(),a._27(null,["\n          "])),(l()(),a._6(0,null,null,22,"ion-item",[["class","item item-block"]],null,null,null,kl.b,kl.a)),a._5(1097728,null,3,Dl.a,[sl.a,Cl.a,a.l,a.F,[2,Fl.a]],null,null),a._25(335544320,3,{contentLabel:0}),a._25(603979776,4,{_buttons:1}),a._25(603979776,5,{_icons:1}),a._5(16384,null,0,Ml.a,[],null,null),(l()(),a._27(2,["\n              "])),(l()(),a._6(0,null,1,2,"ion-label",[],null,null,null,null,null)),a._5(16384,[[3,4]],0,wl.a,[Cl.a,a.l,a.F,[8,null],[8,null],[8,null],[8,null]],null,null),(l()(),a._27(null,["Pick a Team"])),(l()(),a._27(2,["\n              "])),(l()(),a._6(0,null,3,10,"ion-select",[],[[2,"select-disabled",null],[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],[[null,"ngModelChange"],[null,"ionChange"],[null,"click"],[null,"keyup.space"]],function(l,n,u){var t=!0,e=l.component;"click"===n&&(t=!1!==a._19(l,14)._click(u)&&t);"keyup.space"===n&&(t=!1!==a._19(l,14)._keyup()&&t);"ngModelChange"===n&&(t=!1!==(e.selectedTeam=u)&&t);"ionChange"===n&&(t=!1!==e.teamSelected(u)&&t);return t},Ol.b,Ol.a)),a._5(1228800,null,1,jl.a,[nl.a,sl.a,Cl.a,a.l,a.F,[2,Dl.a],$l.a],null,{ionChange:"ionChange"}),a._25(603979776,6,{options:1}),a._24(1024,null,q.h,function(l){return[l]},[jl.a]),a._5(671744,null,0,q.l,[[8,null],[8,null],[8,null],[2,q.h]],{model:[0,"model"]},{update:"ngModelChange"}),a._24(2048,null,q.i,null,[q.l]),a._5(16384,null,0,q.j,[q.i],null,null),(l()(),a._27(null,["\n                "])),(l()(),a._2(16777216,null,null,1,null,In)),a._5(802816,null,0,Z.i,[a.P,a.M,a.t],{ngForOf:[0,"ngForOf"]},null),(l()(),a._27(null,["\n              "])),(l()(),a._27(2,["\n          "])),(l()(),a._27(null,["\n          \n          "])),(l()(),a._2(16777216,null,null,1,null,Nn)),a._5(802816,null,0,Z.i,[a.P,a.M,a.t],{ngForOf:[0,"ngForOf"]},null),(l()(),a._27(null,["\n      "]))],function(l,n){var u=n.component;l(n,17,0,u.selectedTeam),l(n,22,0,u.teams),l(n,27,0,u.statsArray)},function(l,n){l(n,13,0,a._19(n,14)._disabled,a._19(n,19).ngClassUntouched,a._19(n,19).ngClassTouched,a._19(n,19).ngClassPristine,a._19(n,19).ngClassDirty,a._19(n,19).ngClassValid,a._19(n,19).ngClassInvalid,a._19(n,19).ngClassPending)})}function Hn(l){return a._29(0,[(l()(),a._6(0,null,null,2,"ion-option",[],null,null,null,null,null)),a._5(16384,[[10,4]],0,Rl.a,[a.l],{value:[0,"value"]},null),(l()(),a._27(null,["",""]))],function(l,n){l(n,1,0,n.context.$implicit)},function(l,n){l(n,2,0,n.context.$implicit.teamname)})}function Bn(l){return a._29(0,[(l()(),a._6(0,null,null,24,"li",[],null,null,null,null,null)),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[["class","cric-player-name"]],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,2,"p",[["class","cric-values-decimals"]],null,null,null,null,null)),(l()(),a._27(null,["",""])),a._23(2),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,2,"p",[["class","cric-values-decimals"]],null,null,null,null,null)),(l()(),a._27(null,["",""])),a._23(2),(l()(),a._27(null,["\n                    "]))],null,function(l,n){l(n,3,0,n.context.$implicit.player.name),l(n,6,0,n.context.$implicit.matches),l(n,9,0,n.context.$implicit.innings),l(n,12,0,n.context.$implicit.run),l(n,15,0,n.context.$implicit.ball),l(n,18,0,a._28(n,18,0,l(n,19,0,a._19(n.parent.parent.parent,0),n.context.$implicit.average,"1.2-2"))),l(n,22,0,a._28(n,22,0,l(n,23,0,a._19(n.parent.parent.parent,0),n.context.$implicit.sr,"1.2-2")))})}function Vn(l){return a._29(0,[(l()(),a._6(0,null,null,37,"div",[],null,null,null,null,null)),(l()(),a._27(null,["\n              "])),(l()(),a._6(0,null,null,34,"div",[["class","cric-stat-batting-table"]],null,null,null,null,null)),(l()(),a._27(null,["\n                  "])),(l()(),a._6(0,null,null,1,"h4",[],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n                  "])),(l()(),a._6(0,null,null,28,"ul",[],null,null,null,null,null)),(l()(),a._27(null,["\n                    "])),(l()(),a._6(0,null,null,22,"li",[["class","header"]],null,null,null,null,null)),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[["class","cric-player-name"]],null,null,null,null,null)),(l()(),a._27(null,["Name"])),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["M"])),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["I"])),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["R"])),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["B"])),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[["class","cric-values-decimals"]],null,null,null,null,null)),(l()(),a._27(null,["Av"])),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[["class","cric-values-decimals"]],null,null,null,null,null)),(l()(),a._27(null,["SR"])),(l()(),a._27(null,["\n                    "])),(l()(),a._27(null,["\n                    "])),(l()(),a._2(16777216,null,null,1,null,Bn)),a._5(802816,null,0,Z.i,[a.P,a.M,a.t],{ngForOf:[0,"ngForOf"]},null),(l()(),a._27(null,["\n                  "])),(l()(),a._27(null,["\n                "])),(l()(),a._27(null,["\n              "]))],function(l,n){l(n,34,0,n.context.$implicit.battingStatistics)},function(l,n){l(n,5,0,n.context.$implicit.name)})}function Un(l){return a._29(0,[(l()(),a._6(0,null,null,28,"div",[],null,null,null,null,null)),(l()(),a._27(null,["\n          "])),(l()(),a._6(0,null,null,22,"ion-item",[["class","item item-block"]],null,null,null,kl.b,kl.a)),a._5(1097728,null,3,Dl.a,[sl.a,Cl.a,a.l,a.F,[2,Fl.a]],null,null),a._25(335544320,7,{contentLabel:0}),a._25(603979776,8,{_buttons:1}),a._25(603979776,9,{_icons:1}),a._5(16384,null,0,Ml.a,[],null,null),(l()(),a._27(2,["\n              "])),(l()(),a._6(0,null,1,2,"ion-label",[],null,null,null,null,null)),a._5(16384,[[7,4]],0,wl.a,[Cl.a,a.l,a.F,[8,null],[8,null],[8,null],[8,null]],null,null),(l()(),a._27(null,["Pick a Team"])),(l()(),a._27(2,["\n              "])),(l()(),a._6(0,null,3,10,"ion-select",[],[[2,"select-disabled",null],[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],[[null,"ngModelChange"],[null,"ionChange"],[null,"click"],[null,"keyup.space"]],function(l,n,u){var t=!0,e=l.component;"click"===n&&(t=!1!==a._19(l,14)._click(u)&&t);"keyup.space"===n&&(t=!1!==a._19(l,14)._keyup()&&t);"ngModelChange"===n&&(t=!1!==(e.selectedTeam=u)&&t);"ionChange"===n&&(t=!1!==e.teamSelected(u)&&t);return t},Ol.b,Ol.a)),a._5(1228800,null,1,jl.a,[nl.a,sl.a,Cl.a,a.l,a.F,[2,Dl.a],$l.a],null,{ionChange:"ionChange"}),a._25(603979776,10,{options:1}),a._24(1024,null,q.h,function(l){return[l]},[jl.a]),a._5(671744,null,0,q.l,[[8,null],[8,null],[8,null],[2,q.h]],{model:[0,"model"]},{update:"ngModelChange"}),a._24(2048,null,q.i,null,[q.l]),a._5(16384,null,0,q.j,[q.i],null,null),(l()(),a._27(null,["\n                "])),(l()(),a._2(16777216,null,null,1,null,Hn)),a._5(802816,null,0,Z.i,[a.P,a.M,a.t],{ngForOf:[0,"ngForOf"]},null),(l()(),a._27(null,["\n              "])),(l()(),a._27(2,["\n          "])),(l()(),a._27(null,["\n          \n          "])),(l()(),a._2(16777216,null,null,1,null,Vn)),a._5(802816,null,0,Z.i,[a.P,a.M,a.t],{ngForOf:[0,"ngForOf"]},null),(l()(),a._27(null,["\n      "]))],function(l,n){var u=n.component;l(n,17,0,u.selectedTeam),l(n,22,0,u.teams),l(n,27,0,u.statsArray)},function(l,n){l(n,13,0,a._19(n,14)._disabled,a._19(n,19).ngClassUntouched,a._19(n,19).ngClassTouched,a._19(n,19).ngClassPristine,a._19(n,19).ngClassDirty,a._19(n,19).ngClassValid,a._19(n,19).ngClassInvalid,a._19(n,19).ngClassPending)})}function zn(l){return a._29(0,[(l()(),a._6(0,null,null,2,"ion-option",[],null,null,null,null,null)),a._5(16384,[[14,4]],0,Rl.a,[a.l],{value:[0,"value"]},null),(l()(),a._27(null,["",""]))],function(l,n){l(n,1,0,n.context.$implicit)},function(l,n){l(n,2,0,n.context.$implicit.teamname)})}function Wn(l){return a._29(0,[(l()(),a._6(0,null,null,22,"li",[],null,null,null,null,null)),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[["class","cric-player-name"]],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n                    "]))],null,function(l,n){l(n,3,0,n.context.$implicit.player.name),l(n,6,0,n.context.$implicit.matches),l(n,9,0,n.context.$implicit.overs),l(n,12,0,n.context.$implicit.run),l(n,15,0,n.context.$implicit.wickets),l(n,18,0,n.context.$implicit.wide),l(n,21,0,n.context.$implicit.economy)})}function Jn(l){return a._29(0,[(l()(),a._6(0,null,null,37,"div",[],null,null,null,null,null)),(l()(),a._27(null,["\n              \n              "])),(l()(),a._6(0,null,null,34,"div",[["class","cric-stat-bowling-table"]],null,null,null,null,null)),(l()(),a._27(null,["\n                  "])),(l()(),a._6(0,null,null,1,"h4",[],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n                  "])),(l()(),a._6(0,null,null,28,"ul",[],null,null,null,null,null)),(l()(),a._27(null,["\n                    "])),(l()(),a._6(0,null,null,22,"li",[["class","header"]],null,null,null,null,null)),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[["class","cric-player-name"]],null,null,null,null,null)),(l()(),a._27(null,["Name"])),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["M"])),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["O"])),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["R"])),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["W"])),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["Wd"])),(l()(),a._27(null,["\n                        "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["EC"])),(l()(),a._27(null,["\n                    "])),(l()(),a._27(null,["\n                    "])),(l()(),a._2(16777216,null,null,1,null,Wn)),a._5(802816,null,0,Z.i,[a.P,a.M,a.t],{ngForOf:[0,"ngForOf"]},null),(l()(),a._27(null,["\n                  "])),(l()(),a._27(null,["\n                "])),(l()(),a._27(null,["\n              "]))],function(l,n){l(n,34,0,n.context.$implicit.bowlingStatistics)},function(l,n){l(n,5,0,n.context.$implicit.name)})}function Gn(l){return a._29(0,[(l()(),a._6(0,null,null,28,"div",[],null,null,null,null,null)),(l()(),a._27(null,["\n          "])),(l()(),a._6(0,null,null,22,"ion-item",[["class","item item-block"]],null,null,null,kl.b,kl.a)),a._5(1097728,null,3,Dl.a,[sl.a,Cl.a,a.l,a.F,[2,Fl.a]],null,null),a._25(335544320,11,{contentLabel:0}),a._25(603979776,12,{_buttons:1}),a._25(603979776,13,{_icons:1}),a._5(16384,null,0,Ml.a,[],null,null),(l()(),a._27(2,["\n              "])),(l()(),a._6(0,null,1,2,"ion-label",[],null,null,null,null,null)),a._5(16384,[[11,4]],0,wl.a,[Cl.a,a.l,a.F,[8,null],[8,null],[8,null],[8,null]],null,null),(l()(),a._27(null,["Pick a Team"])),(l()(),a._27(2,["\n              "])),(l()(),a._6(0,null,3,10,"ion-select",[],[[2,"select-disabled",null],[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],[[null,"ngModelChange"],[null,"ionChange"],[null,"click"],[null,"keyup.space"]],function(l,n,u){var t=!0,e=l.component;"click"===n&&(t=!1!==a._19(l,14)._click(u)&&t);"keyup.space"===n&&(t=!1!==a._19(l,14)._keyup()&&t);"ngModelChange"===n&&(t=!1!==(e.selectedTeam=u)&&t);"ionChange"===n&&(t=!1!==e.teamSelected(u)&&t);return t},Ol.b,Ol.a)),a._5(1228800,null,1,jl.a,[nl.a,sl.a,Cl.a,a.l,a.F,[2,Dl.a],$l.a],null,{ionChange:"ionChange"}),a._25(603979776,14,{options:1}),a._24(1024,null,q.h,function(l){return[l]},[jl.a]),a._5(671744,null,0,q.l,[[8,null],[8,null],[8,null],[2,q.h]],{model:[0,"model"]},{update:"ngModelChange"}),a._24(2048,null,q.i,null,[q.l]),a._5(16384,null,0,q.j,[q.i],null,null),(l()(),a._27(null,["\n                "])),(l()(),a._2(16777216,null,null,1,null,zn)),a._5(802816,null,0,Z.i,[a.P,a.M,a.t],{ngForOf:[0,"ngForOf"]},null),(l()(),a._27(null,["\n              "])),(l()(),a._27(2,["\n          "])),(l()(),a._27(null,["\n          \n          "])),(l()(),a._2(16777216,null,null,1,null,Jn)),a._5(802816,null,0,Z.i,[a.P,a.M,a.t],{ngForOf:[0,"ngForOf"]},null),(l()(),a._27(null,["\n      "]))],function(l,n){var u=n.component;l(n,17,0,u.selectedTeam),l(n,22,0,u.teams),l(n,27,0,u.statsArray)},function(l,n){l(n,13,0,a._19(n,14)._disabled,a._19(n,19).ngClassUntouched,a._19(n,19).ngClassTouched,a._19(n,19).ngClassPristine,a._19(n,19).ngClassDirty,a._19(n,19).ngClassValid,a._19(n,19).ngClassInvalid,a._19(n,19).ngClassPending)})}function Kn(l){return a._29(0,[(l()(),a._6(0,null,null,2,"ion-option",[],null,null,null,null,null)),a._5(16384,[[18,4]],0,Rl.a,[a.l],{value:[0,"value"]},null),(l()(),a._27(null,["",""]))],function(l,n){l(n,1,0,n.context.$implicit)},function(l,n){l(n,2,0,n.context.$implicit.teamname)})}function qn(l){return a._29(0,[(l()(),a._6(0,null,null,16,"li",[],null,null,null,null,null)),(l()(),a._27(null,["\n                          "])),(l()(),a._6(0,null,null,1,"p",[["class","cric-player-name"]],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n                          "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n                          "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n                          "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n                          "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n                      "]))],null,function(l,n){l(n,3,0,n.context.$implicit.player.name),l(n,6,0,n.context.$implicit.matches),l(n,9,0,n.context.$implicit.catches),l(n,12,0,n.context.$implicit.runOuts),l(n,15,0,n.context.$implicit.stumpings)})}function Xn(l){return a._29(0,[(l()(),a._6(0,null,null,31,"div",[],null,null,null,null,null)),(l()(),a._27(null,["\n                "])),(l()(),a._6(0,null,null,28,"div",[["class","cric-stat-bowling-table"]],null,null,null,null,null)),(l()(),a._27(null,["\n                    "])),(l()(),a._6(0,null,null,1,"h4",[],null,null,null,null,null)),(l()(),a._27(null,["",""])),(l()(),a._27(null,["\n                    "])),(l()(),a._6(0,null,null,22,"ul",[],null,null,null,null,null)),(l()(),a._27(null,["\n                      "])),(l()(),a._6(0,null,null,16,"li",[["class","header"]],null,null,null,null,null)),(l()(),a._27(null,["\n                          "])),(l()(),a._6(0,null,null,1,"p",[["class","cric-player-name"]],null,null,null,null,null)),(l()(),a._27(null,["Name"])),(l()(),a._27(null,["\n                          "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["M"])),(l()(),a._27(null,["\n                          "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["Ct"])),(l()(),a._27(null,["\n                          "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["R/O"])),(l()(),a._27(null,["\n                          "])),(l()(),a._6(0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._27(null,["St"])),(l()(),a._27(null,["\n                      "])),(l()(),a._27(null,["\n                      "])),(l()(),a._2(16777216,null,null,1,null,qn)),a._5(802816,null,0,Z.i,[a.P,a.M,a.t],{ngForOf:[0,"ngForOf"]},null),(l()(),a._27(null,["\n                    "])),(l()(),a._27(null,["\n                  "])),(l()(),a._27(null,["\n                "]))],function(l,n){l(n,28,0,n.context.$implicit.bowlingStatistics)},function(l,n){l(n,5,0,n.context.$implicit.name)})}function Zn(l){return a._29(0,[(l()(),a._6(0,null,null,28,"div",[],null,null,null,null,null)),(l()(),a._27(null,["\n            "])),(l()(),a._6(0,null,null,22,"ion-item",[["class","item item-block"]],null,null,null,kl.b,kl.a)),a._5(1097728,null,3,Dl.a,[sl.a,Cl.a,a.l,a.F,[2,Fl.a]],null,null),a._25(335544320,15,{contentLabel:0}),a._25(603979776,16,{_buttons:1}),a._25(603979776,17,{_icons:1}),a._5(16384,null,0,Ml.a,[],null,null),(l()(),a._27(2,["\n                "])),(l()(),a._6(0,null,1,2,"ion-label",[],null,null,null,null,null)),a._5(16384,[[15,4]],0,wl.a,[Cl.a,a.l,a.F,[8,null],[8,null],[8,null],[8,null]],null,null),(l()(),a._27(null,["Pick a Team"])),(l()(),a._27(2,["\n                "])),(l()(),a._6(0,null,3,10,"ion-select",[],[[2,"select-disabled",null],[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],[[null,"ngModelChange"],[null,"ionChange"],[null,"click"],[null,"keyup.space"]],function(l,n,u){var t=!0,e=l.component;"click"===n&&(t=!1!==a._19(l,14)._click(u)&&t);"keyup.space"===n&&(t=!1!==a._19(l,14)._keyup()&&t);"ngModelChange"===n&&(t=!1!==(e.selectedTeam=u)&&t);"ionChange"===n&&(t=!1!==e.teamSelected(u)&&t);return t},Ol.b,Ol.a)),a._5(1228800,null,1,jl.a,[nl.a,sl.a,Cl.a,a.l,a.F,[2,Dl.a],$l.a],null,{ionChange:"ionChange"}),a._25(603979776,18,{options:1}),a._24(1024,null,q.h,function(l){return[l]},[jl.a]),a._5(671744,null,0,q.l,[[8,null],[8,null],[8,null],[2,q.h]],{model:[0,"model"]},{update:"ngModelChange"}),a._24(2048,null,q.i,null,[q.l]),a._5(16384,null,0,q.j,[q.i],null,null),(l()(),a._27(null,["\n                  "])),(l()(),a._2(16777216,null,null,1,null,Kn)),a._5(802816,null,0,Z.i,[a.P,a.M,a.t],{ngForOf:[0,"ngForOf"]},null),(l()(),a._27(null,["\n                "])),(l()(),a._27(2,["\n            "])),(l()(),a._27(null,["\n            \n            "])),(l()(),a._2(16777216,null,null,1,null,Xn)),a._5(802816,null,0,Z.i,[a.P,a.M,a.t],{ngForOf:[0,"ngForOf"]},null),(l()(),a._27(null,["\n        "]))],function(l,n){var u=n.component;l(n,17,0,u.selectedTeam),l(n,22,0,u.teams),l(n,27,0,u.statsArray)},function(l,n){l(n,13,0,a._19(n,14)._disabled,a._19(n,19).ngClassUntouched,a._19(n,19).ngClassTouched,a._19(n,19).ngClassPristine,a._19(n,19).ngClassDirty,a._19(n,19).ngClassValid,a._19(n,19).ngClassInvalid,a._19(n,19).ngClassPending)})}function Yn(l){return a._29(0,[a._21(0,Z.d,[a.v]),(l()(),a._6(0,null,null,20,"ion-header",[],null,null,null,null,null)),a._5(16384,null,0,El.a,[Cl.a,a.l,a.F,[2,Hl.a]],null,null),(l()(),a._27(null,["\n  "])),(l()(),a._6(0,null,null,16,"ion-navbar",[["class","toolbar"]],[[8,"hidden",0],[2,"statusbar-padding",null]],null,null,Bl.b,Bl.a)),a._5(49152,null,0,Vl.a,[nl.a,[2,Hl.a],[2,Ul.a],Cl.a,a.l,a.F],null,null),(l()(),a._27(3,["\n    "])),(l()(),a._6(0,null,0,8,"button",[["ion-button",""],["menuToggle",""]],[[8,"hidden",0]],[[null,"click"]],function(l,n,u){var t=!0;"click"===n&&(t=!1!==a._19(l,9).toggle()&&t);return t},zl.b,zl.a)),a._5(1097728,[[1,4]],0,Wl.a,[[8,""],Cl.a,a.l,a.F],null,null),a._5(1064960,null,0,Jl.a,[ll.a,[2,Hl.a],[2,Wl.a],[2,Vl.a]],{menuToggle:[0,"menuToggle"]},null),a._5(16384,null,1,Gl.a,[Cl.a,a.l,a.F,[2,Kl.a],[2,Vl.a]],null,null),a._25(603979776,1,{_buttons:1}),(l()(),a._27(0,["\n      "])),(l()(),a._6(0,null,0,1,"ion-icon",[["name","menu"],["role","img"]],[[2,"hide",null]],null,null,null,null)),a._5(147456,null,0,ql.a,[Cl.a,a.l,a.F],{name:[0,"name"]},null),(l()(),a._27(0,["\n    "])),(l()(),a._27(3,["\n    "])),(l()(),a._6(0,null,3,2,"ion-title",[],null,null,null,Xl.b,Xl.a)),a._5(49152,null,0,Zl.a,[Cl.a,a.l,a.F,[2,Kl.a],[2,Vl.a]],null,null),(l()(),a._27(0,["Team Stats"])),(l()(),a._27(3,["\n  "])),(l()(),a._27(null,["\n"])),(l()(),a._27(null,["\n\n"])),(l()(),a._6(0,null,null,42,"ion-content",[["class","appBackground"],["padding",""]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,Yl.b,Yl.a)),a._5(4374528,null,0,Nl.a,[Cl.a,Il.a,Q.a,a.l,a.F,nl.a,_l.a,a.z,[2,Hl.a],[2,Ul.a]],null,null),(l()(),a._27(1,["\n    "])),(l()(),a._6(0,null,1,22,"ion-segment",[],[[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null],[2,"segment-disabled",null]],[[null,"ngModelChange"]],function(l,n,u){var t=!0;"ngModelChange"===n&&(t=!1!==(l.component.tabsvalues=u)&&t);return t},null,null)),a._5(671744,null,0,q.l,[[8,null],[8,null],[8,null],[8,null]],{model:[0,"model"]},{update:"ngModelChange"}),a._24(2048,null,q.i,null,[q.l]),a._5(16384,null,0,q.j,[q.i],null,null),a._5(1196032,null,1,jn.a,[Cl.a,a.l,a.F,[2,q.i]],null,null),a._25(603979776,2,{_buttons:1}),(l()(),a._27(null,["\n        "])),(l()(),a._6(0,null,null,2,"ion-segment-button",[["class","segment-button"],["role","button"],["tappable",""],["value","team"]],[[2,"segment-button-disabled",null],[2,"segment-activated",null],[1,"aria-pressed",0]],[[null,"click"]],function(l,n,u){var t=!0;"click"===n&&(t=!1!==a._19(l,34).onClick()&&t);return t},$n.b,$n.a)),a._5(114688,[[2,4]],0,Rn.a,[],{value:[0,"value"]},null),(l()(),a._27(0,["\n          Team Stats\n        "])),(l()(),a._27(null,["\n        "])),(l()(),a._6(0,null,null,2,"ion-segment-button",[["class","segment-button"],["role","button"],["tappable",""],["value","batting"]],[[2,"segment-button-disabled",null],[2,"segment-activated",null],[1,"aria-pressed",0]],[[null,"click"]],function(l,n,u){var t=!0;"click"===n&&(t=!1!==a._19(l,38).onClick()&&t);return t},$n.b,$n.a)),a._5(114688,[[2,4]],0,Rn.a,[],{value:[0,"value"]},null),(l()(),a._27(0,["\n          Batting Stats\n        "])),(l()(),a._27(null,["\n        "])),(l()(),a._6(0,null,null,2,"ion-segment-button",[["class","segment-button"],["role","button"],["tappable",""],["value","bowling"]],[[2,"segment-button-disabled",null],[2,"segment-activated",null],[1,"aria-pressed",0]],[[null,"click"]],function(l,n,u){var t=!0;"click"===n&&(t=!1!==a._19(l,42).onClick()&&t);return t},$n.b,$n.a)),a._5(114688,[[2,4]],0,Rn.a,[],{value:[0,"value"]},null),(l()(),a._27(0,["\n            Bowling Stats\n        "])),(l()(),a._27(null,["\n        "])),(l()(),a._6(0,null,null,2,"ion-segment-button",[["class","segment-button"],["role","button"],["tappable",""],["value","fielding"]],[[2,"segment-button-disabled",null],[2,"segment-activated",null],[1,"aria-pressed",0]],[[null,"click"]],function(l,n,u){var t=!0;"click"===n&&(t=!1!==a._19(l,46).onClick()&&t);return t},$n.b,$n.a)),a._5(114688,[[2,4]],0,Rn.a,[],{value:[0,"value"]},null),(l()(),a._27(0,["\n              Fielding Stats\n        "])),(l()(),a._27(null,["\n      "])),(l()(),a._27(1,["\n    \n    "])),(l()(),a._6(0,null,1,14,"div",[],null,null,null,null,null)),a._5(16384,null,0,Z.n,[],{ngSwitch:[0,"ngSwitch"]},null),(l()(),a._27(null,["\n      "])),(l()(),a._2(16777216,null,null,1,null,En)),a._5(278528,null,0,Z.o,[a.P,a.M,Z.n],{ngSwitchCase:[0,"ngSwitchCase"]},null),(l()(),a._27(null,["\n    \n      "])),(l()(),a._2(16777216,null,null,1,null,Un)),a._5(278528,null,0,Z.o,[a.P,a.M,Z.n],{ngSwitchCase:[0,"ngSwitchCase"]},null),(l()(),a._27(null,["\n\n      "])),(l()(),a._2(16777216,null,null,1,null,Gn)),a._5(278528,null,0,Z.o,[a.P,a.M,Z.n],{ngSwitchCase:[0,"ngSwitchCase"]},null),(l()(),a._27(null,["\n\n        "])),(l()(),a._2(16777216,null,null,1,null,Zn)),a._5(278528,null,0,Z.o,[a.P,a.M,Z.n],{ngSwitchCase:[0,"ngSwitchCase"]},null),(l()(),a._27(null,["\n\n      "])),(l()(),a._27(1,[" \n\n"])),(l()(),a._27(null,["\n"]))],function(l,n){var u=n.component;l(n,9,0,"");l(n,14,0,"menu"),l(n,27,0,u.tabsvalues);l(n,34,0,"team");l(n,38,0,"batting");l(n,42,0,"bowling");l(n,46,0,"fielding"),l(n,51,0,u.tabsvalues);l(n,54,0,"team");l(n,57,0,"batting");l(n,60,0,"bowling");l(n,63,0,"fielding")},function(l,n){l(n,4,0,a._19(n,5)._hidden,a._19(n,5)._sbPadding),l(n,7,0,a._19(n,9).isHidden),l(n,13,0,a._19(n,14)._hidden),l(n,23,0,a._19(n,24).statusbarPadding,a._19(n,24)._hasRefresher),l(n,26,0,a._19(n,29).ngClassUntouched,a._19(n,29).ngClassTouched,a._19(n,29).ngClassPristine,a._19(n,29).ngClassDirty,a._19(n,29).ngClassValid,a._19(n,29).ngClassInvalid,a._19(n,29).ngClassPending,a._19(n,30)._disabled),l(n,33,0,a._19(n,34)._disabled,a._19(n,34).isActive,a._19(n,34).isActive),l(n,37,0,a._19(n,38)._disabled,a._19(n,38).isActive,a._19(n,38).isActive),l(n,41,0,a._19(n,42)._disabled,a._19(n,42).isActive,a._19(n,42).isActive),l(n,45,0,a._19(n,46)._disabled,a._19(n,46).isActive,a._19(n,46).isActive)})}var Qn,lu=a._3("page-list",b,function(l){return a._29(0,[(l()(),a._6(0,null,null,1,"page-list",[],null,null,null,Yn,Ln)),a._5(49152,null,0,b,[Ul.a,An.a,s.a,d.a,p,nl.a,cl.a],null,null)],null,null)},{},{},[]),nu=u(86),uu=u(123),tu=u(76),eu=u(125),au=u(69),ou=this&&this.__extends||(Qn=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(l,n){l.__proto__=n}||function(l,n){for(var u in n)n.hasOwnProperty(u)&&(l[u]=n[u])},function(l,n){function u(){this.constructor=l}Qn(l,n),l.prototype=null===n?Object.create(n):(u.prototype=n.prototype,new u)}),iu=new a.w(function(l){function n(n){return l.call(this,n,[dl.a,hl.a,ml.a,fl.a,bl.a,vl.a,un,tn.a,en.a,an.a,on.a,sn.a,rn.a,_n.a,cn.a,pn.a,gn.a,dn.a,hn.a,Fn,On,lu],[ml.a])||this}return ou(n,l),Object.defineProperty(n.prototype,"_LOCALE_ID_40",{get:function(){return null==this.__LOCALE_ID_40&&(this.__LOCALE_ID_40=a._17(this.parent.get(a.v,null))),this.__LOCALE_ID_40},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_NgLocalization_41",{get:function(){return null==this.__NgLocalization_41&&(this.__NgLocalization_41=new Z.k(this._LOCALE_ID_40)),this.__NgLocalization_41},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_APP_ID_42",{get:function(){return null==this.__APP_ID_42&&(this.__APP_ID_42=a._8()),this.__APP_ID_42},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_IterableDiffers_43",{get:function(){return null==this.__IterableDiffers_43&&(this.__IterableDiffers_43=a._14()),this.__IterableDiffers_43},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_KeyValueDiffers_44",{get:function(){return null==this.__KeyValueDiffers_44&&(this.__KeyValueDiffers_44=a._16()),this.__KeyValueDiffers_44},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_DomSanitizer_45",{get:function(){return null==this.__DomSanitizer_45&&(this.__DomSanitizer_45=new e.s(this.parent.get(e.b))),this.__DomSanitizer_45},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_Sanitizer_46",{get:function(){return null==this.__Sanitizer_46&&(this.__Sanitizer_46=this._DomSanitizer_45),this.__Sanitizer_46},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_HAMMER_GESTURE_CONFIG_47",{get:function(){return null==this.__HAMMER_GESTURE_CONFIG_47&&(this.__HAMMER_GESTURE_CONFIG_47=new al.a),this.__HAMMER_GESTURE_CONFIG_47},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_EVENT_MANAGER_PLUGINS_48",{get:function(){return null==this.__EVENT_MANAGER_PLUGINS_48&&(this.__EVENT_MANAGER_PLUGINS_48=[new e.l(this.parent.get(e.b)),new e.p(this.parent.get(e.b)),new e.o(this.parent.get(e.b),this._HAMMER_GESTURE_CONFIG_47)]),this.__EVENT_MANAGER_PLUGINS_48},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_EventManager_49",{get:function(){return null==this.__EventManager_49&&(this.__EventManager_49=new e.e(this._EVENT_MANAGER_PLUGINS_48,this.parent.get(a.z))),this.__EventManager_49},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_ɵDomSharedStylesHost_50",{get:function(){return null==this.__ɵDomSharedStylesHost_50&&(this.__ɵDomSharedStylesHost_50=new e.n(this.parent.get(e.b))),this.__ɵDomSharedStylesHost_50},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_ɵDomRendererFactory2_51",{get:function(){return null==this.__ɵDomRendererFactory2_51&&(this.__ɵDomRendererFactory2_51=new e.m(this._EventManager_49,this._ɵDomSharedStylesHost_50)),this.__ɵDomRendererFactory2_51},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_RendererFactory2_52",{get:function(){return null==this.__RendererFactory2_52&&(this.__RendererFactory2_52=this._ɵDomRendererFactory2_51),this.__RendererFactory2_52},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_ɵSharedStylesHost_53",{get:function(){return null==this.__ɵSharedStylesHost_53&&(this.__ɵSharedStylesHost_53=this._ɵDomSharedStylesHost_50),this.__ɵSharedStylesHost_53},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_Testability_54",{get:function(){return null==this.__Testability_54&&(this.__Testability_54=new a.N(this.parent.get(a.z))),this.__Testability_54},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_Meta_55",{get:function(){return null==this.__Meta_55&&(this.__Meta_55=new e.h(this.parent.get(e.b))),this.__Meta_55},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_Title_56",{get:function(){return null==this.__Title_56&&(this.__Title_56=new e.j(this.parent.get(e.b))),this.__Title_56},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_ɵi_57",{get:function(){return null==this.__ɵi_57&&(this.__ɵi_57=new q.q),this.__ɵi_57},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_BrowserXhr_58",{get:function(){return null==this.__BrowserXhr_58&&(this.__BrowserXhr_58=new i.c),this.__BrowserXhr_58},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_ResponseOptions_59",{get:function(){return null==this.__ResponseOptions_59&&(this.__ResponseOptions_59=new i.b),this.__ResponseOptions_59},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_XSRFStrategy_60",{get:function(){return null==this.__XSRFStrategy_60&&(this.__XSRFStrategy_60=i.k()),this.__XSRFStrategy_60},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_XHRBackend_61",{get:function(){return null==this.__XHRBackend_61&&(this.__XHRBackend_61=new i.i(this._BrowserXhr_58,this._ResponseOptions_59,this._XSRFStrategy_60)),this.__XHRBackend_61},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_RequestOptions_62",{get:function(){return null==this.__RequestOptions_62&&(this.__RequestOptions_62=new i.a),this.__RequestOptions_62},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_Http_63",{get:function(){return null==this.__Http_63&&(this.__Http_63=i.l(this._XHRBackend_61,this._RequestOptions_62)),this.__Http_63},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_FormBuilder_64",{get:function(){return null==this.__FormBuilder_64&&(this.__FormBuilder_64=new q.d),this.__FormBuilder_64},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_AlertController_69",{get:function(){return null==this.__AlertController_69&&(this.__AlertController_69=new ol.a(this._App_8,this._Config_5)),this.__AlertController_69},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_Events_70",{get:function(){return null==this.__Events_70&&(this.__Events_70=new il.a),this.__Events_70},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_Form_71",{get:function(){return null==this.__Form_71&&(this.__Form_71=new sl.a),this.__Form_71},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_Haptic_72",{get:function(){return null==this.__Haptic_72&&(this.__Haptic_72=new rl.a(this._Platform_4)),this.__Haptic_72},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_Keyboard_73",{get:function(){return null==this.__Keyboard_73&&(this.__Keyboard_73=new _l.a(this._Config_5,this._Platform_4,this.parent.get(a.z),this._DomController_6)),this.__Keyboard_73},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_LoadingController_74",{get:function(){return null==this.__LoadingController_74&&(this.__LoadingController_74=new cl.a(this._App_8,this._Config_5)),this.__LoadingController_74},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_LocationStrategy_75",{get:function(){return null==this.__LocationStrategy_75&&(this.__LocationStrategy_75=el.c(this.parent.get(Z.r),this._APP_BASE_HREF_67,this._Config_5)),this.__LocationStrategy_75},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_Location_76",{get:function(){return null==this.__Location_76&&(this.__Location_76=new Z.f(this._LocationStrategy_75)),this.__Location_76},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_UrlSerializer_77",{get:function(){return null==this.__UrlSerializer_77&&(this.__UrlSerializer_77=nu.d(this._App_8,this._DeepLinkConfigToken_10)),this.__UrlSerializer_77},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_DeepLinker_78",{get:function(){return null==this.__DeepLinker_78&&(this.__DeepLinker_78=$l.b(this._App_8,this._UrlSerializer_77,this._Location_76,this._ModuleLoader_13,this.componentFactoryResolver)),this.__DeepLinker_78},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_TapClick_82",{get:function(){return null==this.__TapClick_82&&(this.__TapClick_82=new pl.a(this._Config_5,this._Platform_4,this._DomController_6,this._App_8,this._GestureController_9)),this.__TapClick_82},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_TransitionController_84",{get:function(){return null==this.__TransitionController_84&&(this.__TransitionController_84=new gl.a(this._Platform_4,this._Config_5)),this.__TransitionController_84},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_StatusBar_85",{get:function(){return null==this.__StatusBar_85&&(this.__StatusBar_85=new h.a),this.__StatusBar_85},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_SplashScreen_86",{get:function(){return null==this.__SplashScreen_86&&(this.__SplashScreen_86=new m.a),this.__SplashScreen_86},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_AuthService_87",{get:function(){return null==this.__AuthService_87&&(this.__AuthService_87=new s.a(this._Http_63)),this.__AuthService_87},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_MatchService_88",{get:function(){return null==this.__MatchService_88&&(this.__MatchService_88=new r.a(this._Http_63)),this.__MatchService_88},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_StatsService_89",{get:function(){return null==this.__StatsService_89&&(this.__StatsService_89=new p(this._Http_63)),this.__StatsService_89},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_TeamService_90",{get:function(){return null==this.__TeamService_90&&(this.__TeamService_90=new d.a(this._Http_63)),this.__TeamService_90},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_PlayersProvider_91",{get:function(){return null==this.__PlayersProvider_91&&(this.__PlayersProvider_91=new V.a(this._Http_63)),this.__PlayersProvider_91},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_FinanceProvider_92",{get:function(){return null==this.__FinanceProvider_92&&(this.__FinanceProvider_92=new F(this._Http_63)),this.__FinanceProvider_92},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_AdMobFree_93",{get:function(){return null==this.__AdMobFree_93&&(this.__AdMobFree_93=new o.a),this.__AdMobFree_93},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_AndroidPermissions_94",{get:function(){return null==this.__AndroidPermissions_94&&(this.__AndroidPermissions_94=new j.a),this.__AndroidPermissions_94},enumerable:!0,configurable:!0}),Object.defineProperty(n.prototype,"_Push_95",{get:function(){return null==this.__Push_95&&(this.__Push_95=new $.a),this.__Push_95},enumerable:!0,configurable:!0}),n.prototype.createInternal=function(){return this._CommonModule_0=new Z.b,this._ErrorHandler_1=new Y.a,this._ConfigToken_2=null,this._PlatformConfigToken_3=uu.b(),this._Platform_4=Il.b(this.parent.get(e.b),this._PlatformConfigToken_3,this.parent.get(a.z)),this._Config_5=Cl.c(this._ConfigToken_2,this._Platform_4),this._DomController_6=new Q.a(this._Platform_4),this._MenuController_7=new ll.a,this._App_8=new nl.a(this._Config_5,this._Platform_4,this._MenuController_7),this._GestureController_9=new ul.h(this._App_8),this._DeepLinkConfigToken_10={links:[{loadChildren:"../pages/forgot/forgot.module.ngfactory#ForgotPageModuleNgFactory",name:"ForgotPage",segment:"forgot",priority:"low",defaultHistory:[]},{loadChildren:"../pages/login/login.module.ngfactory#LoginPageModuleNgFactory",name:"LoginPage",segment:"login",priority:"low",defaultHistory:[]},{loadChildren:"../pages/logout/logout.module.ngfactory#LogoutPageModuleNgFactory",name:"LogoutPage",segment:"logout",priority:"low",defaultHistory:[]},{loadChildren:"../pages/match-team/match-team.module.ngfactory#MatchTeamPageModuleNgFactory",name:"MatchTeamPage",segment:"match-team",priority:"low",defaultHistory:[]},{loadChildren:"../pages/my-account/my-account.module.ngfactory#MyAccountPageModuleNgFactory",name:"MyAccountPage",segment:"my-account",priority:"low",defaultHistory:[]},{loadChildren:"../pages/my-profile/my-profile.module.ngfactory#MyProfilePageModuleNgFactory",name:"MyProfilePage",segment:"my-profile",priority:"low",defaultHistory:[]},{loadChildren:"../pages/my-teams/my-teams.module.ngfactory#MyTeamsPageModuleNgFactory",name:"MyTeamsPage",segment:"my-teams",priority:"low",defaultHistory:[]},{loadChildren:"../pages/previous-match-details/previous-match-details.module.ngfactory#PreviousMatchDetailsPageModuleNgFactory",name:"PreviousMatchDetailsPage",segment:"previous-match-details",priority:"low",defaultHistory:[]},{loadChildren:"../pages/previous-matches/previous-matches.module.ngfactory#PreviousMatchesPageModuleNgFactory",name:"PreviousMatchesPage",segment:"previous-matches",priority:"low",defaultHistory:[]},{loadChildren:"../pages/reset/reset.module.ngfactory#ResetPageModuleNgFactory",name:"ResetPage",segment:"reset",priority:"low",defaultHistory:[]},{loadChildren:"../pages/signup/signup.module.ngfactory#SignupPageModuleNgFactory",name:"SignupPage",segment:"signup",priority:"low",defaultHistory:[]},{loadChildren:"../pages/welcome/welcome.module.ngfactory#WelcomePageModuleNgFactory",name:"WelcomePage",segment:"welcome",priority:"low",defaultHistory:[]}]},this._Compiler_11=new a.i,this._NgModuleLoader_12=new tl.a(this._Compiler_11),this._ModuleLoader_13=tu.c(this._NgModuleLoader_12,this),this._APP_INITIALIZER_14=[a._20,e.r(this.parent.get(e.i,null),this.parent.get(a.y,null)),eu.a(this._Config_5),il.b(this._Platform_4,this._DomController_6),pl.b(this._Config_5,this._Platform_4,this._DomController_6,this._App_8,this._GestureController_9),tu.d(this._Config_5,this._DeepLinkConfigToken_10,this._ModuleLoader_13,this.parent.get(a.z))],this._ApplicationInitStatus_15=new a.d(this._APP_INITIALIZER_14),this._ɵf_16=new a._7(this.parent.get(a.z),this.parent.get(a.Z),this,this._ErrorHandler_1,this.componentFactoryResolver,this._ApplicationInitStatus_15),this._ApplicationRef_17=this._ɵf_16,this._ApplicationModule_18=new a.e(this._ApplicationRef_17),this._BrowserModule_19=new e.a(this.parent.get(e.a,null)),this._ɵba_20=new q.o,this._FormsModule_21=new q.g,this._HttpModule_22=new i.f,this._ReactiveFormsModule_23=new q.m,this._IonicModule_24=new el.a,this._IonicPageModule_25=new el.b,this._FinancePageModule_26=new J,this._ForgotPageModule_27=new W.a,this._LoginPageModule_28=new I.a,this._SignupPageModule_29=new L.a,this._MyProfilePageModule_30=new N.a,this._MyAccountPageModule_31=new E.a,this._PreviousMatchesPageModule_32=new H.a,this._MyTeamsPageModule_33=new B.a,this._PreviousMatchDetailsPageModule_34=new U.a,this._MatchTeamPageModule_35=new z.a,this._ResetPageModule_36=new G.a,this._LogoutPageModule_37=new K.a,this._WelcomePageModule_38=new A.a,this._AppModule_39=new X,this._LAZY_LOADED_TOKEN_65=v.a,this._AppRootToken_66=R,this._APP_BASE_HREF_67="/",this._AppModule_39},n.prototype.getInternal=function(l,n){return l===Z.b?this._CommonModule_0:l===a.m?this._ErrorHandler_1:l===Cl.b?this._ConfigToken_2:l===uu.a?this._PlatformConfigToken_3:l===Il.a?this._Platform_4:l===Cl.a?this._Config_5:l===Q.a?this._DomController_6:l===ll.a?this._MenuController_7:l===nl.a?this._App_8:l===ul.h?this._GestureController_9:l===nu.a?this._DeepLinkConfigToken_10:l===a.i?this._Compiler_11:l===tl.a?this._NgModuleLoader_12:l===tu.b?this._ModuleLoader_13:l===a.c?this._APP_INITIALIZER_14:l===a.d?this._ApplicationInitStatus_15:l===a._7?this._ɵf_16:l===a.f?this._ApplicationRef_17:l===a.e?this._ApplicationModule_18:l===e.a?this._BrowserModule_19:l===q.o?this._ɵba_20:l===q.g?this._FormsModule_21:l===i.f?this._HttpModule_22:l===q.m?this._ReactiveFormsModule_23:l===el.a?this._IonicModule_24:l===el.b?this._IonicPageModule_25:l===J?this._FinancePageModule_26:l===W.a?this._ForgotPageModule_27:l===I.a?this._LoginPageModule_28:l===L.a?this._SignupPageModule_29:l===N.a?this._MyProfilePageModule_30:l===E.a?this._MyAccountPageModule_31:l===H.a?this._PreviousMatchesPageModule_32:l===B.a?this._MyTeamsPageModule_33:l===U.a?this._PreviousMatchDetailsPageModule_34:l===z.a?this._MatchTeamPageModule_35:l===G.a?this._ResetPageModule_36:l===K.a?this._LogoutPageModule_37:l===A.a?this._WelcomePageModule_38:l===X?this._AppModule_39:l===a.v?this._LOCALE_ID_40:l===Z.l?this._NgLocalization_41:l===a.b?this._APP_ID_42:l===a.t?this._IterableDiffers_43:l===a.u?this._KeyValueDiffers_44:l===e.c?this._DomSanitizer_45:l===a.I?this._Sanitizer_46:l===e.f?this._HAMMER_GESTURE_CONFIG_47:l===e.d?this._EVENT_MANAGER_PLUGINS_48:l===e.e?this._EventManager_49:l===e.n?this._ɵDomSharedStylesHost_50:l===e.m?this._ɵDomRendererFactory2_51:l===a.G?this._RendererFactory2_52:l===e.q?this._ɵSharedStylesHost_53:l===a.N?this._Testability_54:l===e.h?this._Meta_55:l===e.j?this._Title_56:l===q.q?this._ɵi_57:l===i.c?this._BrowserXhr_58:l===i.h?this._ResponseOptions_59:l===i.j?this._XSRFStrategy_60:l===i.i?this._XHRBackend_61:l===i.g?this._RequestOptions_62:l===i.e?this._Http_63:l===q.d?this._FormBuilder_64:l===tu.a?this._LAZY_LOADED_TOKEN_65:l===au.a?this._AppRootToken_66:l===Z.a?this._APP_BASE_HREF_67:l===ol.a?this._AlertController_69:l===il.a?this._Events_70:l===sl.a?this._Form_71:l===rl.a?this._Haptic_72:l===_l.a?this._Keyboard_73:l===cl.a?this._LoadingController_74:l===Z.g?this._LocationStrategy_75:l===Z.f?this._Location_76:l===nu.b?this._UrlSerializer_77:l===$l.a?this._DeepLinker_78:l===pl.a?this._TapClick_82:l===gl.a?this._TransitionController_84:l===h.a?this._StatusBar_85:l===m.a?this._SplashScreen_86:l===s.a?this._AuthService_87:l===r.a?this._MatchService_88:l===p?this._StatsService_89:l===d.a?this._TeamService_90:l===V.a?this._PlayersProvider_91:l===F?this._FinanceProvider_92:l===o.a?this._AdMobFree_93:l===j.a?this._AndroidPermissions_94:l===$.a?this._Push_95:n},n.prototype.destroyInternal=function(){this._ɵf_16.ngOnDestroy(),this.__ɵDomSharedStylesHost_50&&this._ɵDomSharedStylesHost_50.ngOnDestroy()},n}(a._1),X);Object(a.T)(),Object(e.k)().bootstrapModuleFactory(iu)}],[180]);
+webpackJsonp([0],{
+
+/***/ 117:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FinancePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_finance_finance__ = __webpack_require__(228);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__match_team_match_team__ = __webpack_require__(45);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var FinancePage = (function () {
+    function FinancePage(navCtrl, app, authService, financeService, loadingController) {
+        this.navCtrl = navCtrl;
+        this.app = app;
+        this.authService = authService;
+        this.financeService = financeService;
+        this.loadingController = loadingController;
+        this.userPostData = { "user_id": "", "token": "" };
+        if (this.authService.getAuthenticated()) {
+            var data = JSON.parse(localStorage.getItem('userData'));
+            console.log("fetch data", data);
+            this.userDetails = data;
+            // console.log("user data from storage", this.userDetails)
+            this.userPostData.user_id = this.userDetails.id;
+            this.userPostData.token = this.userDetails.token;
+        }
+    }
+    FinancePage.prototype.ionViewCanEnter = function () {
+        console.log("view did enter", this.authService.getAuthenticated());
+        return this.authService.getAuthenticated();
+    };
+    FinancePage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        console.log('ionViewDidLoad home page');
+        if (this.authService.getAuthenticated()) {
+            console.log("token", this.authService.getToken());
+        }
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.financeService.getAllExpense().then(function (result) {
+            _this.responseData = result;
+            console.log(_this.responseData);
+            if (_this.responseData.statusCode == '200') {
+                loading.dismiss();
+                console.log("test 200");
+                console.log("result", _this.responseData.results.result);
+                _this.expenses = _this.responseData.results.result;
+            }
+            else if (_this.responseData.statusCode == "404") {
+                console.log("unauthorrised");
+                localStorage.clear();
+                _this.backToWelcome();
+            }
+            else {
+                loading.dismiss();
+                console.log("error", _this.responseData);
+            }
+        }, function (err) {
+            // Error log
+        });
+    };
+    FinancePage.prototype.availabilitySelected = function (event, expense) {
+        var _this = this;
+        console.log("selected", event, expense);
+        expense.player = this.authService.getUser();
+        console.log("after change", expense);
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        this.financeService.postUpdate(expense).then(function (result) {
+            _this.responseData = result;
+            console.log(_this.responseData);
+            if (_this.responseData.statusCode == '200') {
+                loading.dismiss();
+                console.log("test 200", _this.responseData);
+                // console.log("result", this.responseData.results.matches);
+                //this.matches = this.responseData.results.matches;
+            }
+            else if (_this.responseData.statusCode == "404") {
+                console.log("unauthorrised");
+                localStorage.clear();
+                _this.backToWelcome();
+            }
+            else {
+                loading.dismiss();
+                console.log("error", _this.responseData);
+            }
+        }, function (err) {
+            // Error log
+        });
+    };
+    FinancePage.prototype.backToWelcome = function () {
+        var root = this.app.getRootNav();
+        root.popToRoot();
+    };
+    FinancePage.prototype.logout = function () {
+        var _this = this;
+        localStorage.clear();
+        setTimeout(function () { return _this.backToWelcome(); }, 1000);
+    };
+    FinancePage.prototype.goToMatchTeam = function (event) {
+        console.log("clicked match team", event);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__match_team_match_team__["a" /* MatchTeamPage */], { "matchId": event });
+    };
+    return FinancePage;
+}());
+FinancePage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-finance',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\finance\finance.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Payments</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding class="appBackground">\n\n  <ion-card *ngFor="let playerexpense of expenses">\n\n    <ion-card-header>\n\n      {{playerexpense.expense.description}}\n\n      <p>{{playerexpense.expense.team.name}}</p>\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <p>{{playerexpense.expenseDate}}</p>\n\n      <p>${{playerexpense.amount}}</p>\n\n	   <p>${{playerexpense.cmnt}}</p>\n\n         <ion-label>\n\n          Select Payment Status\n\n        </ion-label>\n\n		\n\n		   <ion-item>\n\n		   <ion-checkbox [(ngModel)]="playerexpense.paid"  (ionChange)="availabilitySelected($event, playerexpense)"></ion-checkbox>\n\n     \n\n	 \n\n    </ion-item>\n\n	\n\n	<ion-item>\n\n      <ion-select [(ngModel)]="playerexpense.paymentType" (ionChange)="availabilitySelected($event, playerexpense)">\n\n          <ion-option value="CASH">CASH</ion-option>\n\n        <ion-option value="FREE">FREE</ion-option>\n\n      <ion-option value="PREPAID">PREPAID</ion-option>\n\n        <ion-option value="TRANSFER">TRANSFER</ion-option>\n\n      </ion-select>\n\n	 \n\n    </ion-item>\n\n	<p><ion-label>Remarks</ion-label></p>\n\n      <ion-item>\n\n	  \n\n	       \n\n    <ion-input [(ngModel)]="playerexpense.remark" (ionChange)="availabilitySelected($event, playerexpense)"></ion-input>\n\n	 </ion-item>\n\n	\n\n    </ion-card-content>\n\n  </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\finance\finance.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_3__providers_finance_finance__["a" /* FinanceProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
+], FinancePage);
+
+//# sourceMappingURL=finance.js.map
+
+/***/ }),
+
+/***/ 126:
+/***/ (function(module, exports) {
+
+function webpackEmptyAsyncContext(req) {
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncatched exception popping up in devtools
+	return Promise.resolve().then(function() {
+		throw new Error("Cannot find module '" + req + "'.");
+	});
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+module.exports = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = 126;
+
+/***/ }),
+
+/***/ 13:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var apiUrl = 'https://crickify.herokuapp.com/login';
+//let isLoggedIn : boolean;
+var isAuthenticated;
+var AuthService = (function () {
+    function AuthService(http) {
+        this.http = http;
+        console.log('Hello AuthService Provider');
+        var data = JSON.parse(localStorage.getItem('userData'));
+        if (data == null) {
+            isAuthenticated = false;
+        }
+        else {
+            console.log("user data presnet");
+            isAuthenticated = true;
+        }
+    }
+    AuthService.prototype.getToken = function () {
+        if (JSON.parse(localStorage.getItem('userData')) != null && JSON.parse(localStorage.getItem('userData')).user != null) {
+            return JSON.parse(localStorage.getItem('userData')).user.token;
+        }
+        else {
+            return null;
+        }
+    };
+    AuthService.prototype.getUser = function () {
+        if (JSON.parse(localStorage.getItem('userData')) != null) {
+            return JSON.parse(localStorage.getItem('userData')).user;
+        }
+        else {
+            return null;
+        }
+    };
+    AuthService.prototype.signup = function (credentials) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            _this.http.post(apiUrl + '/create', JSON.stringify(credentials), { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("auth response signup", res.json());
+                if (res.json().statusCode == '200' || res.json().statusCode == '401') {
+                    isAuthenticated = true;
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+                isAuthenticated = false;
+                localStorage.clear();
+            });
+        });
+    };
+    AuthService.prototype.forgot = function (credentials) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            console.log("input", credentials.username);
+            _this.http.post(apiUrl + '/forgotpassword', credentials.username, { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("auth response signup", res.json());
+                if (res.json().statusCode == '200' || res.json().statusCode == '401') {
+                    isAuthenticated = false;
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+                isAuthenticated = false;
+                localStorage.clear();
+            });
+        });
+    };
+    AuthService.prototype.reset = function (credentials) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            console.log("token", _this.getToken());
+            _this.http.post(apiUrl + '/updatepassword', JSON.stringify(credentials), { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("auth response update", res.json());
+                if (res.json().statusCode == '200' || res.json().statusCode == '401') {
+                    isAuthenticated = false;
+                    localStorage.clear();
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+                isAuthenticated = false;
+                localStorage.clear();
+            });
+        });
+    };
+    AuthService.prototype.login = function (credentials) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            _this.http.post(apiUrl + '/userLogin', JSON.stringify(credentials), { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("auth response login", res.json());
+                if (res.json().statusCode == '200' || res.json().statusCode == '401') {
+                    isAuthenticated = true;
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+                isAuthenticated = false;
+                localStorage.clear();
+            });
+        });
+    };
+    AuthService.prototype.getAuthenticated = function () {
+        if (this.getToken() == null) {
+            return false;
+        }
+        return isAuthenticated;
+    };
+    AuthService.prototype.logout = function () {
+        isAuthenticated = false;
+    };
+    return AuthService;
+}());
+AuthService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
+], AuthService);
+
+//# sourceMappingURL=auth.js.map
+
+/***/ }),
+
+/***/ 168:
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"../pages/forgot/forgot.module": [
+		170
+	],
+	"../pages/login/login.module": [
+		174
+	],
+	"../pages/logout/logout.module": [
+		184
+	],
+	"../pages/match-team/match-team.module": [
+		169
+	],
+	"../pages/my-account/my-account.module": [
+		179
+	],
+	"../pages/my-profile/my-profile.module": [
+		177
+	],
+	"../pages/my-teams/my-teams.module": [
+		182
+	],
+	"../pages/previous-match-details/previous-match-details.module": [
+		180
+	],
+	"../pages/previous-matches/previous-matches.module": [
+		181
+	],
+	"../pages/reset/reset.module": [
+		183
+	],
+	"../pages/signup/signup.module": [
+		175
+	],
+	"../pages/welcome/welcome.module": [
+		176
+	]
+};
+function webpackAsyncContext(req) {
+	var ids = map[req];
+	if(!ids)
+		return Promise.reject(new Error("Cannot find module '" + req + "'."));
+	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(function() {
+		return __webpack_require__(ids[0]);
+	});
+};
+webpackAsyncContext.keys = function webpackAsyncContextKeys() {
+	return Object.keys(map);
+};
+webpackAsyncContext.id = 168;
+module.exports = webpackAsyncContext;
+
+/***/ }),
+
+/***/ 169:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatchTeamPageModule", function() { return MatchTeamPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__match_team__ = __webpack_require__(45);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var MatchTeamPageModule = (function () {
+    function MatchTeamPageModule() {
+    }
+    return MatchTeamPageModule;
+}());
+MatchTeamPageModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
+        declarations: [
+            __WEBPACK_IMPORTED_MODULE_2__match_team__["a" /* MatchTeamPage */],
+        ],
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__match_team__["a" /* MatchTeamPage */]),
+        ],
+    })
+], MatchTeamPageModule);
+
+//# sourceMappingURL=match-team.module.js.map
+
+/***/ }),
+
+/***/ 170:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ForgotPageModule", function() { return ForgotPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__forgot__ = __webpack_require__(54);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var ForgotPageModule = (function () {
+    function ForgotPageModule() {
+    }
+    return ForgotPageModule;
+}());
+ForgotPageModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
+        declarations: [
+            __WEBPACK_IMPORTED_MODULE_2__forgot__["a" /* ForgotPage */],
+        ],
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__forgot__["a" /* ForgotPage */]),
+        ],
+    })
+], ForgotPageModule);
+
+//# sourceMappingURL=forgot.module.js.map
+
+/***/ }),
+
+/***/ 174:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPageModule", function() { return LoginPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(36);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var LoginPageModule = (function () {
+    function LoginPageModule() {
+    }
+    return LoginPageModule;
+}());
+LoginPageModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
+        declarations: [
+            __WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */],
+        ],
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */]),
+        ],
+    })
+], LoginPageModule);
+
+//# sourceMappingURL=login.module.js.map
+
+/***/ }),
+
+/***/ 175:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignupPageModule", function() { return SignupPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__signup__ = __webpack_require__(55);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var SignupPageModule = (function () {
+    function SignupPageModule() {
+    }
+    return SignupPageModule;
+}());
+SignupPageModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
+        declarations: [
+            __WEBPACK_IMPORTED_MODULE_2__signup__["a" /* SignupPage */],
+        ],
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__signup__["a" /* SignupPage */]),
+        ],
+    })
+], SignupPageModule);
+
+//# sourceMappingURL=signup.module.js.map
+
+/***/ }),
+
+/***/ 176:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WelcomePageModule", function() { return WelcomePageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__welcome__ = __webpack_require__(30);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var WelcomePageModule = (function () {
+    function WelcomePageModule() {
+    }
+    return WelcomePageModule;
+}());
+WelcomePageModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
+        declarations: [
+            __WEBPACK_IMPORTED_MODULE_2__welcome__["a" /* WelcomePage */],
+        ],
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__welcome__["a" /* WelcomePage */]),
+        ],
+    })
+], WelcomePageModule);
+
+//# sourceMappingURL=welcome.module.js.map
+
+/***/ }),
+
+/***/ 177:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MyProfilePageModule", function() { return MyProfilePageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__my_profile__ = __webpack_require__(88);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var MyProfilePageModule = (function () {
+    function MyProfilePageModule() {
+    }
+    return MyProfilePageModule;
+}());
+MyProfilePageModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
+        declarations: [
+            __WEBPACK_IMPORTED_MODULE_2__my_profile__["a" /* MyProfilePage */],
+        ],
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__my_profile__["a" /* MyProfilePage */]),
+        ],
+    })
+], MyProfilePageModule);
+
+//# sourceMappingURL=my-profile.module.js.map
+
+/***/ }),
+
+/***/ 178:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PlayersProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/*
+  Generated class for the PlayersProvider provider.
+
+  See https://angular.io/guide/dependency-injection for more info on providers
+  and Angular DI.
+*/
+var apiUrl = 'https://crickify.herokuapp.com/player';
+var apiUrlTeam = 'https://crickify.herokuapp.com/teamplayer';
+var PlayersProvider = (function () {
+    function PlayersProvider(http) {
+        this.http = http;
+        console.log('Hello PlayersProvider Provider');
+    }
+    PlayersProvider.prototype.getToken = function () {
+        return JSON.parse(localStorage.getItem('userData')).user.token;
+    };
+    PlayersProvider.prototype.getPlayerStats = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.get(apiUrl + '/stats', { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("auth response matches", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("player stats", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    PlayersProvider.prototype.getPlayerTournamentStats = function (teamid) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.get(apiUrlTeam + '/tournament/stats/' + teamid + "/player", { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("auth response matches", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("player stats", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    return PlayersProvider;
+}());
+PlayersProvider = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
+], PlayersProvider);
+
+//# sourceMappingURL=players.js.map
+
+/***/ }),
+
+/***/ 179:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MyAccountPageModule", function() { return MyAccountPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__my_account__ = __webpack_require__(90);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var MyAccountPageModule = (function () {
+    function MyAccountPageModule() {
+    }
+    return MyAccountPageModule;
+}());
+MyAccountPageModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
+        declarations: [
+            __WEBPACK_IMPORTED_MODULE_2__my_account__["a" /* MyAccountPage */],
+        ],
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__my_account__["a" /* MyAccountPage */]),
+        ],
+    })
+], MyAccountPageModule);
+
+//# sourceMappingURL=my-account.module.js.map
+
+/***/ }),
+
+/***/ 180:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PreviousMatchDetailsPageModule", function() { return PreviousMatchDetailsPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__previous_match_details__ = __webpack_require__(91);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var PreviousMatchDetailsPageModule = (function () {
+    function PreviousMatchDetailsPageModule() {
+    }
+    return PreviousMatchDetailsPageModule;
+}());
+PreviousMatchDetailsPageModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
+        declarations: [
+            __WEBPACK_IMPORTED_MODULE_2__previous_match_details__["a" /* PreviousMatchDetailsPage */],
+        ],
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__previous_match_details__["a" /* PreviousMatchDetailsPage */]),
+        ],
+    })
+], PreviousMatchDetailsPageModule);
+
+//# sourceMappingURL=previous-match-details.module.js.map
+
+/***/ }),
+
+/***/ 181:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PreviousMatchesPageModule", function() { return PreviousMatchesPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__previous_matches__ = __webpack_require__(92);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var PreviousMatchesPageModule = (function () {
+    function PreviousMatchesPageModule() {
+    }
+    return PreviousMatchesPageModule;
+}());
+PreviousMatchesPageModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
+        declarations: [
+            __WEBPACK_IMPORTED_MODULE_2__previous_matches__["a" /* PreviousMatchesPage */],
+        ],
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__previous_matches__["a" /* PreviousMatchesPage */]),
+        ],
+    })
+], PreviousMatchesPageModule);
+
+//# sourceMappingURL=previous-matches.module.js.map
+
+/***/ }),
+
+/***/ 182:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MyTeamsPageModule", function() { return MyTeamsPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__my_teams__ = __webpack_require__(93);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var MyTeamsPageModule = (function () {
+    function MyTeamsPageModule() {
+    }
+    return MyTeamsPageModule;
+}());
+MyTeamsPageModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
+        declarations: [
+            __WEBPACK_IMPORTED_MODULE_2__my_teams__["a" /* MyTeamsPage */],
+        ],
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__my_teams__["a" /* MyTeamsPage */]),
+        ],
+    })
+], MyTeamsPageModule);
+
+//# sourceMappingURL=my-teams.module.js.map
+
+/***/ }),
+
+/***/ 183:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResetPageModule", function() { return ResetPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__reset__ = __webpack_require__(94);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var ResetPageModule = (function () {
+    function ResetPageModule() {
+    }
+    return ResetPageModule;
+}());
+ResetPageModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
+        declarations: [
+            __WEBPACK_IMPORTED_MODULE_2__reset__["a" /* ResetPage */],
+        ],
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__reset__["a" /* ResetPage */]),
+        ],
+    })
+], ResetPageModule);
+
+//# sourceMappingURL=reset.module.js.map
+
+/***/ }),
+
+/***/ 184:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LogoutPageModule", function() { return LogoutPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__logout__ = __webpack_require__(95);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var LogoutPageModule = (function () {
+    function LogoutPageModule() {
+    }
+    return LogoutPageModule;
+}());
+LogoutPageModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
+        declarations: [
+            __WEBPACK_IMPORTED_MODULE_2__logout__["a" /* LogoutPage */],
+        ],
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__logout__["a" /* LogoutPage */]),
+        ],
+    })
+], LogoutPageModule);
+
+//# sourceMappingURL=logout.module.js.map
+
+/***/ }),
+
+/***/ 224:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StatsService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var apiUrl = 'https://crickify.herokuapp.com/teamplayer';
+//let isLoggedIn : boolean;
+var isAuthenticated;
+var StatsService = (function () {
+    function StatsService(http) {
+        this.http = http;
+    }
+    StatsService.prototype.getToken = function () {
+        return JSON.parse(localStorage.getItem('userData')).user.token;
+    };
+    StatsService.prototype.getTeamStats = function (teamid) {
+        var _this = this;
+        console.log("passed team id", teamid);
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.get(apiUrl + '/tournament/stats/' + teamid, { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("auth response matches", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("matches", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    return StatsService;
+}());
+StatsService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
+], StatsService);
+
+//# sourceMappingURL=stats.js.map
+
+/***/ }),
+
+/***/ 227:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__ = __webpack_require__(89);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+//import { MatchService } from '../../providers/matches/matches';
+
+
+var ListPage = (function () {
+    function ListPage(navCtrl, navParams, authService, teamService, statsService, app, loadingController) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.authService = authService;
+        this.teamService = teamService;
+        this.statsService = statsService;
+        this.app = app;
+        this.loadingController = loadingController;
+        this.tabsvalues = "team";
+        //selectedTeam : any;
+        this.userPostData = { "user_id": "", "token": "" };
+        if (this.authService.getAuthenticated()) {
+            var data = JSON.parse(localStorage.getItem('userData'));
+            console.log("fetch data", data);
+            this.userDetails = data;
+            // console.log("user data from storage", this.userDetails)
+            this.userPostData.user_id = this.userDetails.id;
+            this.userPostData.token = this.userDetails.token;
+        }
+        else {
+            var root = this.app.getRootNav();
+            root.popToRoot();
+        }
+    }
+    ListPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        console.log('ionViewDidLoad home page');
+        if (this.authService.getAuthenticated()) {
+            console.log("token", this.authService.getToken());
+        }
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.teamService.getAllTeams().then(function (result) {
+            _this.responseData = result;
+            console.log(_this.responseData);
+            if (_this.responseData.statusCode == '200') {
+                loading.dismiss();
+                console.log("test 200");
+                _this.teams = _this.responseData.results.teams;
+                _this.selectedTeam = _this.responseData.results.teams[0];
+                _this.teamSelected(_this.responseData.results.teams[0]);
+                console.log("result teams", JSON.stringify(_this.responseData.results));
+            }
+            else if (_this.responseData.statusCode == "404") {
+                console.log("unauthorrised");
+                localStorage.clear();
+                //  this.backToWelcome();
+            }
+            else {
+                loading.dismiss();
+                console.log("error", _this.responseData);
+            }
+        }, function (err) {
+            // Error log
+        });
+    };
+    ListPage.prototype.teamSelected = function (team) {
+        console.log("selected team", team);
+        console.log("team id", team.id);
+        this.getStats(team);
+    };
+    ListPage.prototype.changeMenus = function (index) {
+        this.selectedTeam = index;
+    };
+    ListPage.prototype.getStats = function (team) {
+        var _this = this;
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        this.statsArray = [];
+        this.statsService.getTeamStats(team.id).then(function (result) {
+            _this.responseData = result;
+            console.log(_this.responseData);
+            if (_this.responseData.statusCode == '200') {
+                loading.dismiss();
+                console.log("stats test 200");
+                if (_this.responseData.results.stats.length == 0) {
+                }
+                else {
+                    _this.statsArray = _this.responseData.results.stats;
+                    console.log("result", _this.responseData.results.stats);
+                    // console.log("arrary", JSON.parse(this.statsArray));
+                }
+            }
+            else if (_this.responseData.statusCode == "404") {
+                console.log("unauthorrised");
+                localStorage.clear();
+                //  this.backToWelcome();
+            }
+            else {
+                loading.dismiss();
+                console.log("error", _this.responseData);
+            }
+        }, function (err) {
+            // Error log
+        });
+    };
+    return ListPage;
+}());
+ListPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-list',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\list\list.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Team Stats</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding class="appBackground">\n\n    <ion-segment [(ngModel)]="tabsvalues">\n\n        <ion-segment-button value="team">\n\n          Team Stats\n\n        </ion-segment-button>\n\n        <ion-segment-button value="batting">\n\n          Batting Stats\n\n        </ion-segment-button>\n\n        <ion-segment-button value="bowling">\n\n            Bowling Stats\n\n        </ion-segment-button>\n\n        <ion-segment-button value="fielding">\n\n              Fielding Stats\n\n        </ion-segment-button>\n\n      </ion-segment>\n\n    \n\n    <div [ngSwitch]="tabsvalues">\n\n      <div *ngSwitchCase="\'team\'">\n\n          <ion-item>\n\n              <ion-label>Pick a Team</ion-label>\n\n              <ion-select [(ngModel)]="selectedTeam" (ionChange)="teamSelected($event)">\n\n                <ion-option *ngFor="let team of teams" [value]="team">{{team.teamname}}</ion-option>\n\n              </ion-select>\n\n          </ion-item>\n\n          \n\n          <ion-card *ngFor="let stat of statsArray">  \n\n                <ion-card-content>\n\n                    <h4>\n\n                        {{stat.name}}\n\n                    </h4>\n\n                  <div class="cric-cards">\n\n                      <p>Played</p>\n\n                      <h4>{{stat.statistics.played}}</h4>\n\n                  </div>\n\n                  <div class="cric-cards">\n\n                    <p>Won</p>\n\n                    <h4>{{stat.statistics.won}}</h4>\n\n                  </div>\n\n                  <div class="cric-cards">\n\n                      <p>Lost</p>\n\n                      <h4>{{stat.statistics.lost}}</h4>\n\n                  </div>\n\n                  <div class="cric-cards">\n\n                    <p>No Result</p>\n\n                    <h4>{{stat.statistics.abandoned}}</h4>\n\n                  </div>\n\n                  <div class="cric-cards">\n\n                      <p>High Total</p>\n\n                      <h4>{{stat.statistics.highestTotal}}</h4>\n\n                  </div>\n\n                  <div class="cric-cards">\n\n                        <p>Low Total</p>\n\n                        <h4>{{stat.statistics.lowestTotal}}</h4>\n\n                  </div>\n\n                </ion-card-content>\n\n              \n\n              </ion-card>\n\n      </div>\n\n    \n\n      <div *ngSwitchCase="\'batting\'">\n\n          <ion-item>\n\n              <ion-label>Pick a Team</ion-label>\n\n              <ion-select [(ngModel)]="selectedTeam" (ionChange)="teamSelected($event)">\n\n                <ion-option *ngFor="let team of teams" [value]="team">{{team.teamname}}</ion-option>\n\n              </ion-select>\n\n          </ion-item>\n\n          \n\n          <div *ngFor="let stat of statsArray">\n\n              <div class="cric-stat-batting-table">\n\n                  <h4>{{stat.name}}</h4>\n\n                  <ul>\n\n                    <li class="header">\n\n                        <p class="cric-player-name">Name</p>\n\n                        <p>M</p>\n\n                        <p>I</p>\n\n                        <p>R</p>\n\n                        <p>B</p>\n\n                        <p class="cric-values-decimals">Av</p>\n\n                        <p class="cric-values-decimals">SR</p>\n\n                    </li>\n\n                    <li *ngFor="let player of stat.battingStatistics">\n\n                        <p class="cric-player-name">{{player.player.name}}</p>\n\n                        <p>{{player.matches}}</p>\n\n                        <p>{{player.innings}}</p>\n\n                        <p>{{player.run}}</p>\n\n                        <p>{{player.ball}}</p>\n\n                        <p class="cric-values-decimals">{{player.average | number : \'1.2-2\'}}</p>\n\n                        <p class="cric-values-decimals">{{player.sr | number : \'1.2-2\'}}</p>\n\n                    </li>\n\n                  </ul>\n\n                </div>\n\n              </div>\n\n      </div>\n\n\n\n      <div *ngSwitchCase="\'bowling\'">\n\n          <ion-item>\n\n              <ion-label>Pick a Team</ion-label>\n\n              <ion-select [(ngModel)]="selectedTeam" (ionChange)="teamSelected($event)">\n\n                <ion-option *ngFor="let team of teams" [value]="team">{{team.teamname}}</ion-option>\n\n              </ion-select>\n\n          </ion-item>\n\n          \n\n          <div *ngFor="let stat of statsArray">\n\n              \n\n              <div class="cric-stat-bowling-table">\n\n                  <h4>{{stat.name}}</h4>\n\n                  <ul>\n\n                    <li class="header">\n\n                        <p class="cric-player-name">Name</p>\n\n                        <p>M</p>\n\n                        <p>O</p>\n\n                        <p>R</p>\n\n                        <p>W</p>\n\n                        <p>Wd</p>\n\n                        <p>EC</p>\n\n                    </li>\n\n                    <li *ngFor="let player of stat.bowlingStatistics">\n\n                        <p class="cric-player-name">{{player.player.name}}</p>\n\n                        <p>{{player.matches}}</p>\n\n                        <p>{{player.overs}}</p>\n\n                        <p>{{player.run}}</p>\n\n                        <p>{{player.wickets}}</p>\n\n                        <p>{{player.wide}}</p>\n\n                        <p>{{player.economy}}</p>\n\n                    </li>\n\n                  </ul>\n\n                </div>\n\n              </div>\n\n      </div>\n\n\n\n        <div *ngSwitchCase="\'fielding\'">\n\n            <ion-item>\n\n                <ion-label>Pick a Team</ion-label>\n\n                <ion-select [(ngModel)]="selectedTeam" (ionChange)="teamSelected($event)">\n\n                  <ion-option *ngFor="let team of teams" [value]="team">{{team.teamname}}</ion-option>\n\n                </ion-select>\n\n            </ion-item>\n\n            \n\n            <div *ngFor="let stat of statsArray">\n\n                <div class="cric-stat-bowling-table">\n\n                    <h4>{{stat.name}}</h4>\n\n                    <ul>\n\n                      <li class="header">\n\n                          <p class="cric-player-name">Name</p>\n\n                          <p>M</p>\n\n                          <p>Ct</p>\n\n                          <p>R/O</p>\n\n                          <p>St</p>\n\n                      </li>\n\n                      <li *ngFor="let player of stat.bowlingStatistics">\n\n                          <p class="cric-player-name">{{player.player.name}}</p>\n\n                          <p>{{player.matches}}</p>\n\n                          <p>{{player.catches}}</p>\n\n                          <p>{{player.runOuts}}</p>\n\n                          <p>{{player.stumpings}}</p>\n\n                      </li>\n\n                    </ul>\n\n                  </div>\n\n                </div>\n\n        </div>\n\n\n\n      </div> \n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\list\list.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__["a" /* TeamService */], __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__["a" /* StatsService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
+], ListPage);
+
+//# sourceMappingURL=list.js.map
+
+/***/ }),
+
+/***/ 228:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FinanceProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var apiUrl = 'https://crickify.herokuapp.com/finance';
+//let isLoggedIn : boolean;
+var isAuthenticated;
+var FinanceProvider = (function () {
+    function FinanceProvider(http) {
+        this.http = http;
+    }
+    FinanceProvider.prototype.getToken = function () {
+        return JSON.parse(localStorage.getItem('userData')).user.token;
+    };
+    FinanceProvider.prototype.getAllExpense = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.get(apiUrl + '/playerExpense', { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("auth response matches", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("expense", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    FinanceProvider.prototype.postUpdate = function (data) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.post(apiUrl + '/playerExpense/update', JSON.stringify(data), { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("expense update", res.json());
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    return FinanceProvider;
+}());
+FinanceProvider = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
+], FinanceProvider);
+
+//# sourceMappingURL=finance.js.map
+
+/***/ }),
+
+/***/ 231:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(232);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(250);
+
+
+Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
+//# sourceMappingURL=main.js.map
+
+/***/ }),
+
+/***/ 250:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_admob_free__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_auth_auth__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_matches_matches__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_stats_stats__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_teams_teams__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__(297);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_home_home__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_list_list__ = __webpack_require__(227);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_status_bar__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__ = __webpack_require__(226);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_android_permissions__ = __webpack_require__(229);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_welcome_welcome__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_welcome_welcome_module__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_signup_signup__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_signup_signup_module__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_login_login__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_login_login_module__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_my_profile_my_profile__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_my_profile_my_profile_module__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_my_account_my_account__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_my_account_my_account_module__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_previous_matches_previous_matches__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_previous_matches_previous_matches_module__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_my_teams_my_teams__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_my_teams_my_teams_module__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__providers_players_players__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__providers_finance_finance__ = __webpack_require__(228);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_previous_match_details_previous_match_details__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_previous_match_details_previous_match_details_module__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_match_team_match_team__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_match_team_match_team_module__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_finance_finance__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__pages_forgot_forgot__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__pages_forgot_forgot_module__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__pages_finance_finance_module__ = __webpack_require__(298);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__pages_reset_reset__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__pages_reset_reset_module__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__pages_logout_logout__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__pages_logout_logout_module__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__ionic_native_push__ = __webpack_require__(230);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__angular_forms__ = __webpack_require__(14);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var AppModule = (function () {
+    function AppModule() {
+    }
+    return AppModule;
+}());
+AppModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["L" /* NgModule */])({
+        declarations: [
+            __WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* MyApp */],
+            __WEBPACK_IMPORTED_MODULE_10__pages_home_home__["a" /* HomePage */],
+            __WEBPACK_IMPORTED_MODULE_11__pages_list_list__["a" /* ListPage */],
+        ],
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */], __WEBPACK_IMPORTED_MODULE_44__angular_forms__["b" /* FormsModule */], __WEBPACK_IMPORTED_MODULE_4__angular_http__["c" /* HttpModule */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* MyApp */], {}, {
+                links: [
+                    { loadChildren: '../pages/match-team/match-team.module#MatchTeamPageModule', name: 'MatchTeamPage', segment: 'match-team', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/forgot/forgot.module#ForgotPageModule', name: 'ForgotPage', segment: 'forgot', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/welcome/welcome.module#WelcomePageModule', name: 'WelcomePage', segment: 'welcome', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/my-profile/my-profile.module#MyProfilePageModule', name: 'MyProfilePage', segment: 'my-profile', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/my-account/my-account.module#MyAccountPageModule', name: 'MyAccountPage', segment: 'my-account', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/previous-match-details/previous-match-details.module#PreviousMatchDetailsPageModule', name: 'PreviousMatchDetailsPage', segment: 'previous-match-details', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/previous-matches/previous-matches.module#PreviousMatchesPageModule', name: 'PreviousMatchesPage', segment: 'previous-matches', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/my-teams/my-teams.module#MyTeamsPageModule', name: 'MyTeamsPage', segment: 'my-teams', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/reset/reset.module#ResetPageModule', name: 'ResetPage', segment: 'reset', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/logout/logout.module#LogoutPageModule', name: 'LogoutPage', segment: 'logout', priority: 'low', defaultHistory: [] }
+                ]
+            }),
+            __WEBPACK_IMPORTED_MODULE_38__pages_finance_finance_module__["a" /* FinancePageModule */], __WEBPACK_IMPORTED_MODULE_37__pages_forgot_forgot_module__["ForgotPageModule"], __WEBPACK_IMPORTED_MODULE_20__pages_login_login_module__["LoginPageModule"], __WEBPACK_IMPORTED_MODULE_18__pages_signup_signup_module__["SignupPageModule"],
+            __WEBPACK_IMPORTED_MODULE_22__pages_my_profile_my_profile_module__["MyProfilePageModule"],
+            __WEBPACK_IMPORTED_MODULE_24__pages_my_account_my_account_module__["MyAccountPageModule"],
+            __WEBPACK_IMPORTED_MODULE_26__pages_previous_matches_previous_matches_module__["PreviousMatchesPageModule"],
+            __WEBPACK_IMPORTED_MODULE_28__pages_my_teams_my_teams_module__["MyTeamsPageModule"],
+            __WEBPACK_IMPORTED_MODULE_32__pages_previous_match_details_previous_match_details_module__["PreviousMatchDetailsPageModule"],
+            __WEBPACK_IMPORTED_MODULE_34__pages_match_team_match_team_module__["MatchTeamPageModule"],
+            __WEBPACK_IMPORTED_MODULE_40__pages_reset_reset_module__["ResetPageModule"],
+            __WEBPACK_IMPORTED_MODULE_42__pages_logout_logout_module__["LogoutPageModule"], __WEBPACK_IMPORTED_MODULE_16__pages_welcome_welcome_module__["WelcomePageModule"],
+        ],
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicApp */]],
+        entryComponents: [
+            __WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* MyApp */],
+            __WEBPACK_IMPORTED_MODULE_10__pages_home_home__["a" /* HomePage */],
+            __WEBPACK_IMPORTED_MODULE_11__pages_list_list__["a" /* ListPage */],
+            __WEBPACK_IMPORTED_MODULE_15__pages_welcome_welcome__["a" /* WelcomePage */],
+            __WEBPACK_IMPORTED_MODULE_19__pages_login_login__["a" /* LoginPage */],
+            __WEBPACK_IMPORTED_MODULE_17__pages_signup_signup__["a" /* SignupPage */],
+            __WEBPACK_IMPORTED_MODULE_21__pages_my_profile_my_profile__["a" /* MyProfilePage */],
+            __WEBPACK_IMPORTED_MODULE_23__pages_my_account_my_account__["a" /* MyAccountPage */],
+            __WEBPACK_IMPORTED_MODULE_25__pages_previous_matches_previous_matches__["a" /* PreviousMatchesPage */],
+            __WEBPACK_IMPORTED_MODULE_27__pages_my_teams_my_teams__["a" /* MyTeamsPage */],
+            __WEBPACK_IMPORTED_MODULE_31__pages_previous_match_details_previous_match_details__["a" /* PreviousMatchDetailsPage */],
+            __WEBPACK_IMPORTED_MODULE_33__pages_match_team_match_team__["a" /* MatchTeamPage */],
+            __WEBPACK_IMPORTED_MODULE_35__pages_finance_finance__["a" /* FinancePage */],
+            __WEBPACK_IMPORTED_MODULE_36__pages_forgot_forgot__["a" /* ForgotPage */],
+            __WEBPACK_IMPORTED_MODULE_39__pages_reset_reset__["a" /* ResetPage */],
+            __WEBPACK_IMPORTED_MODULE_41__pages_logout_logout__["a" /* LogoutPage */]
+        ],
+        providers: [
+            __WEBPACK_IMPORTED_MODULE_12__ionic_native_status_bar__["a" /* StatusBar */],
+            __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__["a" /* SplashScreen */],
+            __WEBPACK_IMPORTED_MODULE_5__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_6__providers_matches_matches__["a" /* MatchService */], __WEBPACK_IMPORTED_MODULE_7__providers_stats_stats__["a" /* StatsService */], __WEBPACK_IMPORTED_MODULE_8__providers_teams_teams__["a" /* TeamService */], __WEBPACK_IMPORTED_MODULE_29__providers_players_players__["a" /* PlayersProvider */], __WEBPACK_IMPORTED_MODULE_30__providers_finance_finance__["a" /* FinanceProvider */],
+            { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["v" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicErrorHandler */] },
+            __WEBPACK_IMPORTED_MODULE_29__providers_players_players__["a" /* PlayersProvider */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_admob_free__["a" /* AdMobFree */], __WEBPACK_IMPORTED_MODULE_14__ionic_native_android_permissions__["a" /* AndroidPermissions */], __WEBPACK_IMPORTED_MODULE_43__ionic_native_push__["a" /* Push */]
+        ]
+    })
+], AppModule);
+
+//# sourceMappingURL=app.module.js.map
+
+/***/ }),
+
+/***/ 297:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(226);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(227);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_welcome_welcome__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_my_profile_my_profile__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_my_account_my_account__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_previous_matches_previous_matches__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_my_teams_my_teams__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_finance_finance__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_reset_reset__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_logout_logout__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_android_permissions__ = __webpack_require__(229);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_push__ = __webpack_require__(230);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var MyApp = (function () {
+    function MyApp(platform, statusBar, splashScreen, androidPermissions, push, alertCtrl) {
+        this.platform = platform;
+        this.statusBar = statusBar;
+        this.splashScreen = splashScreen;
+        this.push = push;
+        this.alertCtrl = alertCtrl;
+        this.rootPage = __WEBPACK_IMPORTED_MODULE_6__pages_welcome_welcome__["a" /* WelcomePage */];
+        platform.ready().then(function () {
+            androidPermissions.requestPermissions([
+                androidPermissions.PERMISSION.INTERNET,
+                androidPermissions.PERMISSION.ACCESS_NETWORK_STATE
+            ]);
+        });
+        this.initializeApp();
+        this.initPushNotification();
+        // used for an example of ngFor and navigation
+        this.pages = [
+            { title: 'Upcoming Matches', component: __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */] },
+            { title: 'Completed Matches', component: __WEBPACK_IMPORTED_MODULE_9__pages_previous_matches_previous_matches__["a" /* PreviousMatchesPage */] },
+            { title: 'Team Stats', component: __WEBPACK_IMPORTED_MODULE_5__pages_list_list__["a" /* ListPage */] },
+            { title: 'My Profile', component: __WEBPACK_IMPORTED_MODULE_7__pages_my_profile_my_profile__["a" /* MyProfilePage */] },
+            { title: 'My Teams', component: __WEBPACK_IMPORTED_MODULE_10__pages_my_teams_my_teams__["a" /* MyTeamsPage */] },
+            { title: 'Account Details', component: __WEBPACK_IMPORTED_MODULE_8__pages_my_account_my_account__["a" /* MyAccountPage */] },
+            { title: 'Finance Details', component: __WEBPACK_IMPORTED_MODULE_11__pages_finance_finance__["a" /* FinancePage */] },
+            { title: 'Update Password', component: __WEBPACK_IMPORTED_MODULE_12__pages_reset_reset__["a" /* ResetPage */] },
+            { title: 'Logout', component: __WEBPACK_IMPORTED_MODULE_13__pages_logout_logout__["a" /* LogoutPage */] },
+        ];
+    }
+    MyApp.prototype.initPushNotification = function () {
+        var _this = this;
+        var options = {
+            android: {
+                senderID: "402670322623"
+            }
+        };
+        var pushObject = this.push.init(options);
+        pushObject.on('registration').subscribe(function (data) {
+            console.log("device token:", data.registrationId);
+            var alert = _this.alertCtrl.create({
+                title: 'device token',
+                subTitle: data.registrationId,
+                buttons: ['OK']
+            });
+            alert.present();
+        });
+        pushObject.on('notification').subscribe(function (data) {
+            console.log('message', data.message);
+            if (data.additionalData.foreground) {
+                var confirmAlert = _this.alertCtrl.create({
+                    title: 'New Notification',
+                    message: data.message,
+                    buttons: [{
+                            text: 'Ignore',
+                            role: 'cancel'
+                        }, {
+                            text: 'View',
+                            handler: function () {
+                                //TODO: Your logic here
+                            }
+                        }]
+                });
+                confirmAlert.present();
+            }
+            else {
+                var alert_1 = _this.alertCtrl.create({
+                    title: 'clicked on',
+                    subTitle: "you clicked on the notification!",
+                    buttons: ['OK']
+                });
+                alert_1.present();
+                console.log("Push notification clicked");
+            }
+        });
+        pushObject.on('error').subscribe(function (error) { return console.error('Error with Push plugin', error); });
+    };
+    MyApp.prototype.initializeApp = function () {
+        var _this = this;
+        this.platform.ready().then(function () {
+            // Okay, so the platform is ready and our plugins are available.
+            // Here you can do any higher level native things you might need.
+            _this.statusBar.styleDefault();
+            _this.splashScreen.hide();
+        });
+    };
+    MyApp.prototype.openPage = function (page) {
+        // Reset the content nav to have just this page
+        // we wouldn't want the back button to show in this scenario
+        this.nav.setRoot(page.component);
+    };
+    return MyApp;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Nav */]),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Nav */])
+], MyApp.prototype, "nav", void 0);
+MyApp = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"D:\ionicapp\crickify\src\app\app.html"*/'<ion-menu [content]="content">\n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title>Menu</ion-title>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        {{p.title}}\n\n      </button>\n\n    </ion-list>\n\n  </ion-content>\n\n\n\n</ion-menu>\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"D:\ionicapp\crickify\src\app\app.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_14__ionic_native_android_permissions__["a" /* AndroidPermissions */], __WEBPACK_IMPORTED_MODULE_15__ionic_native_push__["a" /* Push */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+], MyApp);
+
+//# sourceMappingURL=app.component.js.map
+
+/***/ }),
+
+/***/ 298:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FinancePageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__finance__ = __webpack_require__(117);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var FinancePageModule = (function () {
+    function FinancePageModule() {
+    }
+    return FinancePageModule;
+}());
+FinancePageModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
+        declarations: [
+            __WEBPACK_IMPORTED_MODULE_2__finance__["a" /* FinancePage */],
+        ],
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__finance__["a" /* FinancePage */]),
+        ],
+    })
+], FinancePageModule);
+
+//# sourceMappingURL=finance.module.js.map
+
+/***/ }),
+
+/***/ 30:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WelcomePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__signup_signup__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__login_login__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__forgot_forgot__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_matches_matches__ = __webpack_require__(34);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+/**
+ * Generated class for the WelcomePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var WelcomePage = (function () {
+    function WelcomePage(navCtrl, navParams, authService, loadingController, matchService) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.authService = authService;
+        this.loadingController = loadingController;
+        this.matchService = matchService;
+    }
+    WelcomePage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        console.log('ionViewDidLoad WelcomePage');
+        if (this.authService.getAuthenticated()) {
+            //console.log("token", this.authService.getToken());
+            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]);
+            this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]);
+        }
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.matchService.getBestBatting().then(function (result) {
+            _this.responseData = result;
+            console.log(_this.responseData);
+            if (_this.responseData.statusCode == '200') {
+                console.log("test 200");
+                console.log("result", _this.responseData.results.Batting);
+                _this.battings = _this.responseData.results.Batting;
+            }
+            else {
+                console.log("error", _this.responseData);
+            }
+        }, function (err) {
+            // Error log
+        });
+        this.matchService.getBestBowling().then(function (result) {
+            _this.responseData = result;
+            console.log(_this.responseData);
+            if (_this.responseData.statusCode == '200') {
+                console.log("test 200");
+                console.log("result", _this.responseData.results.Bowling);
+                _this.bowlings = _this.responseData.results.Bowling;
+            }
+            else {
+                console.log("error", _this.responseData);
+            }
+        }, function (err) {
+            // Error log
+        });
+        loading.dismiss();
+    };
+    WelcomePage.prototype.login = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_1__login_login__["a" /* LoginPage */]);
+    };
+    WelcomePage.prototype.signup = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_0__signup_signup__["a" /* SignupPage */]);
+    };
+    WelcomePage.prototype.forgot = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__forgot_forgot__["a" /* ForgotPage */]);
+    };
+    return WelcomePage;
+}());
+WelcomePage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_6_ionic_angular__["f" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["n" /* Component */])({
+        selector: 'page-welcome',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\welcome\welcome.html"*/'<!--\n\n  Generated template for the WelcomePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n\n\n\n\n\n\n<ion-content padding class="login-background">\n\n    <ion-grid  >\n\n        <ion-row>\n\n          <ion-col col-2>\n\n            <img src="../assets/img/icon.png"/>\n\n			 </ion-col >\n\n			 <ion-col col-6 >\n\n			<h1 >Crickify</h1>\n\n          </ion-col>\n\n   \n\n          <ion-col center text-center>\n\n            <button ion-button full color="success" (click)="signup()">Sign up</button>\n\n          </ion-col>\n\n        \n\n        \n\n          <ion-col center text-center>\n\n            <button ion-button full color="lightText" (click)="login()">Log in</button>\n\n          </ion-col>\n\n        \n\n		 \n\n         \n\n        </ion-row>\n\n      </ion-grid>\n\n	  <h1>Best Batsman </h1>\n\n	 <ion-grid >\n\n        <ion-row > \n\n		<ion-col *ngFor="let batting of battings| slice:0:4;">\n\n	<ion-card color="primary">\n\n    <ion-card-header>\n\n      <b>{{batting.player.name}} </b>\n\n      \n\n    </ion-card-header>\n\n	<img src="../assets/img/batsman.png"/>\n\n    <ion-card-content>\n\n      <p>{{batting.run}}({{batting.ball}})</p>\n\n     <p>{{batting.match.team.teamname}} vs\n\n      {{batting.match.opponent}}</p>\n\n\n\n    </ion-card-content>\n\n  </ion-card>\n\n   </ion-col>\n\n   </ion-row>\n\n      </ion-grid>\n\n	  \n\n	  <h1>Best Bowler</h1>\n\n	   <ion-grid >\n\n        <ion-row > \n\n		<ion-col *ngFor="let bowling of bowlings| slice:0:4;">\n\n  	<ion-card color="primary">\n\n    <ion-card-header>\n\n      <b>{{bowling.player.name}} </b>\n\n      \n\n    </ion-card-header>\n\n	<img src="../assets/img/bowler.png"/>\n\n    <ion-card-content>\n\n      <p>{{bowling.wickets}}/{{bowling.run}}</p>\n\n     <p>{{bowling.match.team.teamname}} vs\n\n      {{bowling.match.opponent}}</p>\n\n\n\n    </ion-card-content>\n\n </ion-card>\n\n   </ion-col>\n\n   </ion-row>\n\n      </ion-grid>\n\n\n\n<br>\n\n<br><br>\n\n<br>\n\n    <ion-grid >\n\n        <ion-row color="primary" row-20 center text-center>\n\n         <ion-col>\n\n			<h2>About Crickify</h2>\n\n			</ion-col>\n\n          </ion-row>\n\n		  \n\n		  <ion-row row-60 center text-center>\n\n		  <ion-col>\n\n		  Manage your entire cricket landscape. From league schedules to player registrations, Player availability to result management, all available under one convenient account.Finance Mangement for the players.Take the hassle out of your club or league site. \n\n		  With integrated cricket data it will always be up to date and looking sharp.Announce your team and get your best team through interface.\n\n		 </ion-col>\n\n<br>\n\n<br>		 </ion-row>\n\n		  <ion-row row-20 center text-center>\n\n		  <ion-col>\n\n		  <h2>What are you waiting for?! Join thousands of other clubs, schools and leagues and get started with Crickify today.</h2>\n\n		 </ion-col>\n\n		 </ion-row>\n\n		   </ion-grid>\n\n\n\n<br>\n\n<br><br>\n\n<br>\n\n<ion-card color="primary">\n\n    <ion-card-header>\n\n	\n\n	 </ion-card-header>\n\n	\n\n    <ion-card-content>\n\n    <ion-grid color="primary">\n\n        <ion-row   center text-center>\n\n         <ion-col >\n\n			<h2>Contact Us</h2>\n\n			</ion-col>\n\n          </ion-row>\n\n		  <br>\n\n<br>\n\n		  <ion-row   center text-center>\n\n		  <ion-col>\n\n		  <b>Website Issues or Suggestions? Contact US @ crickify@gmail.com</b>\n\n		  </ion-col>\n\n		  <br>\n\n<br>\n\n		\n\n		  </ion-row >\n\n		  <ion-row  center text-center>\n\n		  <ion-col>\n\n		  Copyright © 2018 All rights reserved by Crickify\n\n		  </ion-col>\n\n		  </ion-row>\n\n		   </ion-grid>\n\n		     </ion-card-content>\n\n  </ion-card>\n\n</ion-content>'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\welcome\welcome.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_6_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["h" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_7__providers_matches_matches__["a" /* MatchService */]])
+], WelcomePage);
+
+//# sourceMappingURL=welcome.js.map
+
+/***/ }),
+
+/***/ 34:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MatchService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var apiUrl = 'https://crickify.herokuapp.com/match';
+var battingapiUrl = 'https://crickify.herokuapp.com/batting';
+var bowlingapiUrl = 'https://crickify.herokuapp.com/Bowling';
+//let isLoggedIn : boolean;
+var isAuthenticated;
+var MatchService = (function () {
+    function MatchService(http) {
+        this.http = http;
+    }
+    MatchService.prototype.getToken = function () {
+        return JSON.parse(localStorage.getItem('userData')).user.token;
+    };
+    MatchService.prototype.getAllMatches = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.get(apiUrl + '/matches/availabilities', { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("auth response matches", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("matches", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    MatchService.prototype.getBestBatting = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.http.get(battingapiUrl + '/top')
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("auth response matches", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("matches", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    MatchService.prototype.getBestBowling = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.http.get(bowlingapiUrl + '/top')
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("auth response matches", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("matches", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    MatchService.prototype.getPreviousMatches = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.get(apiUrl + '/playedmatches', { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("auth response matches", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("played matches", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    MatchService.prototype.getMatchSummary = function (matchid) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.get(apiUrl + '/matchsummary/' + matchid, { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("auth response matches", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("played matches", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    MatchService.prototype.getMatchTeam = function (matchid) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.get(apiUrl + '/team/' + matchid, { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("auth response players", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("players", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    MatchService.prototype.postAvailability = function (data) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.post(apiUrl + '/availability', JSON.stringify(data), { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("mast avail post resp", res.json());
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    return MatchService;
+}());
+MatchService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
+], MatchService);
+
+//# sourceMappingURL=matches.js.map
+
+/***/ }),
+
+/***/ 36:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__signup_signup__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__welcome_welcome__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__forgot_forgot__ = __webpack_require__(54);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+/**
+ * Generated class for the LoginPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ *  reference http://www.9lessons.info/2017/06/ionic-angular-php-login-restful-api.html tutorial
+ */
+var LoginPage = LoginPage_1 = (function () {
+    function LoginPage(navCtrl, navParams, authService, alertController, loadingController) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.authService = authService;
+        this.alertController = alertController;
+        this.loadingController = loadingController;
+        this.userData = { "username": "", "password": "" };
+    }
+    LoginPage.prototype.login = function () {
+        var _this = this;
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.authService.login(this.userData).then(function (result) {
+            _this.responseData = result;
+            console.log(_this.responseData);
+            localStorage.setItem('userData', JSON.stringify(_this.responseData));
+            if (_this.responseData.statusCode == '200') {
+                loading.dismiss();
+                console.log("test 200");
+                console.log("result", _this.responseData.results);
+                localStorage.setItem('userData', JSON.stringify(_this.responseData.results));
+                _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]);
+                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]);
+            }
+            else {
+                loading.dismiss();
+                var alert_1 = _this.alertController.create({
+                    title: 'Wrong login/password',
+                    subTitle: 'your login and password combination doesnt seem to work. Please try again or contact us to reset',
+                    buttons: [
+                        {
+                            text: 'OK',
+                            handler: function (data) {
+                                console.log('ok clicked');
+                                _this.navCtrl.push(LoginPage_1);
+                            }
+                        }
+                    ]
+                });
+                alert_1.present();
+            }
+        }, function (err) {
+            // Error log
+        });
+    };
+    LoginPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad LoginPage');
+    };
+    LoginPage.prototype.signup = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__signup_signup__["a" /* SignupPage */]);
+    };
+    LoginPage.prototype.homePage = function () {
+        //Login page link
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__welcome_welcome__["a" /* WelcomePage */]);
+    };
+    LoginPage.prototype.forgot = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__forgot_forgot__["a" /* ForgotPage */]);
+    };
+    return LoginPage;
+}());
+LoginPage = LoginPage_1 = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-login',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\login\login.html"*/'<!--\n\n  Generated template for the LoginPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Login</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n<ion-content padding class="appBackground">\n\n  <ion-card>\n\n    <ion-card-header>\n\n      Login\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <ion-list>\n\n        \n\n          <ion-item>\n\n            <ion-label floating>Username</ion-label>\n\n            <ion-input type="text" [(ngModel)]="userData.username"></ion-input>\n\n          </ion-item>\n\n\n\n          <ion-item>\n\n            <ion-label floating>Password</ion-label>\n\n            <ion-input type="password" [(ngModel)]="userData.password"></ion-input>\n\n          </ion-item>\n\n\n\n          <button ion-button full color="success" (click)="login()">Login</button>\n\n		  <a href="#" (click)="forgot()">Forgot Password</a>\n\n		  <a href="#" (click)="signup()">Sign Up</a>\n\n        <a href="#" (click)="homePage()">Home Page</a>\n\n      </ion-list>\n\n    </ion-card-content>\n\n  </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\login\login.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
+], LoginPage);
+
+var LoginPage_1;
+//# sourceMappingURL=login.js.map
+
+/***/ }),
+
+/***/ 45:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MatchTeamPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_matches_matches__ = __webpack_require__(34);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the MatchTeamPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var MatchTeamPage = (function () {
+    function MatchTeamPage(navCtrl, navParams, matchService, loadingController) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.matchService = matchService;
+        this.loadingController = loadingController;
+        this.batting = [];
+        this.tabsvalues = "summary";
+        console.log("passed data", navParams.get('matchId'));
+        this.matchId = navParams.get('matchId');
+        this.getData(this.matchId);
+    }
+    MatchTeamPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad PreviousMatchDetailsPage');
+    };
+    MatchTeamPage.prototype.getData = function (matchId) {
+        var _this = this;
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.matchService.getMatchTeam(matchId).then(function (result) {
+            _this.responseData = result;
+            console.log(_this.responseData);
+            if (_this.responseData.statusCode == '200') {
+                loading.dismiss();
+                console.log("test 200");
+                console.log("result", _this.responseData.results.players);
+                _this.batting = _this.responseData.results.players;
+            }
+            else if (_this.responseData.statusCode == "404") {
+                console.log("unauthorrised");
+                localStorage.clear();
+            }
+            else {
+                loading.dismiss();
+                console.log("error", _this.responseData);
+            }
+        }, function (err) {
+            // Error log
+        });
+    };
+    return MatchTeamPage;
+}());
+MatchTeamPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-match-team',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\match-team\match-team.html"*/'<!--\n\n  Generated template for the PreviousMatchDetailsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Match Team Details</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground" >\n\n\n\n  <ion-segment [(ngModel)]="tabsvalues">\n\n      <ion-segment-button value="summary">\n\n        Team List\n\n      </ion-segment-button>\n\n     \n\n    </ion-segment>\n\n  \n\n  <div [ngSwitch]="tabsvalues"> \n\n      <div *ngSwitchCase="\'summary\'">\n\n        <div class="cric-stat-batting-table">\n\n          <h4>Team</h4>\n\n          <ul>\n\n            <li class="header">\n\n                <p class="cric-player-name">Name</p>\n\n              \n\n            </li>\n\n            <li *ngFor="let stat of batting">\n\n                <p class="cric-player-name">{{stat?.name}}</p>\n\n              \n\n            </li>\n\n          </ul>\n\n        </div>\n\n       </div>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\match-team\match-team.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_matches_matches__["a" /* MatchService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
+], MatchTeamPage);
+
+//# sourceMappingURL=match-team.js.map
+
+/***/ }),
+
+/***/ 46:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_matches_matches__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__match_team_match_team__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_admob_free__ = __webpack_require__(171);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var HomePage = (function () {
+    function HomePage(navCtrl, app, authService, matchService, loadingController, admob) {
+        this.navCtrl = navCtrl;
+        this.app = app;
+        this.authService = authService;
+        this.matchService = matchService;
+        this.loadingController = loadingController;
+        this.admob = admob;
+        this.userPostData = { "user_id": "", "token": "" };
+        if (this.authService.getAuthenticated()) {
+            var data = JSON.parse(localStorage.getItem('userData'));
+            console.log("fetch data", data);
+            this.userDetails = data;
+            // console.log("user data from storage", this.userDetails)
+            this.userPostData.user_id = this.userDetails.id;
+            this.userPostData.token = this.userDetails.token;
+        }
+    }
+    HomePage.prototype.showBanner = function () {
+        var bannerConfig = {
+            // Remove in production
+            autoShow: true,
+            id: 'ca-app-pub-7720772047232561~3441613572'
+        };
+        this.admob.banner.config(bannerConfig);
+        this.admob.banner.prepare().then(function () {
+            // success
+        }).catch(function (e) { return console.log(e); });
+    };
+    HomePage.prototype.ionViewCanEnter = function () {
+        this.showBanner();
+        console.log("view did enter", this.authService.getAuthenticated());
+        return this.authService.getAuthenticated();
+    };
+    HomePage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        console.log('ionViewDidLoad home page');
+        if (this.authService.getAuthenticated()) {
+            console.log("token", this.authService.getToken());
+        }
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.matchService.getAllMatches().then(function (result) {
+            _this.responseData = result;
+            console.log(_this.responseData);
+            if (_this.responseData.statusCode == '200') {
+                loading.dismiss();
+                console.log("test 200");
+                console.log("result", _this.responseData.results.matches);
+                _this.matches = _this.responseData.results.matches;
+            }
+            else if (_this.responseData.statusCode == "404") {
+                console.log("unauthorrised");
+                loading.dismiss();
+                localStorage.clear();
+                _this.backToWelcome();
+            }
+            else {
+                loading.dismiss();
+                console.log("error", _this.responseData);
+            }
+        }, function (err) {
+            loading.dismiss();
+            // Error log
+        });
+    };
+    HomePage.prototype.availabilitySelected = function (event, match) {
+        var _this = this;
+        console.log("selected", event, match);
+        match.player = this.authService.getUser();
+        console.log("after change", match);
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        this.matchService.postAvailability(match).then(function (result) {
+            _this.responseData = result;
+            console.log(_this.responseData);
+            if (_this.responseData.statusCode == '200') {
+                loading.dismiss();
+                console.log("test 200", _this.responseData);
+                // console.log("result", this.responseData.results.matches);
+                //this.matches = this.responseData.results.matches;
+            }
+            else if (_this.responseData.statusCode == "404") {
+                console.log("unauthorrised");
+                loading.dismiss();
+                localStorage.clear();
+                _this.backToWelcome();
+            }
+            else {
+                loading.dismiss();
+                console.log("error", _this.responseData);
+            }
+        }, function (err) {
+            loading.dismiss();
+            // Error log
+        });
+    };
+    HomePage.prototype.backToWelcome = function () {
+        var root = this.app.getRootNav();
+        root.popToRoot();
+    };
+    HomePage.prototype.logout = function () {
+        var _this = this;
+        localStorage.clear();
+        setTimeout(function () { return _this.backToWelcome(); }, 1000);
+    };
+    HomePage.prototype.goToMatchTeam = function (event) {
+        console.log("clicked match team", event);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__match_team_match_team__["a" /* MatchTeamPage */], { "matchId": event });
+    };
+    return HomePage;
+}());
+HomePage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-home',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Upcoming Matches </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding class="appBackground">\n\n  <ion-card *ngFor="let match of matches" color="primary">\n\n    <ion-card-header>\n\n      {{match.match.team.teamname}} versus\n\n      {{match.match.opponent}}\n\n      <p>{{match.match.tournament.name}}</p>\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <p>{{match.match.matchTime | date:\'fullDate\'}}, {{match.matchTime | date:\'shortTime\'}}</p>\n\n      <p>{{match.match.location.name}}, {{match.match.location.address}}</p>\n\n	  \n\n         <ion-label>\n\n          Select Attendance\n\n        </ion-label>\n\n		\n\n		   <ion-item>\n\n      <ion-select [(ngModel)]="match.status" (ionChange)="availabilitySelected($event, match)">\n\n          <ion-option value="0">Not Provided</ion-option>\n\n        <ion-option value="1">IN</ion-option>\n\n        <ion-option value="2">OUT</ion-option>\n\n        <ion-option value="3">Waitlist</ion-option>\n\n      </ion-select>\n\n	 \n\n    </ion-item>\n\n	<p><ion-label>Comments</ion-label></p>\n\n      <ion-item>\n\n	  \n\n	       \n\n    <ion-input [(ngModel)]="match.comments" (ionChange)="availabilitySelected($event, match)"></ion-input>\n\n	 </ion-item>\n\n	 <button ion-button icon-left clear small (click)="goToMatchTeam(match.id)">\n\n            <ion-icon name="text"></ion-icon>\n\n            <div>Match Team</div>\n\n          </button>\n\n    </ion-card-content>\n\n  </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\home\home.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_3__providers_matches_matches__["a" /* MatchService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_admob_free__["a" /* AdMobFree */]])
+], HomePage);
+
+//# sourceMappingURL=home.js.map
+
+/***/ }),
+
+/***/ 54:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ForgotPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_login__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__welcome_welcome__ = __webpack_require__(30);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/**
+ * Generated class for the Forgot page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var ForgotPage = (function () {
+    function ForgotPage(navCtrl, navParams, authService, alertController, loadingController) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.authService = authService;
+        this.alertController = alertController;
+        this.loadingController = loadingController;
+        this.userData = { "username": "", "password": "", "name": "", "phone": "" };
+    }
+    ForgotPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad Forgot');
+    };
+    ForgotPage.prototype.forgot = function () {
+        var _this = this;
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.authService.forgot(this.userData).then(function (result) {
+            _this.responseData = result;
+            console.log("response in signup", _this.responseData);
+            console.log("response code", _this.responseData.statusCode);
+            loading.dismiss();
+            if (_this.responseData.statusCode == '200') {
+                console.log("test 200");
+                console.log("result", _this.responseData.results);
+                var alert_1 = _this.alertController.create({
+                    title: 'Email sent Successful',
+                    subTitle: 'Email sent is successful',
+                    buttons: [
+                        {
+                            text: 'OK',
+                            handler: function (data) {
+                                console.log('ok clicked');
+                                _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__login_login__["a" /* LoginPage */]);
+                                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__login_login__["a" /* LoginPage */]);
+                            }
+                        }
+                    ]
+                });
+                alert_1.present();
+            }
+            else if (_this.responseData.statusCode == '401') {
+                var alert_2 = _this.alertController.create({
+                    title: 'User account exists!',
+                    subTitle: 'This user does not exists in the list. Please Register!',
+                    buttons: [
+                        {
+                            text: 'OK',
+                            handler: function (data) {
+                                console.log('ok clicked');
+                                _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__login_login__["a" /* LoginPage */]);
+                            }
+                        }
+                    ]
+                });
+                alert_2.present();
+            }
+            else {
+                var alert_3 = _this.alertController.create({
+                    title: 'Server Unavailable!',
+                    subTitle: 'There seems to be some problem with our servers. Please try later, if the problem persists. Contact Us',
+                    buttons: [
+                        {
+                            text: 'OK',
+                            handler: function (data) {
+                                console.log('ok clicked');
+                                _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__login_login__["a" /* LoginPage */]);
+                            }
+                        }
+                    ]
+                });
+                alert_3.present();
+            }
+            //this.navCtrl.push(HomePage);
+        }, function (err) {
+            // Error log
+        });
+    };
+    ForgotPage.prototype.login = function () {
+        //Login page link
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__login_login__["a" /* LoginPage */]);
+    };
+    ForgotPage.prototype.homePage = function () {
+        //Login page link
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__welcome_welcome__["a" /* WelcomePage */]);
+    };
+    return ForgotPage;
+}());
+ForgotPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'forgot',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\forgot\forgot.html"*/'<!--\n\n  Generated template for the SignupPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n\n\n\n\n<ion-content padding class="appBackground">\n\n  <ion-card>\n\n    <ion-card-header>\n\n      Forgot Password\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <ion-list>\n\n      \n\n        <ion-item>\n\n          <ion-label stacked>Email</ion-label>\n\n          <ion-input type="text" [(ngModel)]="userData.username"></ion-input>\n\n        </ion-item>\n\n\n\n      \n\n\n\n        <button ion-button full color="success" (click)="forgot()">Reset Password</button>\n\n        <a href="#" (click)="login()">Login Page</a>\n\n		<a href="#" (click)="homePage()">Home Page</a>\n\n      </ion-list>\n\n    </ion-card-content>\n\n  </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\forgot\forgot.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
+], ForgotPage);
+
+//# sourceMappingURL=forgot.js.map
+
+/***/ }),
+
+/***/ 55:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignupPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__home_home__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__login_login__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__welcome_welcome__ = __webpack_require__(30);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+/**
+ * Generated class for the SignupPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var SignupPage = (function () {
+    function SignupPage(navCtrl, navParams, authService, alertController, loadingController, formBuilder) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.authService = authService;
+        this.alertController = alertController;
+        this.loadingController = loadingController;
+        this.userData = { "username": "", "password": "", "name": "", "phone": "" };
+        this.signupForm = formBuilder.group({
+            username: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].maxLength(25), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required])],
+            password: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].maxLength(25), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required])],
+            name: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].pattern('[a-zA-Z ]*'), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required])],
+            phone: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].maxLength(10), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].pattern('[0-9]*'), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required])]
+        });
+        this.username = this.signupForm.controls['username'];
+        this.password = this.signupForm.controls['password'];
+        this.name = this.signupForm.controls['name'];
+        this.phone = this.signupForm.controls['phone'];
+    }
+    SignupPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad SignupPage');
+    };
+    SignupPage.prototype.signup = function () {
+        //  this.submitAttempt = true;
+        var _this = this;
+        if (!this.signupForm.valid) {
+            //this.signupForm.slideTo(0);
+            console.log("not valid");
+        }
+        else {
+            console.log("success!");
+            console.log(this.signupForm.value);
+            //console.log(this.signupForm.value);
+        }
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.authService.signup(this.signupForm).then(function (result) {
+            _this.responseData = result;
+            console.log("response in signup", _this.responseData);
+            console.log("response code", _this.responseData.statusCode);
+            loading.dismiss();
+            if (_this.responseData.statusCode == '200') {
+                console.log("test 200");
+                console.log("result", _this.responseData.results);
+                localStorage.setItem('userData', JSON.stringify(_this.responseData.results.user));
+                var alert_1 = _this.alertController.create({
+                    title: 'Registration Successful',
+                    subTitle: 'Your Registration is successful',
+                    buttons: [
+                        {
+                            text: 'OK',
+                            handler: function (data) {
+                                console.log('ok clicked');
+                                _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__home_home__["a" /* HomePage */]);
+                                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_4__home_home__["a" /* HomePage */]);
+                            }
+                        }
+                    ]
+                });
+                alert_1.present();
+            }
+            else if (_this.responseData.statusCode == '401') {
+                loading.dismiss();
+                var alert_2 = _this.alertController.create({
+                    title: 'User account exists!',
+                    subTitle: 'This user account exists in the list. Please login or reset your password!',
+                    buttons: [
+                        {
+                            text: 'OK',
+                            handler: function (data) {
+                                console.log('ok clicked');
+                                _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__login_login__["a" /* LoginPage */]);
+                            }
+                        }
+                    ]
+                });
+                alert_2.present();
+            }
+            else {
+                loading.dismiss();
+                var alert_3 = _this.alertController.create({
+                    title: 'Server Unavailable!',
+                    subTitle: 'There seems to be some problem with our servers. Please try later, if the problem persists. Contact Us',
+                    buttons: [
+                        {
+                            text: 'OK',
+                            handler: function (data) {
+                                console.log('ok clicked');
+                                _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__login_login__["a" /* LoginPage */]);
+                            }
+                        }
+                    ]
+                });
+                alert_3.present();
+            }
+            //this.navCtrl.push(HomePage);
+        }, function (err) {
+            // Error log
+        });
+    };
+    SignupPage.prototype.login = function () {
+        //Login page link
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__login_login__["a" /* LoginPage */]);
+    };
+    SignupPage.prototype.homePage = function () {
+        //Login page link
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__welcome_welcome__["a" /* WelcomePage */]);
+    };
+    return SignupPage;
+}());
+SignupPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-signup',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\signup\signup.html"*/'<!--\n\n  Generated template for the SignupPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>signup</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground">\n\n  <ion-card>\n\n    <ion-card-header>\n\n      Registration\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <ion-list>\n\n        <form [formGroup]="signupForm" (submit)="signup()">\n\n          <ion-item>\n\n            <ion-label floating>Name</ion-label>\n\n            <ion-input type="text" formControlName="name"></ion-input>\n\n          </ion-item>\n\n\n\n          <ion-item>\n\n            <ion-label floating>Phone</ion-label>\n\n            <ion-input type="text" formControlName="phone"></ion-input>\n\n          </ion-item>\n\n\n\n          <ion-item [class.invalid]="!username.valid">\n\n            <ion-label floating>Email</ion-label>\n\n            <ion-input type="text" formControlName="username" autocapitalize="off"></ion-input>\n\n          </ion-item>\n\n          <ion-item *ngIf="!username.valid" class="invalid">\n\n              <p>* Email is required!</p>\n\n          </ion-item>\n\n\n\n          <ion-item [class.invalid]="!password.valid">\n\n            <ion-label floating>Password</ion-label>\n\n            <ion-input type="password" formControlName="password"></ion-input>\n\n          </ion-item>\n\n\n\n          <ion-item *ngIf="!password.valid" class="invalid">\n\n              <p>* Password is required!</p>\n\n          </ion-item>\n\n  \n\n          \n\n\n\n          <button ion-button full color="success" type="submit" [disabled]="!signupForm.valid">Sign up</button>\n\n          <a href="#" (click)="login()">Login Page</a>\n\n<a href="#" (click)="homePage()">Home Page</a>\n\n        </form>\n\n      </ion-list>\n\n    </ion-card-content>\n\n  </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\signup\signup.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */]])
+], SignupPage);
+
+//# sourceMappingURL=signup.js.map
+
+/***/ }),
+
+/***/ 88:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyProfilePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_players_players__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__ = __webpack_require__(89);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/**
+ * Generated class for the MyProfilePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var MyProfilePage = (function () {
+    function MyProfilePage(navCtrl, navParams, playersService, loadingController, authService, teamService) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.playersService = playersService;
+        this.loadingController = loadingController;
+        this.authService = authService;
+        this.teamService = teamService;
+        this.tabsvalues = "batting";
+        this.userPostData = { "user_id": "", "token": "" };
+        this.playerStats = " ";
+        this.battingStats = "";
+        this.bowlingStats = "";
+        this.teams = "";
+        this.statsArray = [];
+        if (this.authService.getAuthenticated()) {
+            var data = JSON.parse(localStorage.getItem('userData'));
+            console.log("fetch data", data);
+            this.userDetails = data;
+            // console.log("user data from storage", this.userDetails)
+            this.userPostData.user_id = this.userDetails.id;
+            this.userPostData.token = this.userDetails.token;
+            this.getData();
+        }
+    }
+    MyProfilePage.prototype.getData = function () {
+        var _this = this;
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        //   this.playersService.getPlayerStats().then((result) => {
+        //     this.responseData = result;
+        //     console.log(this.responseData); 
+        //     if (this.responseData.statusCode == '200'){
+        //       loading.dismiss();
+        //       console.log("test 200");
+        //       console.log("result", this.responseData.results.Stats);
+        //       this.playerStats = this.responseData.results.Stats;
+        //       this.battingStats = this.responseData.results.Stats.battingStatistics;
+        //       this.bowlingStats = this.responseData.results.Stats.bowlingStatistics;
+        //     }  else if(this.responseData.statusCode == "404") {
+        //       console.log("unauthorrised");
+        //       localStorage.clear();
+        //     } else {
+        //       loading.dismiss();
+        //       console.log("error", this.responseData)
+        //     }
+        // });
+        this.teamService.getAllTeams().then(function (result) {
+            _this.responseData = result;
+            console.log(_this.responseData);
+            if (_this.responseData.statusCode == '200') {
+                loading.dismiss();
+                console.log("test 200");
+                _this.teams = _this.responseData.results.teams;
+                _this.selectedTeam = _this.responseData.results.teams[0];
+                _this.teamSelected(_this.responseData.results.teams[0]);
+                console.log("result teams", JSON.stringify(_this.responseData.results));
+            }
+            else if (_this.responseData.statusCode == "404") {
+                console.log("unauthorrised");
+                localStorage.clear();
+                //  this.backToWelcome();
+            }
+            else {
+                loading.dismiss();
+                console.log("error", _this.responseData);
+            }
+        }, function (err) {
+            // Error log
+        });
+    };
+    MyProfilePage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad MyProfilePage');
+    };
+    MyProfilePage.prototype.teamSelected = function (team) {
+        console.log("selected team", team);
+        console.log("team id", team.id);
+        this.getStats(team);
+    };
+    MyProfilePage.prototype.changeMenus = function (index) {
+        this.teamSelectedIndex = index;
+    };
+    MyProfilePage.prototype.getStats = function (team) {
+        var _this = this;
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        this.statsArray = [];
+        this.playersService.getPlayerTournamentStats(team.id).then(function (result) {
+            _this.responseData = result;
+            console.log(_this.responseData);
+            if (_this.responseData.statusCode == '200') {
+                loading.dismiss();
+                console.log("stats test 200");
+                if (_this.responseData.results.stats.length == 0) {
+                }
+                else {
+                    _this.statsArray = _this.responseData.results.stats;
+                    console.log("result", _this.responseData.results.stats);
+                    // console.log("arrary", JSON.parse(this.statsArray));
+                }
+            }
+            else if (_this.responseData.statusCode == "404") {
+                console.log("unauthorrised");
+                localStorage.clear();
+                //  this.backToWelcome();
+            }
+            else {
+                loading.dismiss();
+                console.log("error", _this.responseData);
+            }
+        }, function (err) {
+            // Error log
+        });
+    };
+    return MyProfilePage;
+}());
+MyProfilePage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-my-profile',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\my-profile\my-profile.html"*/'<!--\n\n  Generated template for the MyProfilePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n          <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>My Profile</ion-title>\n\n      </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground">\n\n    <ion-item>\n\n        <ion-label>Pick a Team</ion-label>\n\n        <ion-select [(ngModel)]="selectedTeam" (ionChange)="teamSelected($event)">\n\n          <ion-option *ngFor="let team of teams" [value]="team">{{team.teamname}}</ion-option>\n\n        </ion-select>\n\n    </ion-item>\n\n\n\n\n\n  <h3>{{statsArray[0]?.stats.battingStatistics?.player.name}}</h3>\n\n  <ion-segment [(ngModel)]="tabsvalues">\n\n      <ion-segment-button value="batting">\n\n        Batting Stats\n\n      </ion-segment-button>\n\n      <ion-segment-button value="bowling">\n\n          Bowling Stats\n\n      </ion-segment-button>\n\n      <ion-segment-button value="fielding">\n\n            Fielding Stats\n\n      </ion-segment-button>\n\n    </ion-segment>\n\n  \n\n  <div [ngSwitch]="tabsvalues"> \n\n    <div *ngSwitchCase="\'batting\'">\n\n        <div class="cric-stat-batting-table">\n\n            <ul>\n\n              <li class="header">\n\n                  <p class="cric-player-name">Tournament</p>\n\n                  <p>M</p>\n\n                  <p>I</p>\n\n                  <p>R</p>\n\n                  <p>B</p>\n\n                  <p class="cric-values-decimals">Av</p>\n\n                  <p class="cric-values-decimals">SR</p>\n\n              </li>\n\n              <li *ngFor="let tournament of statsArray">\n\n                  <p class="cric-player-name">{{tournament?.name}}</p>\n\n                  <p>{{tournament.stats.battingStatistics?.matches}}</p>\n\n                  <p>{{tournament.stats.battingStatistics?.innings}}</p>\n\n                  <p>{{tournament.stats.battingStatistics?.run}}</p>\n\n                  <p>{{tournament.stats.battingStatistics?.ball}}</p>\n\n                  <p class="cric-values-decimals">{{tournament.stats.battingStatistics?.average | number : \'1.2-2\' }}</p>\n\n                  <p class="cric-values-decimals">{{tournament.stats.battingStatistics?.sr | number : \'1.2-2\' }}</p>\n\n              </li>\n\n            </ul>\n\n          </div>\n\n    </div>\n\n\n\n    <div *ngSwitchCase="\'bowling\'">\n\n        <div class="cric-stat-bowling-table">\n\n            <ul>\n\n              <li class="header">\n\n                  <p class="cric-player-name">Tournament</p>\n\n                  <p>M</p>\n\n                  <p>O</p>\n\n                  <p>R</p>\n\n                  <p>W</p>\n\n                  <p>Wd</p>\n\n                  <p class="cric-values-decimals">EC</p>\n\n              </li>\n\n              <li *ngFor="let tournament of statsArray">\n\n                  <p class="cric-player-name">{{tournament?.name}}</p>\n\n                  <p>{{tournament.stats.bowlingStatistics?.matches}}</p>\n\n                  <p>{{tournament.stats.bowlingStatistics?.overs}}</p>\n\n                  <p>{{tournament.stats.bowlingStatistics?.run}}</p>\n\n                  <p>{{tournament.stats.bowlingStatistics?.wickets}}</p>\n\n                  <p>{{tournament.stats.bowlingStatistics?.wide}}</p>\n\n                  <p class="cric-values-decimals">{{tournament.stats.bowlingStatistics?.economy | number : \'1.2-2\'}}</p>\n\n              </li>\n\n            </ul>\n\n          </div>\n\n    </div>\n\n\n\n      <div *ngSwitchCase="\'fielding\'">\n\n          <div class="cric-stat-bowling-table">\n\n              <ul>\n\n                <li class="header">\n\n                    <p class="cric-player-name">Tournament</p>\n\n                    <p>M</p>\n\n                    <p>Ct</p>\n\n                    <p>R/O</p>\n\n                    <p>St</p>\n\n                </li>\n\n                <li *ngFor="let tournament of statsArray">\n\n                    <p class="cric-player-name">{{tournament?.name}}</p>\n\n                    <p>{{tournament.stats.bowlingStatistics?.matches}}</p>\n\n                    <p>{{tournament.stats.bowlingStatistics?.catches}}</p>\n\n                    <p>{{tournament.stats.bowlingStatistics?.runOuts}}</p>\n\n                    <p>{{tournament.stats.bowlingStatistics?.stumpings}}</p>\n\n                </li>\n\n              </ul>\n\n            </div>\n\n      </div>\n\n\n\n    </div> \n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\my-profile\my-profile.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_players_players__["a" /* PlayersProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__["a" /* TeamService */]])
+], MyProfilePage);
+
+//# sourceMappingURL=my-profile.js.map
+
+/***/ }),
+
+/***/ 89:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TeamService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var apiUrl = 'https://crickify.herokuapp.com/teamplayer';
+//let isLoggedIn : boolean;
+var isAuthenticated;
+var TeamService = (function () {
+    function TeamService(http) {
+        this.http = http;
+    }
+    TeamService.prototype.getToken = function () {
+        return JSON.parse(localStorage.getItem('userData')).user.token;
+    };
+    TeamService.prototype.getAllTeams = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.get(apiUrl + '/teams', { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("auth response matches", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("matches", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    return TeamService;
+}());
+TeamService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
+], TeamService);
+
+//# sourceMappingURL=teams.js.map
+
+/***/ }),
+
+/***/ 90:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyAccountPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(13);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the MyAccountPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var MyAccountPage = (function () {
+    function MyAccountPage(navCtrl, navParams, authService, loadingController) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.authService = authService;
+        this.loadingController = loadingController;
+        this.userPostData = { "user_id": "", "token": "" };
+        this.user = " ";
+        if (this.authService.getAuthenticated()) {
+            var data = JSON.parse(localStorage.getItem('userData'));
+            console.log("fetch data", data);
+            this.userDetails = data;
+            // console.log("user data from storage", this.userDetails)
+            this.userPostData.user_id = this.userDetails.id;
+            this.userPostData.token = this.userDetails.token;
+        }
+    }
+    MyAccountPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad MyAccountPage');
+        console.log('ionViewDidLoad home page');
+        if (this.authService.getAuthenticated()) {
+            console.log("user", this.authService.getUser());
+            this.user = JSON.parse(JSON.stringify(this.authService.getUser()));
+        }
+    };
+    return MyAccountPage;
+}());
+MyAccountPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-my-account',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\my-account\my-account.html"*/'<!--\n\n  Generated template for the MyAccountPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n          <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>My Account</ion-title>\n\n      </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground">\n\n  <p>Name  : {{user.name}}</p>\n\n  <p>Phone  : {{user.phone}}</p>\n\n  <p>Username  : {{user.username}}</p>\n\n  \n\n      \n\n              \n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\my-account\my-account.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
+], MyAccountPage);
+
+//# sourceMappingURL=my-account.js.map
+
+/***/ }),
+
+/***/ 91:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PreviousMatchDetailsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_matches_matches__ = __webpack_require__(34);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the PreviousMatchDetailsPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var PreviousMatchDetailsPage = (function () {
+    function PreviousMatchDetailsPage(navCtrl, navParams, matchService, loadingController) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.matchService = matchService;
+        this.loadingController = loadingController;
+        this.batting = [];
+        this.bowling = [];
+        this.match = "";
+        this.tabsvalues = "summary";
+        console.log("passed data", navParams.get('matchId'));
+        this.matchId = navParams.get('matchId');
+        this.getData(this.matchId);
+    }
+    PreviousMatchDetailsPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad PreviousMatchDetailsPage');
+    };
+    PreviousMatchDetailsPage.prototype.getData = function (matchId) {
+        var _this = this;
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.matchService.getMatchSummary(matchId).then(function (result) {
+            _this.responseData = result;
+            console.log(_this.responseData);
+            if (_this.responseData.statusCode == '200') {
+                loading.dismiss();
+                console.log("test 200");
+                console.log("result", _this.responseData.results.matchSummary);
+                _this.matchSummary = _this.responseData.results.matchSummary;
+                _this.match = _this.responseData.results.matchSummary.match;
+                _this.batting = _this.responseData.results.matchSummary.batting;
+                _this.bowling = _this.responseData.results.matchSummary.bowling;
+            }
+            else if (_this.responseData.statusCode == "404") {
+                console.log("unauthorrised");
+                localStorage.clear();
+            }
+            else {
+                loading.dismiss();
+                console.log("error", _this.responseData);
+            }
+        }, function (err) {
+            // Error log
+        });
+    };
+    return PreviousMatchDetailsPage;
+}());
+PreviousMatchDetailsPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-previous-match-details',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\previous-match-details\previous-match-details.html"*/'<!--\n\n  Generated template for the PreviousMatchDetailsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Match Details</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground">\n\n<ion-card>\n\n  <ion-card-header>\n\n      {{match?.team?.teamname}} Vs\n\n      {{match?.opponent}}\n\n      <p>{{match?.tournament?.name}}</p>\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <p>{{match?.matchTime | date:\'fullDate\'}}, {{match?.matchTime | date:\'shortTime\'}}</p>\n\n      <p>{{match?.location?.name}}, {{match?.location?.address}}</p>\n\n      <p>Toss won by <span *ngIf="match.tossWon">{{match?.team?.teamname}}</span><span *ngIf="!match.tossWon">{{match?.opponent}}</span>\n\n      <p>Result : {{match?.result}}, {{match?.remarks}}</p>\n\n      <p>{{match?.team?.teamname}}: {{match?.score}}/{{match?.wickets}}</p>\n\n      <p>{{match?.opponent}}:{{match?.oppositionScore}}/{{match?.oppositionWickets}}</p>\n\n      </ion-card-content>\n\n  </ion-card>\n\n  <ion-segment [(ngModel)]="tabsvalues">\n\n      <ion-segment-button value="summary">\n\n        Summary\n\n      </ion-segment-button>\n\n      <ion-segment-button value="batting">\n\n          Batting\n\n      </ion-segment-button>\n\n      <ion-segment-button value="bowling">\n\n          Bowling\n\n      </ion-segment-button>\n\n    </ion-segment>\n\n  \n\n  <div [ngSwitch]="tabsvalues"> \n\n      <div *ngSwitchCase="\'summary\'">\n\n        <div class="cric-stat-batting-table">\n\n          <h4>Batting</h4>\n\n          <ul>\n\n            <li class="header">\n\n                <p class="cric-player-name">Name</p>\n\n                <p>R</p>\n\n                <p>B</p>\n\n                <p>4\'s</p>\n\n                <p>6\'s</p>\n\n                <p class="cric-values-decimals">SR</p>\n\n            </li>\n\n            <li *ngFor="let stat of (batting ? batting.slice(0,3) : [])">\n\n                <p class="cric-player-name">{{stat?.player?.name}}</p>\n\n                <p>{{stat?.run}}</p>\n\n                <p>{{stat?.ball}}</p>\n\n                <p>{{stat?.four}}</p>\n\n                <p>{{stat?.six}}</p>\n\n                <p class="cric-values-decimals">{{stat?.sr | number : \'1.2-2\'}}</p>\n\n            </li>\n\n          </ul>\n\n        </div>\n\n        <div class="cric-stat-bowling-table">\n\n            <h4>Bowling</h4>\n\n            <ul>\n\n              <li class="header">\n\n                  <p class="cric-player-name">Name</p>\n\n                  <p>O</p>\n\n                  <p>R</p>\n\n                  <p>W</p>\n\n                  <p>Wd</p>\n\n                  <p class="cric-values-decimals">EC</p>\n\n              </li>\n\n              <li *ngFor="let stat of (bowling ? bowling.slice(0,3) : [])">\n\n                  <p class="cric-player-name">{{stat?.player?.name}}</p>\n\n                  <p>{{stat?.overs}}</p>\n\n                  <p>{{stat?.run}}</p>\n\n                  <p>{{stat?.wickets}}</p>\n\n                  <p>{{stat?.wide}}</p>\n\n                  <p class="cric-values-decimals">{{stat?.economy | number : \'1.2-2\'}}</p>\n\n              </li>\n\n            </ul>\n\n          </div>\n\n      </div>\n\n    <div *ngSwitchCase="\'batting\'">\n\n        <div class="cric-stat-batting-table">\n\n            <ul>\n\n              <li class="header">\n\n                  <p class="cric-player-name">Name</p>\n\n                  <p>R</p>\n\n                  <p>B</p>\n\n                  <p>4\'s</p>\n\n                  <p>6\'s</p>\n\n              </li>\n\n              <li *ngFor="let stat of batting">\n\n                  <p class="cric-player-name">{{stat?.player?.name}}</p>\n\n                  <p>{{stat?.run}}</p>\n\n                  <p>{{stat?.ball}}</p>\n\n                  <p>{{stat?.four}}</p>\n\n                  <p>{{stat?.six}}</p>\n\n              </li>\n\n            </ul>\n\n          </div>\n\n      </div>\n\n      <div *ngSwitchCase="\'bowling\'">\n\n          <div class="cric-stat-bowling-table">\n\n              <ul>\n\n                <li class="header">\n\n                    <p class="cric-player-name">Name</p>\n\n                    <p>O</p>\n\n                    <p>R</p>\n\n                    <p>W</p>\n\n                    <p>Wd</p>\n\n                    <p>EC</p>\n\n                </li>\n\n                <li *ngFor="let stat of bowling">\n\n                    <p class="cric-player-name">{{stat?.player?.name}}</p>\n\n                    <p>{{stat?.overs}}</p>\n\n                    <p>{{stat?.run}}</p>\n\n                    <p>{{stat?.wickets}}</p>\n\n                    <p>{{stat?.wide}}</p>\n\n                    <p>{{stat?.economy | number : \'1.2-2\'}}</p>\n\n                </li>\n\n              </ul>\n\n            </div>\n\n      </div>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\previous-match-details\previous-match-details.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_matches_matches__["a" /* MatchService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
+], PreviousMatchDetailsPage);
+
+//# sourceMappingURL=previous-match-details.js.map
+
+/***/ }),
+
+/***/ 92:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PreviousMatchesPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_matches_matches__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__previous_match_details_previous_match_details__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__match_team_match_team__ = __webpack_require__(45);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+/**
+ * Generated class for the PreviousMatchesPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var PreviousMatchesPage = (function () {
+    function PreviousMatchesPage(navCtrl, navParams, loadingController, authService, matchService) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.loadingController = loadingController;
+        this.authService = authService;
+        this.matchService = matchService;
+        this.matches = '';
+        this.getData();
+    }
+    PreviousMatchesPage.prototype.getData = function () {
+        var _this = this;
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.matchService.getPreviousMatches().then(function (result) {
+            _this.responseData = result;
+            console.log(_this.responseData);
+            if (_this.responseData.statusCode == '200') {
+                loading.dismiss();
+                console.log("test 200");
+                console.log("result", _this.responseData.results.matches);
+                _this.matches = _this.responseData.results.matches;
+            }
+            else if (_this.responseData.statusCode == "404") {
+                console.log("unauthorrised");
+                localStorage.clear();
+            }
+            else {
+                loading.dismiss();
+                console.log("error", _this.responseData);
+            }
+        }, function (err) {
+            // Error log
+        });
+    };
+    PreviousMatchesPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad PreviousMatchesPage');
+        console.log('ionViewDidLoad home page');
+        if (this.authService.getAuthenticated()) {
+            console.log("token", this.authService.getToken());
+        }
+    };
+    PreviousMatchesPage.prototype.goToMatchDetails = function (event) {
+        console.log("clicked match", event);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__previous_match_details_previous_match_details__["a" /* PreviousMatchDetailsPage */], { "matchId": event });
+    };
+    PreviousMatchesPage.prototype.goToMatchTeam = function (event) {
+        console.log("clicked match team", event);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__match_team_match_team__["a" /* MatchTeamPage */], { "matchId": event });
+    };
+    return PreviousMatchesPage;
+}());
+PreviousMatchesPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-previous-matches',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\previous-matches\previous-matches.html"*/'<!--\n\n  Generated template for the PreviousMatchesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n          <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>Completed Matches</ion-title>\n\n      </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground">\n\n    <ion-card *ngFor="let match of matches">\n\n        <ion-card-header>\n\n          {{match.team.teamname}} Vs\n\n          {{match.opponent}}\n\n          <p>{{match.tournament.name}}</p>\n\n        </ion-card-header>\n\n        <ion-card-content>\n\n          <p>{{match.matchTime | date:\'fullDate\'}}, {{match.matchTime | date:\'shortTime\'}}</p>\n\n          <p>{{match.location.name}}, {{match.location.address}}</p>\n\n          <p>Toss won by <span *ngIf="match.tossWon">{{match.team.teamname}}</span><span *ngIf="!match.tossWon">{{match.opponent}}</span>\n\n          <p>Result : {{match.result}}, {{match.remarks}}</p>\n\n          <p>{{match.team.teamname}}: {{match.score}}/{{match.wickets}}</p>\n\n          <p>{{match.opponent}}:{{match.oppositionScore}}/{{match.oppositionWickets}}</p>\n\n        </ion-card-content>\n\n		 <button ion-button icon-left clear small (click)="goToMatchTeam(match.id)">\n\n            <ion-icon name="text"></ion-icon>\n\n            <div>Match Team</div>\n\n          </button>\n\n        <button ion-button icon-left clear small (click)="goToMatchDetails(match.id)">\n\n            <ion-icon name="text"></ion-icon>\n\n            <div>Match Details</div>\n\n          </button>\n\n      </ion-card>\n\n    </ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\previous-matches\previous-matches.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_3__providers_matches_matches__["a" /* MatchService */]])
+], PreviousMatchesPage);
+
+//# sourceMappingURL=previous-matches.js.map
+
+/***/ }),
+
+/***/ 93:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyTeamsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the MyTeamsPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var MyTeamsPage = (function () {
+    function MyTeamsPage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+    }
+    MyTeamsPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad MyTeamsPage');
+    };
+    return MyTeamsPage;
+}());
+MyTeamsPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-my-teams',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\my-teams\my-teams.html"*/'<!--\n\n  Generated template for the MyTeamsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n          <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>My Teams</ion-title>\n\n      </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground">\n\n  My Teams coming soon.Team List will be Added \n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\my-teams\my-teams.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]])
+], MyTeamsPage);
+
+//# sourceMappingURL=my-teams.js.map
+
+/***/ }),
+
+/***/ 94:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ResetPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_login__ = __webpack_require__(36);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the Forgot page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var ResetPage = (function () {
+    function ResetPage(navCtrl, navParams, authService, alertController, loadingController) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.authService = authService;
+        this.alertController = alertController;
+        this.loadingController = loadingController;
+        this.userPostData = { "user_id": "", "token": "" };
+        this.userData = { "username": "", "password": "", "name": "", "phone": "" };
+        if (this.authService.getAuthenticated()) {
+            var data = JSON.parse(localStorage.getItem('userData'));
+            console.log("fetch data", data);
+            this.userDetails = data;
+            // console.log("user data from storage", this.userDetails)
+            this.userPostData.user_id = this.userDetails.id;
+            this.userPostData.token = this.userDetails.token;
+        }
+    }
+    ResetPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad Forgot');
+    };
+    ResetPage.prototype.reset = function () {
+        var _this = this;
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.authService.reset(this.userData).then(function (result) {
+            _this.responseData = result;
+            console.log("response in signup", _this.responseData);
+            console.log("response code", _this.responseData.statusCode);
+            loading.dismiss();
+            if (_this.responseData.statusCode == '200') {
+                console.log("test 200");
+                console.log("result", _this.responseData.results);
+                var alert_1 = _this.alertController.create({
+                    title: 'Password change Successful',
+                    subTitle: 'Password change successful',
+                    buttons: [
+                        {
+                            text: 'OK',
+                            handler: function (data) {
+                                console.log('ok clicked');
+                                _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__login_login__["a" /* LoginPage */]);
+                                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__login_login__["a" /* LoginPage */]);
+                            }
+                        }
+                    ]
+                });
+                alert_1.present();
+            }
+            else if (_this.responseData.statusCode == '401') {
+                var alert_2 = _this.alertController.create({
+                    title: 'User account exists!',
+                    subTitle: 'This user does not exists in the list. Please Register!',
+                    buttons: [
+                        {
+                            text: 'OK',
+                            handler: function (data) {
+                                console.log('ok clicked');
+                            }
+                        }
+                    ]
+                });
+                alert_2.present();
+            }
+            else {
+                var alert_3 = _this.alertController.create({
+                    title: 'Server Unavailable!',
+                    subTitle: 'There seems to be some problem with our servers. Please try later, if the problem persists. Contact Us',
+                    buttons: [
+                        {
+                            text: 'OK',
+                            handler: function (data) {
+                                console.log('ok clicked');
+                            }
+                        }
+                    ]
+                });
+                alert_3.present();
+            }
+            //this.navCtrl.push(HomePage);
+        }, function (err) {
+            // Error log
+        });
+    };
+    ResetPage.prototype.login = function () {
+        //Login page link
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__login_login__["a" /* LoginPage */]);
+    };
+    return ResetPage;
+}());
+ResetPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'reset',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\reset\reset.html"*/'<!--\n\n  Generated template for the SignupPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n          <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n    <ion-title>Reset Password</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground">\n\n  <ion-card>\n\n    <ion-card-header>\n\n      Reset Password\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <ion-list>\n\n      \n\n        <ion-item>\n\n          <ion-label stacked>Password</ion-label>\n\n          <ion-input type="text" [(ngModel)]="userData.password"></ion-input>\n\n        </ion-item>\n\n\n\n      \n\n\n\n        <button ion-button full color="success" (click)="reset()">Reset Password</button>\n\n        \n\n      </ion-list>\n\n    </ion-card-content>\n\n  </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\reset\reset.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
+], ResetPage);
+
+//# sourceMappingURL=reset.js.map
+
+/***/ }),
+
+/***/ 95:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LogoutPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__welcome_welcome__ = __webpack_require__(30);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the Forgot page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var LogoutPage = (function () {
+    function LogoutPage(navCtrl, navParams, authService, alertController, loadingController) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.authService = authService;
+        this.alertController = alertController;
+        this.loadingController = loadingController;
+        this.userPostData = { "user_id": "", "token": "" };
+        this.userData = { "username": "", "password": "", "name": "", "phone": "" };
+        if (this.authService.getAuthenticated()) {
+            var data = JSON.parse(localStorage.getItem('userData'));
+            console.log("fetch data", data);
+            this.userDetails = data;
+            // console.log("user data from storage", this.userDetails)
+            this.userPostData.user_id = this.userDetails.id;
+            this.userPostData.token = this.userDetails.token;
+        }
+    }
+    LogoutPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad Forgot');
+    };
+    LogoutPage.prototype.logout = function () {
+        localStorage.clear();
+        this.authService.logout();
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__welcome_welcome__["a" /* WelcomePage */]);
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__welcome_welcome__["a" /* WelcomePage */]);
+    };
+    return LogoutPage;
+}());
+LogoutPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'logout',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\logout\logout.html"*/'<!--\n\n  Generated template for the SignupPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Log Out</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground">\n\n  <ion-card>\n\n    <ion-card-header>\n\n      Log Out\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <ion-list>\n\n      \n\n      \n\n\n\n      \n\n\n\n        <button ion-button full color="success" (click)="logout()">Log Out</button>\n\n        \n\n      </ion-list>\n\n    </ion-card-content>\n\n  </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\logout\logout.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
+], LogoutPage);
+
+//# sourceMappingURL=logout.js.map
+
+/***/ })
+
+},[231]);
+//# sourceMappingURL=main.js.map
