@@ -6,6 +6,7 @@ import {AuthService} from '../../providers/auth/auth';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams ,LoadingController} from 'ionic-angular';
 import { MatchService } from '../../providers/matches/matches';
+import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
 
 /**
  * Generated class for the WelcomePage page.
@@ -23,10 +24,26 @@ export class WelcomePage {
 battings : any;
 bowlings : any;
   responseData: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService,public loadingController: LoadingController,public matchService:MatchService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService,public loadingController: LoadingController,public matchService:MatchService,public admob: AdMobFree) {
   }
-
+showBanner() {
+ 
+        let bannerConfig: AdMobFreeBannerConfig = {
+            
+            autoShow: true,
+           id:'ca-app-pub-7720772047232561/8941352265'
+        };
+ 
+        this.admob.banner.config(bannerConfig);
+ console.log('view did before enter ad');
+        this.admob.banner.prepare().then(() => {
+            // success
+			console.log('view did enter ad');
+        }).catch(e => console.log("view did error enter ad",e));
+  console.log('view did after enter ad');
+    }
   ionViewDidLoad() {
+	   this.showBanner();
     console.log('ionViewDidLoad WelcomePage');
     if (this.authService.getAuthenticated()){
       //console.log("token", this.authService.getToken());

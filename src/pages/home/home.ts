@@ -31,17 +31,18 @@ matches : any;
 showBanner() {
  
         let bannerConfig: AdMobFreeBannerConfig = {
-             // Remove in production
+            
             autoShow: true,
-           id:'ca-app-pub-7720772047232561~3441613572'
+           id:'ca-app-pub-7720772047232561/8941352265'
         };
  
         this.admob.banner.config(bannerConfig);
- 
+ console.log('view did before enter ad');
         this.admob.banner.prepare().then(() => {
             // success
-        }).catch(e => console.log(e));
- 
+			console.log('view did enter ad');
+        }).catch(e => console.log("view did error enter ad",e));
+  console.log('view did after enter ad');
     }
   ionViewCanEnter(){
 	  this.showBanner();

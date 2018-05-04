@@ -40,7 +40,8 @@ export class MyApp {
          androidPermissions.requestPermissions(
            [
              androidPermissions.PERMISSION.INTERNET,
-			 androidPermissions.PERMISSION.ACCESS_NETWORK_STATE
+			 androidPermissions.PERMISSION.ACCESS_NETWORK_STATE,
+			 androidPermissions.PERMISSION.ACCESS_FINE_LOCATION
            ]
          );
 
