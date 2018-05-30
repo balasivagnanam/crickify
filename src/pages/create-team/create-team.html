@@ -1,0 +1,40 @@
+<!--
+  Generated template for the PreviousMatchDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Create Team</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="appBackground" >
+ <ion-card>
+    <ion-card-header>
+      Create Team
+    </ion-card-header>
+    <ion-card-content>
+  <ion-list no-lines>
+ 
+    <form [formGroup]="createTeamForm">
+ 
+        <ion-item>
+            <ion-label floating>Team Name</ion-label>
+            <ion-input formControlName="teamname" type="text"></ion-input>
+        </ion-item>
+ 
+ 
+    </form>
+  <button ion-button color="secondary" icon-left clear small (click)="createTeam()">
+            Create Team
+            
+          </button>
+</ion-list>
+</ion-card-content>
+ </ion-card>
+</ion-content>

@@ -46,8 +46,13 @@ import {LogoutPage} from '../pages/logout/logout';
 import {LogoutPageModule} from '../pages/logout/logout.module';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
-
+import {CreateTeamPage} from '../pages/create-team/create-team';
+import {CreateTeamModule} from '../pages/create-team/create-team.module';
+import {TeamPlayersPage} from '../pages/team-players/team-players';
+import {TeamPlayersPageModule} from '../pages/team-players/team-players.module';
 import {FormsModule} from "@angular/forms";
+import {CreatePlayerPage} from '../pages/create-player/create-player';
+import {CreatePlayerModule} from '../pages/create-player/create-player.module';
 @NgModule({
   declarations: [
     MyApp,
@@ -67,7 +72,7 @@ import {FormsModule} from "@angular/forms";
     PreviousMatchDetailsPageModule,
 	MatchTeamPageModule,
 	ResetPageModule,
-	LogoutPageModule,WelcomePageModule,
+	LogoutPageModule,WelcomePageModule,CreateTeamModule,TeamPlayersPageModule,CreatePlayerModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -86,7 +91,8 @@ import {FormsModule} from "@angular/forms";
 	FinancePage,
 	ForgotPage,
 	ResetPage,
-	LogoutPage
+	LogoutPage,
+	CreateTeamPage,TeamPlayersPage,CreatePlayerPage
   ],
   providers: [
     StatusBar,

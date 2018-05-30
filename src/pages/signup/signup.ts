@@ -64,7 +64,7 @@ phone : any;
       content: 'Please wait...'
     });
     loading.present();
-     this.authService.signup(this.signupForm).then((result) => {
+     this.authService.signup(this.signupForm.value).then((result) => {
       this.responseData = result;
       console.log("response in signup", this.responseData);
       console.log("response code", this.responseData.statusCode);
@@ -89,7 +89,7 @@ phone : any;
         });
         alert.present();
       } else if(this.responseData.statusCode == '401'){
-        loading.dismiss();
+        
         let alert = this.alertController.create({
           title: 'User account exists!',
           subTitle: 'This user account exists in the list. Please login or reset your password!',
@@ -105,7 +105,7 @@ phone : any;
         });
         alert.present();
       } else {
-        loading.dismiss();
+        
         let alert = this.alertController.create({
           title: 'Server Unavailable!',
           subTitle: 'There seems to be some problem with our servers. Please try later, if the problem persists. Contact Us',
@@ -123,7 +123,8 @@ phone : any;
       }
       //this.navCtrl.push(HomePage);
     }, (err) => {
-      // Error log
+      loading.dismiss();
+	  console.log("error",err);
     });
 
   }

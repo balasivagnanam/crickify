@@ -10,12 +10,26 @@
         <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>My Teams</ion-title>
+        <ion-title>Manage Teams</ion-title>
       </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding class="appBackground">
-  My Teams coming soon.Team List will be Added 
+  <ion-card *ngFor="let team of teams" color="primary">
+    <ion-card-header>
+      {{team.teamname}}
+	   </ion-card-header>
+	   <ion-card-content>
+     	 <button ion-button color="light" icon-left clear small (click)="goToTeam(team)">
+            Manage Team
+            
+          </button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+
+<ion-fab bottom right>
+    <button ion-fab mini (click)="createTeam()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>

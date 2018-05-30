@@ -18,11 +18,13 @@ import {FinancePage} from '../pages/finance/finance';
 import {ForgotPage} from '../pages/forgot/forgot';
 import {ResetPage} from '../pages/reset/reset';
 import {LogoutPage} from '../pages/logout/logout';
+import {TeamPlayersPage} from '../pages/team-players/team-players';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
 import {BrowserModule} from "@angular/platform-browser";
 import {FormsModule} from "@angular/forms";
+import { Events } from 'ionic-angular';
 @Component({
   templateUrl: 'app.html'
 })
@@ -30,11 +32,12 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = WelcomePage;
-
+type:any;
   pages: Array<{title: string, component: any}>;
-
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,androidPermissions: AndroidPermissions,public push: Push,private alertCtrl: AlertController) {
-	  
+adminPages: Array<{title: string, component: any}>;
+normalPages: Array<{title: string, component: any}>;
+  constructor(public events: Events,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,androidPermissions: AndroidPermissions,public push: Push,private alertCtrl: AlertController) {
+	  this.type="normal";
 	  platform.ready().then(() => {
 
          androidPermissions.requestPermissions(
@@ -49,19 +52,41 @@ export class MyApp {
 	) 
     this.initializeApp();
 this.initPushNotification();
-    // used for an example of ngFor and navigation
-    this.pages = [
+
+this.adminPages=[
+      { title: 'Manage Players', component: TeamPlayersPage },
+      {title: 'Add Tournament', component: PreviousMatchesPage},
+	  { title: 'Add Location', component: ListPage },
+      {title: 'My Profile', component: MyProfilePage},
+      {title:'Add Teams', component: MyTeamsPage},
+   	  {title: 'Finance Add', component: FinancePage},
+	  {title: 'Add Match', component: ResetPage},
+	  {title: 'Logout', component: LogoutPage},
+    ];
+
+this.normalPages=[
       { title: 'Upcoming Matches', component: HomePage },
       {title: 'Completed Matches', component: PreviousMatchesPage},
 	  { title: 'Team Stats', component: ListPage },
       {title: 'My Profile', component: MyProfilePage},
-      {title:'My Teams', component: MyTeamsPage},
+      {title:'Manage Teams', component: MyTeamsPage},
       {title: 'Account Details', component: MyAccountPage},
 	  {title: 'Finance Details', component: FinancePage},
 	  {title: 'Update Password', component: ResetPage},
+	 
 	  {title: 'Logout', component: LogoutPage},
     ];
-
+    // used for an example of ngFor and navigation
+    this.pages = this.normalPages;
+this.events.subscribe("UPDATE_SIDE_MENU", (eventData) => {
+	if(this.type=="normal"){
+   this.pages = this.adminPages;
+   this.type="admin";
+}else{
+	 this.pages = this.normalPages;
+	this.type="normal";
+}
+});
   }
 initPushNotification(){
 
@@ -125,6 +150,8 @@ initPushNotification(){
   }
 
   openPage(page) {
+	  
+
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
