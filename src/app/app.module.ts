@@ -3,11 +3,11 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { AdMobFree } from '@ionic-native/admob-free';
 import {HttpModule} from '@angular/http';
-
 import {AuthService} from '../providers/auth/auth';
 import {MatchService} from '../providers/matches/matches';
 import {StatsService} from '../providers/stats/stats';
 import {TeamService} from '../providers/teams/teams';
+import {OtherService} from '../providers/other/other';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -53,6 +53,10 @@ import {TeamPlayersPageModule} from '../pages/team-players/team-players.module';
 import {FormsModule} from "@angular/forms";
 import {CreatePlayerPage} from '../pages/create-player/create-player';
 import {CreatePlayerModule} from '../pages/create-player/create-player.module';
+import {CreateMatchPage} from '../pages/create-match/create-match';
+import {CreateMatchModule} from '../pages/create-match/create-match.module';
+import {TeamMatchesPage} from '../pages/team-matches/team-matches';
+import {TeamMatchesPageModule} from '../pages/team-matches/team-matches.module';
 @NgModule({
   declarations: [
     MyApp,
@@ -72,7 +76,7 @@ import {CreatePlayerModule} from '../pages/create-player/create-player.module';
     PreviousMatchDetailsPageModule,
 	MatchTeamPageModule,
 	ResetPageModule,
-	LogoutPageModule,WelcomePageModule,CreateTeamModule,TeamPlayersPageModule,CreatePlayerModule,
+	LogoutPageModule,WelcomePageModule,CreateTeamModule,TeamPlayersPageModule,CreatePlayerModule,TeamMatchesPageModule,CreateMatchModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -92,14 +96,14 @@ import {CreatePlayerModule} from '../pages/create-player/create-player.module';
 	ForgotPage,
 	ResetPage,
 	LogoutPage,
-	CreateTeamPage,TeamPlayersPage,CreatePlayerPage
+	CreateTeamPage,TeamPlayersPage,CreatePlayerPage,TeamMatchesPage,CreateMatchPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     AuthService,MatchService,StatsService, TeamService,PlayersProvider,FinanceProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    PlayersProvider,AdMobFree,AndroidPermissions,Push
+    PlayersProvider,AdMobFree,AndroidPermissions,Push,OtherService
   ]
 })
 export class AppModule {}

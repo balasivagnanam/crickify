@@ -1,0 +1,45 @@
+<!--
+  Generated template for the PreviousMatchesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Matches</ion-title>
+      </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="appBackground">
+    <ion-card *ngFor="let match of matches">
+        <ion-card-header>
+          {{match.team.teamname}} Vs
+          {{match.opponent}}
+          <p>{{match.tournament.name}}</p>
+        </ion-card-header>
+        <ion-card-content>
+          <p>{{match.matchTime | date:'fullDate'}}, {{match.matchTime | date:'shortTime'}}</p>
+          <p>{{match.location.name}}, {{match.location.address}}</p>
+          <p>Toss won by <span *ngIf="match.tossWon">{{match.team.teamname}}</span><span *ngIf="!match.tossWon">{{match.opponent}}</span>
+          <p>Result : {{match.result}}, {{match.remarks}}</p>
+          <p>{{match.team.teamname}}: {{match.score}}/{{match.wickets}}</p>
+          <p>{{match.opponent}}:{{match.oppositionScore}}/{{match.oppositionWickets}}</p>
+        </ion-card-content>
+		 <button ion-button icon-left clear small (click)="goToMatchTeam(match.id)">
+            <ion-icon name="text"></ion-icon>
+            <div>Match Team</div>
+          </button>
+        <button ion-button icon-left clear small (click)="goToMatchDetails(match.id)">
+            <ion-icon name="text"></ion-icon>
+            <div>Match Details</div>
+          </button>
+      </ion-card>
+    </ion-content>
+<ion-fab bottom right>
+    <button ion-fab mini (click)="addMatch()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>

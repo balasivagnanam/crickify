@@ -36,6 +36,8 @@ export class MatchService {
     });
 
   }
+  
+  
 
 getBestBatting() {
     return new Promise((resolve, reject) => {
@@ -91,7 +93,25 @@ getBestBatting() {
     });
 
   }
+  getMatches(team) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set("token",this.getToken());
+      this.http.get(apiUrl + '/matches/'+team.id, {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("auth response matches", res.json()); 
+          if(res.json().statusCode == '200'){
+            console.log("played matches", res.json());
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
 
+  }
   getMatchSummary(matchid) {
     return new Promise((resolve, reject) => {
       let headers = new Headers();
@@ -147,7 +167,24 @@ getBestBatting() {
     });
 
   }
+ addMatch(data,team) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set("token",this.getToken());
+	console.log("requeset", JSON.stringify(data)); 
+      this.http.post(apiUrl + '/match/'+team.id, JSON.stringify(data), {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("mast post resp", res.json()); 
+          
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
 
+  }
 
   
 }

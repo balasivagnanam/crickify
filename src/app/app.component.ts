@@ -5,13 +5,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AlertController } from 'ionic-angular';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
-
+import {CreateMatchPage} from '../pages/create-match/create-match';
 import {WelcomePage} from '../pages/welcome/welcome';
 import { SignupPage } from '../pages/signup/signup';
 import { LoginPage } from '../pages/login/login';
 import {MyProfilePage} from '../pages/my-profile/my-profile';
 import {MyAccountPage} from '../pages/my-account/my-account';
 import {PreviousMatchesPage} from '../pages/previous-matches/previous-matches';
+import {TeamMatchesPage} from '../pages/team-matches/team-matches';
 import {MyTeamsPage} from '../pages/my-teams/my-teams';
 import {MatchTeamPage} from '../pages/match-team/match-team';
 import {FinancePage} from '../pages/finance/finance';
@@ -54,13 +55,14 @@ normalPages: Array<{title: string, component: any}>;
 this.initPushNotification();
 
 this.adminPages=[
-      { title: 'Manage Players', component: TeamPlayersPage },
-      {title: 'Add Tournament', component: PreviousMatchesPage},
-	  { title: 'Add Location', component: ListPage },
-      {title: 'My Profile', component: MyProfilePage},
-      {title:'Add Teams', component: MyTeamsPage},
-   	  {title: 'Finance Add', component: FinancePage},
-	  {title: 'Add Match', component: ResetPage},
+      { title: 'Players', component: TeamPlayersPage },
+	   { title: 'Matches', component: TeamMatchesPage},
+      {title: 'Tournament', component: PreviousMatchesPage},
+	  { title: 'Location', component: ListPage },
+      {title: 'Profile', component: MyProfilePage},
+      {title:'Teams', component: MyTeamsPage},
+   	  {title: 'Finance', component: FinancePage},
+	  {title: 'Update Password', component: ResetPage},
 	  {title: 'Logout', component: LogoutPage},
     ];
 
