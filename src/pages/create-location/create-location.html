@@ -1,0 +1,50 @@
+<!--
+  Generated template for the PreviousMatchDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Create Location</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="appBackground" >
+ <ion-card>
+    <ion-card-header>
+      Create Location
+    </ion-card-header>
+    <ion-card-content>
+  <ion-list no-lines>
+ 
+    <form [formGroup]="createLocationForm">
+ 
+        <ion-item>
+            <ion-label floating>Name</ion-label>
+            <ion-input formControlName="name" type="text"></ion-input>
+        </ion-item>
+      <ion-item>
+            <ion-label floating>Address</ion-label>
+            <ion-input formControlName="address" type="text"></ion-input>
+        </ion-item>
+       <ion-item>
+            <ion-label floating>Latitude</ion-label>
+            <ion-input formControlName="lat" type="text"></ion-input>
+        </ion-item>
+		      <ion-item>
+            <ion-label floating>Longitude</ion-label>
+            <ion-input formControlName="lng" type="text"></ion-input>
+        </ion-item>
+    </form>
+  <button ion-button color="secondary" icon-left clear small (click)="createLocation()">
+            Create Location
+            
+          </button>
+</ion-list>
+</ion-card-content>
+ </ion-card>
+</ion-content>

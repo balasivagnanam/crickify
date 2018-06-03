@@ -56,7 +56,46 @@ export class OtherService {
 
   }
 
+  createLocation(credentials) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+	 headers.set("token",this.getToken());
+      this.http.post(apiUrl + '/location/location' , JSON.stringify(credentials), {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("response", res.json()); 
+          if(res.json().statusCode == '200'){
+            console.log("value", res.json());
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
 
+        });
+    });
+
+  }
+    createTournament(credentials) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+	 headers.set("token",this.getToken());
+      this.http.post(apiUrl + '/tournament/tournament' , JSON.stringify(credentials), {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("response", res.json()); 
+          if(res.json().statusCode == '200'){
+            console.log("value", res.json());
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+
+        });
+    });
+
+  }
 
   
 }

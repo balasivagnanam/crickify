@@ -57,6 +57,16 @@ import {CreateMatchPage} from '../pages/create-match/create-match';
 import {CreateMatchModule} from '../pages/create-match/create-match.module';
 import {TeamMatchesPage} from '../pages/team-matches/team-matches';
 import {TeamMatchesPageModule} from '../pages/team-matches/team-matches.module';
+import {MatchAvailabilityPage} from '../pages/match-availability/match-availability';
+import {MatchAvailabilityPageModule} from '../pages/match-availability/match-availability.module';
+import {TournamentsPage} from '../pages/tournaments/tournaments';
+import {LocationsPage} from '../pages/locations/locations';
+import {TournamentsPageModule} from '../pages/tournaments/tournaments.module';
+import {LocationsPageModule} from '../pages/locations/locations.module';
+import {CreateLocationPage} from '../pages/create-location/create-location';
+import {CreateLocationModule} from '../pages/create-location/create-location.module';
+import {CreateTournamentPage} from '../pages/create-tournament/create-tournament';
+import {CreateTournamentModule} from '../pages/create-tournament/create-tournament.module';
 @NgModule({
   declarations: [
     MyApp,
@@ -76,7 +86,16 @@ import {TeamMatchesPageModule} from '../pages/team-matches/team-matches.module';
     PreviousMatchDetailsPageModule,
 	MatchTeamPageModule,
 	ResetPageModule,
-	LogoutPageModule,WelcomePageModule,CreateTeamModule,TeamPlayersPageModule,CreatePlayerModule,TeamMatchesPageModule,CreateMatchModule
+	LogoutPageModule,
+	WelcomePageModule,
+	CreateTeamModule,
+	TeamPlayersPageModule,
+	CreatePlayerModule,
+	TeamMatchesPageModule,
+	CreateMatchModule,
+	MatchAvailabilityPageModule,
+	TournamentsPageModule,
+	LocationsPageModule,CreateLocationModule,CreateTournamentModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -96,7 +115,9 @@ import {TeamMatchesPageModule} from '../pages/team-matches/team-matches.module';
 	ForgotPage,
 	ResetPage,
 	LogoutPage,
-	CreateTeamPage,TeamPlayersPage,CreatePlayerPage,TeamMatchesPage,CreateMatchPage
+	CreateTeamPage,TeamPlayersPage,CreatePlayerPage,TeamMatchesPage,CreateMatchPage,MatchAvailabilityPage,TournamentsPage,LocationsPage,
+	CreateLocationPage,CreateTournamentPage
+	
   ],
   providers: [
     StatusBar,

@@ -26,6 +26,8 @@ import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
 import {BrowserModule} from "@angular/platform-browser";
 import {FormsModule} from "@angular/forms";
 import { Events } from 'ionic-angular';
+import {TournamentsPage} from '../pages/tournaments/tournaments';
+import {LocationsPage} from '../pages/locations/locations';
 @Component({
   templateUrl: 'app.html'
 })
@@ -57,8 +59,8 @@ this.initPushNotification();
 this.adminPages=[
       { title: 'Players', component: TeamPlayersPage },
 	   { title: 'Matches', component: TeamMatchesPage},
-      {title: 'Tournament', component: PreviousMatchesPage},
-	  { title: 'Location', component: ListPage },
+      {title: 'Tournament', component: TournamentsPage},
+	  { title: 'Location', component: LocationsPage},
       {title: 'Profile', component: MyProfilePage},
       {title:'Teams', component: MyTeamsPage},
    	  {title: 'Finance', component: FinancePage},

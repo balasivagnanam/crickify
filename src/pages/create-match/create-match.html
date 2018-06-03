@@ -44,13 +44,13 @@
 <ion-item>
   <ion-label>Location</ion-label>
   <ion-select formControlName="location">
-    <ion-option *ngFor="let key of locations">{{key.name}}</ion-option>
+    <ion-option *ngFor="let key of locations" [value]="key">{{key.name}}</ion-option>
   </ion-select>
 </ion-item>
 <ion-item>
   <ion-label>Tournament</ion-label>
   <ion-select formControlName="tournament">
-    <ion-option *ngFor="let key of tournaments">{{key.name}}</ion-option>
+    <ion-option *ngFor="let key of tournaments" [value]="key">{{key.name}}</ion-option>
   </ion-select>
 </ion-item>
     </form>

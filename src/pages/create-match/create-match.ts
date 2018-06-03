@@ -32,7 +32,7 @@ opponent:any;
      description: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
 	 remarks: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
 	 matchTime:[''],
-	 location: new FormControl([{address: "", lat: 0, lng: 0, name: "", id:0}, Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])]),
+	 location: [{address: "", lat: 0, lng: 0, name: "", id:0}, Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
 	 tournament: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])]
   });
 
