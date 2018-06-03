@@ -364,10 +364,9 @@ CreateTournamentPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-create-tournament',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\create-tournament\create-tournament.html"*/'<!--\n\n  Generated template for the PreviousMatchDetailsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Create Tournament</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground" >\n\n <ion-card>\n\n    <ion-card-header>\n\n      Create Tournament\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n  <ion-list no-lines>\n\n \n\n    <form [formGroup]="createTournamentForm">\n\n \n\n        <ion-item>\n\n            <ion-label floating>Name</ion-label>\n\n            <ion-input formControlName="name" type="text"></ion-input>\n\n        </ion-item>\n\n    </form>\n\n  <button ion-button color="secondary" icon-left clear small (click)="createTournament()">\n\n            Create Tournament\n\n            \n\n          </button>\n\n</ion-list>\n\n</ion-card-content>\n\n </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\create-tournament\create-tournament.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_teams_teams__["a" /* TeamService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_teams_teams__["a" /* TeamService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__providers_other_other__["a" /* OtherService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_other_other__["a" /* OtherService */]) === "function" && _f || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_teams_teams__["a" /* TeamService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_3__providers_other_other__["a" /* OtherService */]])
 ], CreateTournamentPage);
 
-var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=create-tournament.js.map
 
 /***/ }),
@@ -454,10 +453,9 @@ CreateLocationPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-create-location',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\create-location\create-location.html"*/'<!--\n\n  Generated template for the PreviousMatchDetailsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Create Location</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground" >\n\n <ion-card>\n\n    <ion-card-header>\n\n      Create Location\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n  <ion-list no-lines>\n\n \n\n    <form [formGroup]="createLocationForm">\n\n \n\n        <ion-item>\n\n            <ion-label floating>Name</ion-label>\n\n            <ion-input formControlName="name" type="text"></ion-input>\n\n        </ion-item>\n\n      <ion-item>\n\n            <ion-label floating>Address</ion-label>\n\n            <ion-input formControlName="address" type="text"></ion-input>\n\n        </ion-item>\n\n       <ion-item>\n\n            <ion-label floating>Latitude</ion-label>\n\n            <ion-input formControlName="lat" type="text"></ion-input>\n\n        </ion-item>\n\n		      <ion-item>\n\n            <ion-label floating>Longitude</ion-label>\n\n            <ion-input formControlName="lng" type="text"></ion-input>\n\n        </ion-item>\n\n    </form>\n\n  <button ion-button color="secondary" icon-left clear small (click)="createLocation()">\n\n            Create Location\n\n            \n\n          </button>\n\n</ion-list>\n\n</ion-card-content>\n\n </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\create-location\create-location.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_teams_teams__["a" /* TeamService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_teams_teams__["a" /* TeamService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__providers_other_other__["a" /* OtherService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_other_other__["a" /* OtherService */]) === "function" && _f || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_teams_teams__["a" /* TeamService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_3__providers_other_other__["a" /* OtherService */]])
 ], CreateLocationPage);
 
-var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=create-location.js.map
 
 /***/ }),
@@ -629,7 +627,7 @@ AuthService = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__create_team_create_team__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__team_matches_team_matches__ = __webpack_require__(98);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -666,18 +664,6 @@ var MyTeamsPage = (function () {
         this.tabsvalues = "team";
         //selectedTeam : any;
         this.userPostData = { "user_id": "", "token": "" };
-        if (this.authService.getAuthenticated()) {
-            var data = JSON.parse(localStorage.getItem('userData'));
-            console.log("fetch data", data);
-            this.userDetails = data;
-            // console.log("user data from storage", this.userDetails)
-            this.userPostData.user_id = this.userDetails.id;
-            this.userPostData.token = this.userDetails.token;
-        }
-        else {
-            var root = this.app.getRootNav();
-            root.popToRoot();
-        }
     }
     MyTeamsPage.prototype.ionViewDidLoad = function () {
         var _this = this;
@@ -711,12 +697,9 @@ var MyTeamsPage = (function () {
         });
     };
     MyTeamsPage.prototype.goToTeam = function (team) {
-        this.events.publish("UPDATE_SIDE_MENU", "some event related data");
         localStorage.setItem('team', JSON.stringify(team));
-    };
-    MyTeamsPage.prototype.createTeam = function () {
-        //Login page link
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__create_team_create_team__["a" /* CreateTeamPage */]);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__team_matches_team_matches__["a" /* TeamMatchesPage */]);
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__team_matches_team_matches__["a" /* TeamMatchesPage */]);
     };
     return MyTeamsPage;
 }());
@@ -724,9 +707,10 @@ MyTeamsPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-my-teams',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\my-teams\my-teams.html"*/'<!--\n\n  Generated template for the MyTeamsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n          <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>Manage Teams</ion-title>\n\n      </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground">\n\n  <ion-card *ngFor="let team of teams" color="primary">\n\n    <ion-card-header>\n\n      {{team.teamname}}\n\n	   </ion-card-header>\n\n	   <ion-card-content>\n\n     	 <button ion-button color="light" icon-left clear small (click)="goToTeam(team)">\n\n            Manage Team\n\n            \n\n          </button>\n\n    </ion-card-content>\n\n  </ion-card>\n\n</ion-content>\n\n\n\n<ion-fab bottom right>\n\n    <button ion-fab mini (click)="createTeam()"><ion-icon name="add"></ion-icon></button>\n\n  </ion-fab>'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\my-teams\my-teams.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__["a" /* TeamService */], __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__["a" /* StatsService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__["a" /* TeamService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__["a" /* TeamService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__["a" /* StatsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__["a" /* StatsService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */]) === "function" && _h || Object])
 ], MyTeamsPage);
 
+var _a, _b, _c, _d, _e, _f, _g, _h;
 //# sourceMappingURL=my-teams.js.map
 
 /***/ }),
@@ -1079,10 +1063,9 @@ TournamentsPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-tournaments',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\tournaments\tournaments.html"*/'<!--\n\n  Generated template for the MyTeamsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n          <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>Tournaments</ion-title>\n\n      </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground">\n\n  <ion-card *ngFor="let tournament of tournaments" color="primary">\n\n    <ion-card-header>\n\n      {{tournament.name}}\n\n	   </ion-card-header>\n\n	 \n\n  </ion-card>\n\n</ion-content>\n\n\n\n<ion-fab bottom right>\n\n    <button ion-fab mini (click)="createTournament()"><ion-icon name="add"></ion-icon></button>\n\n  </ion-fab>'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\tournaments\tournaments.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__["a" /* TeamService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__["a" /* TeamService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__["a" /* StatsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__["a" /* StatsService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_6__providers_other_other__["a" /* OtherService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_other_other__["a" /* OtherService */]) === "function" && _j || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__["a" /* TeamService */], __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__["a" /* StatsService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_6__providers_other_other__["a" /* OtherService */]])
 ], TournamentsPage);
 
-var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 //# sourceMappingURL=tournaments.js.map
 
 /***/ }),
@@ -1191,10 +1174,9 @@ LocationsPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-locations',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\locations\locations.html"*/'<!--\n\n  Generated template for the MyTeamsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n          <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>Locations</ion-title>\n\n      </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground">\n\n  <ion-card *ngFor="let location of locations" color="primary">\n\n    <ion-card-header>\n\n      {{location.name}}\n\n	   </ion-card-header>\n\n	 \n\n  </ion-card>\n\n</ion-content>\n\n\n\n<ion-fab bottom right>\n\n    <button ion-fab mini (click)="createLocation()"><ion-icon name="add"></ion-icon></button>\n\n  </ion-fab>'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\locations\locations.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__["a" /* TeamService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__["a" /* TeamService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__["a" /* StatsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__["a" /* StatsService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_6__providers_other_other__["a" /* OtherService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_other_other__["a" /* OtherService */]) === "function" && _j || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__["a" /* TeamService */], __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__["a" /* StatsService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_6__providers_other_other__["a" /* OtherService */]])
 ], LocationsPage);
 
-var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 //# sourceMappingURL=locations.js.map
 
 /***/ }),
@@ -1388,6 +1370,9 @@ var map = {
 	],
 	"../pages/match-team/match-team.module": [
 		182
+	],
+	"../pages/modeChange/modeChange.module": [
+		324
 	],
 	"../pages/my-account/my-account.module": [
 		192
@@ -2395,6 +2380,23 @@ var MatchService = (function () {
             });
         });
     };
+    MatchService.prototype.updateAvailability = function (match, player, status) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            console.log("request", JSON.stringify(status));
+            _this.http.post(apiUrl + '/' + match + '/availability/' + player.id, status, { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("mast avail post resp", res.json());
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
     MatchService.prototype.addMatch = function (data, team) {
         var _this = this;
         return new Promise(function (resolve, reject) {
@@ -2723,12 +2725,16 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__pages_create_location_create_location_module__ = __webpack_require__(202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__pages_create_tournament_create_tournament__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_65__pages_create_tournament_create_tournament_module__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_66__pages_modeChange_modeChange__ = __webpack_require__(325);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__pages_modeChange_modeChange_module__ = __webpack_require__(324);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -2828,7 +2834,8 @@ AppModule = __decorate([
                     { loadChildren: '../pages/logout/logout.module#LogoutPageModule', name: 'LogoutPage', segment: 'logout', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/create-player/create-player.module#CreatePlayerModule', name: 'CreatePlayerPage', segment: 'create-player', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/create-tournament/create-tournament.module#CreateTournamentModule', name: 'CreateTournamentPage', segment: 'create-tournament', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/create-location/create-location.module#CreateLocationModule', name: 'CreateLocationPage', segment: 'create-location', priority: 'low', defaultHistory: [] }
+                    { loadChildren: '../pages/create-location/create-location.module#CreateLocationModule', name: 'CreateLocationPage', segment: 'create-location', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/modeChange/modeChange.module#ModeChangeModule', name: 'ModeChangePage', segment: 'modeChange', priority: 'low', defaultHistory: [] }
                 ]
             }),
             __WEBPACK_IMPORTED_MODULE_39__pages_finance_finance_module__["a" /* FinancePageModule */], __WEBPACK_IMPORTED_MODULE_38__pages_forgot_forgot_module__["ForgotPageModule"], __WEBPACK_IMPORTED_MODULE_21__pages_login_login_module__["LoginPageModule"], __WEBPACK_IMPORTED_MODULE_19__pages_signup_signup_module__["SignupPageModule"],
@@ -2848,7 +2855,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_53__pages_create_match_create_match_module__["CreateMatchModule"],
             __WEBPACK_IMPORTED_MODULE_57__pages_match_availability_match_availability_module__["MatchAvailabilityPageModule"],
             __WEBPACK_IMPORTED_MODULE_60__pages_tournaments_tournaments_module__["a" /* TournamentsPageModule */],
-            __WEBPACK_IMPORTED_MODULE_61__pages_locations_locations_module__["a" /* LocationsPageModule */], __WEBPACK_IMPORTED_MODULE_63__pages_create_location_create_location_module__["CreateLocationModule"], __WEBPACK_IMPORTED_MODULE_65__pages_create_tournament_create_tournament_module__["CreateTournamentModule"]
+            __WEBPACK_IMPORTED_MODULE_61__pages_locations_locations_module__["a" /* LocationsPageModule */], __WEBPACK_IMPORTED_MODULE_63__pages_create_location_create_location_module__["CreateLocationModule"], __WEBPACK_IMPORTED_MODULE_65__pages_create_tournament_create_tournament_module__["CreateTournamentModule"], __WEBPACK_IMPORTED_MODULE_67__pages_modeChange_modeChange_module__["ModeChangeModule"]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicApp */]],
         entryComponents: [
@@ -2869,7 +2876,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_40__pages_reset_reset__["a" /* ResetPage */],
             __WEBPACK_IMPORTED_MODULE_42__pages_logout_logout__["a" /* LogoutPage */],
             __WEBPACK_IMPORTED_MODULE_45__pages_create_team_create_team__["a" /* CreateTeamPage */], __WEBPACK_IMPORTED_MODULE_47__pages_team_players_team_players__["a" /* TeamPlayersPage */], __WEBPACK_IMPORTED_MODULE_50__pages_create_player_create_player__["a" /* CreatePlayerPage */], __WEBPACK_IMPORTED_MODULE_54__pages_team_matches_team_matches__["a" /* TeamMatchesPage */], __WEBPACK_IMPORTED_MODULE_52__pages_create_match_create_match__["a" /* CreateMatchPage */], __WEBPACK_IMPORTED_MODULE_56__pages_match_availability_match_availability__["a" /* MatchAvailabilityPage */], __WEBPACK_IMPORTED_MODULE_58__pages_tournaments_tournaments__["a" /* TournamentsPage */], __WEBPACK_IMPORTED_MODULE_59__pages_locations_locations__["a" /* LocationsPage */],
-            __WEBPACK_IMPORTED_MODULE_62__pages_create_location_create_location__["a" /* CreateLocationPage */], __WEBPACK_IMPORTED_MODULE_64__pages_create_tournament_create_tournament__["a" /* CreateTournamentPage */]
+            __WEBPACK_IMPORTED_MODULE_62__pages_create_location_create_location__["a" /* CreateLocationPage */], __WEBPACK_IMPORTED_MODULE_64__pages_create_tournament_create_tournament__["a" /* CreateTournamentPage */], __WEBPACK_IMPORTED_MODULE_66__pages_modeChange_modeChange__["a" /* ModeChangePage */]
         ],
         providers: [
             __WEBPACK_IMPORTED_MODULE_13__ionic_native_status_bar__["a" /* StatusBar */],
@@ -2910,6 +2917,7 @@ AppModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_push__ = __webpack_require__(247);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_tournaments_tournaments__ = __webpack_require__(129);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_locations_locations__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_modeChange_modeChange__ = __webpack_require__(325);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2919,6 +2927,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -2967,7 +2976,8 @@ var MyApp = (function () {
             { title: 'Tournament', component: __WEBPACK_IMPORTED_MODULE_18__pages_tournaments_tournaments__["a" /* TournamentsPage */] },
             { title: 'Location', component: __WEBPACK_IMPORTED_MODULE_19__pages_locations_locations__["a" /* LocationsPage */] },
             { title: 'Profile', component: __WEBPACK_IMPORTED_MODULE_7__pages_my_profile_my_profile__["a" /* MyProfilePage */] },
-            { title: 'Teams', component: __WEBPACK_IMPORTED_MODULE_11__pages_my_teams_my_teams__["a" /* MyTeamsPage */] },
+            { title: 'Manage Teams', component: __WEBPACK_IMPORTED_MODULE_11__pages_my_teams_my_teams__["a" /* MyTeamsPage */] },
+            { title: 'Change Mode', component: __WEBPACK_IMPORTED_MODULE_20__pages_modeChange_modeChange__["a" /* ModeChangePage */] },
             { title: 'Finance', component: __WEBPACK_IMPORTED_MODULE_12__pages_finance_finance__["a" /* FinancePage */] },
             { title: 'Update Password', component: __WEBPACK_IMPORTED_MODULE_13__pages_reset_reset__["a" /* ResetPage */] },
             { title: 'Logout', component: __WEBPACK_IMPORTED_MODULE_14__pages_logout_logout__["a" /* LogoutPage */] },
@@ -2977,7 +2987,7 @@ var MyApp = (function () {
             { title: 'Completed Matches', component: __WEBPACK_IMPORTED_MODULE_9__pages_previous_matches_previous_matches__["a" /* PreviousMatchesPage */] },
             { title: 'Team Stats', component: __WEBPACK_IMPORTED_MODULE_5__pages_list_list__["a" /* ListPage */] },
             { title: 'My Profile', component: __WEBPACK_IMPORTED_MODULE_7__pages_my_profile_my_profile__["a" /* MyProfilePage */] },
-            { title: 'Manage Teams', component: __WEBPACK_IMPORTED_MODULE_11__pages_my_teams_my_teams__["a" /* MyTeamsPage */] },
+            { title: 'Change Mode', component: __WEBPACK_IMPORTED_MODULE_20__pages_modeChange_modeChange__["a" /* ModeChangePage */] },
             { title: 'Account Details', component: __WEBPACK_IMPORTED_MODULE_8__pages_my_account_my_account__["a" /* MyAccountPage */] },
             { title: 'Finance Details', component: __WEBPACK_IMPORTED_MODULE_12__pages_finance_finance__["a" /* FinancePage */] },
             { title: 'Update Password', component: __WEBPACK_IMPORTED_MODULE_13__pages_reset_reset__["a" /* ResetPage */] },
@@ -2986,9 +2996,8 @@ var MyApp = (function () {
         // used for an example of ngFor and navigation
         this.pages = this.normalPages;
         this.events.subscribe("UPDATE_SIDE_MENU", function (eventData) {
-            if (_this.type == "normal") {
+            if (eventData == "admin") {
                 _this.pages = _this.adminPages;
-                _this.type = "admin";
             }
             else {
                 _this.pages = _this.normalPages;
@@ -3032,12 +3041,12 @@ var MyApp = (function () {
                 confirmAlert.present();
             }
             else {
-                var alert_1 = _this.alertCtrl.create({
+                var alert = _this.alertCtrl.create({
                     title: 'clicked on',
                     subTitle: "you clicked on the notification!",
                     buttons: ['OK']
                 });
-                alert_1.present();
+                alert.present();
                 console.log("Push notification clicked");
             }
         });
@@ -3061,14 +3070,15 @@ var MyApp = (function () {
 }());
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */]),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */])
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */]) === "function" && _a || Object)
 ], MyApp.prototype, "nav", void 0);
 MyApp = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"D:\ionicapp\crickify\src\app\app.html"*/'<ion-menu [content]="content">\n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title>Menu</ion-title>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        {{p.title}}\n\n      </button>\n\n    </ion-list>\n\n  </ion-content>\n\n\n\n</ion-menu>\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"D:\ionicapp\crickify\src\app\app.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_16__ionic_native_android_permissions__["a" /* AndroidPermissions */], __WEBPACK_IMPORTED_MODULE_17__ionic_native_push__["a" /* Push */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_16__ionic_native_android_permissions__["a" /* AndroidPermissions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_16__ionic_native_android_permissions__["a" /* AndroidPermissions */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_17__ionic_native_push__["a" /* Push */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_17__ionic_native_push__["a" /* Push */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _h || Object])
 ], MyApp);
 
+var _a, _b, _c, _d, _e, _f, _g, _h;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
@@ -3255,6 +3265,121 @@ LocationsPageModule = __decorate([
 ], LocationsPageModule);
 
 //# sourceMappingURL=locations.module.js.map
+
+/***/ }),
+
+/***/ 324:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModeChangeModule", function() { return ModeChangeModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modeChange__ = __webpack_require__(325);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var ModeChangeModule = (function () {
+    function ModeChangeModule() {
+    }
+    return ModeChangeModule;
+}());
+ModeChangeModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
+        declarations: [
+            __WEBPACK_IMPORTED_MODULE_2__modeChange__["a" /* ModeChangePage */],
+        ],
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__modeChange__["a" /* ModeChangePage */]),
+        ],
+    })
+], ModeChangeModule);
+
+//# sourceMappingURL=modeChange.module.js.map
+
+/***/ }),
+
+/***/ 325:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModeChangePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__my_teams_my_teams__ = __webpack_require__(126);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+/**
+ * Generated class for the Forgot page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var ModeChangePage = (function () {
+    function ModeChangePage(navCtrl, navParams, authService, alertController, loadingController, events) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.authService = authService;
+        this.alertController = alertController;
+        this.loadingController = loadingController;
+        this.events = events;
+        this.userPostData = { "user_id": "", "token": "" };
+        this.userData = { "username": "", "password": "", "name": "", "phone": "" };
+        if (this.authService.getAuthenticated()) {
+            var data = JSON.parse(localStorage.getItem('userData'));
+            console.log("fetch data", data);
+            this.userDetails = data;
+            // console.log("user data from storage", this.userDetails)
+            this.userPostData.user_id = this.userDetails.id;
+            this.userPostData.token = this.userDetails.token;
+        }
+    }
+    ModeChangePage.prototype.admin = function () {
+        this.events.publish("UPDATE_SIDE_MENU", "admin");
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__my_teams_my_teams__["a" /* MyTeamsPage */]);
+    };
+    ModeChangePage.prototype.normal = function () {
+        this.events.publish("UPDATE_SIDE_MENU", "normal");
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */]);
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */]);
+    };
+    ModeChangePage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad Forgot');
+    };
+    return ModeChangePage;
+}());
+ModeChangePage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'modeChange',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\modeChange\modeChange.html"*/'<!--\n\n  Generated template for the SignupPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n          <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n    <ion-title>Change Mode</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground">\n\n  <ion-card (click)="admin()">\n\n    <ion-card-header>\n\n     Admin Mode\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n     Change Mode to Admin\n\n    </ion-card-content>\n\n  </ion-card>\n\n    <ion-card (click)="normal()">\n\n    <ion-card-header>\n\n     Normal Mode\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n       Change Mode to Normal\n\n    </ion-card-content>\n\n  </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\modeChange\modeChange.html"*/,
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */]) === "function" && _f || Object])
+], ModeChangePage);
+
+var _a, _b, _c, _d, _e, _f;
+//# sourceMappingURL=modeChange.js.map
 
 /***/ }),
 
@@ -3902,7 +4027,7 @@ var HomePage = (function () {
 }());
 HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Upcoming Matches </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding class="appBackground">\n\n  <ion-card *ngFor="let match of matches" color="primary">\n\n    <ion-card-header>\n\n      {{match.match.team.teamname}} versus\n\n      {{match.match.opponent}}\n\n      <p>{{match.match.tournament.name}}</p>\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <p>{{match.match.matchTime | date:\'fullDate\'}}, {{match.matchTime | date:\'shortTime\'}}</p>\n\n      <p>{{match.match.location.name}}, {{match.match.location.address}}</p>\n\n	  \n\n         <ion-label>\n\n          Select Attendance\n\n        </ion-label>\n\n		\n\n		   <ion-item>\n\n      <ion-select [(ngModel)]="match.status" (ionChange)="availabilitySelected($event, match)">\n\n          <ion-option value="0">Not Provided</ion-option>\n\n        <ion-option value="1">IN</ion-option>\n\n        <ion-option value="2">OUT</ion-option>\n\n        <ion-option value="3">Waitlist</ion-option>\n\n      </ion-select>\n\n	 \n\n    </ion-item>\n\n	<p><ion-label>Comments</ion-label></p>\n\n      <ion-item>\n\n	  \n\n	       \n\n    <ion-input [(ngModel)]="match.comments" (ionChange)="availabilitySelected($event, match)"></ion-input>\n\n	 </ion-item>\n\n	 <button ion-button icon-left clear small (click)="goToMatchTeam(match.id)">\n\n            <ion-icon name="text"></ion-icon>\n\n            <div>Match Team</div>\n\n          </button>\n\n    </ion-card-content>\n\n  </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\home\home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar [hideBackButton]="true">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Upcoming Matches </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding class="appBackground">\n\n  <ion-card *ngFor="let match of matches" color="primary">\n\n    <ion-card-header>\n\n      {{match.match.team.teamname}} versus\n\n      {{match.match.opponent}}\n\n      <p>{{match.match.tournament.name}}</p>\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <p>{{match.match.matchTime | date:\'fullDate\'}}, {{match.matchTime | date:\'shortTime\'}}</p>\n\n      <p>{{match.match.location.name}}, {{match.match.location.address}}</p>\n\n	  \n\n         <ion-label>\n\n          Select Attendance\n\n        </ion-label>\n\n		\n\n		   <ion-item>\n\n      <ion-select [(ngModel)]="match.status" (ionChange)="availabilitySelected($event, match)">\n\n          <ion-option value="0">Not Provided</ion-option>\n\n        <ion-option value="1">IN</ion-option>\n\n        <ion-option value="2">OUT</ion-option>\n\n        <ion-option value="3">Waitlist</ion-option>\n\n      </ion-select>\n\n	 \n\n    </ion-item>\n\n	<p><ion-label>Comments</ion-label></p>\n\n      <ion-item>\n\n	  \n\n	       \n\n    <ion-input [(ngModel)]="match.comments" (ionChange)="availabilitySelected($event, match)"></ion-input>\n\n	 </ion-item>\n\n	 <button ion-button icon-left clear small (click)="goToMatchTeam(match.id)">\n\n            <ion-icon name="text"></ion-icon>\n\n            <div>Match Team</div>\n\n          </button>\n\n    </ion-card-content>\n\n  </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\home\home.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_3__providers_matches_matches__["a" /* MatchService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_admob_free__["a" /* AdMobFree */]])
 ], HomePage);
@@ -4794,6 +4919,10 @@ var MatchAvailabilityPage = (function () {
     };
     MatchAvailabilityPage.prototype.getData = function (matchId) {
         var _this = this;
+        this.available = [];
+        this.unavailable = [];
+        this.tentative = [];
+        this.unknown = [];
         var loading = this.loadingController.create({
             content: 'Please wait...'
         });
@@ -4809,16 +4938,16 @@ var MatchAvailabilityPage = (function () {
                 for (var _i = 0, _a = _this.avaailability; _i < _a.length; _i++) {
                     var data = _a[_i];
                     if (data.status == 0) {
-                        _this.unknown.push(data.player);
+                        _this.unknown.push(data);
                     }
                     else if (data.status == 1) {
-                        _this.available.push(data.player);
+                        _this.available.push(data);
                     }
                     else if (data.status == 2) {
-                        _this.unavailable.push(data.player);
+                        _this.unavailable.push(data);
                     }
                     else if (data.status == 3) {
-                        _this.tentative.push(data.player);
+                        _this.tentative.push(data);
                     }
                 }
             }
@@ -4834,12 +4963,40 @@ var MatchAvailabilityPage = (function () {
             // Error log
         });
     };
+    MatchAvailabilityPage.prototype.availabilitySelected = function (event, stat) {
+        var _this = this;
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        this.matchService.updateAvailability(this.matchId, stat.player, stat.status).then(function (result) {
+            _this.responseData = result;
+            console.log(_this.responseData);
+            if (_this.responseData.statusCode == '200') {
+                loading.dismiss();
+                console.log("test 200", _this.responseData);
+                _this.getData(_this.matchId);
+                // console.log("result", this.responseData.results.matches);
+                //this.matches = this.responseData.results.matches;
+            }
+            else if (_this.responseData.statusCode == "404") {
+                console.log("unauthorrised");
+                loading.dismiss();
+            }
+            else {
+                loading.dismiss();
+                console.log("error", _this.responseData);
+            }
+        }, function (err) {
+            loading.dismiss();
+            // Error log
+        });
+    };
     return MatchAvailabilityPage;
 }());
 MatchAvailabilityPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-match-availability',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\match-availability\match-availability.html"*/'<!--\n\n  Generated template for the PreviousMatchDetailsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Match Availability Details</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground" >\n\n\n\n  <ion-segment [(ngModel)]="tabsvalues">\n\n      <ion-segment-button value="available">\n\n        Availability\n\n      </ion-segment-button>\n\n          <ion-segment-button value="unAvailable">\n\n         UnAvailable\n\n      </ion-segment-button>\n\n	         <ion-segment-button value="tentative">\n\n        Tentative\n\n      </ion-segment-button>\n\n	         <ion-segment-button value="Unknown">\n\n         Unknown\n\n      </ion-segment-button>\n\n    </ion-segment>\n\n  \n\n  <div [ngSwitch]="tabsvalues"> \n\n      <div *ngSwitchCase="\'available\'">\n\n        <div class="cric-stat-available-table">\n\n          <h4>Available</h4>\n\n          <ul>\n\n          \n\n            <li *ngFor="let stat of available">\n\n                <p class="cric-player-name">{{stat?.name}}</p>\n\n              \n\n            </li>\n\n          </ul>\n\n        </div>\n\n		</div>\n\n		<div *ngSwitchCase="\'unAvailable\'">\n\n		<div class="cric-stat-unAvailable-table">\n\n          <h4>UnAvailable</h4>\n\n          <ul>\n\n         \n\n            <li *ngFor="let stat of unavailable">\n\n                <p class="cric-player-name">{{stat?.name}}</p>\n\n              \n\n            </li>\n\n          </ul>\n\n        </div>\n\n		</div>\n\n		<div *ngSwitchCase="\'tentative\'">\n\n		<div class="cric-stat-tentative-table">\n\n          <h4>Tentative</h4>\n\n          <ul>\n\n           \n\n            <li *ngFor="let stat of tentative">\n\n                <p class="cric-player-name">{{stat?.name}}</p>\n\n              \n\n            </li>\n\n          </ul>\n\n        </div>\n\n		</div>\n\n		<div *ngSwitchCase="\'Unknown\'">\n\n			<div class="cric-stat-unknown-table">\n\n          <h4>Unknown</h4>\n\n          <ul>\n\n         \n\n            <li *ngFor="let stat of unknown">\n\n                <p class="cric-player-name">{{stat?.name}}</p>\n\n              \n\n            </li>\n\n          </ul>\n\n        </div>\n\n       </div>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\match-availability\match-availability.html"*/,
+        selector: 'page-match-availability',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\match-availability\match-availability.html"*/'<!--\n\n  Generated template for the PreviousMatchDetailsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Match Availability Details</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground" >\n\n\n\n  <ion-segment [(ngModel)]="tabsvalues">\n\n      <ion-segment-button value="available">\n\n        Availability\n\n      </ion-segment-button>\n\n          <ion-segment-button value="unAvailable">\n\n         UnAvailable\n\n      </ion-segment-button>\n\n	         <ion-segment-button value="tentative">\n\n        Tentative\n\n      </ion-segment-button>\n\n	         <ion-segment-button value="Unknown">\n\n         Unknown\n\n      </ion-segment-button>\n\n    </ion-segment>\n\n  \n\n  <div [ngSwitch]="tabsvalues"> \n\n      <div *ngSwitchCase="\'available\'">\n\n        <div class="cric-stat-available-table">\n\n         \n\n          <ol type="1">\n\n          \n\n            <li *ngFor="let stat of available">\n\n			 <ion-card  color="primary">\n\n    <ion-card-header>\n\n      {{stat?.player.name}}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n    	\n\n		   <ion-item>\n\n      <ion-select [(ngModel)]="stat.status" (ionChange)="availabilitySelected($event, stat)">\n\n          <ion-option value="0" >Not Provided</ion-option>\n\n        <ion-option value="1" selected>IN</ion-option>\n\n        <ion-option value="2">OUT</ion-option>\n\n        <ion-option value="3">Waitlist</ion-option>\n\n      </ion-select>\n\n	 \n\n    </ion-item>\n\n </ion-card-content>\n\n  </ion-card>\n\n              \n\n            </li>\n\n          </ol>\n\n        </div>\n\n		</div>\n\n		<div *ngSwitchCase="\'unAvailable\'">\n\n		<div class="cric-stat-unAvailable-table">\n\n         \n\n          <ol type="1">\n\n         \n\n            <li *ngFor="let stat of unavailable">\n\n               <ion-card  color="primary">\n\n    <ion-card-header>\n\n      {{stat?.player.name}}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n    	\n\n		   <ion-item>\n\n      <ion-select [(ngModel)]="stat.status" (ionChange)="availabilitySelected($event, stat)">\n\n          <ion-option value="0">Not Provided</ion-option>\n\n        <ion-option value="1" >IN</ion-option>\n\n        <ion-option value="2" selected>OUT</ion-option>\n\n        <ion-option value="3">Waitlist</ion-option>\n\n      </ion-select>\n\n	 \n\n    </ion-item>\n\n </ion-card-content>\n\n  </ion-card>\n\n              \n\n            </li>\n\n          </ol>\n\n        </div>\n\n		</div>\n\n		<div *ngSwitchCase="\'tentative\'">\n\n		<div class="cric-stat-tentative-table">\n\n         \n\n          <ol type="1">\n\n           \n\n            <li *ngFor="let stat of tentative">\n\n                 <ion-card  color="primary">\n\n    <ion-card-header>\n\n      {{stat?.player.name}}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n    	\n\n		   <ion-item>\n\n      <ion-select [(ngModel)]="stat.status" (ionChange)="availabilitySelected($event, stat)">\n\n          <ion-option value="0">Not Provided</ion-option>\n\n        <ion-option value="1">IN</ion-option>\n\n        <ion-option value="2">OUT</ion-option>\n\n        <ion-option value="3" selected>Waitlist</ion-option>\n\n      </ion-select>\n\n	 \n\n    </ion-item>\n\n </ion-card-content>\n\n  </ion-card>\n\n            </li>\n\n          </ol>\n\n        </div>\n\n		</div>\n\n		<div *ngSwitchCase="\'Unknown\'">\n\n			<div class="cric-stat-unknown-table">\n\n         \n\n          <ol type="1">\n\n         \n\n            <li *ngFor="let stat of unknown">\n\n                <ion-card  color="primary">\n\n    <ion-card-header>\n\n      {{stat.player.name}}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n    	\n\n		   <ion-item>\n\n      <ion-select [(ngModel)]="stat.status" (ionChange)="availabilitySelected($event, stat)">\n\n          <ion-option value="0" selected>Not Provided</ion-option>\n\n        <ion-option value="1">IN</ion-option>\n\n        <ion-option value="2">OUT</ion-option>\n\n        <ion-option value="3">Waitlist</ion-option>\n\n      </ion-select>\n\n	 \n\n    </ion-item>\n\n </ion-card-content>\n\n  </ion-card> \n\n            </li>\n\n          </ol>\n\n        </div>\n\n       </div>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\match-availability\match-availability.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_matches_matches__["a" /* MatchService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */]])
 ], MatchAvailabilityPage);

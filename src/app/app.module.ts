@@ -67,13 +67,14 @@ import {CreateLocationPage} from '../pages/create-location/create-location';
 import {CreateLocationModule} from '../pages/create-location/create-location.module';
 import {CreateTournamentPage} from '../pages/create-tournament/create-tournament';
 import {CreateTournamentModule} from '../pages/create-tournament/create-tournament.module';
+import {ModeChangePage} from '../pages/modeChange/modeChange';
+import {ModeChangeModule} from '../pages/modeChange/modeChange.module';
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    
-   
+      
   ],
   imports: [
     BrowserModule, FormsModule, HttpModule,
@@ -95,7 +96,7 @@ import {CreateTournamentModule} from '../pages/create-tournament/create-tourname
 	CreateMatchModule,
 	MatchAvailabilityPageModule,
 	TournamentsPageModule,
-	LocationsPageModule,CreateLocationModule,CreateTournamentModule
+	LocationsPageModule,CreateLocationModule,CreateTournamentModule,ModeChangeModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -116,7 +117,7 @@ import {CreateTournamentModule} from '../pages/create-tournament/create-tourname
 	ResetPage,
 	LogoutPage,
 	CreateTeamPage,TeamPlayersPage,CreatePlayerPage,TeamMatchesPage,CreateMatchPage,MatchAvailabilityPage,TournamentsPage,LocationsPage,
-	CreateLocationPage,CreateTournamentPage
+	CreateLocationPage,CreateTournamentPage,ModeChangePage
 	
   ],
   providers: [

@@ -28,6 +28,7 @@ import {FormsModule} from "@angular/forms";
 import { Events } from 'ionic-angular';
 import {TournamentsPage} from '../pages/tournaments/tournaments';
 import {LocationsPage} from '../pages/locations/locations';
+import {ModeChangePage} from '../pages/modeChange/modeChange';
 @Component({
   templateUrl: 'app.html'
 })
@@ -62,7 +63,8 @@ this.adminPages=[
       {title: 'Tournament', component: TournamentsPage},
 	  { title: 'Location', component: LocationsPage},
       {title: 'Profile', component: MyProfilePage},
-      {title:'Teams', component: MyTeamsPage},
+      {title:'Manage Teams', component: MyTeamsPage},
+	  {title:'Change Mode', component: ModeChangePage},
    	  {title: 'Finance', component: FinancePage},
 	  {title: 'Update Password', component: ResetPage},
 	  {title: 'Logout', component: LogoutPage},
@@ -73,7 +75,7 @@ this.normalPages=[
       {title: 'Completed Matches', component: PreviousMatchesPage},
 	  { title: 'Team Stats', component: ListPage },
       {title: 'My Profile', component: MyProfilePage},
-      {title:'Manage Teams', component: MyTeamsPage},
+       {title:'Change Mode', component: ModeChangePage},
       {title: 'Account Details', component: MyAccountPage},
 	  {title: 'Finance Details', component: FinancePage},
 	  {title: 'Update Password', component: ResetPage},
@@ -83,9 +85,9 @@ this.normalPages=[
     // used for an example of ngFor and navigation
     this.pages = this.normalPages;
 this.events.subscribe("UPDATE_SIDE_MENU", (eventData) => {
-	if(this.type=="normal"){
+	if(eventData=="admin"){
    this.pages = this.adminPages;
-   this.type="admin";
+   
 }else{
 	 this.pages = this.normalPages;
 	this.type="normal";

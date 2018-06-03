@@ -187,6 +187,25 @@ getBestBatting() {
     });
 
   }
+  
+  updateAvailability(match,player,status) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set("token",this.getToken());
+	console.log("request",JSON.stringify(status));
+      this.http.post(apiUrl + '/'+match+'/availability/'+player.id, status, {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("mast avail post resp", res.json()); 
+          
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
+
+  }
  addMatch(data,team) {
     return new Promise((resolve, reject) => {
       let headers = new Headers();

@@ -5,7 +5,7 @@ import { AuthService} from '../../providers/auth/auth';
 import { StatsService } from '../../providers/stats/stats';
 import {TeamService} from '../../providers/teams/teams';
 import { Events } from 'ionic-angular';
-import {CreateTeamPage} from '../create-team/create-team';
+import {TeamMatchesPage} from '../team-matches/team-matches';
 /**
  * Generated class for the MyTeamsPage page.
  *
@@ -35,17 +35,7 @@ export class MyTeamsPage {
   userPostData = {"user_id":"","token":""};
 
   constructor(public events: Events,public navCtrl: NavController, public navParams: NavParams, public authService:AuthService, public teamService:TeamService, public statsService:StatsService, public app: App, public loadingController:LoadingController) {
-    if (this.authService.getAuthenticated()){
-      const data = JSON.parse(localStorage.getItem('userData'));
-      console.log("fetch data", data);
-      this.userDetails = data;
-     // console.log("user data from storage", this.userDetails)
-      this.userPostData.user_id = this.userDetails.id;
-      this.userPostData.token = this.userDetails.token;
-    } else {
-      const root = this.app.getRootNav();
-      root.popToRoot();
-    }
+  
   }
 
   ionViewDidLoad(){
@@ -82,12 +72,11 @@ export class MyTeamsPage {
   
 
   goToTeam(team){
-this.events.publish("UPDATE_SIDE_MENU", "some event related data")
+
  localStorage.setItem('team', JSON.stringify(team));
+  this.navCtrl.push(TeamMatchesPage);
+              this.navCtrl.setRoot(TeamMatchesPage);
   }
- createTeam(){
-    //Login page link
-    this.navCtrl.push(CreateTeamPage);
-  }
+
  
 }

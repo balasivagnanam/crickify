@@ -1,0 +1,36 @@
+<!--
+  Generated template for the SignupPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title>Change Mode</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="appBackground">
+  <ion-card (click)="admin()">
+    <ion-card-header>
+     Admin Mode
+    </ion-card-header>
+    <ion-card-content>
+     Change Mode to Admin
+    </ion-card-content>
+  </ion-card>
+    <ion-card (click)="normal()">
+    <ion-card-header>
+     Normal Mode
+    </ion-card-header>
+    <ion-card-content>
+       Change Mode to Normal
+    </ion-card-content>
+  </ion-card>
+</ion-content>

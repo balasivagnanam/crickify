@@ -33,50 +33,112 @@
   <div [ngSwitch]="tabsvalues"> 
       <div *ngSwitchCase="'available'">
         <div class="cric-stat-available-table">
-          <h4>Available</h4>
-          <ul>
+         
+          <ol type="1">
           
             <li *ngFor="let stat of available">
-                <p class="cric-player-name">{{stat?.name}}</p>
+			 <ion-card  color="primary">
+    <ion-card-header>
+      {{stat?.player.name}}
+    </ion-card-header>
+    <ion-card-content>
+    	
+		   <ion-item>
+      <ion-select [(ngModel)]="stat.status" (ionChange)="availabilitySelected($event, stat)">
+          <ion-option value="0" >Not Provided</ion-option>
+        <ion-option value="1" selected>IN</ion-option>
+        <ion-option value="2">OUT</ion-option>
+        <ion-option value="3">Waitlist</ion-option>
+      </ion-select>
+	 
+    </ion-item>
+ </ion-card-content>
+  </ion-card>
               
             </li>
-          </ul>
+          </ol>
         </div>
 		</div>
 		<div *ngSwitchCase="'unAvailable'">
 		<div class="cric-stat-unAvailable-table">
-          <h4>UnAvailable</h4>
-          <ul>
+         
+          <ol type="1">
          
             <li *ngFor="let stat of unavailable">
-                <p class="cric-player-name">{{stat?.name}}</p>
+               <ion-card  color="primary">
+    <ion-card-header>
+      {{stat?.player.name}}
+    </ion-card-header>
+    <ion-card-content>
+    	
+		   <ion-item>
+      <ion-select [(ngModel)]="stat.status" (ionChange)="availabilitySelected($event, stat)">
+          <ion-option value="0">Not Provided</ion-option>
+        <ion-option value="1" >IN</ion-option>
+        <ion-option value="2" selected>OUT</ion-option>
+        <ion-option value="3">Waitlist</ion-option>
+      </ion-select>
+	 
+    </ion-item>
+ </ion-card-content>
+  </ion-card>
               
             </li>
-          </ul>
+          </ol>
         </div>
 		</div>
 		<div *ngSwitchCase="'tentative'">
 		<div class="cric-stat-tentative-table">
-          <h4>Tentative</h4>
-          <ul>
+         
+          <ol type="1">
            
             <li *ngFor="let stat of tentative">
-                <p class="cric-player-name">{{stat?.name}}</p>
-              
+                 <ion-card  color="primary">
+    <ion-card-header>
+      {{stat?.player.name}}
+    </ion-card-header>
+    <ion-card-content>
+    	
+		   <ion-item>
+      <ion-select [(ngModel)]="stat.status" (ionChange)="availabilitySelected($event, stat)">
+          <ion-option value="0">Not Provided</ion-option>
+        <ion-option value="1">IN</ion-option>
+        <ion-option value="2">OUT</ion-option>
+        <ion-option value="3" selected>Waitlist</ion-option>
+      </ion-select>
+	 
+    </ion-item>
+ </ion-card-content>
+  </ion-card>
             </li>
-          </ul>
+          </ol>
         </div>
 		</div>
 		<div *ngSwitchCase="'Unknown'">
 			<div class="cric-stat-unknown-table">
-          <h4>Unknown</h4>
-          <ul>
+         
+          <ol type="1">
          
             <li *ngFor="let stat of unknown">
-                <p class="cric-player-name">{{stat?.name}}</p>
-              
+                <ion-card  color="primary">
+    <ion-card-header>
+      {{stat.player.name}}
+    </ion-card-header>
+    <ion-card-content>
+    	
+		   <ion-item>
+      <ion-select [(ngModel)]="stat.status" (ionChange)="availabilitySelected($event, stat)">
+          <ion-option value="0" selected>Not Provided</ion-option>
+        <ion-option value="1">IN</ion-option>
+        <ion-option value="2">OUT</ion-option>
+        <ion-option value="3">Waitlist</ion-option>
+      </ion-select>
+	 
+    </ion-item>
+ </ion-card-content>
+  </ion-card> 
             </li>
-          </ul>
+          </ol>
         </div>
        </div>
   </div>
