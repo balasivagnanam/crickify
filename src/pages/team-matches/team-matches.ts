@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-ang
 import {AuthService} from '../../providers/auth/auth';
 import {MatchService} from '../../providers/matches/matches';
 import {PreviousMatchDetailsPage} from '../previous-match-details/previous-match-details';
-import {MatchTeamPage} from '../match-team/match-team';
+import {AddMatchTeamPage} from '../add-match-team/add-match-team';
 import {CreateMatchPage} from '../create-match/create-match';
 import {MatchAvailabilityPage} from '../match-availability/match-availability';
 /**
@@ -72,7 +72,7 @@ export class  TeamMatchesPage {
   }
   goToMatchTeam(event){
     console.log("clicked match team", event);
-    this.navCtrl.push(MatchTeamPage, {"matchId": event});
+    this.navCtrl.push(AddMatchTeamPage, {"matchId": event});
   }
   goToMatchAvailability(event){
     console.log("clicked match team", event);
