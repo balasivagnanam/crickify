@@ -1,0 +1,176 @@
+<!--
+  Generated template for the PreviousMatchDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Match Details</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="appBackground">
+<ion-card>
+  <ion-card-header>
+ </ion-card-header>
+  </ion-card>
+  <ion-segment [(ngModel)]="tabsvalues">
+      <ion-segment-button value="summary">
+        Summary
+      </ion-segment-button>
+      <ion-segment-button value="batting">
+          Batting
+      </ion-segment-button>
+      <ion-segment-button value="bowling">
+          Bowling
+      </ion-segment-button>
+    </ion-segment>
+  
+  <div [ngSwitch]="tabsvalues"> 
+      <div *ngSwitchCase="'summary'">
+        <div class="cric-stat-batting-table">
+      <form [formGroup]="createMatchForm">
+	   <ion-item>
+            <ion-label floating>Opponent</ion-label>
+            <ion-input formControlName="opponent" type="text"></ion-input>
+			
+        </ion-item>
+       <ion-item>
+            <ion-label floating>Description</ion-label>
+            <ion-input formControlName="description" type="text"></ion-input>
+			
+        </ion-item>
+		      <ion-item>
+            <ion-label floating>Remark</ion-label>
+            <ion-input formControlName="remarks" type="text"></ion-input>
+			  </ion-item>
+ <ion-item>
+  <ion-label>Date</ion-label>
+  <ion-datetime formControlName="matchTime" displayFormat="MMM DD, YYYY HH:mm" ></ion-datetime>
+</ion-item>
+ <ion-item>
+  <ion-label>Deadline Date</ion-label>
+  <ion-datetime formControlName="deadline" displayFormat="MMM DD, YYYY HH:mm" ></ion-datetime>
+</ion-item>
+<ion-item>
+  <ion-label>Location</ion-label>
+  <ion-select formControlName="location">
+    <ion-option *ngFor="let key of locations" [value]="key">{{key.name}}</ion-option>
+  </ion-select>
+</ion-item>
+<ion-item>
+  <ion-label>Tournament</ion-label>
+  <ion-select formControlName="tournament">
+    <ion-option *ngFor="let key of tournaments" [value]="key">{{key.name}}</ion-option>
+  </ion-select>
+</ion-item>
+	  <ion-item>
+    <ion-label>Toss Won</ion-label>
+    <ion-checkbox formControlName="tossWon"></ion-checkbox>
+  </ion-item>
+  <ion-item>
+    <ion-label>Played</ion-label>
+    <ion-checkbox formControlName="played"></ion-checkbox>
+  </ion-item>
+    <ion-item>
+    <ion-label>Batting First</ion-label>
+    <ion-checkbox formControlName="battingFirst"></ion-checkbox>
+  </ion-item>
+         <ion-item>
+            <ion-label floating>Opponent Score</ion-label>
+            <ion-input formControlName="oppositionScore" type="text"></ion-input>
+			
+        </ion-item>
+       <ion-item>
+            <ion-label floating>Opponent Wickets</ion-label>
+            <ion-input formControlName="oppositionWickets" type="text"></ion-input>
+			
+        </ion-item>
+		      <ion-item>
+            <ion-label floating>Opponent Overs</ion-label>
+            <ion-input formControlName="oppositionOvers" type="text"></ion-input>
+			  </ion-item>
+          <ion-item>
+            <ion-label floating>Score</ion-label>
+            <ion-input formControlName="score" type="text"></ion-input>
+			
+        </ion-item>
+       <ion-item>
+            <ion-label floating>Wickets</ion-label>
+            <ion-input formControlName="wickets" type="text"></ion-input>
+			
+        </ion-item>
+		      <ion-item>
+            <ion-label floating>Overs</ion-label>
+            <ion-input formControlName="overs" type="text"></ion-input>
+			  </ion-item>
+ <ion-item>
+            <ion-label floating>point</ion-label>
+            <ion-input formControlName="points" type="text"></ion-input>
+			
+        </ion-item>
+		      <ion-item>
+            <ion-label floating>Result</ion-label>
+            <ion-input formControlName="result" type="text"></ion-input>
+			  </ion-item>
+    </form>
+	 <button ion-button color="secondary" icon-left clear small (click)="editMatch()">
+            Submit
+            
+          </button>
+      </div>
+	  </div>
+    <div *ngSwitchCase="'batting'">
+        <div class="cric-stat-batting-table">
+            <ul>
+              <li class="header">
+                  <p class="cric-player-name">Name</p>
+                  <p>R</p>
+                  <p>B</p>
+                  <p>4's</p>
+                  <p>6's</p>
+              </li>
+              <li *ngFor="let stat of batting">
+                  <p class="cric-player-name">{{stat?.player?.name}}</p>
+                  <p>{{stat?.run}}</p>
+                  <p>{{stat?.ball}}</p>
+                  <p>{{stat?.four}}</p>
+                  <p>{{stat?.six}}</p>
+              </li>
+            </ul>
+			<ion-fab bottom right>
+    <button ion-fab mini (click)="addBatting()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+          </div>
+      </div>
+      <div *ngSwitchCase="'bowling'">
+          <div class="cric-stat-bowling-table">
+              <ul>
+                <li class="header">
+                    <p class="cric-player-name">Name</p>
+                    <p>O</p>
+                    <p>R</p>
+                    <p>W</p>
+                    <p>Wd</p>
+                    <p>EC</p>
+                </li>
+                <li *ngFor="let stat of bowling">
+                    <p class="cric-player-name">{{stat?.player?.name}}</p>
+                    <p>{{stat?.overs}}</p>
+                    <p>{{stat?.run}}</p>
+                    <p>{{stat?.wickets}}</p>
+                    <p>{{stat?.wide}}</p>
+                    <p>{{stat?.economy | number : '1.2-2'}}</p>
+                </li>
+              </ul>
+            </div>
+			<ion-fab bottom right>
+    <button ion-fab mini (click)="addBowling()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+      </div>
+  </div>
+</ion-content>

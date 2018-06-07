@@ -29,7 +29,7 @@
           <p>Result : {{match.result}}, {{match.remarks}}</p>
           <p>{{match.team.teamname}}: {{match.score}}/{{match.wickets}}</p>
           <p>{{match.opponent}}:{{match.oppositionScore}}/{{match.oppositionWickets}}</p>
-        </ion-card-content>
+     
 		 <button ion-button icon-left clear small (click)="goToMatchTeam(match.id)">
             <ion-icon name="text"></ion-icon>
             <div>Match Team</div>
@@ -42,6 +42,7 @@
             <ion-icon name="text"></ion-icon>
             <div>Match Availability</div>
           </button>
+		     </ion-card-content>
       </ion-card>
     </ion-content>
 <ion-fab bottom right>

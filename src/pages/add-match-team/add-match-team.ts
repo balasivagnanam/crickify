@@ -139,4 +139,24 @@ delete(player){
      
     });
   }
+  
+  sendTeam(){
+    this.matchService.sendTeamList(this.matchId).then((result) => {
+      this.responseData = result;
+      console.log(this.responseData); 
+      if (this.responseData.statusCode == '200'){
+        
+        console.log("test 200");
+      
+         }  else if(this.responseData.statusCode == "404") {
+     
+      } else {
+        
+        console.log("error", this.responseData)
+      }
+      
+    }, (err) => {
+     
+    });
+  }
 }

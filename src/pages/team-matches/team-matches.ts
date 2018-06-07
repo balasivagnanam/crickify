@@ -6,6 +6,7 @@ import {PreviousMatchDetailsPage} from '../previous-match-details/previous-match
 import {AddMatchTeamPage} from '../add-match-team/add-match-team';
 import {CreateMatchPage} from '../create-match/create-match';
 import {MatchAvailabilityPage} from '../match-availability/match-availability';
+import {PreviousMatchDetailsEditPage} from '../previous-match-details-edit/previous-match-details-edit';
 /**
  * Generated class for the PreviousMatchesPage page.
  *
@@ -68,8 +69,10 @@ export class  TeamMatchesPage {
 
   goToMatchDetails(event){
     console.log("clicked match", event);
-    this.navCtrl.push(PreviousMatchDetailsPage, {"matchId": event});
+    this.navCtrl.push(PreviousMatchDetailsEditPage, {"matchId": event});
   }
+  
+  
   goToMatchTeam(event){
     console.log("clicked match team", event);
     this.navCtrl.push(AddMatchTeamPage, {"matchId": event});

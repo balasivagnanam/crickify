@@ -71,6 +71,9 @@ import {ModeChangePage} from '../pages/modeChange/modeChange';
 import {ModeChangeModule} from '../pages/modeChange/modeChange.module';
 import {AddMatchTeamPage} from '../pages/add-match-team/add-match-team';
 import {AddMatchTeamPageModule} from '../pages/add-match-team/add-match-team.module';
+
+import {PreviousMatchDetailsEditPage} from '../pages/previous-match-details-edit/previous-match-details-edit';
+import {PreviousMatchDetailsEditPageModule} from '../pages/previous-match-details-edit/previous-match-details-edit.module';
 @NgModule({
   declarations: [
     MyApp,
@@ -98,7 +101,7 @@ import {AddMatchTeamPageModule} from '../pages/add-match-team/add-match-team.mod
 	CreateMatchModule,
 	MatchAvailabilityPageModule,
 	TournamentsPageModule,
-	LocationsPageModule,CreateLocationModule,CreateTournamentModule,ModeChangeModule,AddMatchTeamPageModule
+	LocationsPageModule,CreateLocationModule,CreateTournamentModule,ModeChangeModule,AddMatchTeamPageModule,PreviousMatchDetailsEditPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -119,7 +122,7 @@ import {AddMatchTeamPageModule} from '../pages/add-match-team/add-match-team.mod
 	ResetPage,
 	LogoutPage,
 	CreateTeamPage,TeamPlayersPage,CreatePlayerPage,TeamMatchesPage,CreateMatchPage,MatchAvailabilityPage,TournamentsPage,LocationsPage,
-	CreateLocationPage,CreateTournamentPage,ModeChangePage,AddMatchTeamPage
+	CreateLocationPage,CreateTournamentPage,ModeChangePage,AddMatchTeamPage,PreviousMatchDetailsEditPage
 	
   ],
   providers: [

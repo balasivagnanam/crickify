@@ -60,11 +60,34 @@ export class TeamPlayersPage {
       console.log(this.responseData); 
       if (this.responseData.statusCode == '200'){
         loading.dismiss();
-        console.log("test 200");
+     
         this.players = this.responseData.results.teams;
          }  else if(this.responseData.statusCode == "404") {
-        console.log("unauthorrised");
-        localStorage.clear();
+     loading.dismiss();
+      //  this.backToWelcome();
+      } else {
+        loading.dismiss();
+      }
+      
+    }, (err) => {
+       loading.dismiss();
+    });
+  }
+
+  delete(player){
+	  
+	    const loading = this.loadingController.create({
+      content: 'Please wait...'
+    });
+    loading.present();
+   this.teamService.deletePlayer(player,this.selectedTeam).then((result) => {
+      this.responseData = result;
+      console.log(this.responseData); 
+      if (this.responseData.statusCode == '200'){
+        loading.dismiss();
+      this.ionViewDidLoad();
+         }  else if(this.responseData.statusCode == "404") {
+      
       //  this.backToWelcome();
       } else {
         loading.dismiss();
@@ -77,10 +100,6 @@ export class TeamPlayersPage {
   }
 
   
-
-  player(id){
-this.events.publish("UPDATE_SIDE_MENU", "some event related data")
-  }
  addPlayer(){
     //Login page link
     this.navCtrl.push(CreatePlayerPage);

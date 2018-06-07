@@ -243,7 +243,23 @@ getBestBatting() {
     });
 
   }
-  
+  sendTeamList(matchId) {
+    return new Promise((resolve, reject) => {
+	let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set("token",this.getToken());		
+      this.http.post(apiUrl + '/team/send/'+matchId,null,{headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("mast post resp", res.json()); 
+          
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
+
+  }
   deleteMatchTeam(matchId,data) {
     return new Promise((resolve, reject) => {
 	let headers = new Headers();

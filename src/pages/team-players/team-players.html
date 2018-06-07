@@ -17,10 +17,16 @@
 
 
 <ion-content padding class="appBackground">
-  <ion-card *ngFor="let player of players" color="primary" (click)="player(team)">
+  <ion-card *ngFor="let player of players" color="primary" >
     <ion-card-header>
       {{player.name}}
 	   </ion-card-header>
+	   <ion-card-content>
+	   <button ion-button icon-left clear small (click)="delete(player)">
+            <ion-icon name="text"></ion-icon>
+            <div>Delete</div>
+          </button>
+		    </ion-card-content>
   </ion-card>
 </ion-content>
 
