@@ -10,7 +10,7 @@ importScripts('./build/sw-toolbox.js');
 self.toolbox.options.cache = {
   name: 'ionic-cache'
 };
-var version =3;
+var version =4;
 // pre-cache our key assets
 self.toolbox.precache(
   [
@@ -18,32 +18,21 @@ self.toolbox.precache(
     './build/vendor.js',
     './build/main.css',
     './build/polyfills.js',
-    'index.html',
+    
     'manifest.json'
   ]
 );
 
-self.addEventListener('install', function(event){
-  // only happens once for this version of the service worker
-  // wait until the install event has resolved
-  event.waitUntil(
-    // then create our named cached
-    caches
-    .open('my-sw-cache')
-    .then(function(cache) {
-          return cache.addAll([
-       './build/main.js',
-    './build/vendor.js',
-    './build/main.css',
-    './build/polyfills.js',
-    'index.html',
-    'manifest.json'
-      ]);
-    })
-    .then(function(){
-      console.log('Service worker is ready, and assets are cached');
-    })
-  );
+self.addEventListener('install', function (e) {
+    console.log('[Service Worker] Install');
+    e.waitUntil(
+      caches.open(dataCacheName).then(function (cache) {
+          console.log('[Service Worker] Caching app shell');
+          return cache.addAll(filesToCache);
+      }).then(function(e){
+        return self.skipWaiting();
+      })
+    );
 });
 
 self.addEventListener("fetch", function(event) {
@@ -82,7 +71,7 @@ self.addEventListener("fetch", function(event) {
   );
 });
 // dynamically cache any other local assets
-self.toolbox.router.any('/', self.toolbox.fastest);
+self.toolbox.router.any('/', self.toolbox.networkFirst);
 
 // for any other requests go to the network, cache,
 // and then only use that cached resource if your user goes offline
