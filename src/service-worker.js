@@ -10,7 +10,7 @@ importScripts('./build/sw-toolbox.js');
 self.toolbox.options.cache = {
   name: 'ionic-cache'
 };
-var version =2;
+var version =3;
 // pre-cache our key assets
 self.toolbox.precache(
   [
@@ -31,8 +31,7 @@ self.addEventListener('install', function(event){
     caches
     .open('my-sw-cache')
     .then(function(cache) {
-      // once created, lets add some local resouces
-      return cache.addAll([
+          return cache.addAll([
        './build/main.js',
     './build/vendor.js',
     './build/main.css',
@@ -43,7 +42,7 @@ self.addEventListener('install', function(event){
     })
     .then(function(){
       console.log('Service worker is ready, and assets are cached');
-    });
+    })
   );
 });
 

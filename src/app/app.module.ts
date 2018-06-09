@@ -8,11 +8,11 @@ import {MatchService} from '../providers/matches/matches';
 import {StatsService} from '../providers/stats/stats';
 import {TeamService} from '../providers/teams/teams';
 import {OtherService} from '../providers/other/other';
-
+import {BattingService} from '../providers/batting/batting';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
-
+import {BowlingService} from '../providers/bowling/bowling';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
@@ -71,7 +71,10 @@ import {ModeChangePage} from '../pages/modeChange/modeChange';
 import {ModeChangeModule} from '../pages/modeChange/modeChange.module';
 import {AddMatchTeamPage} from '../pages/add-match-team/add-match-team';
 import {AddMatchTeamPageModule} from '../pages/add-match-team/add-match-team.module';
-
+import {BattingPage} from '../pages/batting/batting';
+import {BattingPageModule} from '../pages/batting/batting.module';
+import {BowlingPage} from '../pages/bowling/bowling';
+import {BowlingPageModule} from '../pages/bowling/bowling.module';
 import {PreviousMatchDetailsEditPage} from '../pages/previous-match-details-edit/previous-match-details-edit';
 import {PreviousMatchDetailsEditPageModule} from '../pages/previous-match-details-edit/previous-match-details-edit.module';
 @NgModule({
@@ -100,8 +103,8 @@ import {PreviousMatchDetailsEditPageModule} from '../pages/previous-match-detail
 	TeamMatchesPageModule,
 	CreateMatchModule,
 	MatchAvailabilityPageModule,
-	TournamentsPageModule,
-	LocationsPageModule,CreateLocationModule,CreateTournamentModule,ModeChangeModule,AddMatchTeamPageModule,PreviousMatchDetailsEditPageModule
+	TournamentsPageModule,BowlingPageModule,
+	LocationsPageModule,CreateLocationModule,CreateTournamentModule,ModeChangeModule,AddMatchTeamPageModule,PreviousMatchDetailsEditPageModule,BattingPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -122,15 +125,14 @@ import {PreviousMatchDetailsEditPageModule} from '../pages/previous-match-detail
 	ResetPage,
 	LogoutPage,
 	CreateTeamPage,TeamPlayersPage,CreatePlayerPage,TeamMatchesPage,CreateMatchPage,MatchAvailabilityPage,TournamentsPage,LocationsPage,
-	CreateLocationPage,CreateTournamentPage,ModeChangePage,AddMatchTeamPage,PreviousMatchDetailsEditPage
-	
+	CreateLocationPage,CreateTournamentPage,ModeChangePage,AddMatchTeamPage,PreviousMatchDetailsEditPage,BattingPage,BowlingPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     AuthService,MatchService,StatsService, TeamService,PlayersProvider,FinanceProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    PlayersProvider,AdMobFree,AndroidPermissions,Push,OtherService
+    PlayersProvider,AdMobFree,AndroidPermissions,Push,OtherService,BattingService,BowlingService
   ]
 })
 export class AppModule {}

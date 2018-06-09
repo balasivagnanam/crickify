@@ -1,0 +1,81 @@
+<!--
+  Generated template for the PreviousMatchDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Match Details</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="appBackground">
+<ion-card>
+  <ion-card-header>
+ </ion-card-header>
+ 
+   <ion-card-content>
+  <div [ngSwitch]="tabsvalues"> 
+      <div *ngSwitchCase="'summary'">
+        <div class="cric-stat-batting-table">
+      <form [formGroup]="createBattingForm">
+      <ion-item>
+       <ion-label>Player</ion-label>
+      	  <ion-select formControlName="player" [compareWith]="compareFn">
+    <ion-option *ngFor="let key of players" [value]="key">{{key.name}}</ion-option>
+  </ion-select>
+     </ion-item>
+	   <ion-item>
+            <ion-label floating>Run</ion-label>
+            <ion-input formControlName="run" type="text"></ion-input>
+			
+        </ion-item>
+       <ion-item>
+            <ion-label floating>Ball</ion-label>
+            <ion-input formControlName="ball" type="text"></ion-input>
+			
+        </ion-item>
+		      <ion-item>
+            <ion-label floating>Six</ion-label>
+            <ion-input formControlName="six" type="text"></ion-input>
+			  </ion-item>
+ <ion-item>
+  <ion-label floating>Four</ion-label>
+  <ion-input formControlName="four" ></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label>Dismissal</ion-label>
+  <ion-select formControlName="dismisal" [compareWith]="compareFn">
+    <ion-option *ngFor="let key of dismissals" [value]="key">{{key.name}}</ion-option>
+  </ion-select>
+</ion-item>
+	  <ion-item>
+    <ion-label>Did Not Bat</ion-label>
+    <ion-checkbox formControlName="dnb"></ion-checkbox>
+  </ion-item>
+  <ion-item>
+    <ion-label>Out</ion-label>
+    <ion-checkbox formControlName="out"></ion-checkbox>
+  </ion-item>
+    <ion-item>
+    <ion-label>Batting Down</ion-label>
+    <ion-input formControlName="battingDown"></ion-input>
+  </ion-item>
+       
+    </form>
+	 <button ion-button color="secondary" icon-left clear small (click)="saveBatting()">
+            Submit
+            
+          </button>
+    
+ 
+      </div>
+  </div>
+   </div>
+     </ion-card-content>
+    </ion-card>
+</ion-content>

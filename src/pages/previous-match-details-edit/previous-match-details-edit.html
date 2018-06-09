@@ -14,10 +14,7 @@
 
 
 <ion-content padding class="appBackground">
-<ion-card>
-  <ion-card-header>
- </ion-card-header>
-  </ion-card>
+
   <ion-segment [(ngModel)]="tabsvalues">
       <ion-segment-button value="summary">
         Summary
@@ -58,13 +55,13 @@
 </ion-item>
 <ion-item>
   <ion-label>Location</ion-label>
-  <ion-select formControlName="location">
+  <ion-select formControlName="location" [compareWith]="compareFn">
     <ion-option *ngFor="let key of locations" [value]="key">{{key.name}}</ion-option>
   </ion-select>
 </ion-item>
 <ion-item>
   <ion-label>Tournament</ion-label>
-  <ion-select formControlName="tournament">
+  <ion-select formControlName="tournament" [compareWith]="compareFn">
     <ion-option *ngFor="let key of tournaments" [value]="key">{{key.name}}</ion-option>
   </ion-select>
 </ion-item>
@@ -125,6 +122,11 @@
       </div>
 	  </div>
     <div *ngSwitchCase="'batting'">
+	<ion-card>
+  <ion-card-header>
+  Batting
+ </ion-card-header>
+ <ion-card-content>
         <div class="cric-stat-batting-table">
             <ul>
               <li class="header">
@@ -133,6 +135,7 @@
                   <p>B</p>
                   <p>4's</p>
                   <p>6's</p>
+				  <p>Edit</p>
               </li>
               <li *ngFor="let stat of batting">
                   <p class="cric-player-name">{{stat?.player?.name}}</p>
@@ -140,14 +143,22 @@
                   <p>{{stat?.ball}}</p>
                   <p>{{stat?.four}}</p>
                   <p>{{stat?.six}}</p>
+				   <p> <button ion-button icon-left clear small (click)="editBatting(stat.id)"></button></p>
               </li>
             </ul>
-			<ion-fab bottom right>
-    <button ion-fab mini (click)="addBatting()"><ion-icon name="add"></ion-icon></button>
-  </ion-fab>
+		
+		
           </div>
+		  	  </ion-card-content>
+			  </ion-card>
+			  
       </div>
       <div *ngSwitchCase="'bowling'">
+      <ion-card>
+  <ion-card-header>
+  Bowling
+ </ion-card-header>
+ <ion-card-content>
           <div class="cric-stat-bowling-table">
               <ul>
                 <li class="header">
@@ -157,6 +168,7 @@
                     <p>W</p>
                     <p>Wd</p>
                     <p>EC</p>
+                    <p>Edit</p>
                 </li>
                 <li *ngFor="let stat of bowling">
                     <p class="cric-player-name">{{stat?.player?.name}}</p>
@@ -165,12 +177,13 @@
                     <p>{{stat?.wickets}}</p>
                     <p>{{stat?.wide}}</p>
                     <p>{{stat?.economy | number : '1.2-2'}}</p>
+                    <p> <button ion-button icon-left clear small (click)="editBowling(stat.id)"></button></p>
                 </li>
               </ul>
             </div>
-			<ion-fab bottom right>
-    <button ion-fab mini (click)="addBowling()"><ion-icon name="add"></ion-icon></button>
-  </ion-fab>
+             </ion-card-content>
+			  </ion-card>
+			  
       </div>
   </div>
 </ion-content>

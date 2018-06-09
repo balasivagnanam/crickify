@@ -17,9 +17,71 @@
 
 
 <ion-content padding class="appBackground">
-  <p>Name  : {{user.name}}</p>
-  <p>Phone  : {{user.phone}}</p>
-  <p>Username  : {{user.username}}</p>
+<ion-card>
+  <ion-card-header>
+ </ion-card-header>
+ 
+   <ion-card-content>
+  <div> 
+      <div>
+        <div class="user-table">
+      <form [formGroup]="editUserForm">
+     	   <ion-item>
+            <ion-label floating>Name</ion-label>
+            <ion-input formControlName="name" type="text"></ion-input>
+			
+        </ion-item>
+       <ion-item>
+            <ion-label floating>Phone</ion-label>
+            <ion-input formControlName="phone" type="text"></ion-input>
+			
+        </ion-item>
+		      <ion-item>
+            <ion-label floating>email</ion-label>
+            <ion-input formControlName="username" type="text"></ion-input>
+			  </ion-item>
+ <ion-item>
+  <ion-label>Player Type</ion-label>
+  <ion-select formControlName="playerType" >
+   <ion-option value="Batsman">Batsman</ion-option>
+      <ion-option value="Bowler">Bowler</ion-option>
+         <ion-option value="WicketKeeperBatsman">WicketKeeper Batsman</ion-option>
+      <ion-option value="All Rounder">All Rounder</ion-option>
+  </ion-select>
+</ion-item>
+	   <ion-item>
+  <ion-label>Bowler Type</ion-label>
+  <ion-select formControlName="bowlerType">
+    <ion-option value="Right-arm fast">Right-arm fast</ion-option>
+      <ion-option value="Right-arm fast medium">Right-arm fast medium</ion-option>
+ <ion-option value="Left-arm fast">Left-arm fast</ion-option>
+      <ion-option value="Left-arm fast medium">Left-arm fast medium</ion-option>
+            <ion-option value="Leg Break">Leg Break</ion-option>
+              <ion-option value="Off break">Off break</ion-option>
+                <ion-option value="Slow left-arm orthodox">Slow left-arm orthodox</ion-option>
+                  <ion-option value="Slow left-arm chinaman">Slow left-arm chinaman</ion-option>
+  </ion-select>
+</ion-item>
+ <ion-item>
+  <ion-label>Batsman Type</ion-label>
+  <ion-select formControlName="batsmanType" >
+     <ion-option value="Right handed">Right handed</ion-option>
+      <ion-option value="Left handed">Left handed</ion-option>
+  </ion-select>
+</ion-item>
+       
+    </form>
+	 <button ion-button color="secondary" icon-left clear small (click)="saveUser()">
+            Submit
+            
+          </button>
+    
+ 
+      </div>
+  </div>
+   </div>
+     </ion-card-content>
+    </ion-card>
   
       
               
