@@ -28,6 +28,9 @@ export class  TeamMatchesPage {
 	this.getData();
 	
   }
+  ionViewWillEnter() {
+   this.getData();
+  }
 
   getData(){
     const loading = this.loadingController.create({

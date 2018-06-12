@@ -30,7 +30,7 @@
          
         </ion-row>
       </ion-grid>
-	  <h1>Best Batsman </h1>
+	  <h1>Batting Performances </h1>
 	 <ion-grid >
         <ion-row > 
 		<ion-col *ngFor="let batting of battings| slice:0:4;">
@@ -39,7 +39,10 @@
       <b>{{batting.player.name}} </b>
       
     </ion-card-header>
-	<img src="assets/img/batsman.png"/>
+    <p *ngIf= "batting.player.img!= null" ><img src="data:image/PNG;base64,{{batting.player.img}}"/></p>
+    
+    <p *ngIf="batting.player.img == null" ><img src="assets/img/batsman.png"/></p>
+	
     <ion-card-content>
       <p>{{batting.run}}({{batting.ball}})</p>
      <p>{{batting.match.team.teamname}} vs
@@ -51,7 +54,7 @@
    </ion-row>
       </ion-grid>
 	  
-	  <h1>Best Bowler</h1>
+	  <h1>Bowling Performances</h1>
 	   <ion-grid >
         <ion-row > 
 		<ion-col *ngFor="let bowling of bowlings| slice:0:4;">
@@ -115,7 +118,7 @@
 <br>
 		  <ion-row   center text-center>
 		  <ion-col>
-		  <b>Website Issues or Suggestions? Contact US @ crickify@gmail.com</b>
+		  <b>Website Issues or Suggestions? Contact US @ appcrickify@gmail.com</b>
 		  </ion-col>
 		  <br>
 <br>

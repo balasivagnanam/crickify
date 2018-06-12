@@ -98,7 +98,7 @@ phone : any;
             text: 'OK',
             handler: data => {
               console.log('ok clicked');
-              this.navCtrl.push(LoginPage);
+             
             }
           }
         ]

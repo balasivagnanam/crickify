@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, LoadingController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, LoadingController,AlertController} from 'ionic-angular';
 import {BattingService} from '../../providers/batting/batting';
 import {Validators, FormBuilder, FormGroup, FormControl} from '@angular/forms';
 import {OtherService} from '../../providers/other/other';
@@ -27,7 +27,7 @@ players: any;
   private createBattingForm: FormGroup;
   team: any;
   match: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public battingService: BattingService, public loadingController: LoadingController, formBuilder: FormBuilder, public otherService: OtherService,public teamService:TeamService) {
+  constructor(public navCtrl: NavController,public alertController: AlertController, public navParams: NavParams, public battingService: BattingService, public loadingController: LoadingController, formBuilder: FormBuilder, public otherService: OtherService,public teamService:TeamService) {
     console.log("passed data", navParams.get('battingId'));
     this.team = JSON.parse(localStorage.getItem('team'));
     this.battingId = navParams.get('battingId');
@@ -38,11 +38,11 @@ players: any;
     
     this.createBattingForm = formBuilder.group({
 
-      run: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      ball: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      six: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      four: [''],
-      dismisal: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+      run: ['', Validators.compose([Validators.pattern('[0-9]*')])],
+      ball: ['', Validators.compose([Validators.pattern('[0-9]*')])],
+      six: ['', Validators.compose([Validators.pattern('[0-9]*')])],
+      four: ['', Validators.compose([Validators.pattern('[0-9]*')])],
+      dismisal: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*')])],
       team: [''],
       match: [''],
       createDate: [''],
@@ -50,10 +50,10 @@ players: any;
       dnb: [''],
       out: [''],
       id: [''],
-      player: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      mvp: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      sr: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      battingDown: [''],
+      player: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*')])],
+      mvp: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*')])],
+      sr: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*')])],
+      battingDown: ['', Validators.compose([Validators.pattern('[0-9]*')])],
 
     });
     if (this.battingId != null) {
@@ -155,23 +155,42 @@ players: any;
       if (this.responseData.statusCode == '200') {
         loading.dismiss();
         console.log("test 200");
-
+this.alertDialog('Success','Batting added Success');
 
       } else if (this.responseData.statusCode == "404") {
         loading.dismiss();
         console.log("unauthorrised");
+        this.alertDialog('Error','unauthorrised');
 
       } else {
         loading.dismiss();
         console.log("test others");
+        this.alertDialog('Error','Error');
       }
 
     }, (err) => {
       console.log("error", err);
       loading.dismiss();
+      this.alertDialog('Error','Error');
       // Error log
     });
   }
-
+alertDialog(title,message){
+  
+  let alert = this.alertController.create({
+          title: title,
+          subTitle: message,
+          buttons: [
+          {
+            text: 'OK',
+            handler: data => {
+              console.log('ok clicked');
+             
+            }
+          }
+        ]
+        });
+        alert.present();
+  }
 
 }

@@ -28,12 +28,12 @@
             <ion-input formControlName="username" type="text"></ion-input>
         </ion-item>
  
- 
-    </form>
-  <button ion-button color="secondary" icon-left clear small (click)="addPlayer()">
+  <button ion-button color="secondary" icon-left clear small [disabled]="!createPlayerForm.valid" (click)="addPlayer()">
             Add Player
             
           </button>
+    </form>
+ 
 </ion-list>
 </ion-card-content>
  </ion-card>

@@ -48,6 +48,9 @@ export class TournamentsPage {
       root.popToRoot();
     }
   }
+ionViewWillEnter() {
+   this.ionViewDidLoad();
+  }
 
   ionViewDidLoad(){
     console.log('ionViewDidLoad home page');

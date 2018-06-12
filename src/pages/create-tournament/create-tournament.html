@@ -27,11 +27,12 @@
             <ion-label floating>Name</ion-label>
             <ion-input formControlName="name" type="text"></ion-input>
         </ion-item>
-    </form>
-  <button ion-button color="secondary" icon-left clear small (click)="createTournament()">
+         <button ion-button color="secondary" icon-left clear small [disabled]="!createTournamentForm.valid" (click)="createTournament()">
             Create Tournament
             
           </button>
+    </form>
+ 
 </ion-list>
 </ion-card-content>
  </ion-card>

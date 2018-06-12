@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, LoadingController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, LoadingController,AlertController} from 'ionic-angular';
 import {MatchService} from '../../providers/matches/matches';
 import {Validators, FormBuilder, FormGroup, FormControl} from '@angular/forms';
 import {OtherService} from '../../providers/other/other';
@@ -31,7 +31,7 @@ export class PreviousMatchDetailsEditPage {
   tournaments: any;
   team: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public matchService: MatchService, public loadingController: LoadingController, formBuilder: FormBuilder, public otherService: OtherService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertController: AlertController, public matchService: MatchService, public loadingController: LoadingController, formBuilder: FormBuilder, public otherService: OtherService) {
     console.log("passed data", navParams.get('matchId'));
     this.matchId = navParams.get('matchId');
     this.getLocations();
@@ -47,23 +47,26 @@ export class PreviousMatchDetailsEditPage {
       location: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
       tournament: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
       deadline: [''],
-      points: [''],
+      points: ['', Validators.compose([Validators.pattern('[0-9]*')])],
       team: [''],
       createDate: [''],
       modifyDate: [''],
       id: [''],
-      oppositionScore: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      oppositionWickets: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      oppositionOvers: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      score: [''],
-      wickets: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      overs: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      result: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+      oppositionScore: ['', Validators.compose([Validators.pattern('[0-9]*')])],
+      oppositionWickets: ['', Validators.compose([Validators.pattern('[0-9]*')])],
+      oppositionOvers: ['', Validators.compose([Validators.pattern('[0-9]*')])],
+      score: ['', Validators.compose([Validators.pattern('[0-9]*')])],
+      wickets: ['', Validators.compose([Validators.pattern('[0-9]*')])],
+      overs: ['', Validators.compose([Validators.pattern('[0-9]*')])],
+      result: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*')])],
       tossWon: [''],
       played: [''],
       battingFirst: [''],
     });
 	    this.getData(this.matchId);
+  }
+  ionViewWillEnter() {
+   this.getData(this.matchId);
   }
 
   ionViewDidLoad() {
@@ -95,14 +98,17 @@ compareFn(e1: any, e2: any): boolean {
         this.bowling = this.responseData.results.matchSummary.bowling;
       } else if (this.responseData.statusCode == "404") {
         console.log("unauthorrised");
+         this.alertDialog('Error','Error');
         
       } else {
         loading.dismiss();
-        console.log("error", this.responseData)
+       
+         this.alertDialog('Error','Error');
       }
 
     }, (err) => {
-      // Error log
+        loading.dismiss();
+      this.alertDialog('Error','Error');
     });
   }
   getLocations() {
@@ -172,15 +178,17 @@ compareFn(e1: any, e2: any): boolean {
       } else if (this.responseData.statusCode == "404") {
         loading.dismiss();
         console.log("unauthorrised");
-
+ this.alertDialog('Error','Error');
       } else {
         loading.dismiss();
         console.log("test others");
+         this.alertDialog('Error','Error');
       }
 
     }, (err) => {
       console.log("error", err);
       loading.dismiss();
+       this.alertDialog('Error','Error');
       // Error log
     });
   }
@@ -202,5 +210,21 @@ bowlingId:bowlingId
   addBowling() {
 
   }
-
+alertDialog(title,message){
+  
+  let alert = this.alertController.create({
+          title: title,
+          subTitle: message,
+          buttons: [
+          {
+            text: 'OK',
+            handler: data => {
+              console.log('ok clicked');
+             
+            }
+          }
+        ]
+        });
+        alert.present();
+  }
 }

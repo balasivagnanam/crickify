@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, LoadingController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, LoadingController,AlertController} from 'ionic-angular';
 import {BowlingService} from '../../providers/bowling/bowling';
 import {Validators, FormBuilder, FormGroup, FormControl} from '@angular/forms';
 import {OtherService} from '../../providers/other/other';
@@ -27,7 +27,7 @@ export class BowlingPage {
   private createBowlingForm: FormGroup;
   team: any;
   match: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public bowlingService: BowlingService, public loadingController: LoadingController, formBuilder: FormBuilder, public otherService: OtherService, public teamService: TeamService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertController: AlertController, public bowlingService: BowlingService, public loadingController: LoadingController, formBuilder: FormBuilder, public otherService: OtherService, public teamService: TeamService) {
     console.log("passed data", navParams.get('bowlingId'));
     this.team = JSON.parse(localStorage.getItem('team'));
     this.bowlingId = navParams.get('bowlingId');
@@ -37,29 +37,29 @@ export class BowlingPage {
 
 
     this.createBowlingForm = formBuilder.group({
-      maiden: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      run: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      ball: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      six: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      overs: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      wide: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      noBall: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      wickets:['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+      maiden: ['', Validators.compose([Validators.pattern('[0-9]*')])],
+      run: ['', Validators.compose([Validators.pattern('[0-9]*')])],
+      ball: ['', Validators.compose([Validators.pattern('[0-9]*')])],
+      six: ['', Validators.compose([Validators.pattern('[0-9]*')])],
+      overs: ['', Validators.compose([Validators.pattern('[0-9]*')])],
+      wide: ['', Validators.compose([Validators.pattern('[0-9]*')])],
+      noBall: ['', Validators.compose([Validators.pattern('[0-9]*')])],
+      wickets:['', Validators.compose([Validators.pattern('[0-9]*')])],
       four: [''],
-      dismisal: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      catches: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+      dismisal: ['', Validators.compose([])],
+      catches: ['', Validators.compose([Validators.pattern('[0-9]*')])],
       stumpings: [''],
-      runOuts: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+      runOuts: ['', Validators.compose([Validators.pattern('[0-9]*')])],
       team: [''],
       match: [''],
       createDate: [''],
       modifyDate: [''],
       dnb: [''],
-      fieldingmvp: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+      fieldingmvp: ['', Validators.compose([Validators.pattern('[0-9]*')])],
       id: [''],
-      player: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      mvp: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      economy: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+      player: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*')])],
+      mvp: ['', Validators.compose([Validators.pattern('[0-9]*')])],
+      economy: ['', Validators.compose([Validators.pattern('[0-9]*')])],
 
 
     });
@@ -162,23 +162,41 @@ export class BowlingPage {
       if (this.responseData.statusCode == '200') {
         loading.dismiss();
         console.log("test 200");
-
+this.alertDialog('Success','Bowling added Success');
 
       } else if (this.responseData.statusCode == "404") {
         loading.dismiss();
         console.log("unauthorrised");
-
+this.alertDialog('Error','unauthorrised');
       } else {
         loading.dismiss();
         console.log("test others");
+        this.alertDialog('Error','Error');
       }
 
     }, (err) => {
       console.log("error", err);
       loading.dismiss();
+      this.alertDialog('Error','Error');
       // Error log
     });
   }
-
+alertDialog(title,message){
+  
+  let alert = this.alertController.create({
+          title: title,
+          subTitle: message,
+          buttons: [
+          {
+            text: 'OK',
+            handler: data => {
+              console.log('ok clicked');
+             
+            }
+          }
+        ]
+        });
+        alert.present();
+  }
 
 }

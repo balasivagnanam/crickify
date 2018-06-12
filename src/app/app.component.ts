@@ -29,6 +29,7 @@ import { Events } from 'ionic-angular';
 import {TournamentsPage} from '../pages/tournaments/tournaments';
 import {LocationsPage} from '../pages/locations/locations';
 import {ModeChangePage} from '../pages/modeChange/modeChange';
+
 @Component({
   templateUrl: 'app.html'
 })

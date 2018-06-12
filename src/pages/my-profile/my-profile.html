@@ -39,6 +39,11 @@
   
   <div [ngSwitch]="tabsvalues"> 
     <div *ngSwitchCase="'batting'">
+    <ion-card>
+  <ion-card-header>
+  Batting
+  </ion-card-header>
+ <ion-card-content>
         <div class="cric-stat-batting-table">
             <ul>
               <li class="header">
@@ -61,9 +66,16 @@
               </li>
             </ul>
           </div>
+            </ion-card-content>
+			  </ion-card>
     </div>
 
     <div *ngSwitchCase="'bowling'">
+     <ion-card>
+  <ion-card-header>
+  Bowling
+  </ion-card-header>
+ <ion-card-content>
         <div class="cric-stat-bowling-table">
             <ul>
               <li class="header">
@@ -86,9 +98,16 @@
               </li>
             </ul>
           </div>
+           </ion-card-content>
+			  </ion-card>
     </div>
 
       <div *ngSwitchCase="'fielding'">
+         <ion-card>
+  <ion-card-header>
+  Fielding
+  </ion-card-header>
+ <ion-card-content>
           <div class="cric-stat-bowling-table">
               <ul>
                 <li class="header">
@@ -107,6 +126,8 @@
                 </li>
               </ul>
             </div>
+            </ion-card-content>
+			  </ion-card>
       </div>
 
     </div> 

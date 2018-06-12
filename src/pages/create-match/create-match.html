@@ -53,11 +53,12 @@
     <ion-option *ngFor="let key of tournaments" [value]="key">{{key.name}}</ion-option>
   </ion-select>
 </ion-item>
-    </form>
-  <button ion-button color="secondary" icon-left clear small (click)="addMatch()">
+  <button ion-button color="secondary" icon-left clear small [disabled]="!createMatchForm.valid" (click)="addMatch()">
             Add Match
             
           </button>
+    </form>
+
 </ion-list>
 </ion-card-content>
  </ion-card>

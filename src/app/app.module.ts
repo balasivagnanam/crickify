@@ -77,6 +77,9 @@ import {BowlingPage} from '../pages/bowling/bowling';
 import {BowlingPageModule} from '../pages/bowling/bowling.module';
 import {PreviousMatchDetailsEditPage} from '../pages/previous-match-details-edit/previous-match-details-edit';
 import {PreviousMatchDetailsEditPageModule} from '../pages/previous-match-details-edit/previous-match-details-edit.module';
+import { ImagesProvider } from '../providers/images/images';
+import { Camera } from '@ionic-native/camera';
+import { FileTransfer } from '@ionic-native/file-transfer';
 @NgModule({
   declarations: [
     MyApp,
@@ -132,7 +135,8 @@ import {PreviousMatchDetailsEditPageModule} from '../pages/previous-match-detail
     SplashScreen,
     AuthService,MatchService,StatsService, TeamService,PlayersProvider,FinanceProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    PlayersProvider,AdMobFree,AndroidPermissions,Push,OtherService,BattingService,BowlingService
+    PlayersProvider,AdMobFree,AndroidPermissions,Push,OtherService,BattingService,BowlingService,
+    ImagesProvider,Camera,FileTransfer
   ]
 })
 export class AppModule {}

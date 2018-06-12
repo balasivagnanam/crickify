@@ -27,13 +27,13 @@
             <ion-label floating>Team Name</ion-label>
             <ion-input formControlName="teamname" type="text"></ion-input>
         </ion-item>
- 
- 
-    </form>
-  <button ion-button color="secondary" icon-left clear small (click)="createTeam()">
+ <button ion-button color="secondary" icon-left clear small [disabled]="!createTeamForm.valid" (click)="addTeam()">
             Create Team
             
           </button>
+ 
+    </form>
+  
 </ion-list>
 </ion-card-content>
  </ion-card>

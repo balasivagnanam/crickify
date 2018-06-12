@@ -31,21 +31,21 @@
      </ion-item>
 	   <ion-item>
             <ion-label floating>Run</ion-label>
-            <ion-input formControlName="run" type="text"></ion-input>
+            <ion-input formControlName="run" type="number"></ion-input>
 			
         </ion-item>
        <ion-item>
             <ion-label floating>Ball</ion-label>
-            <ion-input formControlName="ball" type="text"></ion-input>
+            <ion-input formControlName="ball" type="number"></ion-input>
 			
         </ion-item>
 		      <ion-item>
             <ion-label floating>Six</ion-label>
-            <ion-input formControlName="six" type="text"></ion-input>
+            <ion-input formControlName="six" type="number"></ion-input>
 			  </ion-item>
  <ion-item>
   <ion-label floating>Four</ion-label>
-  <ion-input formControlName="four" ></ion-input>
+  <ion-input formControlName="four" type="number" ></ion-input>
 </ion-item>
 <ion-item>
   <ion-label>Dismissal</ion-label>
@@ -63,14 +63,14 @@
   </ion-item>
     <ion-item>
     <ion-label>Batting Down</ion-label>
-    <ion-input formControlName="battingDown"></ion-input>
+    <ion-input formControlName="battingDown" type="number"></ion-input>
   </ion-item>
-       
-    </form>
-	 <button ion-button color="secondary" icon-left clear small (click)="saveBatting()">
+    	 <button ion-button color="secondary" icon-left clear small [disabled]="!createBattingForm.valid" (click)="saveBatting()">
             Submit
             
-          </button>
+          </button>   
+    </form>
+
     
  
       </div>

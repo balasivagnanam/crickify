@@ -54,11 +54,12 @@
     <ion-option *ngFor="let key of players" [value]="key">{{key.name}}</ion-option>
   </ion-select>
 </ion-item>
-    </form>
-  <button ion-button color="secondary" icon-left clear small (click)="addPlayer()">
+ <button ion-button color="secondary" icon-left clear small [disabled]="!addTeamForm.valid" (click)="addPlayer()">
             Add Player
             
           </button>
+    </form>
+ 
 		  
 		    <button ion-button color="secondary" icon-left clear small (click)="sendTeam()">
            Send Team List

@@ -6,6 +6,7 @@ import { StatsService } from '../../providers/stats/stats';
 import {TeamService} from '../../providers/teams/teams';
 import { Events } from 'ionic-angular';
 import {TeamMatchesPage} from '../team-matches/team-matches';
+import {CreateTeamPage} from '../create-team/create-team';
 /**
  * Generated class for the MyTeamsPage page.
  *
@@ -38,6 +39,10 @@ export class MyTeamsPage {
   
   }
 
+  
+   ionViewWillEnter() {
+         this.ionViewDidLoad();
+  }
   ionViewDidLoad(){
     console.log('ionViewDidLoad home page');
     if (this.authService.getAuthenticated()){
@@ -57,14 +62,16 @@ export class MyTeamsPage {
         this.teams = this.responseData.results.teams;
          }  else if(this.responseData.statusCode == "404") {
         console.log("unauthorrised");
-        localStorage.clear();
+      loading.dismiss();
       //  this.backToWelcome();
       } else {
         loading.dismiss();
-        console.log("error", this.responseData)
+        console.log("error", this.responseData);
       }
       
     }, (err) => {
+      
+      loading.dismiss();
       // Error log
     });
   }
@@ -77,6 +84,14 @@ export class MyTeamsPage {
   this.navCtrl.push(TeamMatchesPage);
               this.navCtrl.setRoot(TeamMatchesPage);
   }
-
+ createTeam(){
+              
+              this.navCtrl.push(CreateTeamPage);
+  }
+  
+  editTeam(team){
+   this.navCtrl.push(CreateTeamPage,{team: team});
+  
+  }
  
 }

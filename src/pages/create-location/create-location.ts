@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController ,AlertController} from 'ionic-angular';
 import {TeamService} from '../../providers/teams/teams';
 import {OtherService} from '../../providers/other/other';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
@@ -21,13 +21,13 @@ export class CreateLocationPage {
 
   name : any;
   responseData : any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public teamService: TeamService, public loadingController: LoadingController,formBuilder: FormBuilder,public otherService: OtherService) {
+  constructor(public navCtrl: NavController,public alertController: AlertController, public navParams: NavParams, public teamService: TeamService, public loadingController: LoadingController,formBuilder: FormBuilder,public otherService: OtherService) {
    this.createLocationForm = formBuilder.group({
      
-      name: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-	  address: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-	  lat: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-	  lng: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])]
+      name: ['', Validators.compose([ Validators.required])],
+	  address: ['', Validators.compose([Validators.required])],
+	  lat: ['', Validators.compose([Validators.pattern('[/^[0-9]+(\.[0-9]{1,2})?$/]*')])],
+	  lng: ['', Validators.compose([Validators.pattern('[/^[0-9]+(\.[0-9]{1,2})?$/]*')])]
      
   });
 
@@ -56,17 +56,36 @@ export class CreateLocationPage {
       }  else if(this.responseData.statusCode == "404") {
 		   loading.dismiss();
         console.log("unauthorrised");
+         this.alertDialog('Error','Error');
         
       } else {
         loading.dismiss();
   console.log("test others");
+         this.alertDialog('Error','Error');
       }
       
     }, (err) => {
 		console.log("error",err);
 		 loading.dismiss();
+       this.alertDialog('Error','Error');
       // Error log
     });
   }
-
+alertDialog(title,message){
+  
+  let alert = this.alertController.create({
+          title: title,
+          subTitle: message,
+          buttons: [
+          {
+            text: 'OK',
+            handler: data => {
+              console.log('ok clicked');
+             
+            }
+          }
+        ]
+        });
+        alert.present();
+  }
 }

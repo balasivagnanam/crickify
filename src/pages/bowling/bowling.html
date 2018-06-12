@@ -18,36 +18,35 @@ Details</ion-title> </ion-navbar> </ion-header>
 					formControlName="player" [compareWith]="compareFn"> <ion-option
 					*ngFor="let key of players" [value]="key">{{key.name}}</ion-option>
 				</ion-select> </ion-item>
-				<ion-item> <ion-label floating>Overs</ion-label> <ion-input
-					formControlName="overs" type="text"></ion-input> </ion-item>
+			
 				<ion-item> <ion-label floating>Ball</ion-label> <ion-input
-					formControlName="ball" type="text"></ion-input> </ion-item>
+					formControlName="ball" type="number"></ion-input> </ion-item>
 				<ion-item> <ion-label floating>Maiden</ion-label> <ion-input
-					formControlName="maiden" type="text"></ion-input> </ion-item>
+					formControlName="maiden" type="number"></ion-input> </ion-item>
 				<ion-item> <ion-label floating>Run</ion-label> <ion-input
-					formControlName="run"></ion-input> </ion-item>
+					formControlName="run" type="number"></ion-input> </ion-item>
 				<ion-item> <ion-label floating>Wickets</ion-label> <ion-input
-					formControlName="wickets" type="text"></ion-input> </ion-item>
+					formControlName="wickets" type="number"></ion-input> </ion-item>
 				<ion-item> <ion-label floating>Wide</ion-label> <ion-input
-					formControlName="wide" type="text"></ion-input> </ion-item>
+					formControlName="wide" type="number"></ion-input> </ion-item>
 				<ion-item> <ion-label floating>No Ball</ion-label> <ion-input
-					formControlName="noBall" type="text"></ion-input> </ion-item>
+					formControlName="noBall" type="number"></ion-input> </ion-item>
 				<ion-item> <ion-label floating>Catches</ion-label> <ion-input
-					formControlName="catches" type="text"></ion-input> </ion-item>
+					formControlName="catches" type="number"></ion-input> </ion-item>
 				<ion-item> <ion-label floating>Run Out</ion-label> <ion-input
-					formControlName="runOuts" type="text"></ion-input> </ion-item>
+					formControlName="runOuts" type="number"></ion-input> </ion-item>
 				<ion-item> <ion-label floating>Stumping</ion-label> <ion-input
-					formControlName="stumpings" type="text"></ion-input> </ion-item>
+					formControlName="stumpings" type="number"></ion-input> </ion-item>
 				<ion-item> <ion-label>Dismissal</ion-label> <ion-select
 					formControlName="dismisal" [compareWith]="compareFn">
 				<ion-option *ngFor="let key of dismissals" [value]="key">{{key.name}}</ion-option>
 				</ion-select> </ion-item>
 				<ion-item> <ion-label>Did Not Bat</ion-label> <ion-checkbox
 					formControlName="dnb"></ion-checkbox> </ion-item>
-			
-			</form>
-			<button ion-button color="secondary" icon-left clear small
+				<button ion-button color="secondary" icon-left clear small [disabled]="!createBowlingForm.valid"
 				(click)="saveBowling()">Submit</button>
+			</form>
+		
 
 
 		</div>

@@ -48,6 +48,9 @@ export class LocationsPage {
       root.popToRoot();
     }
   }
+  ionViewWillEnter() {
+   this.ionViewDidLoad();
+  }
 
   ionViewDidLoad(){
     console.log('ionViewDidLoad home page');

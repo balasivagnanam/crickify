@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController,AlertController } from 'ionic-angular';
 import {TeamService} from '../../providers/teams/teams';
 import {MatchService} from '../../providers/matches/matches';
 import {Validators, FormBuilder, FormGroup,FormControl } from '@angular/forms';
@@ -25,15 +25,15 @@ team:any;
 opponent:any;
   username : any;
   responseData : any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public teamService: TeamService, public loadingController: LoadingController,formBuilder: FormBuilder,public matchService:MatchService,public otherService:OtherService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertController: AlertController, public teamService: TeamService, public loadingController: LoadingController,formBuilder: FormBuilder,public matchService:MatchService,public otherService:OtherService) {
    this.createMatchForm = formBuilder.group({
      
-      opponent: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-     description: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-	 remarks: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-	 matchTime:[''],
-	 location: [{address: "", lat: 0, lng: 0, name: "", id:0}, Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-	 tournament: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])]
+      opponent: ['', Validators.compose([Validators.required])],
+     description: ['', ],
+	 remarks: ['', ],
+	 matchTime:['',Validators.compose([ Validators.required])],
+	 location: ['', Validators.compose( [Validators.required])],
+	 tournament: ['', Validators.compose([ Validators.required])]
   });
 
    this.getLocations();
@@ -113,21 +113,39 @@ getTournament(){
         loading.dismiss();
         console.log("test 200");
     
-     
+     this.alertDialog('Success','Added');
       }  else if(this.responseData.statusCode == "404") {
 		   loading.dismiss();
         console.log("unauthorrised");
-        
+         this.alertDialog('Error','Error');
       } else {
         loading.dismiss();
   console.log("test others");
+         this.alertDialog('Error','Error');
       }
       
     }, (err) => {
 		console.log("error",err);
 		 loading.dismiss();
+       this.alertDialog('Error','Error');
       // Error log
     });
   }
-
+alertDialog(title,message){
+  
+  let alert = this.alertController.create({
+          title: title,
+          subTitle: message,
+          buttons: [
+          {
+            text: 'OK',
+            handler: data => {
+              console.log('ok clicked');
+             
+            }
+          }
+        ]
+        });
+        alert.present();
+  }
 }

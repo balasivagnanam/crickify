@@ -19,6 +19,9 @@
 <ion-content padding class="appBackground">
 <ion-card>
   <ion-card-header>
+     <p *ngIf= "userDetails.img!= null" ><img width="80" height="80" src="data:image/PNG;base64,{{userDetails.img}}"/></p>
+    
+    <p *ngIf="userDetails.img == null" ><img width="80" height="80" src="assets/img/batsman.png"/></p>
  </ion-card-header>
  
    <ion-card-content>
@@ -33,7 +36,7 @@
         </ion-item>
        <ion-item>
             <ion-label floating>Phone</ion-label>
-            <ion-input formControlName="phone" type="text"></ion-input>
+            <ion-input formControlName="phone" type="number"></ion-input>
 			
         </ion-item>
 		      <ion-item>
@@ -71,11 +74,13 @@
 </ion-item>
        
     </form>
-	 <button ion-button color="secondary" icon-left clear small (click)="saveUser()">
+	 <button ion-button color="secondary" icon-left clear small [disabled]="!editUserForm.valid"(click)="saveUser()">
             Submit
             
           </button>
-    
+ <ion-fab right bottom>
+    <button ion-fab (click)="presentActionSheet()"><ion-icon name="camera"></ion-icon></button>
+  </ion-fab>    
  
       </div>
   </div>
