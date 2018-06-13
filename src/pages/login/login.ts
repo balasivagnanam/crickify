@@ -46,13 +46,13 @@ export class LoginPage {
         loading.dismiss();
         let alert = this.alertController.create({
           title: 'Wrong login/password',
-          subTitle: 'your login and password combination doesnt seem to work. Please try again or contact us to reset',
+          subTitle: 'your login and password combination doesnt seem to work. Please try again or reset your password',
           buttons: [
           {
             text: 'OK',
             handler: data => {
               console.log('ok clicked');
-              this.navCtrl.push(LoginPage);
+             
             }
           }
         ]
@@ -61,7 +61,7 @@ export class LoginPage {
       }
       
     }, (err) => {
-      // Error log
+       loading.dismiss();
     });
   }
 

@@ -57,6 +57,26 @@ export class TeamService {
     });
 
   }
+  
+   getAllTeamPlayers(team) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set("token",this.getToken());
+      this.http.get(apiUrl + '/teamplayers/team//'+team.id , {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("auth response players", res.json()); 
+          if(res.json().statusCode == '200'){
+            console.log("players", res.json());
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
+
+  }
   createTeam(credentials) {
     return new Promise((resolve, reject) => {
       let headers = new Headers();
@@ -77,6 +97,27 @@ export class TeamService {
     });
 
   }
+  
+  roleUpdate(value) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+   headers.set("token",this.getToken());
+      this.http.put(apiUrl + '/team/player/'+value.team.id+'/status/'+value.status ,JSON.stringify(value.player), {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("response", res.json()); 
+          if(res.json().statusCode == '200'){
+            console.log("value", res.json());
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+
+        });
+    });
+
+  }  
 addPlayer(credentials,team) {
     return new Promise((resolve, reject) => {
       let headers = new Headers();
@@ -104,7 +145,7 @@ addPlayer(credentials,team) {
       let headers = new Headers();
     headers.set('Content-Type', 'application/json');
 	 headers.set("token",this.getToken());
-	       this.http.delete(apiUrl + '/team/player/'+team.id , {headers: headers})
+	       this.http.delete(apiUrl + '/team/'+team.id+'/player/'+player.id , {headers: headers})
         .subscribe(res => {
           resolve(res.json());
           console.log("response", res.json()); 

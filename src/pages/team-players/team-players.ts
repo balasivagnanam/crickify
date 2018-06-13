@@ -24,7 +24,7 @@ export class TeamPlayersPage {
   tabsvalues: String = "team";
   selectedTeam: any;
 
-  players: any;
+  teamplayers: any;
   statsArray: any;
   allStats: any;
   userPostData = {"user_id": "", "token": ""};
@@ -58,13 +58,13 @@ export class TeamPlayersPage {
     });
     loading.present();
 
-    this.teamService.getAllPlayers(this.selectedTeam).then((result) => {
+    this.teamService.getAllTeamPlayers(this.selectedTeam).then((result) => {
       this.responseData = result;
       console.log(this.responseData);
       if (this.responseData.statusCode == '200') {
         loading.dismiss();
 
-        this.players = this.responseData.results.teams;
+        this.teamplayers = this.responseData.results.teams;
 
       } else if (this.responseData.statusCode == "404") {
         loading.dismiss();
@@ -130,5 +130,35 @@ export class TeamPlayersPage {
     });
     alert.present();
   }
+ roleSelected(event, teamPlayer){
+    console.log("selected",event, teamPlayer);
+ 
+    
+    const loading = this.loadingController.create({
+      content: 'Please wait...'
+    });
 
+    this.teamService.roleUpdate(teamPlayer).then((result) => {
+      this.responseData = result;
+      console.log(this.responseData); 
+      if (this.responseData.statusCode == '200'){
+        loading.dismiss();
+        console.log("test 200", this.responseData);
+  this.alertDialog('Success', 'Update successfull');
+      }  else if(this.responseData.statusCode == "404") {
+        console.log("unauthorrised");
+    loading.dismiss();
+  this.alertDialog('Error', 'Error');
+      } else {
+        loading.dismiss();
+        console.log("error", this.responseData)
+         this.alertDialog('Error', 'Error');
+      }
+      
+    }, (err) => {
+    loading.dismiss();
+      this.alertDialog('Error', 'Error');
+    });
+
+  }
 }

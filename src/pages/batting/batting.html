@@ -25,7 +25,7 @@
       <form [formGroup]="createBattingForm">
       <ion-item>
        <ion-label>Player</ion-label>
-      	  <ion-select formControlName="player" [compareWith]="compareFn">
+      	  <ion-select formControlName="player" [compareWith]="compareFn" [disabled]="true">
     <ion-option *ngFor="let key of players" [value]="key">{{key.name}}</ion-option>
   </ion-select>
      </ion-item>
