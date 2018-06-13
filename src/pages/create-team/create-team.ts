@@ -25,7 +25,7 @@ team:any;
    this.createTeamForm = formBuilder.group({
      id: [''],
       teamname: ['', Validators.compose([Validators.required])],
-      owner: [''],
+      owner: [],
    createDate: [''],
       modifyDate: ['']
      

@@ -58,8 +58,8 @@ export class BowlingPage {
       fieldingmvp: ['', Validators.compose([Validators.pattern('[0-9]*')])],
       id: [''],
       player: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*')])],
-      mvp: ['', Validators.compose([Validators.pattern('[0-9]*')])],
-      economy: ['', Validators.compose([Validators.pattern('[0-9]*')])],
+      mvp: ['', ],
+      economy: ['', ],
 
 
     });

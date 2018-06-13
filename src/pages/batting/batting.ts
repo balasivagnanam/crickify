@@ -42,7 +42,7 @@ players: any;
       ball: ['', Validators.compose([Validators.pattern('[0-9]*')])],
       six: ['', Validators.compose([Validators.pattern('[0-9]*')])],
       four: ['', Validators.compose([Validators.pattern('[0-9]*')])],
-      dismisal: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*')])],
+      dismisal: [''],
       team: [''],
       match: [''],
       createDate: [''],
@@ -50,9 +50,9 @@ players: any;
       dnb: [''],
       out: [''],
       id: [''],
-      player: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*')])],
-      mvp: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*')])],
-      sr: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*')])],
+      player: [''],
+      mvp: ['', ],
+      sr: ['', ],
       battingDown: ['', Validators.compose([Validators.pattern('[0-9]*')])],
 
     });
