@@ -42,6 +42,8 @@ getPlayerStats() {
   });
 
 }
+  
+  
 
 getPlayerTournamentStats(teamid) {
   return new Promise((resolve, reject) => {

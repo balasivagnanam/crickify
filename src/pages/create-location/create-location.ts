@@ -26,8 +26,8 @@ export class CreateLocationPage {
      
       name: ['', Validators.compose([ Validators.required])],
 	  address: ['', Validators.compose([Validators.required])],
-	  lat: ['', Validators.compose([Validators.pattern('[/^[0-9]+(\.[0-9]{1,2})?$/]*')])],
-	  lng: ['', Validators.compose([Validators.pattern('[/^[0-9]+(\.[0-9]{1,2})?$/]*')])]
+	  lat: [''],
+	  lng: ['']
      
   });
 

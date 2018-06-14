@@ -56,7 +56,45 @@ getBestBatting() {
     });
 
   }
+  getLastBattings(userId) {
+    return new Promise((resolve, reject) => {
+   let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set("token",this.getToken());
+      this.http.get(battingapiUrl + '/batting/lastbatting/stats/'+userId,{headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("auth response batting", res.json()); 
+          if(res.json().statusCode == '200'){
+            console.log("batting", res.json());
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
+
+  }
   
+  getDismissalstats(userId) {
+    return new Promise((resolve, reject) => {
+   let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set("token",this.getToken());
+      this.http.get(battingapiUrl + '/batting/dismisals/stats/'+userId,{headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("auth response batting", res.json()); 
+          if(res.json().statusCode == '200'){
+            console.log("batting", res.json());
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
+
+  }
   getBestBowling() {
     return new Promise((resolve, reject) => {
  
