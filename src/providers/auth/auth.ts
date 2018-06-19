@@ -76,6 +76,28 @@ editUser(credentials,id) {
     });
 
   }
+
+  getUserDetail(id) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+   headers.set('Content-Type', 'application/json');
+    headers.set("token",this.getToken());
+      this.http.get(apiUrl + '/getUser', {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("auth response signup", res.json()); 
+          if(res.json().statusCode == '200' || res.json().statusCode == '401'){
+            isAuthenticated = true;
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+          isAuthenticated = false;
+          localStorage.clear();
+        });
+    });
+
+  }
 forgot(credentials) {
     return new Promise((resolve, reject) => {
       let headers = new Headers();

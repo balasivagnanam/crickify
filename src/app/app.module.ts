@@ -80,6 +80,8 @@ import {PreviousMatchDetailsEditPageModule} from '../pages/previous-match-detail
 import { ImagesProvider } from '../providers/images/images';
 import { Camera } from '@ionic-native/camera';
 import { FileTransfer } from '@ionic-native/file-transfer';
+import {UploadModalPage} from '../pages/upload-modal/upload-modal';
+import {UploadModalPageModule} from '../pages/upload-modal/upload-modal.module';
 @NgModule({
   declarations: [
     MyApp,
@@ -105,7 +107,7 @@ import { FileTransfer } from '@ionic-native/file-transfer';
 	CreatePlayerModule,
 	TeamMatchesPageModule,
 	CreateMatchModule,
-	MatchAvailabilityPageModule,
+	MatchAvailabilityPageModule,UploadModalPageModule,
 	TournamentsPageModule,BowlingPageModule,
 	LocationsPageModule,CreateLocationModule,CreateTournamentModule,ModeChangeModule,AddMatchTeamPageModule,PreviousMatchDetailsEditPageModule,BattingPageModule
   ],
@@ -126,7 +128,7 @@ import { FileTransfer } from '@ionic-native/file-transfer';
 	FinancePage,
 	ForgotPage,
 	ResetPage,
-	LogoutPage,
+	LogoutPage,UploadModalPage,
 	CreateTeamPage,TeamPlayersPage,CreatePlayerPage,TeamMatchesPage,CreateMatchPage,MatchAvailabilityPage,TournamentsPage,LocationsPage,
 	CreateLocationPage,CreateTournamentPage,ModeChangePage,AddMatchTeamPage,PreviousMatchDetailsEditPage,BattingPage,BowlingPage
   ],

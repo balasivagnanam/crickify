@@ -20,7 +20,7 @@ export class ImagesProvider {
       return JSON.parse(localStorage.getItem('userData')).user.token;
   }
  
-  uploadImage(img, desc) {
+  uploadImage(img) {
  
     // Destination URL
     let url = this.apiURL + '/api/user/upload';
@@ -28,13 +28,12 @@ export class ImagesProvider {
     // File for Upload
     var targetPath = img;
      let headers = new Headers();
-   headers.set('Content-Type', 'application/json');
-    headers.set("token",this.getToken());
+     headers.set("token",this.getToken());
     var options: FileUploadOptions = {
-      fileKey: 'image',
+      fileKey: 'file',
       chunkedMode: false,
       mimeType: 'multipart/form-data',
-     headers: headers
+     headers: {'token':this.getToken()}
     };
  
     const fileTransfer: FileTransferObject = this.transfer.create();

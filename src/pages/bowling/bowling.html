@@ -4,7 +4,7 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header> <ion-navbar> <ion-title>Match
+<ion-header> <ion-navbar color="primary"> <ion-title>Match
 Details</ion-title> </ion-navbar> </ion-header>
 
 
@@ -37,11 +37,8 @@ Details</ion-title> </ion-navbar> </ion-header>
 					formControlName="runOuts" type="number"></ion-input> </ion-item>
 				<ion-item> <ion-label floating>Stumping</ion-label> <ion-input
 					formControlName="stumpings" type="number"></ion-input> </ion-item>
-				<ion-item> <ion-label>Dismissal</ion-label> <ion-select
-					formControlName="dismisal" [compareWith]="compareFn">
-				<ion-option *ngFor="let key of dismissals" [value]="key">{{key.name}}</ion-option>
-				</ion-select> </ion-item>
-				<ion-item> <ion-label>Did Not Bat</ion-label> <ion-checkbox
+			
+				<ion-item> <ion-label>Did Not Ball</ion-label> <ion-checkbox
 					formControlName="dnb"></ion-checkbox> </ion-item>
 				<button ion-button color="secondary" icon-left clear small [disabled]="!createBowlingForm.valid"
 				(click)="saveBowling()">Submit</button>

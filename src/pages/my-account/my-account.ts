@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams , LoadingController,ActionSheetCont
 import { AuthService } from '../../providers/auth/auth';
 import {Validators, FormBuilder, FormGroup, FormControl} from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import {UploadModalPage} from '../upload-modal/upload-modal';
 import { ImagesProvider } from './../../providers/images/images';
 
 /**
@@ -52,9 +53,13 @@ export class MyAccountPage {
       this.userPostData.user_id = this.userDetails.id;
       this.userPostData.token = this.userDetails.token;
       
-       this.editUserForm.setValue(data.user);
+       
     }
   }
+
+  ionViewWillEnter() {
+    this.getUser();
+}
 saveUser(){
    const loading = this.loadingController.create({
       content: 'Please wait...'
@@ -84,7 +89,35 @@ saveUser(){
       // Error log
     });
   }
-  
+  getUser(){
+    const loading = this.loadingController.create({
+       content: 'Please wait...'
+     });
+     loading.present();
+     this.authService.getUserDetail(this.userDetails.id).then((result) => {
+       this.responseData = result;
+       console.log(this.responseData); 
+       if (this.responseData.statusCode == '200'){
+         loading.dismiss();
+         this.editUserForm.setValue(this.responseData.results.user);
+      
+       }  else if(this.responseData.statusCode == "404") {
+        loading.dismiss();
+         console.log("unauthorrised");
+         this.alertDialog('Error','unauthorrised');
+       } else {
+         loading.dismiss();
+   console.log("test others");
+         this.alertDialog('Error','Error');
+       }
+       
+     }, (err) => {
+     console.log("error",err);
+      loading.dismiss();
+       this.alertDialog('Error','Error');
+       // Error log
+     });
+   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyAccountPage');
     console.log('ionViewDidLoad home page');
@@ -131,7 +164,7 @@ saveUser(){
  
     // Get the data of an image
     this.camera.getPicture(options).then((imagePath) => {
-      let modal = this.modalCtrl.create('UploadModalPage', { data: imagePath });
+      let modal = this.modalCtrl.create(UploadModalPage, { data: imagePath });
       modal.present();
       modal.onDidDismiss(data => {
         if (data && data.reload) {
@@ -139,7 +172,7 @@ saveUser(){
         }
       });
     }, (err) => {
-      console.log('Error: ', err);
+      this.alertDialog('Error',err);
     });
   }
   alertDialog(title,message){
