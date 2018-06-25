@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
-
+let matchapiUrl = 'https://crickify.herokuapp.com/match';
 let apiUrl = 'https://crickify.herokuapp.com/teamplayer';
 let teamapiUrl = 'https://crickify.herokuapp.com/team';
 //let isLoggedIn : boolean;
@@ -57,7 +57,25 @@ export class TeamService {
     });
 
   }
-  
+  getOtherMatchPlayers(team,matchId) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set("token",this.getToken());
+      this.http.get(matchapiUrl + '/players/'+matchId , {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("auth response players", res.json()); 
+          if(res.json().statusCode == '200'){
+            console.log("players", res.json());
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
+
+  }
    getAllTeamPlayers(team) {
     return new Promise((resolve, reject) => {
       let headers = new Headers();

@@ -100,7 +100,7 @@
         </ion-item>
 		      <ion-item>
             <ion-label floating>Overs</ion-label>
-            <ion-input formControlName="overs" type="number" step="0.01"></ion-input>
+            <ion-input formControlName="overs" type="number"></ion-input>
 			  </ion-item>
  <ion-item>
             <ion-label floating>point</ion-label>
@@ -148,7 +148,7 @@
                   <p>{{stat?.ball}}</p>
                   <p>{{stat?.four}}</p>
                   <p>{{stat?.six}}</p>
-                  <p>{{stat?.sr}}</p>
+                  <p>{{stat?.sr| number : '1.2-2'}}</p>
 				   <p> <button ion-button icon-left clear small (click)="editBatting(stat.id)"> <ion-icon name="arrow-dropright"></ion-icon></button></p>
               </li>
             </ul>
@@ -173,7 +173,7 @@
                     <p>M</p>
                     <p>R</p>
                     <p>W</p>
-                    <p>Wd</p>
+                    
                     <p>EC</p>
                     <p>Edit</p>
                 </li>
@@ -183,7 +183,7 @@
                        <p>{{stat?.maiden}}</p>
                     <p>{{stat?.run}}</p>
                     <p>{{stat?.wickets}}</p>
-                    <p>{{stat?.wide}}</p>
+                    
                     <p>{{stat?.economy | number : '1.2-2'}}</p>
                     <p> <button ion-button icon-left clear small (click)="editBowling(stat.id)"><ion-icon name="arrow-dropright"></ion-icon></button></p>
                 </li>

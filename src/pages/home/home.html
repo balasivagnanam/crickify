@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content padding class="appBackground">
-  <ion-card *ngFor="let match of matches" color="primary">
+  <ion-card *ngFor="let match of matches">
     <ion-card-header>
       {{match.match.team.teamname}} versus
       {{match.match.opponent}}
@@ -31,10 +31,10 @@
       </ion-select>
 	 
     </ion-item>
-	<p><ion-label>Comments</ion-label></p>
+	
       <ion-item>
 	  
-	       
+	      <ion-label floating>Comments</ion-label>
     <ion-input [(ngModel)]="match.comments" (ionChange)="availabilitySelected($event, match)"></ion-input>
 	 </ion-item>
 	 <button ion-button icon-left clear small (click)="goToMatchTeam(match.id)">

@@ -41,7 +41,7 @@ export class BowlingPage {
       run: ['', Validators.compose([Validators.pattern('[0-9]*')])],
       ball: ['', Validators.compose([Validators.pattern('[0-9]*')])],
       six: ['', Validators.compose([Validators.pattern('[0-9]*')])],
-      overs: [''],
+      overs: ['',Validators.compose([Validators.pattern('^[0-9]+(\.[0-6]{1})?$')])],
       wide: ['', Validators.compose([Validators.pattern('[0-9]*')])],
       noBall: ['', Validators.compose([Validators.pattern('[0-9]*')])],
       wickets:['', Validators.compose([Validators.pattern('[0-9]*')])],

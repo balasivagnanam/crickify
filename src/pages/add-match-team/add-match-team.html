@@ -14,14 +14,15 @@
 
 
 <ion-content padding class="appBackground" >
-
+    <ion-card> 
+        <ion-card-content>
   <ion-segment [(ngModel)]="tabsvalues">
       <ion-segment-button value="summary">
         Team List
       </ion-segment-button>
      
     </ion-segment>
-  
+    
   <div [ngSwitch]="tabsvalues"> 
       <div *ngSwitchCase="'summary'">
         <div class="cric-stat-batting-table">
@@ -44,6 +45,7 @@
               
             </li>
           </ol>
+
         </div>
        </div>
   </div>
@@ -65,4 +67,6 @@
            Send Team List
             
           </button>
+        </ion-card-content>
+        </ion-card> 
 </ion-content>

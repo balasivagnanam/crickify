@@ -74,7 +74,8 @@
               </ion-select>
           </ion-item>
           
-          <div *ngFor="let stat of statsArray">
+          <ion-card *ngFor="let stat of statsArray">
+                <ion-card-content>
               <div class="cric-stat-batting-table">
                   <h4>{{stat.name}}</h4>
                   <ul>
@@ -98,7 +99,8 @@
                     </li>
                   </ul>
                 </div>
-              </div>
+               </ion-card-content>
+              </ion-card>
       </div>
 
       <div *ngSwitchCase="'bowling'">
@@ -109,8 +111,8 @@
               </ion-select>
           </ion-item>
           
-          <div *ngFor="let stat of statsArray">
-              
+          <ion-card  *ngFor="let stat of statsArray">
+                <ion-card-content>
               <div class="cric-stat-bowling-table">
                   <h4>{{stat.name}}</h4>
                   <ul>
@@ -134,7 +136,8 @@
                     </li>
                   </ul>
                 </div>
-              </div>
+            </ion-card-content>
+              </ion-card >
       </div>
 
         <div *ngSwitchCase="'fielding'">
@@ -145,7 +148,8 @@
                 </ion-select>
             </ion-item>
             
-            <div *ngFor="let stat of statsArray">
+            <ion-card *ngFor="let stat of statsArray">
+                    <ion-card-content>
                 <div class="cric-stat-bowling-table">
                     <h4>{{stat.name}}</h4>
                     <ul>
@@ -165,7 +169,8 @@
                       </li>
                     </ul>
                   </div>
-                </div>
+                </ion-card-content>
+                </ion-card>
         </div>
 
       </div> 

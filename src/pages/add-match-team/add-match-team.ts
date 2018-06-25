@@ -109,6 +109,7 @@ delete(player){
         loading.dismiss();
        
          this.getData(this.matchId);
+         this.getPlayers();
          this.alertDialog('Success','Player Success');
       }  else if(this.responseData.statusCode == "404") {
         loading.dismiss();
@@ -126,13 +127,13 @@ delete(player){
     });
   }
    getPlayers(){
-    this.teamService.getAllPlayers(this.team).then((result) => {
+    this.teamService.getOtherMatchPlayers(this.team,this.matchId).then((result) => {
       this.responseData = result;
       console.log(this.responseData); 
       if (this.responseData.statusCode == '200'){
         
         console.log("test 200");
-        this.players = this.responseData.results.teams;
+        this.players = this.responseData.results.players;
          }  else if(this.responseData.statusCode == "404") {
      
       } else {
@@ -151,17 +152,17 @@ delete(player){
       console.log(this.responseData); 
       if (this.responseData.statusCode == '200'){
         
-        console.log("test 200");
+        this.alertDialog('Success','Email Success');
       
          }  else if(this.responseData.statusCode == "404") {
-     
+          this.alertDialog('Error','Email Error');
       } else {
         
-        console.log("error", this.responseData)
+        this.alertDialog('Error','Email Error');
       }
       
     }, (err) => {
-     
+      this.alertDialog('Error','Email Error');
     });
   }
   
