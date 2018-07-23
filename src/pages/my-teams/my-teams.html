@@ -17,16 +17,16 @@
 
 
 <ion-content padding class="appBackground">
-  <ion-card *ngFor="let team of teams" color="primary">
+  <ion-card *ngFor="let team of teams" >
     <ion-card-header>
       {{team.teamname}}
 	   </ion-card-header>
 	   <ion-card-content>
-     	 <button ion-button color="light" icon-left clear small (click)="goToTeam(team)">
+     	 <button ion-button color="light" icon-left clear small (click)="goToTeam(team)" color="primary">
             Manage Team
             
           </button>
-           <button ion-button color="light" icon-left clear small (click)="editTeam(team)">
+           <button ion-button color="light" icon-left clear small (click)="editTeam(team)" color="primary">
             Edit Team
             
           </button>

@@ -41,6 +41,7 @@ export class MyAccountPage {
       createDate: [''],
       modifyDate: [''],
        img: [''],
+       imgUrl: [''],
        verified: [''],
        dob: [''],
   

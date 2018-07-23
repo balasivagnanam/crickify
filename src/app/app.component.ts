@@ -29,7 +29,8 @@ import { Events } from 'ionic-angular';
 import {TournamentsPage} from '../pages/tournaments/tournaments';
 import {LocationsPage} from '../pages/locations/locations';
 import {ModeChangePage} from '../pages/modeChange/modeChange';
-
+import { TeamExpensePage } from '../pages/team-expense/team-expense';
+import moment from 'moment';
 @Component({
   templateUrl: 'app.html'
 })
@@ -66,7 +67,7 @@ this.adminPages=[
       {title: 'Profile', component: MyProfilePage},
       {title:'Manage Teams', component: MyTeamsPage},
 	  {title:'Change Mode', component: ModeChangePage},
-   	  {title: 'Finance', component: FinancePage},
+   	  {title: 'Expense', component: TeamExpensePage},
 	  {title: 'Update Password', component: ResetPage},
 	  {title: 'Logout', component: LogoutPage},
     ];

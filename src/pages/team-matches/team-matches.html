@@ -23,8 +23,11 @@
           <p>{{match.tournament.name}}</p>
         </ion-card-header>
         <ion-card-content>
-          <p>{{match.matchTime | date:'fullDate'}}, {{match.matchTime | date:'shortTime'}}</p>
+            <p>{{match.matchTime | momentjs}}</p>
+          
+          <span *ngIf="match.location!=null">
           <p>{{match.location.name}}, {{match.location.address}}</p>
+        </span>
           <p>Toss won by <span *ngIf="match.tossWon">{{match.team.teamname}}</span><span *ngIf="!match.tossWon">{{match.opponent}}</span>
           <p>Result : {{match.result}}, {{match.remarks}}</p>
           <p>{{match.team.teamname}}: {{match.score}}/{{match.wickets}}</p>

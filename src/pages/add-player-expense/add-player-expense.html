@@ -1,0 +1,127 @@
+<!--
+  Generated template for the PreviousMatchDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="primary">
+      <ion-title>Player Expense</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding class="appBackground" >
+
+    <ion-segment [(ngModel)]="tabsvalues">
+        <ion-segment-button value="summary">
+          Player Payment
+        </ion-segment-button>
+       
+      </ion-segment>
+      
+    <div [ngSwitch]="tabsvalues"> 
+        <div *ngSwitchCase="'summary'">
+          <div class="cric-stat-expense-table">
+            <h4>Payment</h4>
+            <ol >
+        <li *ngFor="let stat of playerExpenses">
+        <ion-list>
+            <ion-card> 
+                <ion-card-content>
+
+        <p>{{stat?.player.name}}</p>
+
+         <p>${{stat?.amount}}</p>
+
+           <p>Comment:{{stat?.cmnt}}</p>
+
+
+           <p>Player Remark:{{stat?.remark}}</p>
+           <p *ngIf= "stat.paid" >PAID</p>
+           <p *ngIf= "!stat.paid" >PENDING</p>
+           <p>Remark:{{stat?.paymentType}}</p>
+           <p>Remark:{{stat?.expenseDate| momentjs}}</p>
+        <button ion-button color="secondary" icon-left clear small (click)="editPlayerExpense(stat)">
+            Edit Player Expense
+            
+          </button>
+
+ 
+    <button ion-button color="secondary" icon-left clear small (click)="delete(stat)">
+      <ion-icon name="delete"></ion-icon>
+      Delete
+    </button>
+  </ion-card-content>
+</ion-card>  
+   
+  </ion-list>
+                
+              </li>
+            </ol>
+  
+          </div>
+         </div>
+         <ion-card> 
+            <ion-card-content>
+         <button ion-button color="secondary" icon-left clear small (click)="sendTeam()">
+            Send Reminder              
+           </button>
+           <button ion-button color="secondary" icon-left clear small (click)="addNew()">
+              Add New         
+             </button>
+          </ion-card-content>
+        </ion-card>  
+    </div>
+
+    <ion-card> 
+        <ion-card-content>
+        <form [formGroup]="addExpenseForm">
+    <ion-item>
+    <ion-label>Player</ion-label>
+    <ion-select formControlName="player" [compareWith]="compareFn">
+      <ion-option *ngFor="let key of players" [value]="key">{{key.name}}</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+      <ion-label floating>amount</ion-label>
+      <ion-input formControlName="amount" type="number"></ion-input>
+
+  </ion-item>
+  <ion-item>
+      <ion-checkbox formControlName="paid"></ion-checkbox>
+    
+  
+   </ion-item>
+   <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime formControlName="expenseDate" displayFormat="MMM DD, YYYY HH:mm" ></ion-datetime>
+    </ion-item>
+ <ion-item>
+     <ion-select formControlName="paymentType">
+         <ion-option value="CASH">CASH</ion-option>
+       <ion-option value="FREE">FREE</ion-option>
+     <ion-option value="PREPAID">PREPAID</ion-option>
+       <ion-option value="TRANSFER">TRANSFER</ion-option>
+     </ion-select>
+  
+   </ion-item>
+  <ion-item>
+      <ion-label floating>cmt</ion-label>
+      <ion-input formControlName="cmnt" type="text"></ion-input>
+
+  </ion-item>
+   <button ion-button color="secondary" icon-left clear small [disabled]="!addExpenseForm.valid" (click)="addPlayerExpense()">
+              Add Player Expense
+              
+            </button>
+      </form>
+    </ion-card-content>
+  </ion-card>   
+        
+
+
+  </ion-content>
+  

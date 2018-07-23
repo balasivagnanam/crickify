@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-angular';
 import {AuthService} from '../../providers/auth/auth';
 import {MatchService} from '../../providers/matches/matches';
+import moment from 'moment';
 import {PreviousMatchDetailsPage} from '../previous-match-details/previous-match-details';
 import {AddMatchTeamPage} from '../add-match-team/add-match-team';
 import {CreateMatchPage} from '../create-match/create-match';

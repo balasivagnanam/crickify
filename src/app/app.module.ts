@@ -11,6 +11,7 @@ import {OtherService} from '../providers/other/other';
 import {BattingService} from '../providers/batting/batting';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+
 import { ListPage } from '../pages/list/list';
 import {BowlingService} from '../providers/bowling/bowling';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -82,6 +83,13 @@ import { Camera } from '@ionic-native/camera';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import {UploadModalPage} from '../pages/upload-modal/upload-modal';
 import {UploadModalPageModule} from '../pages/upload-modal/upload-modal.module';
+import { TeamExpensePage } from '../pages/team-expense/team-expense';
+import { TeamExpensePageModule } from '../pages/team-expense/team-expense.module';
+import { AddPlayerExpensePage } from '../pages/add-player-expense/add-player-expense';
+import { AddPlayerExpensePageModule } from '../pages/add-player-expense/add-player-expense.module';
+import { AddTeamExpensePage } from '../pages/add-team-expense/add-team-expense';
+import { AddTeamExpensePageModule } from '../pages/add-team-expense/add-team-expense.module';
+import { PipesModule } from '../pipes/pipes.module';
 @NgModule({
   declarations: [
     MyApp,
@@ -90,7 +98,7 @@ import {UploadModalPageModule} from '../pages/upload-modal/upload-modal.module';
       
   ],
   imports: [
-    BrowserModule, FormsModule, HttpModule,
+    BrowserModule, FormsModule, HttpModule,PipesModule,
     IonicModule.forRoot(MyApp),
 	FinancePageModule,ForgotPageModule,LoginPageModule, SignupPageModule,
     MyProfilePageModule,
@@ -101,14 +109,14 @@ import {UploadModalPageModule} from '../pages/upload-modal/upload-modal.module';
 	MatchTeamPageModule,
 	ResetPageModule,
 	LogoutPageModule,
-	WelcomePageModule,
+	WelcomePageModule,AddPlayerExpensePageModule,
 	CreateTeamModule,
 	TeamPlayersPageModule,
 	CreatePlayerModule,
 	TeamMatchesPageModule,
 	CreateMatchModule,
 	MatchAvailabilityPageModule,UploadModalPageModule,
-	TournamentsPageModule,BowlingPageModule,
+	TournamentsPageModule,BowlingPageModule,TeamExpensePageModule,AddTeamExpensePageModule,
 	LocationsPageModule,CreateLocationModule,CreateTournamentModule,ModeChangeModule,AddMatchTeamPageModule,PreviousMatchDetailsEditPageModule,BattingPageModule
   ],
   bootstrap: [IonicApp],
@@ -122,13 +130,13 @@ import {UploadModalPageModule} from '../pages/upload-modal/upload-modal.module';
     MyProfilePage,
     MyAccountPage,
     PreviousMatchesPage,
-    MyTeamsPage,
+    MyTeamsPage,AddPlayerExpensePage,
     PreviousMatchDetailsPage,
 	MatchTeamPage,
 	FinancePage,
-	ForgotPage,
+	ForgotPage,AddTeamExpensePage,
 	ResetPage,
-	LogoutPage,UploadModalPage,
+	LogoutPage,UploadModalPage,TeamExpensePage,
 	CreateTeamPage,TeamPlayersPage,CreatePlayerPage,TeamMatchesPage,CreateMatchPage,MatchAvailabilityPage,TournamentsPage,LocationsPage,
 	CreateLocationPage,CreateTournamentPage,ModeChangePage,AddMatchTeamPage,PreviousMatchDetailsEditPage,BattingPage,BowlingPage
   ],

@@ -39,20 +39,16 @@
             <ion-input formControlName="ball" type="number"></ion-input>
 			
         </ion-item>
+        <ion-item>
+            <ion-label floating>Four</ion-label>
+            <ion-input formControlName="four" type="number" ></ion-input>
+          </ion-item>
 		      <ion-item>
             <ion-label floating>Six</ion-label>
             <ion-input formControlName="six" type="number"></ion-input>
 			  </ion-item>
- <ion-item>
-  <ion-label floating>Four</ion-label>
-  <ion-input formControlName="four" type="number" ></ion-input>
-</ion-item>
-<ion-item>
-  <ion-label>Dismissal</ion-label>
-  <ion-select formControlName="dismisal" [compareWith]="compareFn">
-    <ion-option *ngFor="let key of dismissals" [value]="key">{{key.name}}</ion-option>
-  </ion-select>
-</ion-item>
+
+
 	  <ion-item>
     <ion-label>Did Not Bat</ion-label>
     <ion-checkbox formControlName="dnb"></ion-checkbox>
@@ -61,6 +57,12 @@
     <ion-label>Out</ion-label>
     <ion-checkbox formControlName="out"></ion-checkbox>
   </ion-item>
+  <ion-item>
+      <ion-label>Dismissal</ion-label>
+      <ion-select formControlName="dismisal"  [compareWith]="compareFn">
+        <ion-option *ngFor="let key of dismissals" [value]="key">{{key.name}}</ion-option>
+      </ion-select>
+    </ion-item>
     <ion-item>
     <ion-label>Batting Down</ion-label>
     <ion-input formControlName="battingDown" type="number"></ion-input>

@@ -4,11 +4,12 @@ import { AuthService} from '../../providers/auth/auth';
 import { MatchService } from '../../providers/matches/matches';
 import {MatchTeamPage} from '../match-team/match-team';
 import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
-
+import { PipesModule } from '../../pipes/pipes.module';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
+
 export class HomePage {
 
   userDetails : any;

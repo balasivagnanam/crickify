@@ -19,9 +19,9 @@
 <ion-content padding class="appBackground">
 <ion-card>
   <ion-card-header>
-     <p *ngIf= "userDetails.img!= null" ><img width="80" height="80" src="data:image/PNG;base64,{{userDetails.img}}"/></p>
+     <p *ngIf= "userDetails.imgUrl!= null" ><img width="80" height="80" src="{{userDetails.imgUrl}}"/></p>
     
-    <p *ngIf="userDetails.img == null" ><img width="80" height="80" src="assets/img/batsman.png"/></p>
+    <p *ngIf="userDetails.imgUrl == null" ><img width="80" height="80" src="assets/img/batsman.png"/></p>
  </ion-card-header>
  
    <ion-card-content>
