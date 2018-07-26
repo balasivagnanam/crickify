@@ -8,15 +8,45 @@
 </ion-header>
 
 <ion-content padding class="appBackground">
+    <ion-card>
+        <ion-card-header>
+          Search Matches
+        </ion-card-header>
+        <ion-card-content>
+          
+        <form [formGroup]="searchMatchesForm">
+     
+            <ion-item>
+                <ion-label>Team</ion-label>
+                <ion-select formControlName="teamId"  >
+                  <ion-option *ngFor="let key of teams" [value]="key.id">{{key.teamname}}</ion-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Tournament</ion-label>
+                  <ion-select formControlName="tournamentId"  >
+                    <ion-option *ngFor="let key of tournaments" [value]="key.id">{{key.name}}</ion-option>
+                  </ion-select>
+                </ion-item>
+     <button ion-button color="secondary" icon-left clear small (click)="search()">
+                Filter
+                
+              </button>
+     
+        </form>
+      
+    
+    </ion-card-content>
+    </ion-card>
   <ion-card *ngFor="let match of matches">
     <ion-card-header>
       {{match.match.team.teamname}} versus
       {{match.match.opponent}}
-      <p>{{match.match.tournament.name}}</p>
+      <p>{{match.match.tournament?.name}}</p>
     </ion-card-header>
     <ion-card-content>
         <p>{{match.matchTime | momentjs}}</p>
-      <p>{{match.match.location.name}}, {{match.match.location.address}}</p>
+      <p>{{match.match.location?.name}}, {{match.match.location?.address}}</p>
 	  
          <ion-label>
           Select Attendance

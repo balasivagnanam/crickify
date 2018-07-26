@@ -19,13 +19,14 @@
 <ion-content padding class="appBackground">
 <ion-card>
   <ion-card-header>
-     <p *ngIf= "userDetails.imgUrl!= null" ><img width="80" height="80" src="{{userDetails.imgUrl}}"/></p>
-    
-    <p *ngIf="userDetails.imgUrl == null" ><img width="80" height="80" src="assets/img/batsman.png"/></p>
- </ion-card-header>
+  </ion-card-header>
  
    <ion-card-content>
   <div> 
+      <div text-center *ngIf= "userDetails.imgUrl!= null" ><img  style="width:150px;height:150px;"  src="{{userDetails.imgUrl}}"/></div>
+    
+      <div  text-center *ngIf="userDetails.imgUrl == null" ><img   style="width:150px;height:150px;"  src="assets/img/batsman.png"/></div>
+   
       <div>
         <div class="user-table">
       <form [formGroup]="editUserForm">
