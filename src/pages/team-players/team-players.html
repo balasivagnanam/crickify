@@ -17,11 +17,17 @@
 
 
 <ion-content padding class="appBackground">
-  <ion-card *ngFor="let teamplayer of teamplayers"  >
+    <ion-grid >
+        <ion-row > 
+		<ion-col col-4 *ngFor="let teamplayer of teamplayers"  >
+  <ion-card >
     <ion-card-header>
       {{teamplayer.player.name}}
 	   </ion-card-header>
 	   <ion-card-content>
+        <p *ngIf= "teamplayer.player.imgUrl!= null" ><img  src="{{teamplayer.player.imgUrl}}"/></p>
+   
+    <p *ngIf="teamplayer.player.imgUrl == null" ><img src="assets/img/bowler.png" /></p>
 	   <ion-item> 
 	   <button ion-button icon-left clear small color="primary" (click)="delete(teamplayer.player)">
             <ion-icon name="delete"></ion-icon>
@@ -38,6 +44,9 @@
       </ion-item>
 		    </ion-card-content>
   </ion-card>
+</ion-col>
+</ion-row>
+   </ion-grid>
 </ion-content>
 
 <ion-fab bottom right>

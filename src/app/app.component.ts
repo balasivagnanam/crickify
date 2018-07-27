@@ -59,9 +59,9 @@ normalPages: Array<{title: string, component: any}>;
     this.initializeApp();
 this.initPushNotification();
 
-this.adminPages=[
+this.adminPages=[{ title: 'Matches', component: TeamMatchesPage},
       { title: 'Players', component: TeamPlayersPage },
-	   { title: 'Matches', component: TeamMatchesPage},
+	   
       {title: 'Tournament', component: TournamentsPage},
 	  { title: 'Location', component: LocationsPage},
       {title: 'Profile', component: MyProfilePage},
