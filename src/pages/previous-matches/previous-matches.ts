@@ -34,7 +34,7 @@ export class PreviousMatchesPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, formBuilder: FormBuilder,public teamService:TeamService,public otherService:OtherService, public loadingController:LoadingController,public authService:AuthService, public matchService:MatchService) {
     this.searchMatchesForm = formBuilder.group({
 
-      endDate: [new Date()],
+      endDate: [new Date().toISOString()],
       teamId: [0],
       tournamentId: [0]
     });
