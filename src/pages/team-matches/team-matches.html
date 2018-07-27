@@ -16,6 +16,39 @@
 
 
 <ion-content padding class="appBackground">
+    <ion-card>
+        <ion-card-header>
+          Search Matches
+        </ion-card-header>
+        <ion-card-content>
+          
+        <form [formGroup]="searchMatchesForm">
+                  <ion-item>
+                  <ion-label>Tournament</ion-label>
+                  <ion-select formControlName="tournamentId"  >
+                    <ion-option *ngFor="let key of tournaments" [value]="key.id">{{key.name}}</ion-option>
+                  </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Start Date</ion-label>
+                    <ion-datetime formControlName="startDate"  displayFormat="MM/DD/YYYY"></ion-datetime>
+                  </ion-item>
+                 
+                      <ion-item>
+                          <ion-label>End Date</ion-label>
+                          <ion-datetime formControlName="endDate"  displayFormat="MM/DD/YYYY" ></ion-datetime>
+                        </ion-item>
+                     
+             <button ion-button color="secondary" icon-left clear small (click)="search()">
+                Filter
+                
+              </button>
+     
+        </form>
+      
+    
+    </ion-card-content>
+    </ion-card>
     <ion-card *ngFor="let match of matches">
         <ion-card-header>
           {{match.team.teamname}} Vs
