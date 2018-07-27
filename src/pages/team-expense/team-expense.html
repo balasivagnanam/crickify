@@ -14,7 +14,7 @@
       <p>{{expense.team.name}}</p>
     </ion-card-header>
     <ion-card-content>
-      <p>{{expense.expenseDate}}</p>
+      <p>{{expense.expenseDate| momentjs}}</p>
       <p>${{expense.amount}}</p>
       <ion-item>
 	         <ion-label>

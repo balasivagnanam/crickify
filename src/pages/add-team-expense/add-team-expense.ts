@@ -74,8 +74,7 @@ export class AddTeamExpensePage {
         
 
       } else if (this.responseData.statusCode == "404") {
-        console.log("unauthorrised");
-        localStorage.clear();
+  
       } else {
         loading.dismiss();
         console.log("error", this.responseData)
@@ -119,6 +118,33 @@ this.alertDialog('Success','Batting added Success');
       this.alertDialog('Error','Error');
       // Error log
     });
+  }else{
+    this.financeService.addExpense(this.createExpenseForm.value).then((result) => {
+      this.responseData = result;
+      console.log(this.responseData);
+      if (this.responseData.statusCode == '200') {
+        loading.dismiss();
+        console.log("test 200");
+this.alertDialog('Success','Batting added Success');
+
+      } else if (this.responseData.statusCode == "404") {
+        loading.dismiss();
+        console.log("unauthorrised");
+        this.alertDialog('Error','unauthorrised');
+
+      } else {
+        loading.dismiss();
+        console.log("test others");
+        this.alertDialog('Error','Error');
+      }
+
+    }, (err) => {
+      console.log("error", err);
+      loading.dismiss();
+      this.alertDialog('Error','Error');
+      // Error log
+    });
+  
   }
   }
 alertDialog(title,message){

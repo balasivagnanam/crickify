@@ -8,7 +8,18 @@
 </ion-header>
 
 <ion-content padding class="appBackground">
-  <ion-card *ngFor="let playerexpense of expenses">
+    <ion-segment [(ngModel)]="tabsvalues">
+        <ion-segment-button value="pending">
+         Pending
+        </ion-segment-button>
+        <ion-segment-button value="paid">
+          Paid
+        </ion-segment-button>
+           </ion-segment>
+    
+    <div [ngSwitch]="tabsvalues">
+      <div *ngSwitchCase="'pending'">
+  <ion-card *ngFor="let playerexpense of pending">
     <ion-card-header>
       {{playerexpense.expense.description}}
       <p>{{playerexpense.expense.team.name}}</p>
@@ -46,4 +57,46 @@
 	
     </ion-card-content>
   </ion-card>
+</div>
+<div *ngSwitchCase="'paid'">
+    <ion-card *ngFor="let playerexpense of paid">
+      <ion-card-header>
+        {{playerexpense.expense.description}}
+        <p>{{playerexpense.expense.team.name}}</p>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{playerexpense.expenseDate| momentjs}}</p>
+       
+        <p>${{playerexpense.amount}}</p>
+       <p>${{playerexpense.cmnt}}</p>
+           <ion-label>
+            Select Payment Status
+          </ion-label>
+      
+         <ion-item>
+         <ion-checkbox [(ngModel)]="playerexpense.paid"  (ionChange)="availabilitySelected($event, playerexpense)"></ion-checkbox>
+       
+     
+      </ion-item>
+    
+    <ion-item>
+        <ion-select [(ngModel)]="playerexpense.paymentType" (ionChange)="availabilitySelected($event, playerexpense)">
+            <ion-option value="CASH">CASH</ion-option>
+          <ion-option value="FREE">FREE</ion-option>
+        <ion-option value="PREPAID">PREPAID</ion-option>
+          <ion-option value="TRANSFER">TRANSFER</ion-option>
+        </ion-select>
+     
+      </ion-item>
+    <p><ion-label>Remarks</ion-label></p>
+        <ion-item>
+      
+           
+      <ion-input [(ngModel)]="playerexpense.remark" (ionChange)="availabilitySelected($event, playerexpense)"></ion-input>
+     </ion-item>
+    
+      </ion-card-content>
+    </ion-card>
+  </div>
+  </div>
 </ion-content>

@@ -2965,8 +2965,6 @@ var AddTeamExpensePage = (function () {
                 _this.createExpenseForm.setValue(_this.expense);
             }
             else if (_this.responseData.statusCode == "404") {
-                console.log("unauthorrised");
-                localStorage.clear();
             }
             else {
                 loading.dismiss();
@@ -2983,6 +2981,32 @@ var AddTeamExpensePage = (function () {
         });
         loading.present();
         if (this.expense == null) {
+            this.financeService.addExpense(this.createExpenseForm.value).then(function (result) {
+                _this.responseData = result;
+                console.log(_this.responseData);
+                if (_this.responseData.statusCode == '200') {
+                    loading.dismiss();
+                    console.log("test 200");
+                    _this.alertDialog('Success', 'Batting added Success');
+                }
+                else if (_this.responseData.statusCode == "404") {
+                    loading.dismiss();
+                    console.log("unauthorrised");
+                    _this.alertDialog('Error', 'unauthorrised');
+                }
+                else {
+                    loading.dismiss();
+                    console.log("test others");
+                    _this.alertDialog('Error', 'Error');
+                }
+            }, function (err) {
+                console.log("error", err);
+                loading.dismiss();
+                _this.alertDialog('Error', 'Error');
+                // Error log
+            });
+        }
+        else {
             this.financeService.addExpense(this.createExpenseForm.value).then(function (result) {
                 _this.responseData = result;
                 console.log(_this.responseData);
@@ -3031,9 +3055,10 @@ AddTeamExpensePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-add-team-expense',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\add-team-expense\add-team-expense.html"*/'<!--\n  Generated template for the PreviousMatchDetailsPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="primary">\n    <ion-title>Add Team Expense</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding class="appBackground" >\n <ion-card>\n    <ion-card-header>\n      Add Expense\n    </ion-card-header>\n    <ion-card-content>\n  <ion-list no-lines>\n \n    <form [formGroup]="createExpenseForm">\n \n        <ion-item>\n            <ion-label floating>Name</ion-label>\n            <ion-input formControlName="name" type="text"></ion-input>\n			\n        </ion-item>\n       <ion-item>\n            <ion-label floating>Description</ion-label>\n            <ion-input formControlName="description" type="text"></ion-input>\n			\n        </ion-item>\n		      <ion-item>\n            <ion-label floating>Amount</ion-label>\n            <ion-input formControlName="amount" type="number"></ion-input>\n			  </ion-item>\n        <ion-item>\n          <ion-label>Date</ion-label>\n          <ion-datetime formControlName="expenseDate" displayFormat="MMM DD, YYYY HH:mm" ></ion-datetime>\n        </ion-item>\n        <ion-item>\n\n            <ion-item>\n                <ion-select formControlName="status">\n                    <ion-option value=1>PAID</ion-option>\n                  <ion-option value=0>PENDING</ion-option>\n                </ion-select>\n             \n              </ion-item>\n</ion-item>\n  <button ion-button color="secondary" icon-left clear small [disabled]="!createExpenseForm.valid" (click)="addExpense()">\n            Add Expense\n            \n          </button>\n    </form>\n\n</ion-list>\n</ion-card-content>\n </ion-card>\n</ion-content>\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\add-team-expense\add-team-expense.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_finance_finance__["a" /* FinanceProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_finance_finance__["a" /* FinanceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_finance_finance__["a" /* FinanceProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */]) === "function" && _f || Object])
 ], AddTeamExpensePage);
 
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=add-team-expense.js.map
 
 /***/ }),
@@ -3253,7 +3278,7 @@ var AddPlayerExpensePage = (function () {
 AddPlayerExpensePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-add-player-expense',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\add-player-expense\add-player-expense.html"*/'<!--\n  Generated template for the PreviousMatchDetailsPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n    <ion-navbar color="primary">\n      <ion-title>Player Expense</ion-title>\n    </ion-navbar>\n  \n  </ion-header>\n  \n  \n  <ion-content padding class="appBackground" >\n\n    <ion-segment [(ngModel)]="tabsvalues">\n        <ion-segment-button value="summary">\n          Player Payment\n        </ion-segment-button>\n       \n      </ion-segment>\n      \n    <div [ngSwitch]="tabsvalues"> \n        <div *ngSwitchCase="\'summary\'">\n          <div class="cric-stat-expense-table">\n            <h4>Payment</h4>\n            <ol >\n        <li *ngFor="let stat of playerExpenses">\n        <ion-list>\n            <ion-card> \n                <ion-card-content>\n\n        <p>{{stat?.player.name}}</p>\n\n         <p>${{stat?.amount}}</p>\n\n           <p>Comment:{{stat?.cmnt}}</p>\n\n\n           <p>Player Remark:{{stat?.remark}}</p>\n           <p *ngIf= "stat.paid" >PAID</p>\n           <p *ngIf= "!stat.paid" >PENDING</p>\n           <p>Remark:{{stat?.paymentType}}</p>\n           <p>Remark:{{stat?.expenseDate| momentjs}}</p>\n        <button ion-button color="secondary" icon-left clear small (click)="editPlayerExpense(stat)">\n            Edit Player Expense\n            \n          </button>\n\n \n    <button ion-button color="secondary" icon-left clear small (click)="delete(stat)">\n      <ion-icon name="delete"></ion-icon>\n      Delete\n    </button>\n  </ion-card-content>\n</ion-card>  \n   \n  </ion-list>\n                \n              </li>\n            </ol>\n  \n          </div>\n         </div>\n         <ion-card> \n            <ion-card-content>\n         <button ion-button color="secondary" icon-left clear small (click)="sendTeam()">\n            Send Reminder              \n           </button>\n           <button ion-button color="secondary" icon-left clear small (click)="addNew()">\n              Add New         \n             </button>\n          </ion-card-content>\n        </ion-card>  \n    </div>\n\n    <ion-card> \n        <ion-card-content>\n        <form [formGroup]="addExpenseForm">\n    <ion-item>\n    <ion-label>Player</ion-label>\n    <ion-select formControlName="player" [compareWith]="compareFn">\n      <ion-option *ngFor="let key of players" [value]="key">{{key.name}}</ion-option>\n    </ion-select>\n  </ion-item>\n  <ion-item>\n      <ion-label floating>amount</ion-label>\n      <ion-input formControlName="amount" type="number"></ion-input>\n\n  </ion-item>\n  <ion-item>\n      <ion-checkbox formControlName="paid"></ion-checkbox>\n    \n  \n   </ion-item>\n   <ion-item>\n      <ion-label>Date</ion-label>\n      <ion-datetime formControlName="expenseDate" displayFormat="MMM DD, YYYY HH:mm" ></ion-datetime>\n    </ion-item>\n <ion-item>\n     <ion-select formControlName="paymentType">\n         <ion-option value="CASH">CASH</ion-option>\n       <ion-option value="FREE">FREE</ion-option>\n     <ion-option value="PREPAID">PREPAID</ion-option>\n       <ion-option value="TRANSFER">TRANSFER</ion-option>\n     </ion-select>\n  \n   </ion-item>\n  <ion-item>\n      <ion-label floating>cmt</ion-label>\n      <ion-input formControlName="cmnt" type="text"></ion-input>\n\n  </ion-item>\n   <button ion-button color="secondary" icon-left clear small [disabled]="!addExpenseForm.valid" (click)="addPlayerExpense()">\n              Add Player Expense\n              \n            </button>\n      </form>\n    </ion-card-content>\n  </ion-card>   \n        \n\n\n  </ion-content>\n  '/*ion-inline-end:"D:\ionicapp\crickify\src\pages\add-player-expense\add-player-expense.html"*/,
+        selector: 'page-add-player-expense',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\add-player-expense\add-player-expense.html"*/'<!--\n  Generated template for the PreviousMatchDetailsPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n    <ion-navbar color="primary">\n      <ion-title>Player Expense</ion-title>\n    </ion-navbar>\n  \n  </ion-header>\n  \n  \n  <ion-content padding class="appBackground" >\n\n    <ion-segment [(ngModel)]="tabsvalues">\n        <ion-segment-button value="summary">\n          Player Payment\n        </ion-segment-button>\n       \n      </ion-segment>\n      \n    <div [ngSwitch]="tabsvalues"> \n        <div *ngSwitchCase="\'summary\'">\n          <div class="cric-stat-expense-table">\n            <h4>Payment</h4>\n            <ol >\n        <li *ngFor="let stat of playerExpenses">\n        <ion-list>\n            <ion-card> \n                <ion-card-content>\n\n        <p>{{stat?.player.name}}</p>\n\n         <p>${{stat?.amount}}</p>\n\n           <p>Comment:{{stat?.cmnt}}</p>\n\n\n           <p>Player Remark:{{stat?.remark}}</p>\n           <p *ngIf= "stat.paid" >PAID</p>\n           <p *ngIf= "!stat.paid" >PENDING</p>\n           <p *ngIf= "stat.paid">Payment Type:{{stat?.paymentType}}</p>\n           <p *ngIf= "stat.paid">Date:{{stat?.expenseDate| momentjs}}</p>\n        <button ion-button color="secondary" icon-left clear small (click)="editPlayerExpense(stat)">\n            Edit Player Expense\n            \n          </button>\n\n \n    <button ion-button color="secondary" icon-left clear small (click)="delete(stat)">\n      <ion-icon name="delete"></ion-icon>\n      Delete\n    </button>\n  </ion-card-content>\n</ion-card>  \n   \n  </ion-list>\n                \n              </li>\n            </ol>\n  \n          </div>\n         </div>\n         <ion-card> \n            <ion-card-content>\n         <button ion-button color="secondary" icon-left clear small (click)="sendTeam()">\n            Send Reminder              \n           </button>\n           <button ion-button color="secondary" icon-left clear small (click)="addNew()">\n              Add New         \n             </button>\n          </ion-card-content>\n        </ion-card>  \n    </div>\n\n    <ion-card> \n        <ion-card-content>\n        <form [formGroup]="addExpenseForm">\n    <ion-item>\n    <ion-label>Player</ion-label>\n    <ion-select formControlName="player" [compareWith]="compareFn">\n      <ion-option *ngFor="let key of players" [value]="key">{{key.name}}</ion-option>\n    </ion-select>\n  </ion-item>\n  <ion-item>\n      <ion-label floating>amount</ion-label>\n      <ion-input formControlName="amount" type="number"></ion-input>\n\n  </ion-item>\n  <ion-item>\n      <ion-checkbox formControlName="paid"></ion-checkbox>\n    \n  \n   </ion-item>\n   <ion-item>\n      <ion-label>Date</ion-label>\n      <ion-datetime formControlName="expenseDate" displayFormat="MMM DD, YYYY HH:mm" ></ion-datetime>\n    </ion-item>\n <ion-item>\n     <ion-select formControlName="paymentType">\n         <ion-option value="CASH">CASH</ion-option>\n       <ion-option value="FREE">FREE</ion-option>\n     <ion-option value="PREPAID">PREPAID</ion-option>\n       <ion-option value="TRANSFER">TRANSFER</ion-option>\n     </ion-select>\n  \n   </ion-item>\n  <ion-item>\n      <ion-label floating>cmt</ion-label>\n      <ion-input formControlName="cmnt" type="text"></ion-input>\n\n  </ion-item>\n   <button ion-button color="secondary" icon-left clear small [disabled]="!addExpenseForm.valid" (click)="addPlayerExpense()">\n              Add Player Expense\n              \n            </button>\n      </form>\n    </ion-card-content>\n  </ion-card>   \n        \n\n\n  </ion-content>\n  '/*ion-inline-end:"D:\ionicapp\crickify\src\pages\add-player-expense\add-player-expense.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_finance_finance__["a" /* FinanceProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_3__providers_teams_teams__["a" /* TeamService */], __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */]])
 ], AddPlayerExpensePage);
@@ -3714,7 +3739,10 @@ var FinancePage = (function () {
         this.authService = authService;
         this.financeService = financeService;
         this.loadingController = loadingController;
+        this.paid = [];
+        this.pending = [];
         this.userPostData = { "user_id": "", "token": "" };
+        this.tabsvalues = "pending";
         if (this.authService.getAuthenticated()) {
             var data = JSON.parse(localStorage.getItem('userData'));
             console.log("fetch data", data);
@@ -3742,15 +3770,24 @@ var FinancePage = (function () {
             _this.responseData = result;
             console.log(_this.responseData);
             if (_this.responseData.statusCode == '200') {
+                _this.paid = [];
+                _this.pending = [];
                 loading.dismiss();
                 console.log("test 200");
                 console.log("result", _this.responseData.results.result);
                 _this.expenses = _this.responseData.results.result;
+                for (var _i = 0, _a = _this.expenses; _i < _a.length; _i++) {
+                    var data = _a[_i];
+                    if (data.paid) {
+                        _this.paid.push(data);
+                    }
+                    else if (!data.paid) {
+                        _this.pending.push(data);
+                    }
+                }
             }
             else if (_this.responseData.statusCode == "404") {
                 console.log("unauthorrised");
-                localStorage.clear();
-                _this.backToWelcome();
             }
             else {
                 loading.dismiss();
@@ -3774,13 +3811,12 @@ var FinancePage = (function () {
             if (_this.responseData.statusCode == '200') {
                 loading.dismiss();
                 console.log("test 200", _this.responseData);
+                _this.ionViewDidLoad();
                 // console.log("result", this.responseData.results.matches);
                 //this.matches = this.responseData.results.matches;
             }
             else if (_this.responseData.statusCode == "404") {
                 console.log("unauthorrised");
-                localStorage.clear();
-                _this.backToWelcome();
             }
             else {
                 loading.dismiss();
@@ -3790,15 +3826,6 @@ var FinancePage = (function () {
             // Error log
         });
     };
-    FinancePage.prototype.backToWelcome = function () {
-        var root = this.app.getRootNav();
-        root.popToRoot();
-    };
-    FinancePage.prototype.logout = function () {
-        var _this = this;
-        localStorage.clear();
-        setTimeout(function () { return _this.backToWelcome(); }, 1000);
-    };
     FinancePage.prototype.goToMatchTeam = function (event) {
         console.log("clicked match team", event);
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__match_team_match_team__["a" /* MatchTeamPage */], { "matchId": event });
@@ -3807,11 +3834,12 @@ var FinancePage = (function () {
 }());
 FinancePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-finance',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\finance\finance.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Payments</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding class="appBackground">\n\n  <ion-card *ngFor="let playerexpense of expenses">\n\n    <ion-card-header>\n\n      {{playerexpense.expense.description}}\n\n      <p>{{playerexpense.expense.team.name}}</p>\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <p>{{playerexpense.expenseDate| momentjs}}</p>\n\n     \n\n      <p>${{playerexpense.amount}}</p>\n\n	   <p>${{playerexpense.cmnt}}</p>\n\n         <ion-label>\n\n          Select Payment Status\n\n        </ion-label>\n\n		\n\n		   <ion-item>\n\n		   <ion-checkbox [(ngModel)]="playerexpense.paid"  (ionChange)="availabilitySelected($event, playerexpense)"></ion-checkbox>\n\n     \n\n	 \n\n    </ion-item>\n\n	\n\n	<ion-item>\n\n      <ion-select [(ngModel)]="playerexpense.paymentType" (ionChange)="availabilitySelected($event, playerexpense)">\n\n          <ion-option value="CASH">CASH</ion-option>\n\n        <ion-option value="FREE">FREE</ion-option>\n\n      <ion-option value="PREPAID">PREPAID</ion-option>\n\n        <ion-option value="TRANSFER">TRANSFER</ion-option>\n\n      </ion-select>\n\n	 \n\n    </ion-item>\n\n	<p><ion-label>Remarks</ion-label></p>\n\n      <ion-item>\n\n	  \n\n	       \n\n    <ion-input [(ngModel)]="playerexpense.remark" (ionChange)="availabilitySelected($event, playerexpense)"></ion-input>\n\n	 </ion-item>\n\n	\n\n    </ion-card-content>\n\n  </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\finance\finance.html"*/
+        selector: 'page-finance',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\finance\finance.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Payments</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding class="appBackground">\n\n    <ion-segment [(ngModel)]="tabsvalues">\n\n        <ion-segment-button value="pending">\n\n         Pending\n\n        </ion-segment-button>\n\n        <ion-segment-button value="paid">\n\n          Paid\n\n        </ion-segment-button>\n\n           </ion-segment>\n\n    \n\n    <div [ngSwitch]="tabsvalues">\n\n      <div *ngSwitchCase="\'pending\'">\n\n  <ion-card *ngFor="let playerexpense of pending">\n\n    <ion-card-header>\n\n      {{playerexpense.expense.description}}\n\n      <p>{{playerexpense.expense.team.name}}</p>\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <p>{{playerexpense.expenseDate| momentjs}}</p>\n\n     \n\n      <p>${{playerexpense.amount}}</p>\n\n	   <p>${{playerexpense.cmnt}}</p>\n\n         <ion-label>\n\n          Select Payment Status\n\n        </ion-label>\n\n		\n\n		   <ion-item>\n\n		   <ion-checkbox [(ngModel)]="playerexpense.paid"  (ionChange)="availabilitySelected($event, playerexpense)"></ion-checkbox>\n\n     \n\n	 \n\n    </ion-item>\n\n	\n\n	<ion-item>\n\n      <ion-select [(ngModel)]="playerexpense.paymentType" (ionChange)="availabilitySelected($event, playerexpense)">\n\n          <ion-option value="CASH">CASH</ion-option>\n\n        <ion-option value="FREE">FREE</ion-option>\n\n      <ion-option value="PREPAID">PREPAID</ion-option>\n\n        <ion-option value="TRANSFER">TRANSFER</ion-option>\n\n      </ion-select>\n\n	 \n\n    </ion-item>\n\n	<p><ion-label>Remarks</ion-label></p>\n\n      <ion-item>\n\n	  \n\n	       \n\n    <ion-input [(ngModel)]="playerexpense.remark" (ionChange)="availabilitySelected($event, playerexpense)"></ion-input>\n\n	 </ion-item>\n\n	\n\n    </ion-card-content>\n\n  </ion-card>\n\n</div>\n\n<div *ngSwitchCase="\'paid\'">\n\n    <ion-card *ngFor="let playerexpense of paid">\n\n      <ion-card-header>\n\n        {{playerexpense.expense.description}}\n\n        <p>{{playerexpense.expense.team.name}}</p>\n\n      </ion-card-header>\n\n      <ion-card-content>\n\n        <p>{{playerexpense.expenseDate| momentjs}}</p>\n\n       \n\n        <p>${{playerexpense.amount}}</p>\n\n       <p>${{playerexpense.cmnt}}</p>\n\n           <ion-label>\n\n            Select Payment Status\n\n          </ion-label>\n\n      \n\n         <ion-item>\n\n         <ion-checkbox [(ngModel)]="playerexpense.paid"  (ionChange)="availabilitySelected($event, playerexpense)"></ion-checkbox>\n\n       \n\n     \n\n      </ion-item>\n\n    \n\n    <ion-item>\n\n        <ion-select [(ngModel)]="playerexpense.paymentType" (ionChange)="availabilitySelected($event, playerexpense)">\n\n            <ion-option value="CASH">CASH</ion-option>\n\n          <ion-option value="FREE">FREE</ion-option>\n\n        <ion-option value="PREPAID">PREPAID</ion-option>\n\n          <ion-option value="TRANSFER">TRANSFER</ion-option>\n\n        </ion-select>\n\n     \n\n      </ion-item>\n\n    <p><ion-label>Remarks</ion-label></p>\n\n        <ion-item>\n\n      \n\n           \n\n      <ion-input [(ngModel)]="playerexpense.remark" (ionChange)="availabilitySelected($event, playerexpense)"></ion-input>\n\n     </ion-item>\n\n    \n\n      </ion-card-content>\n\n    </ion-card>\n\n  </div>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\finance\finance.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_3__providers_finance_finance__["a" /* FinanceProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_finance_finance__["a" /* FinanceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_finance_finance__["a" /* FinanceProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */]) === "function" && _e || Object])
 ], FinancePage);
 
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=finance.js.map
 
 /***/ }),
@@ -4277,8 +4305,7 @@ var TeamExpensePage = (function () {
         this.team = JSON.parse(localStorage.getItem('team'));
     }
     TeamExpensePage.prototype.ionViewCanEnter = function () {
-        console.log("view did enter", this.authService.getAuthenticated());
-        return this.authService.getAuthenticated();
+        this.ionViewDidLoad();
     };
     TeamExpensePage.prototype.ionViewDidLoad = function () {
         var _this = this;
@@ -4351,11 +4378,12 @@ var TeamExpensePage = (function () {
 }());
 TeamExpensePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-team-expense',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\team-expense\team-expense.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Expense</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding class="appBackground">\n  <ion-card *ngFor="let expense of expenses" >\n    <ion-card-header>\n      {{expense.description}}\n      <p>{{expense.team.name}}</p>\n    </ion-card-header>\n    <ion-card-content>\n      <p>{{expense.expenseDate}}</p>\n      <p>${{expense.amount}}</p>\n      <ion-item>\n	         <ion-label>\n          Select Payment Status\n        </ion-label>\n        </ion-item>\n        <ion-item>\n        <ion-select [(ngModel)]="expense.status"  (ionChange)="expenseSelected($event, expense)">\n            <ion-option value=1>PAID</ion-option>\n          <ion-option value=0>PENDING</ion-option>\n        </ion-select>\n      </ion-item>\n      <ion-item>\n          <button ion-button (click)="addPlayerExpense(expense)">\n              Add Players Expense\n            </button>\n\n       </ion-item>\n       <ion-item>\n          <button ion-button (click)="editExpense(expense)">\n              Edit\n            </button>\n\n       </ion-item>\n    </ion-card-content>\n  </ion-card>\n</ion-content>\n<ion-fab bottom right>\n  <button ion-fab mini (click)="addExpense()"><ion-icon name="add"></ion-icon></button>\n</ion-fab>'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\team-expense\team-expense.html"*/,
+        selector: 'page-team-expense',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\team-expense\team-expense.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Expense</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding class="appBackground">\n  <ion-card *ngFor="let expense of expenses" >\n    <ion-card-header>\n      {{expense.description}}\n      <p>{{expense.team.name}}</p>\n    </ion-card-header>\n    <ion-card-content>\n      <p>{{expense.expenseDate| momentjs}}</p>\n      <p>${{expense.amount}}</p>\n      <ion-item>\n	         <ion-label>\n          Select Payment Status\n        </ion-label>\n        </ion-item>\n        <ion-item>\n        <ion-select [(ngModel)]="expense.status"  (ionChange)="expenseSelected($event, expense)">\n            <ion-option value=1>PAID</ion-option>\n          <ion-option value=0>PENDING</ion-option>\n        </ion-select>\n      </ion-item>\n      <ion-item>\n          <button ion-button (click)="addPlayerExpense(expense)">\n              Add Players Expense\n            </button>\n\n       </ion-item>\n       <ion-item>\n          <button ion-button (click)="editExpense(expense)">\n              Edit\n            </button>\n\n       </ion-item>\n    </ion-card-content>\n  </ion-card>\n</ion-content>\n<ion-fab bottom right>\n  <button ion-fab mini (click)="addExpense()"><ion-icon name="add"></ion-icon></button>\n</ion-fab>'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\team-expense\team-expense.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_3__providers_finance_finance__["a" /* FinanceProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_finance_finance__["a" /* FinanceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_finance_finance__["a" /* FinanceProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */]) === "function" && _e || Object])
 ], TeamExpensePage);
 
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=team-expense.js.map
 
 /***/ }),
@@ -8538,7 +8566,7 @@ var FinanceProvider = (function () {
             var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
             headers.set('Content-Type', 'application/json');
             headers.set("token", _this.getToken());
-            _this.http.post(apiUrl + '/playerExpense/update', JSON.stringify(data), { headers: headers })
+            _this.http.put(apiUrl + '/playerExpense/' + data.id, JSON.stringify(data), { headers: headers })
                 .subscribe(function (res) {
                 resolve(res.json());
                 console.log("expense update", res.json());
@@ -8600,9 +8628,10 @@ var FinanceProvider = (function () {
 }());
 FinanceProvider = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
 ], FinanceProvider);
 
+var _a;
 //# sourceMappingURL=finance.js.map
 
 /***/ }),

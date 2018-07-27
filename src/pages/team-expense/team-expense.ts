@@ -40,8 +40,7 @@ expenses : any;
   }
 
   ionViewCanEnter(){
-    console.log("view did enter", this.authService.getAuthenticated());
-      return this.authService.getAuthenticated();
+   this.ionViewDidLoad();
   }
   
   ionViewDidLoad(){

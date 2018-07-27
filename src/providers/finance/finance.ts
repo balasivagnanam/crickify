@@ -135,7 +135,7 @@ export class FinanceProvider {
       let headers = new Headers();
     headers.set('Content-Type', 'application/json');
     headers.set("token",this.getToken());
-      this.http.post(apiUrl + '/playerExpense/update', JSON.stringify(data), {headers: headers})
+      this.http.put(apiUrl + '/playerExpense/'+data.id, JSON.stringify(data), {headers: headers})
         .subscribe(res => {
           resolve(res.json());
           console.log("expense update", res.json()); 

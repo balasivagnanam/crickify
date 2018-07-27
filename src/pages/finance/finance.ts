@@ -12,9 +12,10 @@ export class FinancePage {
 
   userDetails : any;
   responseData: any;
- 
+  paid: any = [];
+  pending: any = [];
   userPostData = {"user_id":"","token":""};
-
+  tabsvalues : String = "pending";
 expenses : any;
 
   constructor(public navCtrl: NavController, public app:App, public authService:AuthService, public financeService:FinanceProvider, public loadingController: LoadingController) {
@@ -47,14 +48,22 @@ expenses : any;
       this.responseData = result;
       console.log(this.responseData); 
       if (this.responseData.statusCode == '200'){
+        this.paid=[];
+        this.pending=[];
         loading.dismiss();
         console.log("test 200");
         console.log("result", this.responseData.results.result);
         this.expenses = this.responseData.results.result;
+
+        for(let data of this.expenses) {
+          if(data.paid){
+            this.paid.push(data)
+          }else if(!data.paid){
+            this.pending.push(data)
+          }}
       }  else if(this.responseData.statusCode == "404") {
         console.log("unauthorrised");
-        localStorage.clear();
-        this.backToWelcome();
+   
       } else {
         loading.dismiss();
         console.log("error", this.responseData)
@@ -82,12 +91,12 @@ expenses : any;
       if (this.responseData.statusCode == '200'){
         loading.dismiss();
         console.log("test 200", this.responseData);
+        this.ionViewDidLoad();
        // console.log("result", this.responseData.results.matches);
         //this.matches = this.responseData.results.matches;
       }  else if(this.responseData.statusCode == "404") {
         console.log("unauthorrised");
-        localStorage.clear();
-        this.backToWelcome();
+     
       } else {
         loading.dismiss();
         console.log("error", this.responseData)
@@ -100,15 +109,7 @@ expenses : any;
   }
 
 
-  backToWelcome(){
-    const root = this.app.getRootNav();
-    root.popToRoot();
- }
- 
- logout(){
-      localStorage.clear();
-      setTimeout(() => this.backToWelcome(), 1000);
- }
+  
  goToMatchTeam(event){
     console.log("clicked match team", event);
     this.navCtrl.push(MatchTeamPage, {"matchId": event});

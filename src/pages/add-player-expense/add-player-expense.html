@@ -42,8 +42,8 @@
            <p>Player Remark:{{stat?.remark}}</p>
            <p *ngIf= "stat.paid" >PAID</p>
            <p *ngIf= "!stat.paid" >PENDING</p>
-           <p>Remark:{{stat?.paymentType}}</p>
-           <p>Remark:{{stat?.expenseDate| momentjs}}</p>
+           <p *ngIf= "stat.paid">Payment Type:{{stat?.paymentType}}</p>
+           <p *ngIf= "stat.paid">Date:{{stat?.expenseDate| momentjs}}</p>
         <button ion-button color="secondary" icon-left clear small (click)="editPlayerExpense(stat)">
             Edit Player Expense
             
