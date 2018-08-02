@@ -61,11 +61,12 @@
           <span *ngIf="match.location!=null">
           <p>{{match.location.name}}, {{match.location.address}}</p>
         </span>
+        <span *ngIf="match.played">
           <p>Toss won by <span *ngIf="match.tossWon">{{match.team.teamname}}</span><span *ngIf="!match.tossWon">{{match.opponent}}</span>
           <p>Result : {{match.result}}, {{match.remarks}}</p>
           <p>{{match.team.teamname}}: {{match.score}}/{{match.wickets}}</p>
           <p>{{match.opponent}}:{{match.oppositionScore}}/{{match.oppositionWickets}}</p>
-     
+        </span>
 		 <button ion-button icon-left clear small (click)="goToMatchTeam(match.id)">
             <ion-icon name="text"></ion-icon>
             <div>Match Team</div>
