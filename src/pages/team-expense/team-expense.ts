@@ -22,10 +22,15 @@ export class TeamExpensePage {
 
   userDetails : any;
   responseData: any;
+  updateresponseData: any;
   team:any;
   userPostData = {"user_id":"","token":""};
-
+  paid: any = [];
+  pending: any = [];
 expenses : any;
+total=0;
+pendingAmount=0;
+paidAmount=0;
 
   constructor(public navCtrl: NavController, public app:App, public authService:AuthService, public financeService:FinanceProvider, public loadingController: LoadingController) {
     if (this.authService.getAuthenticated()){
@@ -55,12 +60,27 @@ expenses : any;
     loading.present();
     this.financeService.getTeamExpense(this.team.id).then((result) => {
       this.responseData = result;
+      this.paid=[];
+      this.pending=[];
+      this.total=0;
+      this.pendingAmount=0;
+      this.paidAmount=0;
       console.log(this.responseData); 
       if (this.responseData.statusCode == '200'){
         loading.dismiss();
         console.log("test 200");
         console.log("result", this.responseData.results.expense);
         this.expenses = this.responseData.results.expense;
+        for(let data of this.expenses) {
+          if(data.paid){
+            this.paidAmount+=data.amount;
+            this.total+=data.amount;
+            this.paid.push(data)
+          }else if(!data.paid){
+            this.pendingAmount+=data.amount;
+            this.total+=data.amount;
+            this.pending.push(data)
+          }}
       }  else if(this.responseData.statusCode == "404") {
         console.log("unauthorrised");
 
@@ -86,19 +106,20 @@ expenses : any;
     });
 
     this.financeService.postTeamExpenseUpdate(expense).then((result) => {
-      this.responseData = result;
-      console.log(this.responseData); 
-      if (this.responseData.statusCode == '200'){
+      this.updateresponseData = result;
+      console.log(this.updateresponseData); 
+      if (this.updateresponseData.statusCode == '200'){
         loading.dismiss();
-        console.log("test 200", this.responseData);
+        console.log("test 200", this.updateresponseData);
+        this.ionViewDidLoad();
        // console.log("result", this.responseData.results.matches);
         //this.matches = this.responseData.results.matches;
-      }  else if(this.responseData.statusCode == "404") {
+      }  else if(this.updateresponseData.statusCode == "404") {
         console.log("unauthorrised");
       
       } else {
         loading.dismiss();
-        console.log("error", this.responseData)
+        console.log("error", this.updateresponseData)
       }
       
     }, (err) => {

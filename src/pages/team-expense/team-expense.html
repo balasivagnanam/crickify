@@ -8,7 +8,38 @@
 </ion-header>
 
 <ion-content padding class="appBackground">
-  <ion-card *ngFor="let expense of expenses" >
+    <ion-card>
+        <ion-card-header>
+            Payments
+          </ion-card-header>
+          <ion-card-content>
+    <ion-label>
+        Total Amount:${{total}}
+      </ion-label>
+
+
+      <ion-label>
+          Paid:${{paidAmount}}
+        </ion-label>
+
+
+        <ion-label>
+          Pending:${{pendingAmount}}
+          </ion-label>
+          </ion-card-content>
+        </ion-card>
+          <ion-segment [(ngModel)]="tabsvalues">
+              <ion-segment-button value="pending">
+               Pending
+              </ion-segment-button>
+              <ion-segment-button value="paid">
+                Paid
+              </ion-segment-button>
+                 </ion-segment>
+          
+          <div [ngSwitch]="tabsvalues">
+            <div *ngSwitchCase="'pending'">
+  <ion-card *ngFor="let expense of pending" >
     <ion-card-header>
       {{expense.description}}
       <p>{{expense.team.name}}</p>
@@ -41,6 +72,43 @@
        </ion-item>
     </ion-card-content>
   </ion-card>
+</div>
+<div *ngSwitchCase="'paid'">
+    <ion-card *ngFor="let expense of paid" >
+        <ion-card-header>
+          {{expense.description}}
+          <p>{{expense.team.name}}</p>
+        </ion-card-header>
+        <ion-card-content>
+          <p>{{expense.expenseDate| momentjs}}</p>
+          <p>${{expense.amount}}</p>
+          <ion-item>
+               <ion-label>
+              Select Payment Status
+            </ion-label>
+            </ion-item>
+            <ion-item>
+            <ion-select [(ngModel)]="expense.status"  (ionChange)="expenseSelected($event, expense)">
+                <ion-option value=1>PAID</ion-option>
+              <ion-option value=0>PENDING</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+              <button ion-button (click)="addPlayerExpense(expense)">
+                  Add Players Expense
+                </button>
+    
+           </ion-item>
+           <ion-item>
+              <button ion-button (click)="editExpense(expense)">
+                  Edit
+                </button>
+    
+           </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
 </ion-content>
 <ion-fab bottom right>
   <button ion-fab mini (click)="addExpense()"><ion-icon name="add"></ion-icon></button>

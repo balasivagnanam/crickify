@@ -8,6 +8,26 @@
 </ion-header>
 
 <ion-content padding class="appBackground">
+    <ion-card>
+        <ion-card-header>
+            Payments
+          </ion-card-header>
+          <ion-card-content>
+    <ion-label>
+        Total Amount:${{total}}
+      </ion-label>
+
+
+      <ion-label>
+          Paid:${{paidAmount}}
+        </ion-label>
+
+
+        <ion-label>
+          Pending:${{pendingAmount}}
+          </ion-label>
+          </ion-card-content>
+        </ion-card>
     <ion-segment [(ngModel)]="tabsvalues">
         <ion-segment-button value="pending">
          Pending
