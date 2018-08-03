@@ -21,7 +21,7 @@ export class FinanceProvider {
       let headers = new Headers();
     headers.set('Content-Type', 'application/json');
     headers.set("token",this.getToken());
-      this.http.get(apiUrl + '/playerExpense', {headers: headers})
+      this.http.get(apiUrl + '/playerExpenseUser', {headers: headers})
         .subscribe(res => {
           resolve(res.json());
           console.log("auth response matches", res.json()); 
@@ -41,7 +41,7 @@ export class FinanceProvider {
       let headers = new Headers();
     headers.set('Content-Type', 'application/json');
     headers.set("token",this.getToken());
-      this.http.get(apiUrl + '/playerExpense', {headers: headers})
+      this.http.get(apiUrl + '/playerExpense'+id, {headers: headers})
         .subscribe(res => {
           resolve(res.json());
           console.log("auth response matches", res.json()); 
@@ -93,7 +93,31 @@ export class FinanceProvider {
     });
 
   }
- 
+  getTeamPlayerExpenses(filter) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set("token",this.getToken());
+    let urlSearchParams = new URLSearchParams();
+    for(let key in filter){
+      if(filter[key]!==null){
+    urlSearchParams.append(key, filter[key]);
+      }
+  }
+      this.http.get(apiUrl + '/playerExpense?'+urlSearchParams, {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("auth response matches", res.json()); 
+          if(res.json().statusCode == '200'){
+            console.log("expense", res.json());
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
+
+  }
   createPlayerExpense(data) {
     return new Promise((resolve, reject) => {
       let headers = new Headers();

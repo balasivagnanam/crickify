@@ -30,6 +30,7 @@ import {TournamentsPage} from '../pages/tournaments/tournaments';
 import {LocationsPage} from '../pages/locations/locations';
 import {ModeChangePage} from '../pages/modeChange/modeChange';
 import { TeamExpensePage } from '../pages/team-expense/team-expense';
+import { ViewPlayerExpensePage } from '../pages/view-player-expenses/view-player-expenses';
 import moment from 'moment';
 @Component({
   templateUrl: 'app.html'
@@ -67,7 +68,8 @@ this.adminPages=[{ title: 'Matches', component: TeamMatchesPage},
       {title: 'Profile', component: MyProfilePage},
       {title:'Manage Teams', component: MyTeamsPage},
 	  {title:'Change Mode', component: ModeChangePage},
-   	  {title: 'Expense', component: TeamExpensePage},
+       {title: 'Team Expense', component: TeamExpensePage},
+       {title: 'Player Payment Details', component: ViewPlayerExpensePage},
 	  {title: 'Update Password', component: ResetPage},
 	  {title: 'Logout', component: LogoutPage},
     ];
@@ -79,7 +81,8 @@ this.normalPages=[
       {title: 'My Profile', component: MyProfilePage},
        {title:'Change Mode', component: ModeChangePage},
       {title: 'Account Details', component: MyAccountPage},
-	  {title: 'Finance Details', component: FinancePage},
+    {title: 'Finance Details', component: FinancePage},
+   
 	  {title: 'Update Password', component: ResetPage},
 	 
 	  {title: 'Logout', component: LogoutPage},

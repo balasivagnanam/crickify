@@ -46,7 +46,9 @@ export class MatchService {
 
     let urlSearchParams = new URLSearchParams();
     for(let key in filter){
+      if(filter[key]!=null){
     urlSearchParams.append(key, filter[key]);
+      }
   }
       this.http.get(apiUrl + '/matches/availabilities?'+urlSearchParams, {headers: headers})
         .subscribe(res => {

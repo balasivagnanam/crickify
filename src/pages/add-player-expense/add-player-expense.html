@@ -35,15 +35,16 @@
         <p>{{stat?.player.name}}</p>
 
          <p>${{stat?.amount}}</p>
-
+         <p>Expense Date:{{stat?.expenseDate}}</p>
            <p>Comment:{{stat?.cmnt}}</p>
 
 
            <p>Player Remark:{{stat?.remark}}</p>
+           PaymentStatus:
            <p *ngIf= "stat.paid" >PAID</p>
            <p *ngIf= "!stat.paid" >PENDING</p>
            <p *ngIf= "stat.paid">Payment Type:{{stat?.paymentType}}</p>
-           <p *ngIf= "stat.paid">Date:{{stat?.expenseDate| momentjs}}</p>
+           <p *ngIf= "stat.paid">PaymentDate:{{stat?.paymentDate| momentjs}}</p>
         <button ion-button color="secondary" icon-left clear small (click)="editPlayerExpense(stat)">
             Edit Player Expense
             
@@ -66,11 +67,8 @@
          </div>
          <ion-card> 
             <ion-card-content>
-         <button ion-button color="secondary" icon-left clear small (click)="sendTeam()">
-            Send Reminder              
-           </button>
-           <button ion-button color="secondary" icon-left clear small (click)="addNew()">
-              Add New         
+                 <button ion-button color="secondary" icon-left clear small (click)="addNew()">
+              Save        
              </button>
           </ion-card-content>
         </ion-card>  

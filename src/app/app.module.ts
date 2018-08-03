@@ -90,6 +90,8 @@ import { AddPlayerExpensePageModule } from '../pages/add-player-expense/add-play
 import { AddTeamExpensePage } from '../pages/add-team-expense/add-team-expense';
 import { AddTeamExpensePageModule } from '../pages/add-team-expense/add-team-expense.module';
 import { PipesModule } from '../pipes/pipes.module';
+import { ViewPlayerExpensePage } from '../pages/view-player-expenses/view-player-expenses';
+import { ViewPlayerExpensePageModule } from '../pages/view-player-expenses/view-player-expenses.module';
 @NgModule({
   declarations: [
     MyApp,
@@ -113,7 +115,7 @@ import { PipesModule } from '../pipes/pipes.module';
 	CreateTeamModule,
 	TeamPlayersPageModule,
 	CreatePlayerModule,
-	TeamMatchesPageModule,
+	TeamMatchesPageModule,ViewPlayerExpensePageModule,
 	CreateMatchModule,
 	MatchAvailabilityPageModule,UploadModalPageModule,
 	TournamentsPageModule,BowlingPageModule,TeamExpensePageModule,AddTeamExpensePageModule,
@@ -124,7 +126,7 @@ import { PipesModule } from '../pipes/pipes.module';
     MyApp,
     HomePage,
     ListPage,
-    WelcomePage,
+    WelcomePage,ViewPlayerExpensePage,
     LoginPage,
     SignupPage,
     MyProfilePage,

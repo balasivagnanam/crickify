@@ -54,36 +54,7 @@ export class AddTeamExpensePage {
   compareFn(e1: any, e2: any): boolean {
     return e1 && e2 ? e1.id === e2.id : e1 === e2;
   }
-  getData(battingId) {
-    const loading = this.loadingController.create({
-      content: 'Please wait...'
-    });
-    loading.present();
-    this.financeService.getExpenseSummary(battingId).then((result) => {
-      this.responseData = result;
-      console.log(this.responseData);
-      if (this.responseData.statusCode == '200') {
-        loading.dismiss();
-        console.log("test 200");
-        console.log("result", this.responseData.results.expense);
-        this.expense = this.responseData.results.expense;
-
-
-        this.createExpenseForm.setValue(this.expense);
-
-        
-
-      } else if (this.responseData.statusCode == "404") {
   
-      } else {
-        loading.dismiss();
-        console.log("error", this.responseData)
-      }
-
-    }, (err) => {
-      // Error log
-    });
-  }
 
   addExpense() {
 
