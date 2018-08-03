@@ -39,7 +39,8 @@ team:any;
     paid: [''],
     paymentType: [''],
     modifyDate: [''],
-    expenseDate: ['']
+    expenseDate: [''],
+    paymentDate: ['']
 });
 
  this.team = JSON.parse(localStorage.getItem('team'));

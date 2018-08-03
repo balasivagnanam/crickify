@@ -40,7 +40,9 @@ export class AddTeamExpensePage {
       createDate: [''],
       id: [''],
       modifyDate: [''],
-      expenseDate: ['']
+      expenseDate: [''],
+      invoice:[''],
+      paymentDate:['']
     });
     this.createExpenseForm.controls['team'].setValue(this.team);
     if (this.expense != null) {
