@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams ,LoadingController} from 'ionic-angular';
 import { MatchService } from '../../providers/matches/matches';
 import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
-
+import { Platform } from 'ionic-angular';
 /**
  * Generated class for the WelcomePage page.
  *
@@ -24,7 +24,7 @@ export class WelcomePage {
 battings : any;
 bowlings : any;
   responseData: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService,public loadingController: LoadingController,public matchService:MatchService,public admob: AdMobFree) {
+  constructor(public navCtrl: NavController,public plt: Platform, public navParams: NavParams, public authService: AuthService,public loadingController: LoadingController,public matchService:MatchService,public admob: AdMobFree) {
   }
 showBanner() {
  
@@ -34,8 +34,17 @@ showBanner() {
            id:'ca-app-pub-7720772047232561/8941352265'
         };
  
-        this.admob.banner.config(bannerConfig);
- console.log('view did before enter ad');
+
+       let iosBannerConfig: AdMobFreeBannerConfig = {
+            
+          autoShow: true,
+         id:'ca-app-pub-7720772047232561~7847498768'
+      };
+      if (this.plt.is('android')){
+        this.admob.banner.config(bannerConfig);}
+        if (this.plt.is('ios'))  {
+          this.admob.banner.config(iosBannerConfig);
+ }
         this.admob.banner.prepare().then(() => {
             // success
 			console.log('view did enter ad');
