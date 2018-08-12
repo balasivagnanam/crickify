@@ -37,15 +37,15 @@
       </ion-label>
 	 <ion-grid >
         <ion-row > 
-		<ion-col *ngFor="let batting of battings| slice:0:4;">
-	<ion-card color="primary" height="350">
+		<ion-col col-4 *ngFor="let batting of battings| slice:0:4;">
+	<ion-card color="primary" >
     <ion-card-header>
       <b>{{batting.player.name}} </b>
       
     </ion-card-header>
-    <p *ngIf= "batting.player.imgUrl!= null" ><img width="80" height="80" src="{{batting.player.imgUrl}}"/></p>
+    <p *ngIf= "batting.player.imgUrl!= null" ><img src="{{batting.player.imgUrl}}"/></p>
     
-    <p *ngIf="batting.player.imgUrl == null" ><img src="assets/img/batsman.png" height="250"/></p>
+    <p *ngIf="batting.player.imgUrl == null" ><img src="assets/img/batsman.png" /></p>
 	
     <ion-card-content>
       <p>{{batting.run}}({{batting.ball}})</p>
@@ -63,15 +63,15 @@
       </ion-label>
 	   <ion-grid >
         <ion-row > 
-		<ion-col *ngFor="let bowling of bowlings| slice:0:4;" width="100%">
-  	<ion-card color="primary"  height="350">
+		<ion-col col-4 *ngFor="let bowling of bowlings| slice:0:4;" >
+  	<ion-card color="primary" >
     <ion-card-header>
       <b>{{bowling.player.name}} </b>
       
     </ion-card-header>
-	  <p *ngIf= "bowling.player.imgUrl!= null" ><img width="80" height="80" src="{{bowling.player.imgUrl}}"/></p>
+	  <p *ngIf= "bowling.player.imgUrl!= null" ><img src="{{bowling.player.imgUrl}}"/></p>
    
-    <p *ngIf="bowling.player.imgUrl == null" ><img src="assets/img/bowler.png" height="250"/></p>
+    <p *ngIf="bowling.player.imgUrl == null" ><img src="assets/img/bowler.png" /></p>
 	
     <ion-card-content>
       <p>{{bowling.wickets}}/{{bowling.run}}</p>
