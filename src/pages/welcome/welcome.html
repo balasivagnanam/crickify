@@ -43,9 +43,9 @@
       <b>{{batting.player.name}} </b>
       
     </ion-card-header>
-    <p *ngIf= "batting.player.imgUrl!= null" ><img src="{{batting.player.imgUrl}}"/></p>
+    <p *ngIf= "batting.player.imgUrl!= null" ><img height="200" src="{{batting.player.imgUrl}}"/></p>
     
-    <p *ngIf="batting.player.imgUrl == null" ><img src="assets/img/batsman.png" /></p>
+    <p *ngIf="batting.player.imgUrl == null" ><img height="200" src="assets/img/batsman.png" /></p>
 	
     <ion-card-content>
       <p>{{batting.run}}({{batting.ball}})</p>
@@ -69,9 +69,9 @@
       <b>{{bowling.player.name}} </b>
       
     </ion-card-header>
-	  <p *ngIf= "bowling.player.imgUrl!= null" ><img src="{{bowling.player.imgUrl}}"/></p>
+	  <p *ngIf= "bowling.player.imgUrl!= null" ><img height="200" src="{{bowling.player.imgUrl}}"/></p>
    
-    <p *ngIf="bowling.player.imgUrl == null" ><img src="assets/img/bowler.png" /></p>
+    <p *ngIf="bowling.player.imgUrl == null" ><img height="200" src="assets/img/bowler.png" /></p>
 	
     <ion-card-content>
       <p>{{bowling.wickets}}/{{bowling.run}}</p>
