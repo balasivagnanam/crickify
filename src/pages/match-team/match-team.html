@@ -21,11 +21,15 @@
       </ion-segment-button>
      
     </ion-segment>
-  
+    <ion-card>
+        <ion-card-header>
+            Team List
+        </ion-card-header>
+        <ion-card-content>
   <div [ngSwitch]="tabsvalues"> 
       <div *ngSwitchCase="'summary'">
         <div class="cric-stat-batting-table">
-          <h4>Team</h4>
+         
           <ul>
             <li class="header">
                 <p class="cric-player-name">Name</p>
@@ -39,4 +43,6 @@
         </div>
        </div>
   </div>
+</ion-card-content>
+</ion-card>
 </ion-content>

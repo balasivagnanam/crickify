@@ -28,8 +28,8 @@
     </ion-item>
   
     <ion-item>
-        <ion-checkbox formControlName="paid"></ion-checkbox>
-      
+        <ion-label>Paid:</ion-label>
+        <ion-checkbox formControlName="paid"></ion-checkbox>     
     
      </ion-item>
      <ion-item>
@@ -68,7 +68,7 @@
         <p>{{stat?.player.name}}</p>
 
          <p>${{stat?.amount}}</p>
-         <p>Expense Date:{{stat?.expenseDate}}</p>
+         <p>Expense Date:{{stat?.expenseDate| momentjs}}</p>
            <p>Comment:{{stat?.cmnt}}</p>
 
 

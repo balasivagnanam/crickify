@@ -72,11 +72,11 @@ paidAmount=0;
         console.log("result", this.responseData.results.expense);
         this.expenses = this.responseData.results.expense;
         for(let data of this.expenses) {
-          if(data.paid){
+          if(data.status==1){
             this.paidAmount+=data.amount;
             this.total+=data.amount;
             this.paid.push(data)
-          }else if(!data.paid){
+          }else if(data.status==0){
             this.pendingAmount+=data.amount;
             this.total+=data.amount;
             this.pending.push(data)

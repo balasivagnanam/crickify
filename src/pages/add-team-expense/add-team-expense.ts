@@ -42,7 +42,8 @@ export class AddTeamExpensePage {
       modifyDate: [''],
       expenseDate: [''],
       invoice:[''],
-      paymentDate:['']
+      paymentDate:[''],
+      paymentMode:['']
     });
     this.createExpenseForm.controls['team'].setValue(this.team);
     if (this.expense != null) {

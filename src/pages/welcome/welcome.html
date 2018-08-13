@@ -37,7 +37,7 @@
       </ion-label>
 	 <ion-grid >
         <ion-row > 
-		<ion-col col-4 *ngFor="let batting of battings| slice:0:4;">
+		<ion-col col-4 *ngFor="let batting of battings| slice:0:3;">
 	<ion-card color="primary" >
     <ion-card-header>
       <b>{{batting.player.name}} </b>
@@ -63,7 +63,7 @@
       </ion-label>
 	   <ion-grid >
         <ion-row > 
-		<ion-col col-4 *ngFor="let bowling of bowlings| slice:0:4;" >
+		<ion-col col-4 *ngFor="let bowling of bowlings| slice:0:3;" >
   	<ion-card color="primary" >
     <ion-card-header>
       <b>{{bowling.player.name}} </b>

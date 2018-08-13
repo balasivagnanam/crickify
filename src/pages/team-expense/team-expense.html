@@ -28,6 +28,11 @@
           </ion-label>
           </ion-card-content>
         </ion-card>
+        <ion-card>
+            <ion-card-header>
+                Payments
+              </ion-card-header>
+              <ion-card-content>
           <ion-segment [(ngModel)]="tabsvalues">
               <ion-segment-button value="pending">
                Pending
@@ -36,7 +41,9 @@
                 Paid
               </ion-segment-button>
                  </ion-segment>
-          
+                </ion-card-content>
+              </ion-card>
+      
           <div [ngSwitch]="tabsvalues">
             <div *ngSwitchCase="'pending'">
   <ion-card *ngFor="let expense of pending" >

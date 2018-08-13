@@ -38,8 +38,8 @@ export class  TeamMatchesPage {
    teams:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, formBuilder: FormBuilder,public teamService:TeamService,public otherService:OtherService, public loadingController:LoadingController,public authService:AuthService, public matchService:MatchService) {
     this.team = JSON.parse(localStorage.getItem('team'));
-	this.getData();
-  this.getTeams();
+	
+  //this.getTeams();
   this.getTournaments();
   this.searchMatchesForm = formBuilder.group({
     endDate: [''],
@@ -48,6 +48,7 @@ export class  TeamMatchesPage {
     tournamentId: [0]
 
   });
+  this.getData();
   }
   ionViewWillEnter() {
    this.getData();
@@ -58,7 +59,7 @@ export class  TeamMatchesPage {
       content: 'Please wait...'
     });
     loading.present();
-    this.matchService.getMatches(this.team).then((result) => {
+    this.matchService.getMatchesFilter(this.team,this.searchMatchesForm.value).then((result) => {
       this.responseData = result;
       console.log(this.responseData); 
       if (this.responseData.statusCode == '200'){
