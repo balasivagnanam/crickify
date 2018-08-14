@@ -48,7 +48,7 @@ export class ListPage {
     const loading = this.loadingController.create({
       content: 'Please wait...'
     });
-    loading.present();
+  
     this.teamService.getAllTeams().then((result) => {
       this.responseData = result;
       console.log(this.responseData); 
@@ -90,6 +90,7 @@ export class ListPage {
     const loading = this.loadingController.create({
       content: 'Please wait...'
     });
+    loading.present();
     this.statsArray = [];
     this.statsService.getTeamStats(team.id).then((result) => {
       this.responseData = result;
@@ -107,8 +108,7 @@ export class ListPage {
         
       }  else if(this.responseData.statusCode == "404") {
         console.log("unauthorrised");
-        localStorage.clear();
-      //  this.backToWelcome();
+
       } else {
         loading.dismiss();
         console.log("error", this.responseData)

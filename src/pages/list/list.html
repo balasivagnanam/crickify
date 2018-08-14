@@ -82,7 +82,7 @@
                     <li class="header">
                         <p class="cric-player-name">Name</p>
                         <p>M</p>
-                        <p>I</p>
+                        
                         <p>R</p>
                         <p>B</p>
                         <p class="cric-values-decimals">Av</p>
@@ -91,7 +91,7 @@
                     <li *ngFor="let player of stat.battingStatistics">
                         <p class="cric-player-name">{{player.player.name}}</p>
                         <p>{{player.matches}}</p>
-                        <p>{{player.innings}}</p>
+                       
                         <p>{{player.run}}</p>
                         <p>{{player.ball}}</p>
                         <p class="cric-values-decimals">{{player.average | number : '1.2-2'}}</p>
