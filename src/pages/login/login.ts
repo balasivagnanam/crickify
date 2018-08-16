@@ -42,11 +42,27 @@ export class LoginPage {
         localStorage.setItem('userData', JSON.stringify(this.responseData.results));
         this.navCtrl.push(HomePage);
         this.navCtrl.setRoot(HomePage);
+      }else if (this.responseData.statusCode == '403'){
+        loading.dismiss();
+        let alert = this.alertController.create({
+          title: 'Verification Required',
+          subTitle: 'Please verify the account to login',
+          buttons: [
+          {
+            text: 'OK',
+            handler: data => {
+              console.log('ok clicked');
+             
+            }
+          }
+        ]
+        });
+        alert.present();
       }  else {
         loading.dismiss();
         let alert = this.alertController.create({
           title: 'Wrong login/password',
-          subTitle: 'your login and password combination doesnt seem to work. Please try again or reset your password',
+          subTitle: 'Login and password combination doesnt seem to work. Please try again or reset your password',
           buttons: [
           {
             text: 'OK',

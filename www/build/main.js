@@ -7436,11 +7436,11 @@ var LoginPage = (function () {
                 _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]);
                 _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]);
             }
-            else {
+            else if (_this.responseData.statusCode == '403') {
                 loading.dismiss();
                 var alert_1 = _this.alertController.create({
-                    title: 'Wrong login/password',
-                    subTitle: 'your login and password combination doesnt seem to work. Please try again or reset your password',
+                    title: 'Verification Required',
+                    subTitle: 'Please verify the account to login',
                     buttons: [
                         {
                             text: 'OK',
@@ -7451,6 +7451,22 @@ var LoginPage = (function () {
                     ]
                 });
                 alert_1.present();
+            }
+            else {
+                loading.dismiss();
+                var alert_2 = _this.alertController.create({
+                    title: 'Wrong login/password',
+                    subTitle: 'Login and password combination doesnt seem to work. Please try again or reset your password',
+                    buttons: [
+                        {
+                            text: 'OK',
+                            handler: function (data) {
+                                console.log('ok clicked');
+                            }
+                        }
+                    ]
+                });
+                alert_2.present();
             }
         }, function (err) {
             loading.dismiss();
