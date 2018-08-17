@@ -1362,7 +1362,12 @@ var AddMatchTeamPage = (function () {
     };
     AddMatchTeamPage.prototype.sendTeam = function () {
         var _this = this;
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
         this.matchService.sendTeamList(this.matchId).then(function (result) {
+            loading.dismiss();
             _this.responseData = result;
             console.log(_this.responseData);
             if (_this.responseData.statusCode == '200') {
@@ -1375,6 +1380,7 @@ var AddMatchTeamPage = (function () {
                 _this.alertDialog('Error', 'Email Error');
             }
         }, function (err) {
+            loading.dismiss();
             _this.alertDialog('Error', 'Email Error');
         });
     };

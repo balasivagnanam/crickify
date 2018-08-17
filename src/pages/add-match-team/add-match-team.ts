@@ -147,7 +147,12 @@ delete(player){
   }
   
   sendTeam(){
+    const loading = this.loadingController.create({
+      content: 'Please wait...'
+    });
+    loading.present();
     this.matchService.sendTeamList(this.matchId).then((result) => {
+      loading.dismiss();
       this.responseData = result;
       console.log(this.responseData); 
       if (this.responseData.statusCode == '200'){
@@ -162,6 +167,7 @@ delete(player){
       }
       
     }, (err) => {
+      loading.dismiss();
       this.alertDialog('Error','Email Error');
     });
   }
