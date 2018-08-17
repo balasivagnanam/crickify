@@ -28,7 +28,7 @@ export class  TeamMatchesPage {
   responseData: any;
   matches: any = '';
    team:any;
- 
+   deleteResponseData: any;
    teamresponseData: any;
    tournamentresponseData: any;
   
@@ -68,15 +68,14 @@ export class  TeamMatchesPage {
         console.log("result", this.responseData.results.matches);
         this.matches = this.responseData.results.matches;
       }  else if(this.responseData.statusCode == "404") {
-        console.log("unauthorrised");
-        localStorage.clear();
+        loading.dismiss();
       } else {
         loading.dismiss();
         console.log("error", this.responseData)
       }
       
     }, (err) => {
-      // Error log
+      loading.dismiss();
     });
   }
 
@@ -105,6 +104,30 @@ export class  TeamMatchesPage {
   goToMatchAvailability(event){
     console.log("clicked match team", event);
     this.navCtrl.push(MatchAvailabilityPage, {"matchId": event});
+  }
+
+  delete(matchId){
+    const loading = this.loadingController.create({
+      content: 'Please wait...'
+    });
+    loading.present();
+    this.matchService.delete(matchId).then((result) => {
+      this.deleteResponseData = result;
+      console.log(this.deleteResponseData);
+       
+      if (this.deleteResponseData.statusCode == '200'){
+        loading.dismiss();
+     this.getData();
+      }  else if(this.deleteResponseData.statusCode == "404") {
+        loading.dismiss();
+      } else {
+        loading.dismiss();
+        console.log("error", this.deleteResponseData)
+      }
+      
+    }, (err) => {
+      loading.dismiss();
+    });
   }
    addMatch(){
     //Login page link
