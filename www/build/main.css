@@ -27618,3 +27618,21 @@ page-my-profile .cric-cards {
 page-welcome .my-label {
   font-size: 30px !important;
 }
+
+page-welcome .scroll-zoom-wrapper {
+  white-space: nowrap;
+}
+
+page-welcome ion-card {
+  width: 500px !important;
+  display: inline-block;
+}
+
+page-welcome ion-scroll {
+  min-height: 300px;
+  height: auto;
+}
+
+page-welcome ion-scroll .scroll-content {
+  padding: 0px !important;
+}
