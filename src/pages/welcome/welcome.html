@@ -40,7 +40,7 @@
       
 
           <ion-scroll scrollX="true" direction="x">
-            	<ion-card color="primary" *ngFor="let batting of battings| slice:0:3;">
+            	<ion-card class="scrollcard"  color="primary" *ngFor="let batting of battings| slice:0:3;">
      
                   <ion-card-header>
                     <b>{{batting.player?.name}} </b>
@@ -68,8 +68,8 @@
         Bowling Performances
       </ion-label>
 
-      <ion-scroll scrollX="true" direction="x">
-          <ion-card color="primary" *ngFor="let bowling of bowlings| slice:0:3;">
+      <ion-scroll  scrollX="true" direction="x">
+          <ion-card class="scrollcard" color="primary" *ngFor="let bowling of bowlings| slice:0:3;">
  
               <ion-card-header>
                   <b>{{bowling.player.name}} </b>
@@ -92,6 +92,7 @@
 <br>
 <br><br>
 <br>
+
 <ion-card color="primary">
     <ion-card-header>
 	
@@ -114,7 +115,7 @@
 <br>		 </ion-row>
 		  <ion-row row-20 center text-center>
 		  <ion-col>
-		  <h2>What are you waiting for?! Join thousands of other clubs, schools and leagues and get started with Crickify today.</h2>
+		  <h2>What are you waiting for?! Join us with Crickify today.</h2>
 		 </ion-col>
 		 </ion-row>
 		   </ion-grid>
@@ -125,6 +126,7 @@
 <br>
 <br><br>
 <br>
+
 <ion-card color="primary">
     <ion-card-header>
 	
@@ -155,4 +157,5 @@
 		   </ion-grid>
 		     </ion-card-content>
   </ion-card>
+
 </ion-content>

@@ -27623,7 +27623,7 @@ page-welcome .scroll-zoom-wrapper {
   white-space: nowrap;
 }
 
-page-welcome ion-card {
+page-welcome .scrollcard {
   width: 500px !important;
   display: inline-block;
 }
