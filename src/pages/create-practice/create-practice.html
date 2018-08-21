@@ -1,0 +1,53 @@
+<!--
+  Generated template for the PreviousMatchDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Add Practice</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="appBackground" >
+ <ion-card>
+    <ion-card-header>
+      Practice
+    </ion-card-header>
+    <ion-card-content>
+  <ion-list no-lines>
+ 
+    <form [formGroup]="createPracticeForm">
+ 
+       
+       <ion-item>
+            <ion-label floating>Description</ion-label>
+            <ion-input formControlName="description" type="text"></ion-input>
+			
+        </ion-item>
+		
+ <ion-item>
+  <ion-label>Date</ion-label>
+  <ion-datetime formControlName="practiceTime" displayFormat="MMM DD, YYYY HH:mm" ></ion-datetime>
+</ion-item>
+<ion-item>
+  <ion-label>Location</ion-label>
+  <ion-select formControlName="location" [compareWith]="compareFn">
+    <ion-option *ngFor="let key of locations" [value]="key">{{key.name}}</ion-option>
+  </ion-select>
+</ion-item>
+
+  <button ion-button color="secondary" icon-left clear small [disabled]="!createPracticeForm.valid" (click)="addPractice()">
+            Save
+            
+          </button>
+    </form>
+
+</ion-list>
+</ion-card-content>
+ </ion-card>
+</ion-content>

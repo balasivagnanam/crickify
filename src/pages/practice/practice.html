@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-navbar [hideBackButton]="true" color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Upcoming Practices </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="appBackground">
+    <ion-card>
+        <ion-card-header>
+          Search Practice
+        </ion-card-header>
+        <ion-card-content>
+          
+        <form [formGroup]="searchPracticeForm">
+     
+            <ion-item>
+                <ion-label>Team</ion-label>
+                <ion-select formControlName="teamId"  >
+                  <ion-option *ngFor="let key of teams" [value]="key.id">{{key.teamname}}</ion-option>
+                </ion-select>
+              </ion-item>
+          <button ion-button color="secondary" icon-left clear small (click)="search()">
+                Filter
+                
+              </button>
+     
+        </form>
+      
+    
+    </ion-card-content>
+    </ion-card>
+  <ion-card *ngFor="let practice of practices">
+    <ion-card-header>
+      {{practice.practice.team.teamname}}
+      
+    </ion-card-header>
+    <ion-card-content>
+        <p>{{practice.practice.practiceTime | momentjs}}</p>
+      <p>{{practice.practice.location?.name}}, {{practice.practice.location?.address}}</p>
+	  
+         <ion-label>
+          Select Attendance
+        </ion-label>
+		
+		   <ion-item>
+      <ion-select [(ngModel)]="practice.status" (ionChange)="availabilitySelected($event, practice)">
+          <ion-option value="0">Not Provided</ion-option>
+        <ion-option value="1">IN</ion-option>
+        <ion-option value="2">OUT</ion-option>
+        <ion-option value="3">Waitlist</ion-option>
+      </ion-select>
+	 
+    </ion-item>
+	
+      <ion-item>
+	  
+	      <ion-label floating>Comments</ion-label>
+    <ion-input [(ngModel)]="practice.comments" (ionChange)="availabilitySelected($event, match)"></ion-input>
+	 </ion-item>
+	
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,1 +1,42 @@
-webpackJsonp([0],{495:function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),o.d(t,"WelcomePageModuleNgFactory",function(){return w});var _,n=o(0),i=o(203),r=o(13),a=o(7),u=o(177),l=o(357),s=o(358),c=o(359),h=o(360),d=o(361),p=o(362),f=o(363),g=o(364),m=o(390),b=o(73),y=o(86),M=this&&this.__extends||(_=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var o in t)t.hasOwnProperty(o)&&(e[o]=t[o])},function(e,t){function o(){this.constructor=e}_(e,t),e.prototype=null===t?Object.create(t):(o.prototype=t.prototype,new o)}),w=new n.v(function(e){function t(t){return e.call(this,t,[l.a,s.a,c.a,h.a,d.a,p.a,f.a,g.a,m.a],[])||this}return M(t,e),Object.defineProperty(t.prototype,"_NgLocalization_7",{get:function(){return null==this.__NgLocalization_7&&(this.__NgLocalization_7=new r.k(this.parent.get(n.u))),this.__NgLocalization_7},enumerable:!0,configurable:!0}),Object.defineProperty(t.prototype,"_ɵi_8",{get:function(){return null==this.__ɵi_8&&(this.__ɵi_8=new a.q),this.__ɵi_8},enumerable:!0,configurable:!0}),Object.defineProperty(t.prototype,"_FormBuilder_9",{get:function(){return null==this.__FormBuilder_9&&(this.__FormBuilder_9=new a.d),this.__FormBuilder_9},enumerable:!0,configurable:!0}),t.prototype.createInternal=function(){return this._CommonModule_0=new r.b,this._ɵba_1=new a.o,this._FormsModule_2=new a.g,this._ReactiveFormsModule_3=new a.m,this._IonicModule_4=new u.a,this._IonicPageModule_5=new u.b,this._WelcomePageModule_6=new i.a,this._LAZY_LOADED_TOKEN_10=b.a,this._WelcomePageModule_6},t.prototype.getInternal=function(e,t){return e===r.b?this._CommonModule_0:e===a.o?this._ɵba_1:e===a.g?this._FormsModule_2:e===a.m?this._ReactiveFormsModule_3:e===u.a?this._IonicModule_4:e===u.b?this._IonicPageModule_5:e===i.a?this._WelcomePageModule_6:e===r.l?this._NgLocalization_7:e===a.q?this._ɵi_8:e===a.d?this._FormBuilder_9:e===y.a?this._LAZY_LOADED_TOKEN_10:t},t.prototype.destroyInternal=function(){},t}(n._0),i.a)}});
+webpackJsonp([0],{
+
+/***/ 537:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PracticeAvailabilityPageModule", function() { return PracticeAvailabilityPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__practice_availability__ = __webpack_require__(538);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var PracticeAvailabilityPageModule = (function () {
+    function PracticeAvailabilityPageModule() {
+    }
+    return PracticeAvailabilityPageModule;
+}());
+PracticeAvailabilityPageModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
+        declarations: [
+            __WEBPACK_IMPORTED_MODULE_2__practice_availability__["a" /* PracticeAvailabilityPage */],
+        ],
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__practice_availability__["a" /* PracticeAvailabilityPage */]),
+        ],
+    })
+], PracticeAvailabilityPageModule);
+
+//# sourceMappingURL=practice-availability.module.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=0.js.map

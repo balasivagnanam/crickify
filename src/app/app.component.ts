@@ -32,6 +32,10 @@ import {ModeChangePage} from '../pages/modeChange/modeChange';
 import { TeamExpensePage } from '../pages/team-expense/team-expense';
 import { ViewPlayerExpensePage } from '../pages/view-player-expenses/view-player-expenses';
 import moment from 'moment';
+import { PracticePage } from '../pages/practice/practice';
+import {CreatePracticeModule} from '../pages/create-practice/create-practice.module';
+import {CreatePracticePage} from '../pages/create-practice/create-practice';
+import { TeamPracticePage } from '../pages/team-practice/team-practice';
 @Component({
   templateUrl: 'app.html'
 })
@@ -61,6 +65,7 @@ normalPages: Array<{title: string, component: any}>;
 this.initPushNotification();
 
 this.adminPages=[{ title: 'Matches', component: TeamMatchesPage},
+{ title: 'Practice', component: TeamPracticePage},
       { title: 'Players', component: TeamPlayersPage },
 	   
       {title: 'Tournament', component: TournamentsPage},
@@ -77,6 +82,7 @@ this.adminPages=[{ title: 'Matches', component: TeamMatchesPage},
 this.normalPages=[
       { title: 'Upcoming Matches', component: HomePage },
       {title: 'Completed Matches', component: PreviousMatchesPage},
+      {title: 'Practice', component: PracticePage},
 	  { title: 'Team Stats', component: ListPage },
       {title: 'My Profile', component: MyProfilePage},
        {title:'Change Mode', component: ModeChangePage},

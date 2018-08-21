@@ -79,6 +79,7 @@ import {BowlingPageModule} from '../pages/bowling/bowling.module';
 import {PreviousMatchDetailsEditPage} from '../pages/previous-match-details-edit/previous-match-details-edit';
 import {PreviousMatchDetailsEditPageModule} from '../pages/previous-match-details-edit/previous-match-details-edit.module';
 import { ImagesProvider } from '../providers/images/images';
+import { PracticeService } from '../providers/practice/practice';
 import { Camera } from '@ionic-native/camera';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import {UploadModalPage} from '../pages/upload-modal/upload-modal';
@@ -92,12 +93,19 @@ import { AddTeamExpensePageModule } from '../pages/add-team-expense/add-team-exp
 import { PipesModule } from '../pipes/pipes.module';
 import { ViewPlayerExpensePage } from '../pages/view-player-expenses/view-player-expenses';
 import { ViewPlayerExpensePageModule } from '../pages/view-player-expenses/view-player-expenses.module';
+import {CreatePracticePage} from '../pages/create-practice/create-practice';
+import { PracticePage } from '../pages/practice/practice';
+import {CreatePracticeModule} from '../pages/create-practice/create-practice.module';
+import { TeamPracticePage } from '../pages/team-practice/team-practice';
+import { TeamPracticePageModule } from '../pages/team-practice/team-practice.module';
+import {PracticeAvailabilityPage} from '../pages/practice-availability/practice-availability';
+import {PracticeAvailabilityPageModule} from '../pages/practice-availability/practice-availability.module';
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-      
+    PracticePage
   ],
   imports: [
     BrowserModule, FormsModule, HttpModule,PipesModule,
@@ -109,11 +117,11 @@ import { ViewPlayerExpensePageModule } from '../pages/view-player-expenses/view-
     MyTeamsPageModule,
     PreviousMatchDetailsPageModule,
 	MatchTeamPageModule,
-	ResetPageModule,
+	ResetPageModule,TeamPracticePageModule,
 	LogoutPageModule,
 	WelcomePageModule,AddPlayerExpensePageModule,
-	CreateTeamModule,
-	TeamPlayersPageModule,
+	CreateTeamModule,PracticeAvailabilityPageModule,
+	TeamPlayersPageModule,CreatePracticeModule,
 	CreatePlayerModule,
 	TeamMatchesPageModule,ViewPlayerExpensePageModule,
 	CreateMatchModule,
@@ -131,13 +139,13 @@ import { ViewPlayerExpensePageModule } from '../pages/view-player-expenses/view-
     SignupPage,
     MyProfilePage,
     MyAccountPage,
-    PreviousMatchesPage,
+    PreviousMatchesPage,PracticeAvailabilityPage,
     MyTeamsPage,AddPlayerExpensePage,
     PreviousMatchDetailsPage,
-	MatchTeamPage,
-	FinancePage,
+	MatchTeamPage,CreatePracticePage,
+	FinancePage,TeamPracticePage,
 	ForgotPage,AddTeamExpensePage,
-	ResetPage,
+	ResetPage,PracticePage,
 	LogoutPage,UploadModalPage,TeamExpensePage,
 	CreateTeamPage,TeamPlayersPage,CreatePlayerPage,TeamMatchesPage,CreateMatchPage,MatchAvailabilityPage,TournamentsPage,LocationsPage,
 	CreateLocationPage,CreateTournamentPage,ModeChangePage,AddMatchTeamPage,PreviousMatchDetailsEditPage,BattingPage,BowlingPage
@@ -148,7 +156,7 @@ import { ViewPlayerExpensePageModule } from '../pages/view-player-expenses/view-
     AuthService,MatchService,StatsService, TeamService,PlayersProvider,FinanceProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PlayersProvider,AdMobFree,AndroidPermissions,Push,OtherService,BattingService,BowlingService,
-    ImagesProvider,Camera,FileTransfer
+    ImagesProvider,Camera,FileTransfer,PracticeService
   ]
 })
 export class AppModule {}
