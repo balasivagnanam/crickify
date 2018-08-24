@@ -16,7 +16,65 @@
 
 
 <ion-content padding class="appBackground">
-    <ion-item>
+    <h3>{{statsArray[0]?.stats.battingStatistics?.player.name}}</h3>
+       <ion-item>
+     Batting stats  
+    </ion-item>
+    <ion-scroll scrollX="true" direction="x">
+        <ion-item class="scrollcardheader">
+            <ion-row text-center text-wrap>
+                <ion-col col-1 >M</ion-col>
+                <ion-col col-1>I</ion-col>
+                <ion-col col-1 >R</ion-col>
+                <ion-col col-1 >B</ion-col>
+                <ion-col col-2 >Av</ion-col>
+                <ion-col col-2 >Sr</ion-col>
+               </ion-row>
+          </ion-item>
+         
+          <ion-item  class="scrollcardheader">
+            <ion-row text-center text-wrap >
+              <ion-col col-1>{{battingStats.matches}}</ion-col>
+              <ion-col col-1>{{battingStats.innings}}</ion-col>
+              <ion-col col-1 >{{battingStats.run}}</ion-col>
+              <ion-col col-1 >{{battingStats.ball}}</ion-col>
+              <ion-col col-2 >{{battingStats.average | number : '1.2-2'}}</ion-col>
+              <ion-col col-2 >{{battingStats.sr | number : '1.2-2'}}</ion-col>
+            </ion-row>
+          </ion-item>
+          
+          <ion-item>
+              Bowling stats  
+             </ion-item>  
+              
+            
+                <ion-item class="scrollcardheader">
+              <ion-row text-center text-wrap>
+                  <ion-col col-1 >M</ion-col>
+                  <ion-col col-2 >O</ion-col>
+                  <ion-col col-1 >M</ion-col>
+                  <ion-col col-1 >R</ion-col>
+                  <ion-col col-1 >W</ion-col>
+                  <ion-col col-1 >wd</ion-col>
+                  <ion-col col-2 >Ec</ion-col>
+                  </ion-row>
+            </ion-item>
+           
+            <ion-item  class="scrollcardheader">
+              <ion-row text-center text-wrap >
+                <ion-col col-1 >{{bowlingStats.matches}}</ion-col>
+                <ion-col col-2>{{bowlingStats.overs}}</ion-col>
+                <ion-col col-1 >{{bowlingStats.maiden}}</ion-col>
+                <ion-col col-1 >{{bowlingStats.run}}</ion-col>
+                <ion-col col-1 >{{bowlingStats.wickets}}</ion-col>
+                <ion-col col-1 >{{bowlingStats.wide}}</ion-col>
+                <ion-col col-2 >{{bowlingStats.economy | number : '1.2-2'}}</ion-col>
+              </ion-row>
+            </ion-item>
+          </ion-scroll>
+            <br>
+            <br>
+              <ion-item>
         <ion-label>Pick a Team</ion-label>
         <ion-select [(ngModel)]="selectedTeam" (ionChange)="teamSelected($event)">
           <ion-option *ngFor="let team of teams" [value]="team">{{team.teamname}}</ion-option>
@@ -24,7 +82,7 @@
     </ion-item>
 
 
-  <h3>{{statsArray[0]?.stats.battingStatistics?.player.name}}</h3>
+  
   <ion-segment [(ngModel)]="tabsvalues">
       <ion-segment-button value="batting">
         Batting Stats
@@ -45,42 +103,37 @@
   </ion-card-header>
  <ion-card-content>
         <div class="cric-stat-batting-table">
-            <ul>
-              <li class="header">
-                  <p class="cric-player-name">Tournament</p>
-                  <p>M</p>
-                  <p>I</p>
-                  <p>R</p>
-                  <p>B</p>
-                  <p class="cric-values-decimals">Av</p>
-                  <p class="cric-values-decimals">SR</p>
-              </li>
-              <li *ngFor="let tournament of statsArray">
-                  <p class="cric-player-name">{{tournament?.name}}</p>
-                  <p>{{tournament.stats.battingStatistics?.matches}}</p>
-                  <p>{{tournament.stats.battingStatistics?.innings}}</p>
-                  <p>{{tournament.stats.battingStatistics?.run}}</p>
-                  <p>{{tournament.stats.battingStatistics?.ball}}</p>
-                  <p class="cric-values-decimals">{{tournament.stats.battingStatistics?.average | number : '1.2-2' }}</p>
-                  <p class="cric-values-decimals">{{tournament.stats.battingStatistics?.sr | number : '1.2-2' }}</p>
-              </li>
-            </ul>
-          </div>
-          <div class="cric-stat-batting-chart">
-           <canvas #barCanvas></canvas>
-            </div>
+            <ion-scroll scrollX="true" scrollY="true" direction="x">
+                <ion-item class="scrollcard">
+                    <ion-row text-center text-wrap>
+          
+                        <ion-col col-3 >Tournament</ion-col>
+                        <ion-col col-1 >M</ion-col>
+                        <ion-col col-1>I</ion-col>
+                        <ion-col col-1 >R</ion-col>
+                        <ion-col col-1 >B</ion-col>
+                        <ion-col col-2 >Av</ion-col>
+                        <ion-col col-2 >Sr</ion-col>
+                       </ion-row>
+                  </ion-item>
+                 
+                  <ion-item  *ngFor="let tournament of statsArray" class="scrollcard">
+                    <ion-row text-center text-wrap >
+                        <ion-col col-3>{{tournament?.name}}</ion-col>
+                      <ion-col col-1>{{tournament.stats.battingStatistics?.matches}}</ion-col>
+                      <ion-col col-1>{{tournament.stats.battingStatistics?.innings}}</ion-col>
+                      <ion-col col-1 >{{tournament.stats.battingStatistics?.run}}</ion-col>
+                      <ion-col col-1 >{{tournament.stats.battingStatistics?.ball}}</ion-col>
+                      <ion-col col-2 >{{tournament.stats.battingStatistics?.average | number : '1.2-2'}}</ion-col>
+                      <ion-col col-2 >{{tournament.stats.battingStatistics?.sr | number : '1.2-2'}}</ion-col>
+                    </ion-row>
+                  </ion-item>
+                </ion-scroll>
             
-               <ion-card>
-      <ion-card-header>
-        Doughnut Chart
-      </ion-card-header>
-      <ion-card-content>
-        <canvas #doughnutCanvas></canvas>
-      </ion-card-content>
-    </ion-card>
-            </ion-card-content>
-			  </ion-card>
-    </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+        </div>
 
     <div *ngSwitchCase="'bowling'">
      <ion-card>
@@ -89,26 +142,34 @@
   </ion-card-header>
  <ion-card-content>
         <div class="cric-stat-bowling-table">
-            <ul>
-              <li class="header">
-                  <p class="cric-player-name">Tournament</p>
-                  <p>M</p>
-                  <p>O</p>
-                  <p>R</p>
-                  <p>W</p>
-                  <p>Wd</p>
-                  <p class="cric-values-decimals">EC</p>
-              </li>
-              <li *ngFor="let tournament of statsArray">
-                  <p class="cric-player-name">{{tournament?.name}}</p>
-                  <p>{{tournament.stats.bowlingStatistics?.matches}}</p>
-                  <p>{{tournament.stats.bowlingStatistics?.overs}}</p>
-                  <p>{{tournament.stats.bowlingStatistics?.run}}</p>
-                  <p>{{tournament.stats.bowlingStatistics?.wickets}}</p>
-                  <p>{{tournament.stats.bowlingStatistics?.wide}}</p>
-                  <p class="cric-values-decimals">{{tournament.stats.bowlingStatistics?.economy | number : '1.2-2'}}</p>
-              </li>
-            </ul>
+            <ion-scroll scrollX="true" scrollY="true" direction="x">
+                <ion-item class="scrollcard">
+                    <ion-row text-center text-wrap>
+                        <ion-col col-3 >Tournament</ion-col>
+                        <ion-col col-1 >M</ion-col>
+                        <ion-col col-1 >O</ion-col>
+                        <ion-col col-1 >M</ion-col>
+                        <ion-col col-1 >R</ion-col>
+                        <ion-col col-1 >W</ion-col>
+                        <ion-col col-1 >wd</ion-col>
+                        <ion-col col-2 >Ec</ion-col>
+                        </ion-row>
+                  </ion-item>
+                 
+                  <ion-item  *ngFor="let tournament of statsArray" class="scrollcard">
+                    <ion-row text-center text-wrap >
+                        <ion-col col-3>{{tournament?.name}}</ion-col>
+                     
+                      <ion-col col-1 >{{tournament.stats.bowlingStatistics?.matches}}</ion-col>
+                      <ion-col col-1>{{tournament.stats.bowlingStatistics?.overs}}</ion-col>
+                      <ion-col col-1 >{{tournament.stats.bowlingStatistics?.maiden}}</ion-col>
+                      <ion-col col-1 >{{tournament.stats.bowlingStatistics?.run}}</ion-col>
+                      <ion-col col-1 >{{tournament.stats.bowlingStatistics?.wickets}}</ion-col>
+                      <ion-col col-1 >{{tournament.stats.bowlingStatistics?.wide}}</ion-col>
+                      <ion-col col-2 >{{tournament.stats.bowlingStatistics?.economy | number : '1.2-2'}}</ion-col>
+                    </ion-row>
+                  </ion-item>
+                </ion-scroll>
           </div>
            </ion-card-content>
 			  </ion-card>
@@ -142,5 +203,25 @@
 			  </ion-card>
       </div>
 
-    </div> 
+    </div>
+<ion-card>
+   <ion-card-header>
+     Runs Scored
+   </ion-card-header>
+   <ion-card-content>
+      <canvas #barCanvas></canvas>
+   </ion-card-content>
+ </ion-card>
+         
+            <ion-card>
+   <ion-card-header>
+     Dismissal Types
+   </ion-card-header>
+   <ion-card-content>
+     <canvas #doughnutCanvas></canvas>
+   </ion-card-content>
+ </ion-card>
+    
+     
+    
 </ion-content>

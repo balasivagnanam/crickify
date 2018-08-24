@@ -36,6 +36,7 @@ import { PracticePage } from '../pages/practice/practice';
 import {CreatePracticeModule} from '../pages/create-practice/create-practice.module';
 import {CreatePracticePage} from '../pages/create-practice/create-practice';
 import { TeamPracticePage } from '../pages/team-practice/team-practice';
+
 @Component({
   templateUrl: 'app.html'
 })

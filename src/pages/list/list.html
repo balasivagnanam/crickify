@@ -31,39 +31,34 @@
                 <ion-option *ngFor="let team of teams" [value]="team">{{team.teamname}}</ion-option>
               </ion-select>
           </ion-item>
+          <ion-scroll scrollX="true" scrollY="true" direction="x" >
           
-          <ion-card *ngFor="let stat of statsArray">  
-                <ion-card-content>
-                    <h4>
-                        {{stat.name}}
-                    </h4>
-                  <div class="cric-cards">
-                      <p>Played</p>
-                      <h4>{{stat.statistics.played}}</h4>
-                  </div>
-                  <div class="cric-cards">
-                    <p>Won</p>
-                    <h4>{{stat.statistics.won}}</h4>
-                  </div>
-                  <div class="cric-cards">
-                      <p>Lost</p>
-                      <h4>{{stat.statistics.lost}}</h4>
-                  </div>
-                  <div class="cric-cards">
-                    <p>No Result</p>
-                    <h4>{{stat.statistics.abandoned}}</h4>
-                  </div>
-                  <div class="cric-cards">
-                      <p>High Total</p>
-                      <h4>{{stat.statistics.highestTotal}}</h4>
-                  </div>
-                  <div class="cric-cards">
-                        <p>Low Total</p>
-                        <h4>{{stat.statistics.lowestTotal}}</h4>
-                  </div>
-                </ion-card-content>
-              
-              </ion-card>
+              <ion-item class="scrollcard" >
+                  <ion-row text-center text-wrap >
+                      <ion-col col-3 >Name</ion-col>
+                      <ion-col col-1 >Played</ion-col>
+                      <ion-col col-1>Won</ion-col>
+                      <ion-col col-1 >Lost</ion-col>
+                      <ion-col col-2 >No Result</ion-col>
+                      <ion-col col-2 >Highest Total</ion-col>                  
+                     </ion-row>
+                </ion-item>
+              <br>
+            
+
+                <ion-item  class="scrollcard" *ngFor="let stat of statsArray">
+                  <ion-row text-center text-wrap >
+                      <ion-col col-3>{{stat.name}}</ion-col>
+                    <ion-col col-1>{{stat.statistics.played}}</ion-col>
+                    <ion-col col-1>{{stat.statistics.won}}</ion-col>
+                    <ion-col col-1 >{{stat.statistics.lost}}</ion-col>
+                    <ion-col col-2 >{{stat.statistics.abandoned}}</ion-col>
+                    <ion-col col-2>{{stat.statistics.highestTotal}}</ion-col>
+                    
+                  </ion-row>
+                </ion-item>
+                </ion-scroll>
+          
       </div>
     
       <div *ngSwitchCase="'batting'">
@@ -73,32 +68,38 @@
                 <ion-option *ngFor="let team of teams" [value]="team">{{team.teamname}}</ion-option>
               </ion-select>
           </ion-item>
-          
+         
           <ion-card *ngFor="let stat of statsArray">
-                <ion-card-content>
-              <div class="cric-stat-batting-table">
-                  <h4>{{stat.name}}</h4>
-                  <ul>
-                    <li class="header">
-                        <p class="cric-player-name">Name</p>
-                        <p>M</p>
-                        
-                        <p>R</p>
-                        <p>B</p>
-                        <p class="cric-values-decimals">Av</p>
-                        <p class="cric-values-decimals">SR</p>
-                    </li>
-                    <li *ngFor="let player of stat.battingStatistics">
-                        <p class="cric-player-name">{{player.player.name}}</p>
-                        <p>{{player.matches}}</p>
-                       
-                        <p>{{player.run}}</p>
-                        <p>{{player.ball}}</p>
-                        <p class="cric-values-decimals">{{player.average | number : '1.2-2'}}</p>
-                        <p class="cric-values-decimals">{{player.sr | number : '1.2-2'}}</p>
-                    </li>
-                  </ul>
-                </div>
+                <ion-card-content> 
+                    <h4>{{stat.name}}</h4>
+                  <ion-scroll scrollX="true" scrollY="true" direction="x" >
+                      
+                    <ion-item class="scrollcard" >
+                        <ion-row text-center text-wrap >
+                            <ion-col col-3 >Name</ion-col>
+                            <ion-col col-1 >M</ion-col>
+                            <ion-col col-1>R</ion-col>
+                            <ion-col col-1 >B</ion-col>
+                            <ion-col col-2 >Av</ion-col>
+                            <ion-col col-2 >Sr</ion-col>                  
+                           </ion-row>
+                      </ion-item>
+                    <br>
+                  
+      
+                      <ion-item  class="scrollcard" *ngFor="let player of stat.battingStatistics">
+                        <ion-row text-center text-wrap >
+                            <ion-col col-3>{{player.player.name}}</ion-col>
+                          <ion-col col-1>{{player.matches}}</ion-col>
+                          <ion-col col-1>{{player.run}}</ion-col>
+                          <ion-col col-1 >{{player.ball}}</ion-col>
+                          <ion-col col-2 >{{player.average | number : '1.2-2'}}</ion-col>
+                          <ion-col col-2>{{player.sr | number : '1.2-2'}}</ion-col>
+                          
+                        </ion-row>
+                      </ion-item>
+                      </ion-scroll>
+              
                </ion-card-content>
               </ion-card>
       </div>
@@ -115,26 +116,37 @@
                 <ion-card-content>
               <div class="cric-stat-bowling-table">
                   <h4>{{stat.name}}</h4>
-                  <ul>
-                    <li class="header">
-                        <p class="cric-player-name">Name</p>
-                        <p>M</p>
-                        <p>O</p>
-                        <p>R</p>
-                        <p>W</p>
-                        <p>Wd</p>
-                        <p>EC</p>
-                    </li>
-                    <li *ngFor="let player of stat.bowlingStatistics">
-                        <p class="cric-player-name">{{player.player.name}}</p>
-                        <p>{{player.matches}}</p>
-                        <p>{{player.overs}}</p>
-                        <p>{{player.run}}</p>
-                        <p>{{player.wickets}}</p>
-                        <p>{{player.wide}}</p>
-                        <p>{{player.economy}}</p>
-                    </li>
-                  </ul>
+                  <ion-scroll scrollX="true" scrollY="true" direction="x" >
+                    
+                      <ion-item class="scrollcard" >
+                          <ion-row text-center text-wrap >
+                              <ion-col col-3 >Name</ion-col>
+                              <ion-col col-1 >M</ion-col>
+                              <ion-col col-1>O</ion-col>
+                              <ion-col col-1 >R</ion-col>
+                              <ion-col col-1 >W</ion-col>
+                              <ion-col col-1 >wd</ion-col>
+                              <ion-col col-2 >Ec</ion-col>                  
+                             </ion-row>
+                        </ion-item>
+                      <br>
+                    
+        
+                        <ion-item  class="scrollcard" *ngFor="let player of stat.bowlingStatistics">
+                          <ion-row text-center text-wrap >
+                              <ion-col col-3>{{player.player.name}}</ion-col>
+                            <ion-col col-1>{{player.matches}}</ion-col>
+                            <ion-col col-1>{{player.overs}}</ion-col>
+                            <ion-col col-1 >{{player.run}}</ion-col>
+                            <ion-col col-1 >{{player.wickets}}</ion-col>
+                              <ion-col col-1 >{{player.wide}}</ion-col>
+                            <ion-col col-2>{{player.economy | number : '1.2-2'}}</ion-col>
+                            
+                          </ion-row>
+                        </ion-item>
+                        </ion-scroll>
+                  
+               
                 </div>
             </ion-card-content>
               </ion-card >
@@ -150,25 +162,35 @@
             
             <ion-card *ngFor="let stat of statsArray">
                     <ion-card-content>
-                <div class="cric-stat-bowling-table">
-                    <h4>{{stat.name}}</h4>
-                    <ul>
-                      <li class="header">
-                          <p class="cric-player-name">Name</p>
-                          <p>M</p>
-                          <p>Ct</p>
-                          <p>R/O</p>
-                          <p>St</p>
-                      </li>
-                      <li *ngFor="let player of stat.bowlingStatistics">
-                          <p class="cric-player-name">{{player.player.name}}</p>
-                          <p>{{player.matches}}</p>
-                          <p>{{player.catches}}</p>
-                          <p>{{player.runOuts}}</p>
-                          <p>{{player.stumpings}}</p>
-                      </li>
-                    </ul>
-                  </div>
+                        <h4>{{stat.name}}</h4>
+                        <ion-scroll scrollX="true" scrollY="true" direction="x" >
+                          
+                            <ion-item class="scrollcard" >
+                                <ion-row text-center text-wrap >
+                                    <ion-col col-3 >Name</ion-col>
+                                    <ion-col col-1 >Matches</ion-col>
+                                    <ion-col col-1>Catches</ion-col>
+                                    <ion-col col-1 >Run Out</ion-col>
+                                    <ion-col col-1 >Stumpings</ion-col>
+                                          
+                                   </ion-row>
+                              </ion-item>
+                            <br>
+                          
+              
+                              <ion-item  class="scrollcard" *ngFor="let player of stat.bowlingStatistics">
+                                <ion-row text-center text-wrap >
+                                    <ion-col col-3>{{player.player.name}}</ion-col>
+                                  <ion-col col-1>{{player.matches}}</ion-col>
+                                  <ion-col col-1>{{player.catches}}</ion-col>
+                                  <ion-col col-1 >{{player.runOuts}}</ion-col>
+                                  <ion-col col-1 >{{player.stumpings}}</ion-col>
+                               
+                                  
+                                </ion-row>
+                              </ion-item>
+                              </ion-scroll>
+                
                 </ion-card-content>
                 </ion-card>
         </div>

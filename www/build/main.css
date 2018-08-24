@@ -27608,11 +27608,55 @@ ion-navbar.toolbar {
   width: 40%;
 }
 
+page-list .scrollcard {
+  width: 750px !important;
+  display: inline-block;
+}
+
+page-list ion-scroll {
+  min-height: 300px;
+  height: auto;
+  white-space: normal;
+}
+
+page-list ion-scroll .scroll-content {
+  padding: 0px !important;
+  white-space: normal;
+}
+
 page-my-profile .cric-cards {
   float: left;
   margin-right: 5px;
   width: 22%;
   margin-bottom: 20px;
+}
+
+page-my-profile .scrollcard {
+  width: 500px !important;
+  display: inline-block;
+}
+
+page-my-profile ion-scroll {
+  min-height: 300px;
+  height: auto;
+}
+
+page-my-profile ion-scroll .scroll-content {
+  padding: 0px !important;
+}
+
+page-my-profile .scrollcardheader {
+  width: 500px !important;
+  display: inline-block;
+}
+
+page-my-profile ion-scrollheader {
+  min-height: 150px;
+  height: auto;
+}
+
+page-my-profile ion-scrollheader .scroll-content {
+  padding: 0px !important;
 }
 
 page-welcome .my-label {
