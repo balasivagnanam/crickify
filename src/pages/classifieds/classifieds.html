@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-navbar [hideBackButton]="true" color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Upcoming Classifieds </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="appBackground">
+    <ion-card>
+        <ion-card-header>
+          Search Classified
+        </ion-card-header>
+        <ion-card-content>
+          
+        <form [formGroup]="searchClassifiedForm">
+     
+            <ion-item>
+                <ion-label>Type</ion-label>
+                <ion-select formControlName="type"  (ionChange)="onChange(C.value)">
+                 <ion-option value="findplayer">Find a Player</ion-option>
+                    <ion-option value="findteam">Find a Team</ion-option>
+                       <ion-option value="findopponent">Find a Opposition</ion-option>
+                    <ion-option value="groundavailablity">Ground Available</ion-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Start Date</ion-label>
+                  <ion-datetime formControlName="startDate"  displayFormat="MMM DD, YYYY HH:mm"></ion-datetime>
+                </ion-item>
+               
+                    <ion-item>
+                        <ion-label>End Date</ion-label>
+                        <ion-datetime formControlName="endDate"  displayFormat="MMM DD, YYYY HH:mm" ></ion-datetime>
+                      </ion-item>
+          <button ion-button color="secondary" icon-left clear small (click)="search()">
+                Filter
+                
+              </button>
+     
+        </form>
+      
+    
+    </ion-card-content>
+    </ion-card>
+  <ion-card *ngFor="let classified of classifieds">
+    <ion-card-header >
+      <ion-item>
+        {{classified.type}}
+      </ion-item>
+    </ion-card-header>
+    <ion-card-content>
+        <p> {{classified.description}}</p>
+        <p> {{classified.team?.teamname}}</p>
+        <p>{{classified?.classifiedTime | momentjs}}</p>
+      <p>{{classified.location?.name}}, {{classified.location?.address}}</p>
+      <p *ngIf= "classified.user?.id== userDetails.user.id" >
+    <ion-item>
+    <button ion-button color="secondary" icon-left clear small  (click)="editClassified(classified)">
+        Edit
+        
+      </button> 
+     
+    </ion-item>	
+    <ion-item>
+        <button ion-button color="secondary" icon-left clear small  (click)="checkResponse(classified)">
+            Check Responses
+            
+          </button> 
+         
+        </ion-item>	
+  </p>  
+  <p *ngIf= "classified.user?.id!= userDetails.user.id" >
+      <ion-item>
+      <button ion-button color="secondary" icon-left clear small  (click)="respondClassified(classified)">
+          Respond
+          
+        </button> 
+       
+      </ion-item>	
+
+
+    </p>  
+  </ion-card-content>
+  </ion-card>
+
+  <ion-fab bottom right>
+      <button ion-fab mini (click)="addClassified()"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+</ion-content>

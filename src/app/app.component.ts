@@ -36,7 +36,7 @@ import { PracticePage } from '../pages/practice/practice';
 import {CreatePracticeModule} from '../pages/create-practice/create-practice.module';
 import {CreatePracticePage} from '../pages/create-practice/create-practice';
 import { TeamPracticePage } from '../pages/team-practice/team-practice';
-
+import { ClassifiedPage } from '../pages/classifieds/classifieds';
 @Component({
   templateUrl: 'app.html'
 })
@@ -56,7 +56,8 @@ normalPages: Array<{title: string, component: any}>;
            [
              androidPermissions.PERMISSION.INTERNET,
 			 androidPermissions.PERMISSION.ACCESS_NETWORK_STATE,
-			 androidPermissions.PERMISSION.ACCESS_FINE_LOCATION
+       androidPermissions.PERMISSION.ACCESS_FINE_LOCATION,
+       androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE, androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE
            ]
          );
 
@@ -70,7 +71,7 @@ this.adminPages=[{ title: 'Matches', component: TeamMatchesPage},
       { title: 'Players', component: TeamPlayersPage },
 	   
       {title: 'Tournament', component: TournamentsPage},
-	  { title: 'Location', component: LocationsPage},
+	  
       {title: 'Profile', component: MyProfilePage},
       {title:'Manage Teams', component: MyTeamsPage},
 	  {title:'Change Mode', component: ModeChangePage},
@@ -84,12 +85,14 @@ this.normalPages=[
       { title: 'Upcoming Matches', component: HomePage },
       {title: 'Completed Matches', component: PreviousMatchesPage},
       {title: 'Practice', component: PracticePage},
+      
 	  { title: 'Team Stats', component: ListPage },
       {title: 'My Profile', component: MyProfilePage},
        {title:'Change Mode', component: ModeChangePage},
       {title: 'Account Details', component: MyAccountPage},
     {title: 'Finance Details', component: FinancePage},
-   
+    {title: 'Classifieds', component:ClassifiedPage},
+    { title: 'Location', component: LocationsPage},
 	  {title: 'Update Password', component: ResetPage},
 	 
 	  {title: 'Logout', component: LogoutPage},

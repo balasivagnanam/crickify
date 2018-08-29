@@ -18,8 +18,8 @@
 
 <ion-content padding class="appBackground">
     <ion-grid >
-        <ion-row > 
-		<ion-col col-4 *ngFor="let teamplayer of teamplayers"  >
+        <ion-row  *ngFor="let teamplayer of teamplayers"> 
+		<ion-col >
   <ion-card >
     <ion-card-header>
       {{teamplayer.player.name}}

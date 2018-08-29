@@ -11,7 +11,7 @@ import {OtherService} from '../providers/other/other';
 import {BattingService} from '../providers/batting/batting';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-
+import { ClassifiedPage } from '../pages/classifieds/classifieds';
 import { ListPage } from '../pages/list/list';
 import {BowlingService} from '../providers/bowling/bowling';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -56,6 +56,9 @@ import {CreatePlayerPage} from '../pages/create-player/create-player';
 import {CreatePlayerModule} from '../pages/create-player/create-player.module';
 import {CreateMatchPage} from '../pages/create-match/create-match';
 import {CreateMatchModule} from '../pages/create-match/create-match.module';
+import {CreateAdPage} from '../pages/create-ad/create-ad';
+import {CreateAdPageModule} from '../pages/create-ad/create-ad.module';
+
 import {TeamMatchesPage} from '../pages/team-matches/team-matches';
 import {TeamMatchesPageModule} from '../pages/team-matches/team-matches.module';
 import {MatchAvailabilityPage} from '../pages/match-availability/match-availability';
@@ -100,11 +103,17 @@ import { TeamPracticePage } from '../pages/team-practice/team-practice';
 import { TeamPracticePageModule } from '../pages/team-practice/team-practice.module';
 import {PracticeAvailabilityPage} from '../pages/practice-availability/practice-availability';
 import {PracticeAvailabilityPageModule} from '../pages/practice-availability/practice-availability.module';
+import { ClassifiedService } from '../providers/classified/classified';
+
+import {ClassifiedResponsePage} from '../pages/classified-response/classified-response';
+import {ClassifiedResponsePageModule} from '../pages/classified-response/classified-response.module';
+import {ClassifiedResponseCreatePage} from '../pages/classified-response-create/classified-response-create';
+import {ClassifiedResponseCreatePageModule} from '../pages/classified-response-create/classified-response-create.module';
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
+    ListPage,ClassifiedPage,
     PracticePage
   ],
   imports: [
@@ -116,15 +125,15 @@ import {PracticeAvailabilityPageModule} from '../pages/practice-availability/pra
     PreviousMatchesPageModule,
     MyTeamsPageModule,
     PreviousMatchDetailsPageModule,
-	MatchTeamPageModule,
+	MatchTeamPageModule,CreateAdPageModule,
 	ResetPageModule,TeamPracticePageModule,
-	LogoutPageModule,
+	LogoutPageModule,ClassifiedResponsePageModule,
 	WelcomePageModule,AddPlayerExpensePageModule,
 	CreateTeamModule,PracticeAvailabilityPageModule,
 	TeamPlayersPageModule,CreatePracticeModule,
 	CreatePlayerModule,
 	TeamMatchesPageModule,ViewPlayerExpensePageModule,
-	CreateMatchModule,
+	CreateMatchModule,ClassifiedResponseCreatePageModule,
 	MatchAvailabilityPageModule,UploadModalPageModule,
 	TournamentsPageModule,BowlingPageModule,TeamExpensePageModule,AddTeamExpensePageModule,
 	LocationsPageModule,CreateLocationModule,CreateTournamentModule,ModeChangeModule,AddMatchTeamPageModule,PreviousMatchDetailsEditPageModule,BattingPageModule
@@ -133,10 +142,10 @@ import {PracticeAvailabilityPageModule} from '../pages/practice-availability/pra
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
+    ListPage,ClassifiedPage,
     WelcomePage,ViewPlayerExpensePage,
-    LoginPage,
-    SignupPage,
+    LoginPage,ClassifiedResponsePage,
+    SignupPage,CreateAdPage,
     MyProfilePage,
     MyAccountPage,
     PreviousMatchesPage,PracticeAvailabilityPage,
@@ -145,7 +154,7 @@ import {PracticeAvailabilityPageModule} from '../pages/practice-availability/pra
 	MatchTeamPage,CreatePracticePage,
 	FinancePage,TeamPracticePage,
 	ForgotPage,AddTeamExpensePage,
-	ResetPage,PracticePage,
+	ResetPage,PracticePage,ClassifiedResponseCreatePage,
 	LogoutPage,UploadModalPage,TeamExpensePage,
 	CreateTeamPage,TeamPlayersPage,CreatePlayerPage,TeamMatchesPage,CreateMatchPage,MatchAvailabilityPage,TournamentsPage,LocationsPage,
 	CreateLocationPage,CreateTournamentPage,ModeChangePage,AddMatchTeamPage,PreviousMatchDetailsEditPage,BattingPage,BowlingPage
@@ -156,7 +165,7 @@ import {PracticeAvailabilityPageModule} from '../pages/practice-availability/pra
     AuthService,MatchService,StatsService, TeamService,PlayersProvider,FinanceProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PlayersProvider,AdMobFree,AndroidPermissions,Push,OtherService,BattingService,BowlingService,
-    ImagesProvider,Camera,FileTransfer,PracticeService
+    ImagesProvider,Camera,FileTransfer,PracticeService,ClassifiedService
   ]
 })
 export class AppModule {}
