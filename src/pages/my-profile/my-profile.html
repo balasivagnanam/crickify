@@ -16,10 +16,13 @@
 
 
 <ion-content padding class="appBackground">
-    <h3>{{statsArray[0]?.stats.battingStatistics?.player.name}}</h3>
+    <ion-item>
+    <h1><b>{{statsArray[0]?.stats.battingStatistics?.player.name}}</b></h1>
+  </ion-item>
        <ion-item>
      Batting stats  
     </ion-item>
+    <br>
     <ion-scroll scrollX="true" direction="x">
         <ion-item class="scrollcardheader">
             <ion-row text-center text-wrap>
@@ -31,7 +34,7 @@
                 <ion-col col-2 >Sr</ion-col>
                </ion-row>
           </ion-item>
-         
+        <br>
           <ion-item  class="scrollcardheader">
             <ion-row text-center text-wrap >
               <ion-col col-1>{{battingStats.matches}}</ion-col>
@@ -42,12 +45,12 @@
               <ion-col col-2 >{{battingStats.sr | number : '1.2-2'}}</ion-col>
             </ion-row>
           </ion-item>
-          
+          <br>   
           <ion-item>
               Bowling stats  
              </ion-item>  
               
-            
+             <br> 
                 <ion-item class="scrollcardheader">
               <ion-row text-center text-wrap>
                   <ion-col col-1 >M</ion-col>
@@ -59,7 +62,7 @@
                   <ion-col col-2 >Ec</ion-col>
                   </ion-row>
             </ion-item>
-           
+            <br>
             <ion-item  class="scrollcardheader">
               <ion-row text-center text-wrap >
                 <ion-col col-1 >{{bowlingStats.matches}}</ion-col>

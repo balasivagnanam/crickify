@@ -24,11 +24,14 @@
     "@ionic-native/android-permissions": "^4.6.0",
     "@ionic-native/camera": "^4.7.0",
     "@ionic-native/core": "^3.14.0",
-    "@ionic-native/file-transfer": "^4.7.0",
+    "@ionic-native/file": "^4.12.2",
+    "@ionic-native/file-path": "^4.12.2",
+    "@ionic-native/file-transfer": "^4.12.2",
     "@ionic-native/firebase": "^4.7.0",
     "@ionic-native/push": "^4.7.0",
     "@ionic-native/splash-screen": "3.12.1",
     "@ionic-native/status-bar": "3.12.1",
+    "@ionic-native/transfer": "^3.14.0",
     "@ionic/storage": "2.0.1",
     "body-parser": "^1.18.2",
     "chart.js": "^2.7.2",
@@ -42,6 +45,7 @@
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-file": "^6.0.1",
     "cordova-plugin-file-transfer": "^1.7.1",
+    "cordova-plugin-filepath": "^1.4.2",
     "cordova-plugin-firebase": "^1.0.5",
     "cordova-plugin-ionic-keyboard": "^2.1.2",
     "cordova-plugin-ionic-webview": "^1.2.1",
@@ -81,7 +85,9 @@
       },
       "cordova-plugin-firebase": {},
       "cordova-plugin-camera": {},
-      "cordova-plugin-file-transfer": {}
+      "cordova-plugin-file-transfer": {},
+      "cordova-plugin-file": {},
+      "cordova-plugin-filepath": {}
     },
     "platforms": [
       "android"

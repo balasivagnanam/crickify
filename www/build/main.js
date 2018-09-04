@@ -1,15 +1,231 @@
 webpackJsonp([0],{
 
-/***/ 105:
+/***/ 10:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TeamService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var matchapiUrl = 'https://crickify.herokuapp.com/match';
+var apiUrl = 'https://crickify.herokuapp.com/teamplayer';
+var teamapiUrl = 'https://crickify.herokuapp.com/team';
+//let isLoggedIn : boolean;
+var isAuthenticated;
+var TeamService = (function () {
+    function TeamService(http) {
+        this.http = http;
+    }
+    TeamService.prototype.getToken = function () {
+        return JSON.parse(localStorage.getItem('userData')).user.token;
+    };
+    TeamService.prototype.getAllTeams = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.get(apiUrl + '/teams', { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("auth response matches", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("matches", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    TeamService.prototype.getAllPlayers = function (team) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.get(apiUrl + '/teams/players/' + team.id, { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("auth response players", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("players", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    TeamService.prototype.getOtherMatchPlayers = function (team, matchId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.get(matchapiUrl + '/players/' + matchId, { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("auth response players", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("players", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    TeamService.prototype.getAllTeamPlayers = function (team) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.get(apiUrl + '/teamplayers/team//' + team.id, { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("auth response players", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("players", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    TeamService.prototype.createTeam = function (credentials) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.post(teamapiUrl + '/team', JSON.stringify(credentials), { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("response", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("value", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    TeamService.prototype.roleUpdate = function (value) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.put(apiUrl + '/team/player/' + value.team.id + '/status/' + value.status, JSON.stringify(value.player), { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("response", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("value", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    TeamService.prototype.addPlayer = function (credentials, team) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            console.log("request", JSON.stringify(credentials));
+            _this.http.post(apiUrl + '/team/player/' + team.id, JSON.stringify(credentials), { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("response", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("value", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    TeamService.prototype.deletePlayer = function (player, team) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.delete(apiUrl + '/team/' + team.id + '/player/' + player.id, { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("response", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("value", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    TeamService.prototype.getAdminTeams = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.get(apiUrl + '/teamadmin', { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("auth response teams", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("teams", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    return TeamService;
+}());
+TeamService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
+], TeamService);
+
+//# sourceMappingURL=teams.js.map
+
+/***/ }),
+
+/***/ 108:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreateMatchPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_teams_teams__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_teams_teams__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_matches_matches__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_other_other__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -157,19 +373,19 @@ CreateMatchPage = __decorate([
 
 /***/ }),
 
-/***/ 107:
+/***/ 110:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyProfilePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_players_players__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_players_players__ = __webpack_require__(225);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_stats_stats__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_teams_teams__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_batting_batting__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_chart_js__ = __webpack_require__(474);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_teams_teams__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_batting_batting__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_chart_js__ = __webpack_require__(479);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_chart_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_chart_js__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -445,7 +661,7 @@ __decorate([
 MyProfilePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-my-profile',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\my-profile\my-profile.html"*/'<!--\n\n  Generated template for the MyProfilePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar color="primary">\n\n        <button ion-button menuToggle>\n\n          <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>My Profile</ion-title>\n\n      </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground">\n\n    <h3>{{statsArray[0]?.stats.battingStatistics?.player.name}}</h3>\n\n       <ion-item>\n\n     Batting stats  \n\n    </ion-item>\n\n    <ion-scroll scrollX="true" direction="x">\n\n        <ion-item class="scrollcardheader">\n\n            <ion-row text-center text-wrap>\n\n                <ion-col col-1 >M</ion-col>\n\n                <ion-col col-1>I</ion-col>\n\n                <ion-col col-1 >R</ion-col>\n\n                <ion-col col-1 >B</ion-col>\n\n                <ion-col col-2 >Av</ion-col>\n\n                <ion-col col-2 >Sr</ion-col>\n\n               </ion-row>\n\n          </ion-item>\n\n         \n\n          <ion-item  class="scrollcardheader">\n\n            <ion-row text-center text-wrap >\n\n              <ion-col col-1>{{battingStats.matches}}</ion-col>\n\n              <ion-col col-1>{{battingStats.innings}}</ion-col>\n\n              <ion-col col-1 >{{battingStats.run}}</ion-col>\n\n              <ion-col col-1 >{{battingStats.ball}}</ion-col>\n\n              <ion-col col-2 >{{battingStats.average | number : \'1.2-2\'}}</ion-col>\n\n              <ion-col col-2 >{{battingStats.sr | number : \'1.2-2\'}}</ion-col>\n\n            </ion-row>\n\n          </ion-item>\n\n          \n\n          <ion-item>\n\n              Bowling stats  \n\n             </ion-item>  \n\n              \n\n            \n\n                <ion-item class="scrollcardheader">\n\n              <ion-row text-center text-wrap>\n\n                  <ion-col col-1 >M</ion-col>\n\n                  <ion-col col-2 >O</ion-col>\n\n                  <ion-col col-1 >M</ion-col>\n\n                  <ion-col col-1 >R</ion-col>\n\n                  <ion-col col-1 >W</ion-col>\n\n                  <ion-col col-1 >wd</ion-col>\n\n                  <ion-col col-2 >Ec</ion-col>\n\n                  </ion-row>\n\n            </ion-item>\n\n           \n\n            <ion-item  class="scrollcardheader">\n\n              <ion-row text-center text-wrap >\n\n                <ion-col col-1 >{{bowlingStats.matches}}</ion-col>\n\n                <ion-col col-2>{{bowlingStats.overs}}</ion-col>\n\n                <ion-col col-1 >{{bowlingStats.maiden}}</ion-col>\n\n                <ion-col col-1 >{{bowlingStats.run}}</ion-col>\n\n                <ion-col col-1 >{{bowlingStats.wickets}}</ion-col>\n\n                <ion-col col-1 >{{bowlingStats.wide}}</ion-col>\n\n                <ion-col col-2 >{{bowlingStats.economy | number : \'1.2-2\'}}</ion-col>\n\n              </ion-row>\n\n            </ion-item>\n\n          </ion-scroll>\n\n            <br>\n\n            <br>\n\n              <ion-item>\n\n        <ion-label>Pick a Team</ion-label>\n\n        <ion-select [(ngModel)]="selectedTeam" (ionChange)="teamSelected($event)">\n\n          <ion-option *ngFor="let team of teams" [value]="team">{{team.teamname}}</ion-option>\n\n        </ion-select>\n\n    </ion-item>\n\n\n\n\n\n  \n\n  <ion-segment [(ngModel)]="tabsvalues">\n\n      <ion-segment-button value="batting">\n\n        Batting Stats\n\n      </ion-segment-button>\n\n      <ion-segment-button value="bowling">\n\n          Bowling Stats\n\n      </ion-segment-button>\n\n      <ion-segment-button value="fielding">\n\n            Fielding Stats\n\n      </ion-segment-button>\n\n    </ion-segment>\n\n  \n\n  <div [ngSwitch]="tabsvalues"> \n\n    <div *ngSwitchCase="\'batting\'">\n\n    <ion-card>\n\n  <ion-card-header>\n\n  Batting\n\n  </ion-card-header>\n\n <ion-card-content>\n\n        <div class="cric-stat-batting-table">\n\n            <ion-scroll scrollX="true" scrollY="true" direction="x">\n\n                <ion-item class="scrollcard">\n\n                    <ion-row text-center text-wrap>\n\n          \n\n                        <ion-col col-3 >Tournament</ion-col>\n\n                        <ion-col col-1 >M</ion-col>\n\n                        <ion-col col-1>I</ion-col>\n\n                        <ion-col col-1 >R</ion-col>\n\n                        <ion-col col-1 >B</ion-col>\n\n                        <ion-col col-2 >Av</ion-col>\n\n                        <ion-col col-2 >Sr</ion-col>\n\n                       </ion-row>\n\n                  </ion-item>\n\n                 \n\n                  <ion-item  *ngFor="let tournament of statsArray" class="scrollcard">\n\n                    <ion-row text-center text-wrap >\n\n                        <ion-col col-3>{{tournament?.name}}</ion-col>\n\n                      <ion-col col-1>{{tournament.stats.battingStatistics?.matches}}</ion-col>\n\n                      <ion-col col-1>{{tournament.stats.battingStatistics?.innings}}</ion-col>\n\n                      <ion-col col-1 >{{tournament.stats.battingStatistics?.run}}</ion-col>\n\n                      <ion-col col-1 >{{tournament.stats.battingStatistics?.ball}}</ion-col>\n\n                      <ion-col col-2 >{{tournament.stats.battingStatistics?.average | number : \'1.2-2\'}}</ion-col>\n\n                      <ion-col col-2 >{{tournament.stats.battingStatistics?.sr | number : \'1.2-2\'}}</ion-col>\n\n                    </ion-row>\n\n                  </ion-item>\n\n                </ion-scroll>\n\n            \n\n          </div>\n\n        </ion-card-content>\n\n      </ion-card>\n\n        </div>\n\n\n\n    <div *ngSwitchCase="\'bowling\'">\n\n     <ion-card>\n\n  <ion-card-header>\n\n  Bowling\n\n  </ion-card-header>\n\n <ion-card-content>\n\n        <div class="cric-stat-bowling-table">\n\n            <ion-scroll scrollX="true" scrollY="true" direction="x">\n\n                <ion-item class="scrollcard">\n\n                    <ion-row text-center text-wrap>\n\n                        <ion-col col-3 >Tournament</ion-col>\n\n                        <ion-col col-1 >M</ion-col>\n\n                        <ion-col col-1 >O</ion-col>\n\n                        <ion-col col-1 >M</ion-col>\n\n                        <ion-col col-1 >R</ion-col>\n\n                        <ion-col col-1 >W</ion-col>\n\n                        <ion-col col-1 >wd</ion-col>\n\n                        <ion-col col-2 >Ec</ion-col>\n\n                        </ion-row>\n\n                  </ion-item>\n\n                 \n\n                  <ion-item  *ngFor="let tournament of statsArray" class="scrollcard">\n\n                    <ion-row text-center text-wrap >\n\n                        <ion-col col-3>{{tournament?.name}}</ion-col>\n\n                     \n\n                      <ion-col col-1 >{{tournament.stats.bowlingStatistics?.matches}}</ion-col>\n\n                      <ion-col col-1>{{tournament.stats.bowlingStatistics?.overs}}</ion-col>\n\n                      <ion-col col-1 >{{tournament.stats.bowlingStatistics?.maiden}}</ion-col>\n\n                      <ion-col col-1 >{{tournament.stats.bowlingStatistics?.run}}</ion-col>\n\n                      <ion-col col-1 >{{tournament.stats.bowlingStatistics?.wickets}}</ion-col>\n\n                      <ion-col col-1 >{{tournament.stats.bowlingStatistics?.wide}}</ion-col>\n\n                      <ion-col col-2 >{{tournament.stats.bowlingStatistics?.economy | number : \'1.2-2\'}}</ion-col>\n\n                    </ion-row>\n\n                  </ion-item>\n\n                </ion-scroll>\n\n          </div>\n\n           </ion-card-content>\n\n			  </ion-card>\n\n    </div>\n\n\n\n      <div *ngSwitchCase="\'fielding\'">\n\n         <ion-card>\n\n  <ion-card-header>\n\n  Fielding\n\n  </ion-card-header>\n\n <ion-card-content>\n\n          <div class="cric-stat-bowling-table">\n\n              <ul>\n\n                <li class="header">\n\n                    <p class="cric-player-name">Tournament</p>\n\n                    <p>M</p>\n\n                    <p>Ct</p>\n\n                    <p>R/O</p>\n\n                    <p>St</p>\n\n                </li>\n\n                <li *ngFor="let tournament of statsArray">\n\n                    <p class="cric-player-name">{{tournament?.name}}</p>\n\n                    <p>{{tournament.stats.bowlingStatistics?.matches}}</p>\n\n                    <p>{{tournament.stats.bowlingStatistics?.catches}}</p>\n\n                    <p>{{tournament.stats.bowlingStatistics?.runOuts}}</p>\n\n                    <p>{{tournament.stats.bowlingStatistics?.stumpings}}</p>\n\n                </li>\n\n              </ul>\n\n            </div>\n\n            </ion-card-content>\n\n			  </ion-card>\n\n      </div>\n\n\n\n    </div>\n\n<ion-card>\n\n   <ion-card-header>\n\n     Runs Scored\n\n   </ion-card-header>\n\n   <ion-card-content>\n\n      <canvas #barCanvas></canvas>\n\n   </ion-card-content>\n\n </ion-card>\n\n         \n\n            <ion-card>\n\n   <ion-card-header>\n\n     Dismissal Types\n\n   </ion-card-header>\n\n   <ion-card-content>\n\n     <canvas #doughnutCanvas></canvas>\n\n   </ion-card-content>\n\n </ion-card>\n\n    \n\n     \n\n    \n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\my-profile\my-profile.html"*/,
+        selector: 'page-my-profile',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\my-profile\my-profile.html"*/'<!--\n\n  Generated template for the MyProfilePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar color="primary">\n\n        <button ion-button menuToggle>\n\n          <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>My Profile</ion-title>\n\n      </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground">\n\n    <ion-item>\n\n    <h1><b>{{statsArray[0]?.stats.battingStatistics?.player.name}}</b></h1>\n\n  </ion-item>\n\n       <ion-item>\n\n     Batting stats  \n\n    </ion-item>\n\n    <br>\n\n    <ion-scroll scrollX="true" direction="x">\n\n        <ion-item class="scrollcardheader">\n\n            <ion-row text-center text-wrap>\n\n                <ion-col col-1 >M</ion-col>\n\n                <ion-col col-1>I</ion-col>\n\n                <ion-col col-1 >R</ion-col>\n\n                <ion-col col-1 >B</ion-col>\n\n                <ion-col col-2 >Av</ion-col>\n\n                <ion-col col-2 >Sr</ion-col>\n\n               </ion-row>\n\n          </ion-item>\n\n        <br>\n\n          <ion-item  class="scrollcardheader">\n\n            <ion-row text-center text-wrap >\n\n              <ion-col col-1>{{battingStats.matches}}</ion-col>\n\n              <ion-col col-1>{{battingStats.innings}}</ion-col>\n\n              <ion-col col-1 >{{battingStats.run}}</ion-col>\n\n              <ion-col col-1 >{{battingStats.ball}}</ion-col>\n\n              <ion-col col-2 >{{battingStats.average | number : \'1.2-2\'}}</ion-col>\n\n              <ion-col col-2 >{{battingStats.sr | number : \'1.2-2\'}}</ion-col>\n\n            </ion-row>\n\n          </ion-item>\n\n          <br>   \n\n          <ion-item>\n\n              Bowling stats  \n\n             </ion-item>  \n\n              \n\n             <br> \n\n                <ion-item class="scrollcardheader">\n\n              <ion-row text-center text-wrap>\n\n                  <ion-col col-1 >M</ion-col>\n\n                  <ion-col col-2 >O</ion-col>\n\n                  <ion-col col-1 >M</ion-col>\n\n                  <ion-col col-1 >R</ion-col>\n\n                  <ion-col col-1 >W</ion-col>\n\n                  <ion-col col-1 >wd</ion-col>\n\n                  <ion-col col-2 >Ec</ion-col>\n\n                  </ion-row>\n\n            </ion-item>\n\n            <br>\n\n            <ion-item  class="scrollcardheader">\n\n              <ion-row text-center text-wrap >\n\n                <ion-col col-1 >{{bowlingStats.matches}}</ion-col>\n\n                <ion-col col-2>{{bowlingStats.overs}}</ion-col>\n\n                <ion-col col-1 >{{bowlingStats.maiden}}</ion-col>\n\n                <ion-col col-1 >{{bowlingStats.run}}</ion-col>\n\n                <ion-col col-1 >{{bowlingStats.wickets}}</ion-col>\n\n                <ion-col col-1 >{{bowlingStats.wide}}</ion-col>\n\n                <ion-col col-2 >{{bowlingStats.economy | number : \'1.2-2\'}}</ion-col>\n\n              </ion-row>\n\n            </ion-item>\n\n          </ion-scroll>\n\n            <br>\n\n            <br>\n\n              <ion-item>\n\n        <ion-label>Pick a Team</ion-label>\n\n        <ion-select [(ngModel)]="selectedTeam" (ionChange)="teamSelected($event)">\n\n          <ion-option *ngFor="let team of teams" [value]="team">{{team.teamname}}</ion-option>\n\n        </ion-select>\n\n    </ion-item>\n\n\n\n\n\n  \n\n  <ion-segment [(ngModel)]="tabsvalues">\n\n      <ion-segment-button value="batting">\n\n        Batting Stats\n\n      </ion-segment-button>\n\n      <ion-segment-button value="bowling">\n\n          Bowling Stats\n\n      </ion-segment-button>\n\n      <ion-segment-button value="fielding">\n\n            Fielding Stats\n\n      </ion-segment-button>\n\n    </ion-segment>\n\n  \n\n  <div [ngSwitch]="tabsvalues"> \n\n    <div *ngSwitchCase="\'batting\'">\n\n    <ion-card>\n\n  <ion-card-header>\n\n  Batting\n\n  </ion-card-header>\n\n <ion-card-content>\n\n        <div class="cric-stat-batting-table">\n\n            <ion-scroll scrollX="true" scrollY="true" direction="x">\n\n                <ion-item class="scrollcard">\n\n                    <ion-row text-center text-wrap>\n\n          \n\n                        <ion-col col-3 >Tournament</ion-col>\n\n                        <ion-col col-1 >M</ion-col>\n\n                        <ion-col col-1>I</ion-col>\n\n                        <ion-col col-1 >R</ion-col>\n\n                        <ion-col col-1 >B</ion-col>\n\n                        <ion-col col-2 >Av</ion-col>\n\n                        <ion-col col-2 >Sr</ion-col>\n\n                       </ion-row>\n\n                  </ion-item>\n\n                 \n\n                  <ion-item  *ngFor="let tournament of statsArray" class="scrollcard">\n\n                    <ion-row text-center text-wrap >\n\n                        <ion-col col-3>{{tournament?.name}}</ion-col>\n\n                      <ion-col col-1>{{tournament.stats.battingStatistics?.matches}}</ion-col>\n\n                      <ion-col col-1>{{tournament.stats.battingStatistics?.innings}}</ion-col>\n\n                      <ion-col col-1 >{{tournament.stats.battingStatistics?.run}}</ion-col>\n\n                      <ion-col col-1 >{{tournament.stats.battingStatistics?.ball}}</ion-col>\n\n                      <ion-col col-2 >{{tournament.stats.battingStatistics?.average | number : \'1.2-2\'}}</ion-col>\n\n                      <ion-col col-2 >{{tournament.stats.battingStatistics?.sr | number : \'1.2-2\'}}</ion-col>\n\n                    </ion-row>\n\n                  </ion-item>\n\n                </ion-scroll>\n\n            \n\n          </div>\n\n        </ion-card-content>\n\n      </ion-card>\n\n        </div>\n\n\n\n    <div *ngSwitchCase="\'bowling\'">\n\n     <ion-card>\n\n  <ion-card-header>\n\n  Bowling\n\n  </ion-card-header>\n\n <ion-card-content>\n\n        <div class="cric-stat-bowling-table">\n\n            <ion-scroll scrollX="true" scrollY="true" direction="x">\n\n                <ion-item class="scrollcard">\n\n                    <ion-row text-center text-wrap>\n\n                        <ion-col col-3 >Tournament</ion-col>\n\n                        <ion-col col-1 >M</ion-col>\n\n                        <ion-col col-1 >O</ion-col>\n\n                        <ion-col col-1 >M</ion-col>\n\n                        <ion-col col-1 >R</ion-col>\n\n                        <ion-col col-1 >W</ion-col>\n\n                        <ion-col col-1 >wd</ion-col>\n\n                        <ion-col col-2 >Ec</ion-col>\n\n                        </ion-row>\n\n                  </ion-item>\n\n                 \n\n                  <ion-item  *ngFor="let tournament of statsArray" class="scrollcard">\n\n                    <ion-row text-center text-wrap >\n\n                        <ion-col col-3>{{tournament?.name}}</ion-col>\n\n                     \n\n                      <ion-col col-1 >{{tournament.stats.bowlingStatistics?.matches}}</ion-col>\n\n                      <ion-col col-1>{{tournament.stats.bowlingStatistics?.overs}}</ion-col>\n\n                      <ion-col col-1 >{{tournament.stats.bowlingStatistics?.maiden}}</ion-col>\n\n                      <ion-col col-1 >{{tournament.stats.bowlingStatistics?.run}}</ion-col>\n\n                      <ion-col col-1 >{{tournament.stats.bowlingStatistics?.wickets}}</ion-col>\n\n                      <ion-col col-1 >{{tournament.stats.bowlingStatistics?.wide}}</ion-col>\n\n                      <ion-col col-2 >{{tournament.stats.bowlingStatistics?.economy | number : \'1.2-2\'}}</ion-col>\n\n                    </ion-row>\n\n                  </ion-item>\n\n                </ion-scroll>\n\n          </div>\n\n           </ion-card-content>\n\n			  </ion-card>\n\n    </div>\n\n\n\n      <div *ngSwitchCase="\'fielding\'">\n\n         <ion-card>\n\n  <ion-card-header>\n\n  Fielding\n\n  </ion-card-header>\n\n <ion-card-content>\n\n          <div class="cric-stat-bowling-table">\n\n              <ul>\n\n                <li class="header">\n\n                    <p class="cric-player-name">Tournament</p>\n\n                    <p>M</p>\n\n                    <p>Ct</p>\n\n                    <p>R/O</p>\n\n                    <p>St</p>\n\n                </li>\n\n                <li *ngFor="let tournament of statsArray">\n\n                    <p class="cric-player-name">{{tournament?.name}}</p>\n\n                    <p>{{tournament.stats.bowlingStatistics?.matches}}</p>\n\n                    <p>{{tournament.stats.bowlingStatistics?.catches}}</p>\n\n                    <p>{{tournament.stats.bowlingStatistics?.runOuts}}</p>\n\n                    <p>{{tournament.stats.bowlingStatistics?.stumpings}}</p>\n\n                </li>\n\n              </ul>\n\n            </div>\n\n            </ion-card-content>\n\n			  </ion-card>\n\n      </div>\n\n\n\n    </div>\n\n<ion-card>\n\n   <ion-card-header>\n\n     Runs Scored\n\n   </ion-card-header>\n\n   <ion-card-content>\n\n      <canvas #barCanvas></canvas>\n\n   </ion-card-content>\n\n </ion-card>\n\n         \n\n            <ion-card>\n\n   <ion-card-header>\n\n     Dismissal Types\n\n   </ion-card-header>\n\n   <ion-card-content>\n\n     <canvas #doughnutCanvas></canvas>\n\n   </ion-card-content>\n\n </ion-card>\n\n    \n\n     \n\n    \n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\my-profile\my-profile.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */], __WEBPACK_IMPORTED_MODULE_4__providers_stats_stats__["a" /* StatsService */], __WEBPACK_IMPORTED_MODULE_6__providers_batting_batting__["a" /* BattingService */], __WEBPACK_IMPORTED_MODULE_2__providers_players_players__["a" /* PlayersProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_5__providers_teams_teams__["a" /* TeamService */]])
 ], MyProfilePage);
@@ -454,7 +670,7 @@ MyProfilePage = __decorate([
 
 /***/ }),
 
-/***/ 108:
+/***/ 111:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -781,367 +997,7 @@ BattingService = __decorate([
 
 /***/ }),
 
-/***/ 109:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UploadModalPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_images_images__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(2);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var UploadModalPage = (function () {
-    function UploadModalPage(navCtrl, alertController, loadingController, navParams, viewCtrl, imagesProvider) {
-        this.navCtrl = navCtrl;
-        this.alertController = alertController;
-        this.loadingController = loadingController;
-        this.navParams = navParams;
-        this.viewCtrl = viewCtrl;
-        this.imagesProvider = imagesProvider;
-        this.imageData = this.navParams.get('data');
-    }
-    UploadModalPage.prototype.saveImage = function () {
-        var _this = this;
-        var loading = this.loadingController.create({
-            content: 'Please wait...'
-        });
-        loading.present();
-        this.imagesProvider.uploadImage(this.imageData).then(function (res) {
-            _this.alertDialog('Success', 'Upload Success');
-            loading.dismiss();
-            //this.viewCtrl.dismiss({reload: true});
-        }, function (err) {
-            _this.alertDialog('Error', err);
-            loading.dismiss();
-            //this.dismiss();
-        });
-    };
-    UploadModalPage.prototype.alertDialog = function (title, message) {
-        var alert = this.alertController.create({
-            title: title,
-            subTitle: message,
-            buttons: [
-                {
-                    text: 'OK',
-                    handler: function (data) {
-                        console.log('ok clicked');
-                    }
-                }
-            ]
-        });
-        alert.present();
-    };
-    UploadModalPage.prototype.dismiss = function () {
-        this.viewCtrl.dismiss();
-    };
-    return UploadModalPage;
-}());
-UploadModalPage = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* IonicPage */])(),
-    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
-        selector: 'page-upload-modal',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\upload-modal\upload-modal.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <ion-buttons start>\n      <button ion-button icon-only (click)="dismiss()"><ion-icon name="close"></ion-icon></button>\n    </ion-buttons>\n    <ion-title>Upload Image</ion-title>\n  </ion-navbar>\n</ion-header>\n \n<ion-content padding>\n  <img [src]="imageData" style="width: 100%">\n\n  <button ion-button full icon-left (click)="saveImage()">\n          <ion-icon name="checkmark"></ion-icon>\n          Save & Upload Image\n  </button>\n</ion-content>\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\upload-modal\upload-modal.html"*/,
-    }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["p" /* ViewController */], __WEBPACK_IMPORTED_MODULE_0__providers_images_images__["a" /* ImagesProvider */]])
-], UploadModalPage);
-
-//# sourceMappingURL=upload-modal.js.map
-
-/***/ }),
-
-/***/ 11:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TeamService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var matchapiUrl = 'https://crickify.herokuapp.com/match';
-var apiUrl = 'https://crickify.herokuapp.com/teamplayer';
-var teamapiUrl = 'https://crickify.herokuapp.com/team';
-//let isLoggedIn : boolean;
-var isAuthenticated;
-var TeamService = (function () {
-    function TeamService(http) {
-        this.http = http;
-    }
-    TeamService.prototype.getToken = function () {
-        return JSON.parse(localStorage.getItem('userData')).user.token;
-    };
-    TeamService.prototype.getAllTeams = function () {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
-            headers.set('Content-Type', 'application/json');
-            headers.set("token", _this.getToken());
-            _this.http.get(apiUrl + '/teams', { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-                console.log("auth response matches", res.json());
-                if (res.json().statusCode == '200') {
-                    console.log("matches", res.json());
-                }
-            }, function (err) {
-                reject(err);
-                console.log("error", err);
-            });
-        });
-    };
-    TeamService.prototype.getAllPlayers = function (team) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
-            headers.set('Content-Type', 'application/json');
-            headers.set("token", _this.getToken());
-            _this.http.get(apiUrl + '/teams/players/' + team.id, { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-                console.log("auth response players", res.json());
-                if (res.json().statusCode == '200') {
-                    console.log("players", res.json());
-                }
-            }, function (err) {
-                reject(err);
-                console.log("error", err);
-            });
-        });
-    };
-    TeamService.prototype.getOtherMatchPlayers = function (team, matchId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
-            headers.set('Content-Type', 'application/json');
-            headers.set("token", _this.getToken());
-            _this.http.get(matchapiUrl + '/players/' + matchId, { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-                console.log("auth response players", res.json());
-                if (res.json().statusCode == '200') {
-                    console.log("players", res.json());
-                }
-            }, function (err) {
-                reject(err);
-                console.log("error", err);
-            });
-        });
-    };
-    TeamService.prototype.getAllTeamPlayers = function (team) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
-            headers.set('Content-Type', 'application/json');
-            headers.set("token", _this.getToken());
-            _this.http.get(apiUrl + '/teamplayers/team//' + team.id, { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-                console.log("auth response players", res.json());
-                if (res.json().statusCode == '200') {
-                    console.log("players", res.json());
-                }
-            }, function (err) {
-                reject(err);
-                console.log("error", err);
-            });
-        });
-    };
-    TeamService.prototype.createTeam = function (credentials) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
-            headers.set('Content-Type', 'application/json');
-            headers.set("token", _this.getToken());
-            _this.http.post(teamapiUrl + '/team', JSON.stringify(credentials), { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-                console.log("response", res.json());
-                if (res.json().statusCode == '200') {
-                    console.log("value", res.json());
-                }
-            }, function (err) {
-                reject(err);
-                console.log("error", err);
-            });
-        });
-    };
-    TeamService.prototype.roleUpdate = function (value) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
-            headers.set('Content-Type', 'application/json');
-            headers.set("token", _this.getToken());
-            _this.http.put(apiUrl + '/team/player/' + value.team.id + '/status/' + value.status, JSON.stringify(value.player), { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-                console.log("response", res.json());
-                if (res.json().statusCode == '200') {
-                    console.log("value", res.json());
-                }
-            }, function (err) {
-                reject(err);
-                console.log("error", err);
-            });
-        });
-    };
-    TeamService.prototype.addPlayer = function (credentials, team) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
-            headers.set('Content-Type', 'application/json');
-            headers.set("token", _this.getToken());
-            console.log("request", JSON.stringify(credentials));
-            _this.http.post(apiUrl + '/team/player/' + team.id, JSON.stringify(credentials), { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-                console.log("response", res.json());
-                if (res.json().statusCode == '200') {
-                    console.log("value", res.json());
-                }
-            }, function (err) {
-                reject(err);
-                console.log("error", err);
-            });
-        });
-    };
-    TeamService.prototype.deletePlayer = function (player, team) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
-            headers.set('Content-Type', 'application/json');
-            headers.set("token", _this.getToken());
-            _this.http.delete(apiUrl + '/team/' + team.id + '/player/' + player.id, { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-                console.log("response", res.json());
-                if (res.json().statusCode == '200') {
-                    console.log("value", res.json());
-                }
-            }, function (err) {
-                reject(err);
-                console.log("error", err);
-            });
-        });
-    };
-    TeamService.prototype.getAdminTeams = function () {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
-            headers.set('Content-Type', 'application/json');
-            headers.set("token", _this.getToken());
-            _this.http.get(apiUrl + '/teamadmin', { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-                console.log("auth response teams", res.json());
-                if (res.json().statusCode == '200') {
-                    console.log("teams", res.json());
-                }
-            }, function (err) {
-                reject(err);
-                console.log("error", err);
-            });
-        });
-    };
-    return TeamService;
-}());
-TeamService = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
-], TeamService);
-
-//# sourceMappingURL=teams.js.map
-
-/***/ }),
-
-/***/ 110:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ImagesProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__ = __webpack_require__(352);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var ImagesProvider = (function () {
-    function ImagesProvider(http, transfer) {
-        this.http = http;
-        this.transfer = transfer;
-        this.apiURL = 'https://crickify.herokuapp.com/file';
-    }
-    ImagesProvider.prototype.getImages = function () {
-        return this.http.get(this.apiURL + 'images').map(function (res) { return res.json(); });
-    };
-    ImagesProvider.prototype.deleteImage = function (img) {
-        return this.http.delete(this.apiURL + 'images/' + img._id);
-    };
-    ImagesProvider.prototype.getToken = function () {
-        return JSON.parse(localStorage.getItem('userData')).user.token;
-    };
-    ImagesProvider.prototype.uploadImage = function (img) {
-        // Destination URL
-        var url = this.apiURL + '/api/user/upload';
-        // File for Upload
-        var targetPath = img;
-        var headers = new Headers();
-        headers.set("token", this.getToken());
-        var options = {
-            fileKey: 'file',
-            chunkedMode: false,
-            mimeType: 'multipart/form-data',
-            headers: { 'token': this.getToken() }
-        };
-        var fileTransfer = this.transfer.create();
-        // Use the FileTransfer to upload the image
-        return fileTransfer.upload(targetPath, url, options);
-    };
-    return ImagesProvider;
-}());
-ImagesProvider = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__["a" /* FileTransfer */]])
-], ImagesProvider);
-
-//# sourceMappingURL=images.js.map
-
-/***/ }),
-
-/***/ 111:
+/***/ 112:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1228,7 +1084,7 @@ PreviousMatchDetailsPage = __decorate([
 
 /***/ }),
 
-/***/ 112:
+/***/ 113:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1237,10 +1093,10 @@ PreviousMatchDetailsPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_matches_matches__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__previous_match_details_previous_match_details__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__match_team_match_team__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_forms__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_teams_teams__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__previous_match_details_previous_match_details__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__match_team_match_team__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_forms__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_teams_teams__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_other_other__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1423,7 +1279,7 @@ PreviousMatchesPage = __decorate([
 
 /***/ }),
 
-/***/ 113:
+/***/ 114:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1431,8 +1287,8 @@ PreviousMatchesPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_matches_matches__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_teams_teams__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_teams_teams__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(5);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1631,7 +1487,7 @@ AddMatchTeamPage = __decorate([
 
 /***/ }),
 
-/***/ 114:
+/***/ 115:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1764,17 +1620,17 @@ MatchAvailabilityPage = __decorate([
 
 /***/ }),
 
-/***/ 115:
+/***/ 116:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BattingPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_batting_batting__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_batting_batting__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_other_other__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_teams_teams__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_teams_teams__ = __webpack_require__(10);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1966,17 +1822,17 @@ BattingPage = __decorate([
 
 /***/ }),
 
-/***/ 116:
+/***/ 117:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BowlingPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_bowling_bowling__ = __webpack_require__(359);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_bowling_bowling__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_other_other__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_teams_teams__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_teams_teams__ = __webpack_require__(10);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2174,7 +2030,7 @@ BowlingPage = __decorate([
 
 /***/ }),
 
-/***/ 117:
+/***/ 118:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2182,10 +2038,10 @@ BowlingPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_matches_matches__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_other_other__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__batting_batting__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__bowling_bowling__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__batting_batting__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__bowling_bowling__ = __webpack_require__(117);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2408,15 +2264,15 @@ PreviousMatchDetailsEditPage = __decorate([
 
 /***/ }),
 
-/***/ 118:
+/***/ 119:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreateTeamPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_teams_teams__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_teams_teams__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(5);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2517,138 +2373,6 @@ CreateTeamPage = __decorate([
 ], CreateTeamPage);
 
 //# sourceMappingURL=create-team.js.map
-
-/***/ }),
-
-/***/ 119:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ResetPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_login__ = __webpack_require__(46);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-/**
- * Generated class for the Forgot page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var ResetPage = (function () {
-    function ResetPage(navCtrl, navParams, authService, alertController, loadingController) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.authService = authService;
-        this.alertController = alertController;
-        this.loadingController = loadingController;
-        this.userPostData = { "user_id": "", "token": "" };
-        this.userData = { "username": "", "password": "", "name": "", "phone": "" };
-        if (this.authService.getAuthenticated()) {
-            var data = JSON.parse(localStorage.getItem('userData'));
-            console.log("fetch data", data);
-            this.userDetails = data;
-            // console.log("user data from storage", this.userDetails)
-            this.userPostData.user_id = this.userDetails.id;
-            this.userPostData.token = this.userDetails.token;
-        }
-    }
-    ResetPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad Forgot');
-    };
-    ResetPage.prototype.reset = function () {
-        var _this = this;
-        var loading = this.loadingController.create({
-            content: 'Please wait...'
-        });
-        loading.present();
-        this.authService.reset(this.userData).then(function (result) {
-            _this.responseData = result;
-            console.log("response in signup", _this.responseData);
-            console.log("response code", _this.responseData.statusCode);
-            loading.dismiss();
-            if (_this.responseData.statusCode == '200') {
-                console.log("test 200");
-                console.log("result", _this.responseData.results);
-                var alert_1 = _this.alertController.create({
-                    title: 'Password change Successful',
-                    subTitle: 'Password change successful',
-                    buttons: [
-                        {
-                            text: 'OK',
-                            handler: function (data) {
-                                console.log('ok clicked');
-                                _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__login_login__["a" /* LoginPage */]);
-                                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__login_login__["a" /* LoginPage */]);
-                            }
-                        }
-                    ]
-                });
-                alert_1.present();
-            }
-            else if (_this.responseData.statusCode == '401') {
-                var alert_2 = _this.alertController.create({
-                    title: 'User account exists!',
-                    subTitle: 'This user does not exists in the list. Please Register!',
-                    buttons: [
-                        {
-                            text: 'OK',
-                            handler: function (data) {
-                                console.log('ok clicked');
-                            }
-                        }
-                    ]
-                });
-                alert_2.present();
-            }
-            else {
-                var alert_3 = _this.alertController.create({
-                    title: 'Server Unavailable!',
-                    subTitle: 'There seems to be some problem with our servers. Please try later, if the problem persists. Contact Us',
-                    buttons: [
-                        {
-                            text: 'OK',
-                            handler: function (data) {
-                                console.log('ok clicked');
-                            }
-                        }
-                    ]
-                });
-                alert_3.present();
-            }
-            //this.navCtrl.push(HomePage);
-        }, function (err) {
-            // Error log
-        });
-    };
-    ResetPage.prototype.login = function () {
-        //Login page link
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__login_login__["a" /* LoginPage */]);
-    };
-    return ResetPage;
-}());
-ResetPage = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPage */])(),
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'reset',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\reset\reset.html"*/'<!--\n\n  Generated template for the SignupPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar color="primary">\n\n    <button ion-button menuToggle>\n\n          <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n    <ion-title>Reset Password</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground">\n\n  <ion-card>\n\n    <ion-card-header>\n\n      Reset Password\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <ion-list>\n\n      \n\n        <ion-item>\n\n          <ion-label stacked>Password</ion-label>\n\n          <ion-input type="text" [(ngModel)]="userData.password"></ion-input>\n\n        </ion-item>\n\n\n\n      \n\n\n\n        <button ion-button full color="success" (click)="reset()">Reset Password</button>\n\n        \n\n      </ion-list>\n\n    </ion-card-content>\n\n  </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\reset\reset.html"*/,
-    }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */]])
-], ResetPage);
-
-//# sourceMappingURL=reset.js.map
 
 /***/ }),
 
@@ -2855,6 +2579,138 @@ AuthService = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ResetPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_login__ = __webpack_require__(46);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the Forgot page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var ResetPage = (function () {
+    function ResetPage(navCtrl, navParams, authService, alertController, loadingController) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.authService = authService;
+        this.alertController = alertController;
+        this.loadingController = loadingController;
+        this.userPostData = { "user_id": "", "token": "" };
+        this.userData = { "username": "", "password": "", "name": "", "phone": "" };
+        if (this.authService.getAuthenticated()) {
+            var data = JSON.parse(localStorage.getItem('userData'));
+            console.log("fetch data", data);
+            this.userDetails = data;
+            // console.log("user data from storage", this.userDetails)
+            this.userPostData.user_id = this.userDetails.id;
+            this.userPostData.token = this.userDetails.token;
+        }
+    }
+    ResetPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad Forgot');
+    };
+    ResetPage.prototype.reset = function () {
+        var _this = this;
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.authService.reset(this.userData).then(function (result) {
+            _this.responseData = result;
+            console.log("response in signup", _this.responseData);
+            console.log("response code", _this.responseData.statusCode);
+            loading.dismiss();
+            if (_this.responseData.statusCode == '200') {
+                console.log("test 200");
+                console.log("result", _this.responseData.results);
+                var alert_1 = _this.alertController.create({
+                    title: 'Password change Successful',
+                    subTitle: 'Password change successful',
+                    buttons: [
+                        {
+                            text: 'OK',
+                            handler: function (data) {
+                                console.log('ok clicked');
+                                _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__login_login__["a" /* LoginPage */]);
+                                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__login_login__["a" /* LoginPage */]);
+                            }
+                        }
+                    ]
+                });
+                alert_1.present();
+            }
+            else if (_this.responseData.statusCode == '401') {
+                var alert_2 = _this.alertController.create({
+                    title: 'User account exists!',
+                    subTitle: 'This user does not exists in the list. Please Register!',
+                    buttons: [
+                        {
+                            text: 'OK',
+                            handler: function (data) {
+                                console.log('ok clicked');
+                            }
+                        }
+                    ]
+                });
+                alert_2.present();
+            }
+            else {
+                var alert_3 = _this.alertController.create({
+                    title: 'Server Unavailable!',
+                    subTitle: 'There seems to be some problem with our servers. Please try later, if the problem persists. Contact Us',
+                    buttons: [
+                        {
+                            text: 'OK',
+                            handler: function (data) {
+                                console.log('ok clicked');
+                            }
+                        }
+                    ]
+                });
+                alert_3.present();
+            }
+            //this.navCtrl.push(HomePage);
+        }, function (err) {
+            // Error log
+        });
+    };
+    ResetPage.prototype.login = function () {
+        //Login page link
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__login_login__["a" /* LoginPage */]);
+    };
+    return ResetPage;
+}());
+ResetPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'reset',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\reset\reset.html"*/'<!--\n\n  Generated template for the SignupPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar color="primary">\n\n    <button ion-button menuToggle>\n\n          <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n    <ion-title>Reset Password</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground">\n\n  <ion-card>\n\n    <ion-card-header>\n\n      Reset Password\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <ion-list>\n\n      \n\n        <ion-item>\n\n          <ion-label stacked>Password</ion-label>\n\n          <ion-input type="text" [(ngModel)]="userData.password"></ion-input>\n\n        </ion-item>\n\n\n\n      \n\n\n\n        <button ion-button full color="success" (click)="reset()">Reset Password</button>\n\n        \n\n      </ion-list>\n\n    </ion-card-content>\n\n  </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\reset\reset.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */]])
+], ResetPage);
+
+//# sourceMappingURL=reset.js.map
+
+/***/ }),
+
+/***/ 121:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LogoutPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
@@ -2920,15 +2776,15 @@ LogoutPage = __decorate([
 
 /***/ }),
 
-/***/ 121:
+/***/ 122:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreatePlayerPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_teams_teams__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_teams_teams__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(5);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3023,16 +2879,16 @@ CreatePlayerPage = __decorate([
 
 /***/ }),
 
-/***/ 122:
+/***/ 123:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreateTournamentPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_teams_teams__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_teams_teams__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_other_other__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(5);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3128,16 +2984,16 @@ CreateTournamentPage = __decorate([
 
 /***/ }),
 
-/***/ 123:
+/***/ 124:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreateLocationPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_teams_teams__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_teams_teams__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_other_other__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(5);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3236,7 +3092,7 @@ CreateLocationPage = __decorate([
 
 /***/ }),
 
-/***/ 124:
+/***/ 125:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3245,7 +3101,7 @@ CreateLocationPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__my_teams_my_teams__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__my_teams_my_teams__ = __webpack_require__(75);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3312,15 +3168,15 @@ ModeChangePage = __decorate([
 
 /***/ }),
 
-/***/ 125:
+/***/ 126:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddTeamExpensePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_finance_finance__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_finance_finance__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(5);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3462,16 +3318,16 @@ AddTeamExpensePage = __decorate([
 
 /***/ }),
 
-/***/ 126:
+/***/ 127:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddPlayerExpensePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_finance_finance__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_teams_teams__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_finance_finance__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_teams_teams__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(5);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3687,16 +3543,16 @@ AddPlayerExpensePage = __decorate([
 
 /***/ }),
 
-/***/ 127:
+/***/ 128:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewPlayerExpensePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_finance_finance__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_teams_teams__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_finance_finance__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_teams_teams__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(5);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3850,16 +3706,16 @@ ViewPlayerExpensePage = __decorate([
 
 /***/ }),
 
-/***/ 128:
+/***/ 129:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreatePracticePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_teams_teams__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_teams_teams__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_practice_practice__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_other_other__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3995,7 +3851,7 @@ CreatePracticePage = __decorate([
 
 /***/ }),
 
-/***/ 129:
+/***/ 130:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4128,7 +3984,7 @@ PracticeAvailabilityPage = __decorate([
 
 /***/ }),
 
-/***/ 130:
+/***/ 131:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4136,10 +3992,10 @@ PracticeAvailabilityPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__create_practice_create_practice__ = __webpack_require__(128);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__practice_availability_practice_availability__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_teams_teams__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__create_practice_create_practice__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__practice_availability_practice_availability__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_teams_teams__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_other_other__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_practice_practice__ = __webpack_require__(61);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -4302,16 +4158,16 @@ TeamPracticePage = __decorate([
 
 /***/ }),
 
-/***/ 131:
+/***/ 132:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreateAdPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_teams_teams__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_teams_teams__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_classified_classified__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_other_other__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4357,7 +4213,10 @@ var CreateAdPage = (function () {
         this.classified = navParams.get('classified');
         if (this.classified != null) {
             this.createClassifiedForm.setValue(this.classified);
-            this.createClassifiedForm.controls['classifiedTime'].setValue(new Date(this.classified.classifiedTime).toISOString());
+            this.onChange(this.classified.type);
+            if (this.classified.classifiedTime != null) {
+                this.createClassifiedForm.controls['classifiedTime'].setValue(new Date(this.classified.classifiedTime).toISOString());
+            }
         }
         var data = JSON.parse(localStorage.getItem('userData'));
         this.user = data.user;
@@ -4502,7 +4361,7 @@ CreateAdPage = __decorate([
 
 /***/ }),
 
-/***/ 132:
+/***/ 133:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4577,12 +4436,38 @@ var ClassifiedResponsePage = (function () {
             // Error log
         });
     };
+    ClassifiedResponsePage.prototype.acceptedSelected = function (event, value) {
+        var _this = this;
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.classifiedService.addClassifiedResponse(value).then(function (result) {
+            _this.responseCreateData = result;
+            console.log(_this.responseCreateData);
+            if (_this.responseCreateData.statusCode == '200') {
+                loading.dismiss();
+                console.log("test 200");
+            }
+            else if (_this.responseCreateData.statusCode == "404") {
+                loading.dismiss();
+                console.log("unauthorrised");
+            }
+            else {
+                loading.dismiss();
+                console.log("test others");
+            }
+        }, function (err) {
+            console.log("error", err);
+            loading.dismiss();
+        });
+    };
     return ClassifiedResponsePage;
 }());
 ClassifiedResponsePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-classified-response',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\classified-response\classified-response.html"*/'<!--\n\n  Generated template for the PreviousMatchDetailsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar color="primary">\n\n    <ion-title>Classified Response</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground" >\n\n\n\n  <ion-segment [(ngModel)]="tabsvalues">\n\n      <ion-segment-button value="available">\n\n        Response\n\n      </ion-segment-button>\n\n        \n\n    </ion-segment>\n\n  \n\n  <div [ngSwitch]="tabsvalues"> \n\n      <div *ngSwitchCase="\'available\'">\n\n        <div class="cric-stat-available-table">\n\n         \n\n          <ol type="1">\n\n          \n\n            <li *ngFor="let stat of available">\n\n			 <ion-card  color="primary">\n\n    <ion-card-header>\n\n      {{stat?.player.name}}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n    	\n\n		   <ion-item>\n\n          {{stat?.player.comments}}\n\n      \n\n	 \n\n    </ion-item>\n\n </ion-card-content>\n\n  </ion-card>\n\n              \n\n            </li>\n\n          </ol>\n\n        </div>\n\n		</div>\n\n	\n\n       \n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\classified-response\classified-response.html"*/,
+        selector: 'page-classified-response',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\classified-response\classified-response.html"*/'<!--\n\n  Generated template for the PreviousMatchDetailsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar color="primary">\n\n    <ion-title>Classified Response</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground" >\n\n\n\n  <ion-segment [(ngModel)]="tabsvalues">\n\n      <ion-segment-button value="available">\n\n        Response\n\n      </ion-segment-button>\n\n        \n\n    </ion-segment>\n\n  \n\n  <div [ngSwitch]="tabsvalues"> \n\n      <div *ngSwitchCase="\'available\'">\n\n        <div class="cric-stat-available-table">\n\n         \n\n          <ol type="1">\n\n          \n\n            <li *ngFor="let stat of available">\n\n			 <ion-card  color="primary">\n\n    <ion-card-header>\n\n      {{stat?.player.name}}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n    	\n\n		   <ion-item>\n\n          {{stat?.comments}}\n\n      \n\n	 \n\n    </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-select [(ngModel)]="stat.accepted" (ionChange)="acceptedSelected($event, stat)">\n\n          <ion-option value=true>Accept</ion-option>\n\n        <ion-option value=false>No Response</ion-option>\n\n\n\n      </ion-select>\n\n	 \n\n    </ion-item>\n\n	\n\n      \n\n </ion-card-content>\n\n  </ion-card>\n\n              \n\n            </li>\n\n          </ol>\n\n        </div>\n\n		</div>\n\n	\n\n       \n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\classified-response\classified-response.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_classified_classified__["a" /* ClassifiedService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */]])
 ], ClassifiedResponsePage);
@@ -4591,7 +4476,7 @@ ClassifiedResponsePage = __decorate([
 
 /***/ }),
 
-/***/ 133:
+/***/ 134:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4599,7 +4484,7 @@ ClassifiedResponsePage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_classified_classified__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(5);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4729,17 +4614,820 @@ var ClassifiedResponseCreatePage = (function () {
 ClassifiedResponseCreatePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-classified-response-create',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\classified-response-create\classified-response-create.html"*/'<!--\n\n  Generated template for the PreviousMatchDetailsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar color="primary">\n\n      <ion-title>Classified Response</ion-title>\n\n    </ion-navbar>\n\n  \n\n  </ion-header>\n\n  \n\n  \n\n  <ion-content padding class="appBackground">\n\n    <ion-card>\n\n      <ion-card-header>\n\n        Submit Classified Response\n\n      </ion-card-header>\n\n      <ion-card-content>\n\n        <ion-list no-lines>\n\n  \n\n          <form [formGroup]="createClassifiedResponseForm">\n\n  \n\n            <ion-item>\n\n              <ion-label>Interest</ion-label>\n\n              <ion-select formControlName="interested">\n\n                <ion-option value=true>Interested</ion-option>\n\n                <ion-option value=false>Not Interested</ion-option>\n\n              \n\n              </ion-select>\n\n            </ion-item>\n\n  \n\n            <ion-item>\n\n              <ion-label floating>Comment</ion-label>\n\n              <ion-input formControlName="comments" type="text"></ion-input>  </ion-item>\n\n              <ion-item>\n\n                <button ion-button color="secondary" icon-left clear small [disabled]="!createClassifiedResponseForm.valid" (click)="addClassifiedResponse()">\n\n                  Save Response\n\n  \n\n                </button>\n\n              </ion-item>\n\n          </form>\n\n  \n\n        </ion-list>\n\n      </ion-card-content>\n\n    </ion-card>\n\n  </ion-content>'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\classified-response-create\classified-response-create.html"*/,
+        selector: 'page-classified-response-create',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\classified-response-create\classified-response-create.html"*/'<!--\n\n  Generated template for the PreviousMatchDetailsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar color="primary">\n\n      <ion-title>Classified Response</ion-title>\n\n    </ion-navbar>\n\n  \n\n  </ion-header>\n\n  \n\n  \n\n  <ion-content padding class="appBackground">\n\n    <ion-card>\n\n      <ion-card-header>\n\n        Submit Classified Response\n\n      </ion-card-header>\n\n      <ion-card-content>\n\n        <ion-list no-lines>\n\n  \n\n          <form [formGroup]="createClassifiedResponseForm">\n\n  \n\n            <ion-item>\n\n              <ion-label>Interest</ion-label>\n\n              <ion-select formControlName="interested">\n\n                <ion-option value=true>Interested</ion-option>\n\n                <ion-option value=false>Not Interested</ion-option>\n\n              \n\n              </ion-select>\n\n            </ion-item>\n\n  \n\n            <ion-item>\n\n              <ion-label floating>Comment</ion-label>\n\n              <ion-input formControlName="comments" type="text"></ion-input>  </ion-item>\n\n\n\n              <ion-item>\n\n                  <ion-label>Status:</ion-label>\n\n                  <p *ngIf="classified.interested==true">\n\n                      <ion-label>Accepted</ion-label>\n\n                      <p *ngIf="classified.interested==false">\n\n                          <ion-label>Rejected</ion-label>\n\n                </ion-item>\n\n              <ion-item>\n\n                <button ion-button color="secondary" icon-left clear small [disabled]="!createClassifiedResponseForm.valid" (click)="addClassifiedResponse()">\n\n                  Save Response\n\n  \n\n                </button>\n\n              </ion-item>\n\n          </form>\n\n  \n\n        </ion-list>\n\n      </ion-card-content>\n\n    </ion-card>\n\n  </ion-content>'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\classified-response-create\classified-response-create.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_classified_classified__["a" /* ClassifiedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_classified_classified__["a" /* ClassifiedService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */]) === "function" && _f || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_2__providers_classified_classified__["a" /* ClassifiedService */], __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */]])
 ], ClassifiedResponseCreatePage);
 
-var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=classified-response-create.js.map
 
 /***/ }),
 
-/***/ 155:
+/***/ 135:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreateNewsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_teams_teams__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_news_news__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_other_other__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__upload_modal_upload_modal__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_images_images__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_multi_image_upload_multi_image_upload__ = __webpack_require__(137);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+
+var CreateNewsPage = (function () {
+    function CreateNewsPage(navCtrl, modalCtrl, imagesProvider, camera, actionSheetCtrl, navParams, alertController, teamService, loadingController, formBuilder, newsService, otherService) {
+        this.navCtrl = navCtrl;
+        this.modalCtrl = modalCtrl;
+        this.imagesProvider = imagesProvider;
+        this.camera = camera;
+        this.actionSheetCtrl = actionSheetCtrl;
+        this.navParams = navParams;
+        this.alertController = alertController;
+        this.teamService = teamService;
+        this.loadingController = loadingController;
+        this.newsService = newsService;
+        this.otherService = otherService;
+        this.uploadFinished = false;
+        this.locationDisabled = false;
+        this.newsTimeDisabled = false;
+        this.teamDisabled = false;
+        this.disabled = true;
+        this.news = navParams.get('news');
+        this.createNewsForm = formBuilder.group({
+            id: [''],
+            type: ['', __WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].required])],
+            description: [''],
+            urlToImage: [''],
+            active: [true],
+            publishedAt: [''],
+            location: ['',],
+            title: [],
+            imgUrl: [],
+            user: ['', __WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].required])],
+            createDate: [],
+            modifyDate: []
+        });
+        this.type = 'news';
+        this.getLocations();
+        if (this.news != null) {
+            this.createNewsForm.setValue(this.news);
+            this.disabled = false;
+            if (this.news.publishedAt != null) {
+                this.createNewsForm.controls['publishedAt'].setValue(new Date(this.news.publishedAt).toISOString());
+            }
+        }
+        var data = JSON.parse(localStorage.getItem('userData'));
+        this.user = data.user;
+        this.createNewsForm.controls['user'].setValue(this.user);
+    }
+    CreateNewsPage.prototype.getLocations = function () {
+        var _this = this;
+        this.otherService.getAllCountries().then(function (result) {
+            _this.locationResponseData = result;
+            console.log(_this.locationResponseData);
+            _this.locations = _this.locationResponseData;
+        }, function (err) {
+            console.log("error", err);
+            // Error log
+        });
+    };
+    CreateNewsPage.prototype.ionViewWillEnter = function () {
+        //calling an API
+    };
+    CreateNewsPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad create team');
+    };
+    CreateNewsPage.prototype.compareFn = function (e1, e2) {
+        return e1 && e2 ? e1.name === e2.name : e1 === e2;
+    };
+    CreateNewsPage.prototype.addNews = function () {
+        var _this = this;
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.newsService.addNews(this.createNewsForm.value).then(function (result) {
+            _this.responseData = result;
+            console.log(_this.responseData);
+            if (_this.responseData.statusCode == '200') {
+                loading.dismiss();
+                console.log("test 200");
+                _this.news = _this.responseData.results.news;
+                _this.disabled = false;
+                _this.alertDialog('Success', 'Added');
+            }
+            else if (_this.responseData.statusCode == "404") {
+                loading.dismiss();
+                console.log("unauthorrised");
+                _this.alertDialog('Error', 'Error');
+            }
+            else {
+                loading.dismiss();
+                console.log("test others");
+                _this.alertDialog('Error', 'Error');
+            }
+        }, function (err) {
+            console.log("error", err);
+            loading.dismiss();
+            _this.alertDialog('Error', 'Error');
+            // Error log
+        });
+    };
+    CreateNewsPage.prototype.getNews = function () {
+        var _this = this;
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.newsService.getNewsId(this.news.id).then(function (result) {
+            _this.responseNewsData = result;
+            console.log(_this.responseNewsData);
+            if (_this.responseNewsData.statusCode == '200') {
+                loading.dismiss();
+                console.log("test 200");
+                _this.news = _this.responseNewsData.results.result;
+                _this.disabled = false;
+            }
+            else if (_this.responseData.statusCode == "404") {
+                loading.dismiss();
+                console.log("unauthorrised");
+            }
+            else {
+                loading.dismiss();
+                console.log("test others");
+            }
+        }, function (err) {
+            console.log("error", err);
+            loading.dismiss();
+            // Error log
+        });
+    };
+    CreateNewsPage.prototype.delete = function (slide) {
+        var _this = this;
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.otherService.deleteImage(slide).then(function (result) {
+            _this.deleteImageResponse = result;
+            console.log(_this.deleteImageResponse);
+            if (_this.deleteImageResponse.statusCode == '200') {
+                console.log("test 200");
+                loading.dismiss();
+                _this.getNews();
+            }
+            else if (_this.deleteImageResponse.statusCode == "404") {
+                console.log("unauthorrised");
+                loading.dismiss();
+            }
+            else {
+                console.log("test others");
+                loading.dismiss();
+            }
+        }, function (err) {
+            console.log("error", err);
+            loading.dismiss();
+            // Error log
+        });
+    };
+    CreateNewsPage.prototype.presentActionSheet = function () {
+        var _this = this;
+        var actionSheet = this.actionSheetCtrl.create({
+            title: 'Select Image Source',
+            buttons: [
+                {
+                    text: 'Load from Library',
+                    handler: function () {
+                        _this.takePicture(_this.camera.PictureSourceType.PHOTOLIBRARY);
+                    }
+                },
+                {
+                    text: 'Use Camera',
+                    handler: function () {
+                        _this.takePicture(_this.camera.PictureSourceType.CAMERA);
+                    }
+                },
+                {
+                    text: 'Cancel',
+                    role: 'cancel'
+                }
+            ]
+        });
+        actionSheet.present();
+    };
+    CreateNewsPage.prototype.takePicture = function (sourceType) {
+        var _this = this;
+        // Create options for the Camera Dialog
+        var options = {
+            quality: 100,
+            destinationType: this.camera.DestinationType.FILE_URI,
+            sourceType: sourceType,
+            saveToPhotoAlbum: false,
+            correctOrientation: true
+        };
+        // Get the data of an image
+        this.camera.getPicture(options).then(function (imagePath) {
+            var modal = _this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_7__upload_modal_upload_modal__["a" /* UploadModalPage */], { data: imagePath });
+            modal.present();
+            modal.onDidDismiss(function (data) {
+                if (data && data.reload) {
+                    _this.reloadImages();
+                }
+            });
+        }, function (err) {
+            _this.alertDialog('Error', err);
+        });
+    };
+    CreateNewsPage.prototype.reloadImages = function () {
+    };
+    CreateNewsPage.prototype.alertDialog = function (title, message) {
+        var alert = this.alertController.create({
+            title: title,
+            subTitle: message,
+            buttons: [
+                {
+                    text: 'OK',
+                    handler: function (data) {
+                        console.log('ok clicked');
+                    }
+                }
+            ]
+        });
+        alert.present();
+    };
+    CreateNewsPage.prototype.submit = function () {
+        var _this = this;
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        if (this.multiImageUpload.images.length == 0) {
+            this.showToast("Please select at least 1 photo");
+            loading.dismiss();
+            return;
+        }
+        this.multiImageUpload.uploadImages().then(function (images) {
+            _this.showToast("Upload successful, view console for details");
+            _this.uploadFinished = true;
+            console.dir(images);
+            loading.dismiss();
+            _this.getNews();
+        }).catch(function () {
+            loading.dismiss();
+        });
+    };
+    CreateNewsPage.prototype.cancel = function () {
+        var _this = this;
+        this.confirm('Are you sure to cancel?').then(function (value) {
+            if (value) {
+                _this.multiImageUpload.abort();
+            }
+        });
+    };
+    CreateNewsPage.prototype.showToast = function (text) {
+    };
+    CreateNewsPage.prototype.confirm = function (text) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.alertController.create({
+                message: text,
+                buttons: [
+                    {
+                        text: "No",
+                        role: 'cancel',
+                        handler: function () {
+                            resolve(false);
+                        }
+                    },
+                    {
+                        text: "Yes",
+                        handler: function () {
+                            resolve(true);
+                        }
+                    }
+                ]
+            }).present();
+        });
+    };
+    return CreateNewsPage;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_9__components_multi_image_upload_multi_image_upload__["a" /* MultiImageUpload */]),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_9__components_multi_image_upload_multi_image_upload__["a" /* MultiImageUpload */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__components_multi_image_upload_multi_image_upload__["a" /* MultiImageUpload */]) === "function" && _a || Object)
+], CreateNewsPage.prototype, "multiImageUpload", void 0);
+CreateNewsPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-create-news',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\create-news\create-news.html"*/'<!--\n\n  Generated template for the PreviousMatchDetailsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar color="primary">\n\n    <ion-title>News</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground">\n\n  <ion-card>\n\n    <ion-card-header>\n\n      Add News\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <ion-list no-lines>\n\n      \n\n          <multi-image-upload [type]="type" [id]="news?.id"></multi-image-upload>\n\n          <button ion-button block (click)="submit()" *ngIf="!multiImageUpload.isUploading && !uploadFinished&&!disabled">\n\n              <ion-icon name="checkmark"></ion-icon>\n\n              Upload\n\n          </button>\n\n          <button ion-button block (click)="cancel()" color="danger" *ngIf="multiImageUpload.isUploading && !uploadFinished&&!disabled">\n\n              <ion-icon name="close"></ion-icon>\n\n              Cancel\n\n          </button>\n\n\n\n \n\n            \n\n\n\n            <p *ngIf= "news?.imgUrl!= null && news?.imgUrl.length>0" >\n\n                <ion-slides autoplay="5000" loop="true" speed="3000">\n\n                    <ion-slide *ngFor="let slide of news.imgUrl">\n\n                      \n\n                        <ion-item><img src="{{slide.url}}" /></ion-item>\n\n                        <ion-item> <button ion-button block (click)="delete(slide)" color="danger">\n\n                          <ion-icon name="close"></ion-icon>\n\n                          Delete\n\n                      </button></ion-item>\n\n                    </ion-slide>\n\n                 \n\n                  </ion-slides>\n\n              \n\n              </p>\n\n                 <form [formGroup]="createNewsForm">\n\n\n\n          <ion-item>\n\n            <ion-label>Type</ion-label>\n\n            <ion-select formControlName="type" >\n\n              <ion-option value="Local">Local</ion-option>\n\n              <ion-option value="International">International</ion-option>\n\n\n\n            </ion-select>\n\n          </ion-item>\n\n          <ion-item>\n\n              <ion-label floating>Title</ion-label>\n\n              <ion-input formControlName="title" type="text"></ion-input>  </ion-item>\n\n              <ion-item>\n\n          \n\n            <ion-label floating>Description</ion-label>\n\n            <ion-input formControlName="description" type="text"></ion-input>  </ion-item>\n\n            <ion-item>\n\n\n\n              <ion-label>Date</ion-label>\n\n              <ion-datetime formControlName="publishedAt" displayFormat="MMM DD, YYYY HH:mm" ></ion-datetime>\n\n            </ion-item>\n\n            <ion-item>\n\n              <ion-label>Country</ion-label>\n\n              <ion-select formControlName="location">\n\n                <ion-option *ngFor="let key of locations" [value]="key.name">{{key.name}}</ion-option>\n\n              </ion-select>\n\n            </ion-item>\n\n \n\n            <ion-item>\n\n              <button ion-button color="secondary" icon-left clear small [disabled]="!createNewsForm.valid" (click)="addNews()">\n\n                Save News\n\n\n\n              </button>\n\n            </ion-item>\n\n        </form>\n\n\n\n      </ion-list>\n\n    </ion-card-content>\n\n  </ion-card>\n\n \n\n</ion-content>'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\create-news\create-news.html"*/,
+    }),
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ModalController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_8__providers_images_images__["a" /* ImagesProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__providers_images_images__["a" /* ImagesProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__["a" /* Camera */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__["a" /* Camera */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_2__providers_teams_teams__["a" /* TeamService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_teams_teams__["a" /* TeamService */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */]) === "function" && _k || Object, typeof (_l = typeof __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */]) === "function" && _l || Object, typeof (_m = typeof __WEBPACK_IMPORTED_MODULE_3__providers_news_news__["a" /* NewsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_news_news__["a" /* NewsService */]) === "function" && _m || Object, typeof (_o = typeof __WEBPACK_IMPORTED_MODULE_5__providers_other_other__["a" /* OtherService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_other_other__["a" /* OtherService */]) === "function" && _o || Object])
+], CreateNewsPage);
+
+var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o;
+//# sourceMappingURL=create-news.js.map
+
+/***/ }),
+
+/***/ 136:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NewsService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var apiUrl = 'https://crickify.herokuapp.com/news';
+var isAuthenticated;
+var NewsService = (function () {
+    function NewsService(http) {
+        this.http = http;
+    }
+    NewsService.prototype.getToken = function () {
+        return JSON.parse(localStorage.getItem('userData')).user.token;
+    };
+    NewsService.prototype.getAllNews = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.get(apiUrl + '/news', { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("auth response matches", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("matches", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    NewsService.prototype.getAllNewsSearch = function (filter) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            var urlSearchParams = new URLSearchParams();
+            for (var key in filter) {
+                if (filter[key] != null) {
+                    urlSearchParams.append(key, filter[key]);
+                }
+            }
+            _this.http.get(apiUrl + '/news/search?' + urlSearchParams, { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("auth response matches", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("matches", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    NewsService.prototype.getPreviousNewss = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.get(apiUrl + '/past', { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                if (res.json().statusCode == '200') {
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    NewsService.prototype.getNewsId = function (id) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.get(apiUrl + '/news/' + id, { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                if (res.json().statusCode == '200') {
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    NewsService.prototype.postAvailability = function (data) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.post(apiUrl + '/news/availability', JSON.stringify(data), { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("mast avail post resp", res.json());
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    NewsService.prototype.updateResponse = function (news, player, status) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            console.log("request", JSON.stringify(status));
+            _this.http.post(apiUrl + '/news/' + news + '/availability/' + player.id, status, { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("mast avail post resp", res.json());
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    NewsService.prototype.addNews = function (data) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            console.log("requeset", JSON.stringify(data));
+            _this.http.post(apiUrl + '/news', JSON.stringify(data), { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("mast post resp", res.json());
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    NewsService.prototype.delete = function (id) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.delete(apiUrl + '/news/' + id, { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("mast post resp", res.json());
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    return NewsService;
+}());
+NewsService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
+], NewsService);
+
+//# sourceMappingURL=news.js.map
+
+/***/ }),
+
+/***/ 137:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MultiImageUpload; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file__ = __webpack_require__(527);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_file_path__ = __webpack_require__(528);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_transfer__ = __webpack_require__(529);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var MultiImageUpload = (function () {
+    function MultiImageUpload(sanitization, actionSheetCtrl, camera, file, alertCtrl, toastCtrl) {
+        this.sanitization = sanitization;
+        this.actionSheetCtrl = actionSheetCtrl;
+        this.camera = camera;
+        this.file = file;
+        this.alertCtrl = alertCtrl;
+        this.toastCtrl = toastCtrl;
+        this.serverUrl = "https://crickify.herokuapp.com/image/";
+        this.isUploading = false;
+        this.uploadingProgress = {};
+        this.uploadingHandler = {};
+        this.images = [];
+        this.util = (function (_this) {
+            return {
+                removeFromArray: function (array, item) {
+                    var index = array.indexOf(item);
+                    if (index !== -1) {
+                        array.splice(index, 1);
+                    }
+                },
+                confirm: function (text, title, yes, no) {
+                    if (title === void 0) { title = ''; }
+                    if (yes === void 0) { yes = "Yes"; }
+                    if (no === void 0) { no = "No"; }
+                    return new Promise(function (resolve) {
+                        _this.alertCtrl.create({
+                            title: title,
+                            message: text,
+                            buttons: [
+                                {
+                                    text: no,
+                                    role: 'cancel',
+                                    handler: function () {
+                                        resolve(false);
+                                    }
+                                },
+                                {
+                                    text: yes,
+                                    handler: function () {
+                                        resolve(true);
+                                    }
+                                }
+                            ]
+                        }).present();
+                    });
+                },
+                trustImages: function () {
+                    _this.imagesValue = _this.images.map(function (val) {
+                        return {
+                            url: val,
+                            sanitized: _this.sanitization.bypassSecurityTrustStyle("url(" + val + ")")
+                        };
+                    });
+                },
+                showToast: function (text) {
+                    _this.toastCtrl.create({
+                        message: text,
+                        duration: 5000,
+                        position: 'bottom'
+                    }).present();
+                }
+            };
+        })(this);
+    }
+    MultiImageUpload.prototype.uploadImages = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.isUploading = true;
+            Promise.all(_this.images.map(function (image) {
+                return _this.uploadImage(image);
+            }))
+                .then(resolve)
+                .catch(function (reason) {
+                _this.isUploading = false;
+                _this.uploadingProgress = {};
+                _this.uploadingHandler = {};
+                reject(reason);
+            });
+        });
+    };
+    MultiImageUpload.prototype.abort = function () {
+        if (!this.isUploading)
+            return;
+        this.isUploading = false;
+        for (var key in this.uploadingHandler) {
+            this.uploadingHandler[key].abort();
+        }
+    };
+    // ======================================================================
+    MultiImageUpload.prototype.removeImage = function (image) {
+        var _this = this;
+        if (this.isUploading)
+            return;
+        this.util.confirm("Are you sure to remove it?").then(function (value) {
+            if (value) {
+                _this.util.removeFromArray(_this.imagesValue, image);
+                _this.util.removeFromArray(_this.images, image.url);
+            }
+        });
+    };
+    MultiImageUpload.prototype.showAddImage = function () {
+        var _this = this;
+        if (!window['cordova']) {
+            var input_1 = document.createElement('input');
+            input_1.type = 'file';
+            input_1.accept = "image/x-png,image/gif,image/jpeg";
+            input_1.click();
+            input_1.onchange = function () {
+                var blob = window.URL.createObjectURL(input_1.files[0]);
+                _this.images.push(blob);
+                _this.util.trustImages();
+            };
+        }
+        else {
+            new Promise(function (resolve, reject) {
+                var actionSheet = _this.actionSheetCtrl.create({
+                    title: 'Add a photo',
+                    buttons: [
+                        {
+                            text: 'From photo library',
+                            handler: function () {
+                                resolve(_this.camera.PictureSourceType.PHOTOLIBRARY);
+                            }
+                        },
+                        {
+                            text: 'From camera',
+                            handler: function () {
+                                resolve(_this.camera.PictureSourceType.CAMERA);
+                            }
+                        },
+                        {
+                            text: 'Cancel',
+                            role: 'cancel',
+                            handler: function () {
+                                reject();
+                            }
+                        }
+                    ]
+                });
+                actionSheet.present();
+            }).then(function (sourceType) {
+                if (!window['cordova'])
+                    return;
+                var options = {
+                    quality: 100,
+                    sourceType: sourceType,
+                    saveToPhotoAlbum: false,
+                    correctOrientation: true
+                };
+                _this.camera.getPicture(options).then(function (imagePath) {
+                    _this.images.push(imagePath);
+                    _this.util.trustImages();
+                });
+            }).catch(function () {
+            });
+        }
+    };
+    MultiImageUpload.prototype.getToken = function () {
+        return JSON.parse(localStorage.getItem('userData')).user.token;
+    };
+    MultiImageUpload.prototype.uploadImage = function (targetPath) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.uploadingProgress[targetPath] = 0;
+            var headers = new Headers();
+            headers.set("token", _this.getToken());
+            if (window['cordova']) {
+                var options = {
+                    fileKey: "upload[]",
+                    fileName: targetPath,
+                    chunkedMode: false,
+                    mimeType: "multipart/form-data",
+                    headers: { 'token': _this.getToken() }
+                };
+                var fileTransfer = new __WEBPACK_IMPORTED_MODULE_6__ionic_native_transfer__["a" /* TransferObject */]();
+                _this.uploadingHandler[targetPath] = fileTransfer;
+                fileTransfer.upload(targetPath, _this.serverUrl + _this.type + '/images/' + _this.id, options).then(function (data) {
+                    resolve(JSON.parse(data.response));
+                }).catch(function () {
+                    askRetry();
+                });
+                fileTransfer.onProgress(function (event2) {
+                    _this.uploadingProgress[targetPath] = event2.loaded * 100 / event2.total;
+                });
+            }
+            else {
+                var xhr_1 = new XMLHttpRequest();
+                xhr_1.open('GET', targetPath, true);
+                xhr_1.responseType = 'blob';
+                xhr_1.onload = function (e) {
+                    if (xhr_1['status'] != 200) {
+                        _this.util.showToast("Your browser doesn't support blob API");
+                        console.error(e, xhr_1);
+                        askRetry();
+                    }
+                    else {
+                        var blob = xhr_1['response'];
+                        var formData = new FormData(), xhr2_1 = new XMLHttpRequest();
+                        formData.append('upload', blob);
+                        _this.uploadingHandler[targetPath] = xhr2_1;
+                        xhr2_1.onreadystatechange = function () {
+                            if (xhr2_1.readyState === 4) {
+                                if (xhr2_1.status === 200)
+                                    resolve(JSON.parse(xhr2_1.response));
+                                else
+                                    askRetry();
+                            }
+                        };
+                        xhr2_1.upload.onprogress = function (event) {
+                            _this.uploadingProgress[targetPath] = event.loaded * 100 / event.total;
+                        };
+                        xhr2_1.open('POST', _this.serverUrl + _this.type + '/image/' + _this.id, true);
+                        xhr2_1.setRequestHeader("token", _this.getToken());
+                        xhr2_1.send(formData);
+                    }
+                };
+                xhr_1.send();
+            }
+            var askRetry = function () {
+                // might have been aborted
+                if (!_this.isUploading)
+                    return reject(null);
+                _this.util.confirm('Do you wish to retry?', 'Upload failed').then(function (res) {
+                    if (!res) {
+                        _this.isUploading = false;
+                        for (var key in _this.uploadingHandler) {
+                            _this.uploadingHandler[key].abort();
+                        }
+                        return reject(null);
+                    }
+                    else {
+                        if (!_this.isUploading)
+                            return reject(null);
+                        _this.uploadImage(targetPath).then(resolve, reject);
+                    }
+                });
+            };
+        });
+    };
+    return MultiImageUpload;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Object)
+], MultiImageUpload.prototype, "type", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Object)
+], MultiImageUpload.prototype, "id", void 0);
+MultiImageUpload = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'multi-image-upload',template:/*ion-inline-start:"D:\ionicapp\crickify\src\components\multi-image-upload\multi-image-upload.html"*/'<div>\n  <div class="images-wrapper">\n    <div class="image-wrapper" *ngFor="let image of imagesValue">\n      <ion-icon class="remove-image" name="close" *ngIf="!isUploading" (click)="removeImage(image)"></ion-icon>\n      <div class="image" [style.background-image]="image.sanitized">\n        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="\n             [class.uploading]="isUploading" alt=""/>\n        <ion-spinner *ngIf="isUploading && uploadingProgress[image.url]<100"></ion-spinner>\n\n        <ion-icon name="checkmark" *ngIf="isUploading && uploadingProgress[image.url]==100"></ion-icon>\n        <div *ngIf="isUploading" class="progress-bar">\n          <div class="progress" [style.width]="(uploadingProgress[image.url]||0)+\'%\'"></div>\n        </div>\n      </div>\n    </div>\n    <div class="image-wrapper add-image-btn" *ngIf="!isUploading" (click)="showAddImage()">\n      <div class="image">\n        <ion-icon name="add"></ion-icon>\n        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=""/>\n      </div>\n    </div>\n  </div>\n</div>\n'/*ion-inline-end:"D:\ionicapp\crickify\src\components\multi-image-upload\multi-image-upload.html"*/,
+        providers: [__WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_file__["a" /* File */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_file_path__["a" /* FilePath */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["o" /* Platform */]]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* DomSanitizer */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* DomSanitizer */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* ActionSheetController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* ActionSheetController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__["a" /* Camera */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__["a" /* Camera */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_file__["a" /* File */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_file__["a" /* File */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* AlertController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["p" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["p" /* ToastController */]) === "function" && _f || Object])
+], MultiImageUpload);
+
+var _a, _b, _c, _d, _e, _f;
+//# sourceMappingURL=multi-image-upload.js.map
+
+/***/ }),
+
+/***/ 159:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4747,10 +5435,10 @@ var _a, _b, _c, _d, _e, _f;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_camera__ = __webpack_require__(420);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__upload_modal_upload_modal__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_images_images__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_camera__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__upload_modal_upload_modal__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_images_images__ = __webpack_require__(73);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4961,7 +5649,7 @@ MyAccountPage = __decorate([
 
 /***/ }),
 
-/***/ 156:
+/***/ 160:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4969,8 +5657,8 @@ MyAccountPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_finance_finance__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__match_team_match_team__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_finance_finance__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__match_team_match_team__ = __webpack_require__(58);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5106,7 +5794,7 @@ FinancePage = __decorate([
 
 /***/ }),
 
-/***/ 157:
+/***/ 161:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5115,8 +5803,8 @@ FinancePage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__create_player_create_player__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__create_player_create_player__ = __webpack_require__(122);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5288,7 +5976,7 @@ TeamPlayersPage = __decorate([
 
 /***/ }),
 
-/***/ 158:
+/***/ 162:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5297,8 +5985,8 @@ TeamPlayersPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__create_tournament_create_tournament__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__create_tournament_create_tournament__ = __webpack_require__(123);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_other_other__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5402,7 +6090,7 @@ TournamentsPage = __decorate([
 
 /***/ }),
 
-/***/ 159:
+/***/ 163:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5411,8 +6099,8 @@ TournamentsPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__create_location_create_location__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__create_location_create_location__ = __webpack_require__(124);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_other_other__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5516,7 +6204,7 @@ LocationsPage = __decorate([
 
 /***/ }),
 
-/***/ 160:
+/***/ 164:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5524,9 +6212,9 @@ LocationsPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_finance_finance__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__add_team_expense_add_team_expense__ = __webpack_require__(125);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__add_player_expense_add_player_expense__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_finance_finance__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__add_team_expense_add_team_expense__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__add_player_expense_add_player_expense__ = __webpack_require__(127);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5673,23 +6361,6 @@ TeamExpensePage = __decorate([
 
 /***/ }),
 
-/***/ 169:
-/***/ (function(module, exports) {
-
-function webpackEmptyAsyncContext(req) {
-	// Here Promise.resolve().then() is used instead of new Promise() to prevent
-	// uncatched exception popping up in devtools
-	return Promise.resolve().then(function() {
-		throw new Error("Cannot find module '" + req + "'.");
-	});
-}
-webpackEmptyAsyncContext.keys = function() { return []; };
-webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
-module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 169;
-
-/***/ }),
-
 /***/ 17:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -5712,6 +6383,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var apiUrl = 'https://crickify.herokuapp.com';
+var countryApi = 'https://restcountries.eu/rest/v2/all';
+var imageUrl = 'https://crickify.herokuapp.com/image/';
 //let isLoggedIn : boolean;
 var isAuthenticated;
 var OtherService = (function () {
@@ -5728,6 +6401,38 @@ var OtherService = (function () {
             headers.set('Content-Type', 'application/json');
             headers.set("token", _this.getToken());
             _this.http.get(apiUrl + '/location/locations', { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("auth response locations", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("locations", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    OtherService.prototype.getImages = function (type, id) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.http.get(imageUrl + type + '/image/' + id)
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("auth response locations", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("locations", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    OtherService.prototype.getAllCountries = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.http.get(countryApi)
                 .subscribe(function (res) {
                 resolve(res.json());
                 console.log("auth response locations", res.json());
@@ -5797,6 +6502,25 @@ var OtherService = (function () {
             });
         });
     };
+    OtherService.prototype.deleteImage = function (image) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.post(imageUrl + '/image/delete', JSON.stringify(image), { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                console.log("response", res.json());
+                if (res.json().statusCode == '200') {
+                    console.log("value", res.json());
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
     OtherService.prototype.createTournament = function (credentials) {
         var _this = this;
         return new Promise(function (resolve, reject) {
@@ -5827,105 +6551,125 @@ OtherService = __decorate([
 
 /***/ }),
 
-/***/ 211:
+/***/ 173:
+/***/ (function(module, exports) {
+
+function webpackEmptyAsyncContext(req) {
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncatched exception popping up in devtools
+	return Promise.resolve().then(function() {
+		throw new Error("Cannot find module '" + req + "'.");
+	});
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+module.exports = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = 173;
+
+/***/ }),
+
+/***/ 215:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/add-match-team/add-match-team.module": [
-		355
+		359
 	],
 	"../pages/add-player-expense/add-player-expense.module": [
-		370
-	],
-	"../pages/add-team-expense/add-team-expense.module": [
-		369
-	],
-	"../pages/batting/batting.module": [
-		357
-	],
-	"../pages/bowling/bowling.module": [
-		358
-	],
-	"../pages/classified-response-create/classified-response-create.module": [
-		377
-	],
-	"../pages/classified-response/classified-response.module": [
-		376
-	],
-	"../pages/create-ad/create-ad.module": [
-		375
-	],
-	"../pages/create-location/create-location.module": [
-		367
-	],
-	"../pages/create-match/create-match.module": [
-		213
-	],
-	"../pages/create-player/create-player.module": [
-		365
-	],
-	"../pages/create-practice/create-practice.module": [
-		372
-	],
-	"../pages/create-team/create-team.module": [
-		362
-	],
-	"../pages/create-tournament/create-tournament.module": [
-		366
-	],
-	"../pages/forgot/forgot.module": [
-		214
-	],
-	"../pages/login/login.module": [
-		217
-	],
-	"../pages/logout/logout.module": [
-		364
-	],
-	"../pages/match-availability/match-availability.module": [
-		356
-	],
-	"../pages/match-team/match-team.module": [
-		212
-	],
-	"../pages/modeChange/modeChange.module": [
-		368
-	],
-	"../pages/my-profile/my-profile.module": [
-		220
-	],
-	"../pages/practice-availability/practice-availability.module": [
-		373
-	],
-	"../pages/previous-match-details-edit/previous-match-details-edit.module": [
-		360
-	],
-	"../pages/previous-match-details/previous-match-details.module": [
-		353
-	],
-	"../pages/previous-matches/previous-matches.module": [
-		354
-	],
-	"../pages/reset/reset.module": [
-		363
-	],
-	"../pages/signup/signup.module": [
-		218
-	],
-	"../pages/team-matches/team-matches.module": [
-		361
-	],
-	"../pages/team-practice/team-practice.module": [
 		374
 	],
-	"../pages/upload-modal/upload-modal.module": [
-		351
+	"../pages/add-team-expense/add-team-expense.module": [
+		373
 	],
-	"../pages/view-player-expenses/view-player-expenses.module": [
+	"../pages/batting/batting.module": [
+		361
+	],
+	"../pages/bowling/bowling.module": [
+		362
+	],
+	"../pages/classified-response-create/classified-response-create.module": [
+		381
+	],
+	"../pages/classified-response/classified-response.module": [
+		380
+	],
+	"../pages/create-ad/create-ad.module": [
+		379
+	],
+	"../pages/create-location/create-location.module": [
 		371
 	],
+	"../pages/create-match/create-match.module": [
+		217
+	],
+	"../pages/create-news/create-news.module": [
+		382
+	],
+	"../pages/create-player/create-player.module": [
+		369
+	],
+	"../pages/create-practice/create-practice.module": [
+		376
+	],
+	"../pages/create-team/create-team.module": [
+		366
+	],
+	"../pages/create-tournament/create-tournament.module": [
+		370
+	],
+	"../pages/forgot/forgot.module": [
+		218
+	],
+	"../pages/login/login.module": [
+		221
+	],
+	"../pages/logout/logout.module": [
+		368
+	],
+	"../pages/match-availability/match-availability.module": [
+		360
+	],
+	"../pages/match-team/match-team.module": [
+		216
+	],
+	"../pages/modeChange/modeChange.module": [
+		372
+	],
+	"../pages/my-profile/my-profile.module": [
+		224
+	],
+	"../pages/practice-availability/practice-availability.module": [
+		377
+	],
+	"../pages/previous-match-details-edit/previous-match-details-edit.module": [
+		364
+	],
+	"../pages/previous-match-details/previous-match-details.module": [
+		357
+	],
+	"../pages/previous-matches/previous-matches.module": [
+		358
+	],
+	"../pages/reset/reset.module": [
+		367
+	],
+	"../pages/signup/signup.module": [
+		222
+	],
+	"../pages/team-matches/team-matches.module": [
+		365
+	],
+	"../pages/team-practice/team-practice.module": [
+		378
+	],
+	"../pages/upload-modal/upload-modal.module": [
+		355
+	],
+	"../pages/view-player-expenses/view-player-expenses.module": [
+		375
+	],
 	"../pages/welcome/welcome.module": [
-		219
+		223
 	]
 };
 function webpackAsyncContext(req) {
@@ -5939,12 +6683,12 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 211;
+webpackAsyncContext.id = 215;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 212:
+/***/ 216:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5952,7 +6696,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatchTeamPageModule", function() { return MatchTeamPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__match_team__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__match_team__ = __webpack_require__(58);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5982,7 +6726,7 @@ MatchTeamPageModule = __decorate([
 
 /***/ }),
 
-/***/ 213:
+/***/ 217:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5990,7 +6734,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreateMatchModule", function() { return CreateMatchModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__create_match__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__create_match__ = __webpack_require__(108);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6020,7 +6764,7 @@ CreateMatchModule = __decorate([
 
 /***/ }),
 
-/***/ 214:
+/***/ 218:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6058,7 +6802,7 @@ ForgotPageModule = __decorate([
 
 /***/ }),
 
-/***/ 217:
+/***/ 221:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6096,7 +6840,7 @@ LoginPageModule = __decorate([
 
 /***/ }),
 
-/***/ 218:
+/***/ 222:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6134,7 +6878,7 @@ SignupPageModule = __decorate([
 
 /***/ }),
 
-/***/ 219:
+/***/ 223:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6172,7 +6916,7 @@ WelcomePageModule = __decorate([
 
 /***/ }),
 
-/***/ 220:
+/***/ 224:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6180,7 +6924,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MyProfilePageModule", function() { return MyProfilePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__my_profile__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__my_profile__ = __webpack_require__(110);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6210,7 +6954,7 @@ MyProfilePageModule = __decorate([
 
 /***/ }),
 
-/***/ 221:
+/***/ 225:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6674,7 +7418,7 @@ MatchService = __decorate([
 
 /***/ }),
 
-/***/ 351:
+/***/ 355:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6682,7 +7426,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UploadModalPageModule", function() { return UploadModalPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__upload_modal__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__upload_modal__ = __webpack_require__(72);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6712,7 +7456,7 @@ UploadModalPageModule = __decorate([
 
 /***/ }),
 
-/***/ 353:
+/***/ 357:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6720,7 +7464,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PreviousMatchDetailsPageModule", function() { return PreviousMatchDetailsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__previous_match_details__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__previous_match_details__ = __webpack_require__(112);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6750,7 +7494,7 @@ PreviousMatchDetailsPageModule = __decorate([
 
 /***/ }),
 
-/***/ 354:
+/***/ 358:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6758,8 +7502,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PreviousMatchesPageModule", function() { return PreviousMatchesPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__previous_matches__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_pipes_module__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__previous_matches__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_pipes_module__ = __webpack_require__(38);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6790,7 +7534,7 @@ PreviousMatchesPageModule = __decorate([
 
 /***/ }),
 
-/***/ 355:
+/***/ 359:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6798,7 +7542,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddMatchTeamPageModule", function() { return AddMatchTeamPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__add_match_team__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__add_match_team__ = __webpack_require__(114);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6828,7 +7572,7 @@ AddMatchTeamPageModule = __decorate([
 
 /***/ }),
 
-/***/ 356:
+/***/ 360:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6836,7 +7580,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatchAvailabilityPageModule", function() { return MatchAvailabilityPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__match_availability__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__match_availability__ = __webpack_require__(115);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6866,7 +7610,7 @@ MatchAvailabilityPageModule = __decorate([
 
 /***/ }),
 
-/***/ 357:
+/***/ 361:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6874,7 +7618,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BattingPageModule", function() { return BattingPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batting__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batting__ = __webpack_require__(116);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6904,7 +7648,7 @@ BattingPageModule = __decorate([
 
 /***/ }),
 
-/***/ 358:
+/***/ 362:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6912,7 +7656,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BowlingPageModule", function() { return BowlingPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bowling__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bowling__ = __webpack_require__(117);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6942,7 +7686,7 @@ BowlingPageModule = __decorate([
 
 /***/ }),
 
-/***/ 359:
+/***/ 363:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7231,39 +7975,7 @@ BowlingService = __decorate([
 
 /***/ }),
 
-/***/ 36:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PipesModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__momentjs_momentjs__ = __webpack_require__(521);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-var PipesModule = (function () {
-    function PipesModule() {
-    }
-    return PipesModule;
-}());
-PipesModule = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
-        declarations: [__WEBPACK_IMPORTED_MODULE_1__momentjs_momentjs__["a" /* MomentjsPipe */]],
-        imports: [],
-        exports: [__WEBPACK_IMPORTED_MODULE_1__momentjs_momentjs__["a" /* MomentjsPipe */]]
-    })
-], PipesModule);
-
-//# sourceMappingURL=pipes.module.js.map
-
-/***/ }),
-
-/***/ 360:
+/***/ 364:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7271,7 +7983,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PreviousMatchDetailsEditPageModule", function() { return PreviousMatchDetailsEditPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__previous_match_details_edit__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__previous_match_details_edit__ = __webpack_require__(118);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7301,7 +8013,7 @@ PreviousMatchDetailsEditPageModule = __decorate([
 
 /***/ }),
 
-/***/ 361:
+/***/ 365:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7309,8 +8021,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TeamMatchesPageModule", function() { return TeamMatchesPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__team_matches__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_pipes_module__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__team_matches__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_pipes_module__ = __webpack_require__(38);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7341,7 +8053,7 @@ TeamMatchesPageModule = __decorate([
 
 /***/ }),
 
-/***/ 362:
+/***/ 366:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7349,7 +8061,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreateTeamModule", function() { return CreateTeamModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__create_team__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__create_team__ = __webpack_require__(119);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7379,7 +8091,7 @@ CreateTeamModule = __decorate([
 
 /***/ }),
 
-/***/ 363:
+/***/ 367:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7387,7 +8099,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResetPageModule", function() { return ResetPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__reset__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__reset__ = __webpack_require__(120);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7417,7 +8129,7 @@ ResetPageModule = __decorate([
 
 /***/ }),
 
-/***/ 364:
+/***/ 368:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7425,7 +8137,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LogoutPageModule", function() { return LogoutPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__logout__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__logout__ = __webpack_require__(121);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7455,7 +8167,7 @@ LogoutPageModule = __decorate([
 
 /***/ }),
 
-/***/ 365:
+/***/ 369:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7463,7 +8175,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreatePlayerModule", function() { return CreatePlayerModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__create_player__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__create_player__ = __webpack_require__(122);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7493,7 +8205,7 @@ CreatePlayerModule = __decorate([
 
 /***/ }),
 
-/***/ 366:
+/***/ 370:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7501,7 +8213,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreateTournamentModule", function() { return CreateTournamentModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__create_tournament__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__create_tournament__ = __webpack_require__(123);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7531,7 +8243,7 @@ CreateTournamentModule = __decorate([
 
 /***/ }),
 
-/***/ 367:
+/***/ 371:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7539,7 +8251,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreateLocationModule", function() { return CreateLocationModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__create_location__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__create_location__ = __webpack_require__(124);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7569,7 +8281,7 @@ CreateLocationModule = __decorate([
 
 /***/ }),
 
-/***/ 368:
+/***/ 372:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7577,7 +8289,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModeChangeModule", function() { return ModeChangeModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modeChange__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modeChange__ = __webpack_require__(125);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7607,7 +8319,7 @@ ModeChangeModule = __decorate([
 
 /***/ }),
 
-/***/ 369:
+/***/ 373:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7615,7 +8327,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddTeamExpensePageModule", function() { return AddTeamExpensePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__add_team_expense__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__add_team_expense__ = __webpack_require__(126);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7645,7 +8357,7 @@ AddTeamExpensePageModule = __decorate([
 
 /***/ }),
 
-/***/ 370:
+/***/ 374:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7653,8 +8365,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddPlayerExpensePageModule", function() { return AddPlayerExpensePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__add_player_expense__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_pipes_module__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__add_player_expense__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_pipes_module__ = __webpack_require__(38);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7685,7 +8397,7 @@ AddPlayerExpensePageModule = __decorate([
 
 /***/ }),
 
-/***/ 371:
+/***/ 375:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7693,8 +8405,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ViewPlayerExpensePageModule", function() { return ViewPlayerExpensePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_player_expenses__ = __webpack_require__(127);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_pipes_module__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_player_expenses__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_pipes_module__ = __webpack_require__(38);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7725,7 +8437,7 @@ ViewPlayerExpensePageModule = __decorate([
 
 /***/ }),
 
-/***/ 372:
+/***/ 376:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7733,7 +8445,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreatePracticeModule", function() { return CreatePracticeModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__create_practice__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__create_practice__ = __webpack_require__(129);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7763,7 +8475,7 @@ CreatePracticeModule = __decorate([
 
 /***/ }),
 
-/***/ 373:
+/***/ 377:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7771,7 +8483,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PracticeAvailabilityPageModule", function() { return PracticeAvailabilityPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__practice_availability__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__practice_availability__ = __webpack_require__(130);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7801,7 +8513,7 @@ PracticeAvailabilityPageModule = __decorate([
 
 /***/ }),
 
-/***/ 374:
+/***/ 378:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7809,8 +8521,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TeamPracticePageModule", function() { return TeamPracticePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__team_practice__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_pipes_module__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__team_practice__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_pipes_module__ = __webpack_require__(38);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7841,7 +8553,7 @@ TeamPracticePageModule = __decorate([
 
 /***/ }),
 
-/***/ 375:
+/***/ 379:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7849,7 +8561,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreateAdPageModule", function() { return CreateAdPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__create_ad__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__create_ad__ = __webpack_require__(132);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7879,7 +8591,39 @@ CreateAdPageModule = __decorate([
 
 /***/ }),
 
-/***/ 376:
+/***/ 38:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PipesModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__momentjs_momentjs__ = __webpack_require__(526);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+var PipesModule = (function () {
+    function PipesModule() {
+    }
+    return PipesModule;
+}());
+PipesModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
+        declarations: [__WEBPACK_IMPORTED_MODULE_1__momentjs_momentjs__["a" /* MomentjsPipe */]],
+        imports: [],
+        exports: [__WEBPACK_IMPORTED_MODULE_1__momentjs_momentjs__["a" /* MomentjsPipe */]]
+    })
+], PipesModule);
+
+//# sourceMappingURL=pipes.module.js.map
+
+/***/ }),
+
+/***/ 380:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7887,7 +8631,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ClassifiedResponsePageModule", function() { return ClassifiedResponsePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classified_response__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classified_response__ = __webpack_require__(133);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7917,7 +8661,7 @@ ClassifiedResponsePageModule = __decorate([
 
 /***/ }),
 
-/***/ 377:
+/***/ 381:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7925,7 +8669,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ClassifiedResponseCreatePageModule", function() { return ClassifiedResponseCreatePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classified_response_create__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classified_response_create__ = __webpack_require__(134);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7955,6 +8699,46 @@ ClassifiedResponseCreatePageModule = __decorate([
 
 /***/ }),
 
+/***/ 382:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreateNewsPageModule", function() { return CreateNewsPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__create_news__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_multi_image_upload_multi_image_upload__ = __webpack_require__(137);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var CreateNewsPageModule = (function () {
+    function CreateNewsPageModule() {
+    }
+    return CreateNewsPageModule;
+}());
+CreateNewsPageModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
+        declarations: [
+            __WEBPACK_IMPORTED_MODULE_2__create_news__["a" /* CreateNewsPage */], __WEBPACK_IMPORTED_MODULE_3__components_multi_image_upload_multi_image_upload__["a" /* MultiImageUpload */]
+        ],
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__create_news__["a" /* CreateNewsPage */]),
+        ],
+    })
+], CreateNewsPageModule);
+
+//# sourceMappingURL=create-news.module.js.map
+
+/***/ }),
+
 /***/ 41:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -7968,7 +8752,7 @@ ClassifiedResponseCreatePageModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_matches_matches__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_admob_free__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_admob_free__ = __webpack_require__(48);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8091,7 +8875,85 @@ WelcomePage = __decorate([
 
 /***/ }),
 
-/***/ 419:
+/***/ 42:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StatsService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var apiUrl = 'https://crickify.herokuapp.com/teamplayer';
+var playerapiUrl = 'https://crickify.herokuapp.com/player';
+//let isLoggedIn : boolean;
+var isAuthenticated;
+var StatsService = (function () {
+    function StatsService(http) {
+        this.http = http;
+    }
+    StatsService.prototype.getToken = function () {
+        return JSON.parse(localStorage.getItem('userData')).user.token;
+    };
+    StatsService.prototype.getTeamStats = function (teamid) {
+        var _this = this;
+        console.log("passed team id", teamid);
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.get(apiUrl + '/tournament/stats/' + teamid, { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                if (res.json().statusCode == '200') {
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    StatsService.prototype.getStats = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            _this.http.get(apiUrl + '/stats', { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+                if (res.json().statusCode == '200') {
+                }
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+            });
+        });
+    };
+    return StatsService;
+}());
+StatsService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
+], StatsService);
+
+//# sourceMappingURL=stats.js.map
+
+/***/ }),
+
+/***/ 424:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8100,7 +8962,7 @@ WelcomePage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__ = __webpack_require__(10);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8227,85 +9089,7 @@ ListPage = __decorate([
 
 /***/ }),
 
-/***/ 42:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StatsService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var apiUrl = 'https://crickify.herokuapp.com/teamplayer';
-var playerapiUrl = 'https://crickify.herokuapp.com/player';
-//let isLoggedIn : boolean;
-var isAuthenticated;
-var StatsService = (function () {
-    function StatsService(http) {
-        this.http = http;
-    }
-    StatsService.prototype.getToken = function () {
-        return JSON.parse(localStorage.getItem('userData')).user.token;
-    };
-    StatsService.prototype.getTeamStats = function (teamid) {
-        var _this = this;
-        console.log("passed team id", teamid);
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
-            headers.set('Content-Type', 'application/json');
-            headers.set("token", _this.getToken());
-            _this.http.get(apiUrl + '/tournament/stats/' + teamid, { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-                if (res.json().statusCode == '200') {
-                }
-            }, function (err) {
-                reject(err);
-                console.log("error", err);
-            });
-        });
-    };
-    StatsService.prototype.getStats = function () {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
-            headers.set('Content-Type', 'application/json');
-            headers.set("token", _this.getToken());
-            _this.http.get(apiUrl + '/stats', { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-                if (res.json().statusCode == '200') {
-                }
-            }, function (err) {
-                reject(err);
-                console.log("error", err);
-            });
-        });
-    };
-    return StatsService;
-}());
-StatsService = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
-], StatsService);
-
-//# sourceMappingURL=stats.js.map
-
-/***/ }),
-
-/***/ 423:
+/***/ 427:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8314,9 +9098,9 @@ StatsService = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_practice_practice__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_admob_free__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_teams_teams__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_admob_free__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_teams_teams__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_other_other__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -8490,7 +9274,7 @@ PracticePage = __decorate([
 
 /***/ }),
 
-/***/ 424:
+/***/ 428:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8499,13 +9283,13 @@ PracticePage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_classified_classified__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_admob_free__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_teams_teams__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_admob_free__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_teams_teams__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_other_other__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__create_ad_create_ad__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__classified_response_classified_response__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__classified_response_create_classified_response_create__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__create_ad_create_ad__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__classified_response_classified_response__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__classified_response_create_classified_response_create__ = __webpack_require__(134);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8556,6 +9340,38 @@ var ClassifiedPage = (function () {
     };
     ClassifiedPage.prototype.editClassified = function (classified) {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_8__create_ad_create_ad__["a" /* CreateAdPage */], { classified: classified });
+    };
+    ClassifiedPage.prototype.deleteClassified = function (classified) {
+        var _this = this;
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        classified.active = false;
+        this.classifiedService.addClassified(classified).then(function (result) {
+            _this.responseData = result;
+            console.log(_this.responseData);
+            if (_this.responseData.statusCode == '200') {
+                loading.dismiss();
+                console.log("test 200");
+                _this.ionViewDidLoad();
+            }
+            else if (_this.responseData.statusCode == "404") {
+                loading.dismiss();
+                console.log("unauthorrised");
+            }
+            else {
+                loading.dismiss();
+                console.log("test others");
+            }
+        }, function (err) {
+            console.log("error", err);
+            loading.dismiss();
+            // Error log
+        });
+    };
+    ClassifiedPage.prototype.ionViewWillEnter = function () {
+        this.ionViewDidLoad();
     };
     ClassifiedPage.prototype.checkResponse = function (classified) {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_9__classified_response_classified_response__["a" /* ClassifiedResponsePage */], { classified: classified });
@@ -8625,7 +9441,7 @@ var ClassifiedPage = (function () {
 }());
 ClassifiedPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-classified',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\classifieds\classifieds.html"*/'<ion-header>\n\n  <ion-navbar [hideBackButton]="true" color="primary">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Upcoming Classifieds </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding class="appBackground">\n\n    <ion-card>\n\n        <ion-card-header>\n\n          Search Classified\n\n        </ion-card-header>\n\n        <ion-card-content>\n\n          \n\n        <form [formGroup]="searchClassifiedForm">\n\n     \n\n            <ion-item>\n\n                <ion-label>Type</ion-label>\n\n                <ion-select formControlName="type"  (ionChange)="onChange(C.value)">\n\n                 <ion-option value="findplayer">Find a Player</ion-option>\n\n                    <ion-option value="findteam">Find a Team</ion-option>\n\n                       <ion-option value="findopponent">Find a Opposition</ion-option>\n\n                    <ion-option value="groundavailablity">Ground Available</ion-option>\n\n                </ion-select>\n\n              </ion-item>\n\n              <ion-item>\n\n                  <ion-label>Start Date</ion-label>\n\n                  <ion-datetime formControlName="startDate"  displayFormat="MMM DD, YYYY HH:mm"></ion-datetime>\n\n                </ion-item>\n\n               \n\n                    <ion-item>\n\n                        <ion-label>End Date</ion-label>\n\n                        <ion-datetime formControlName="endDate"  displayFormat="MMM DD, YYYY HH:mm" ></ion-datetime>\n\n                      </ion-item>\n\n          <button ion-button color="secondary" icon-left clear small (click)="search()">\n\n                Filter\n\n                \n\n              </button>\n\n     \n\n        </form>\n\n      \n\n    \n\n    </ion-card-content>\n\n    </ion-card>\n\n  <ion-card *ngFor="let classified of classifieds">\n\n    <ion-card-header >\n\n      <ion-item>\n\n        {{classified.type}}\n\n      </ion-item>\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n        <p> {{classified.description}}</p>\n\n        <p> {{classified.team?.teamname}}</p>\n\n        <p>{{classified?.classifiedTime | momentjs}}</p>\n\n      <p>{{classified.location?.name}}, {{classified.location?.address}}</p>\n\n      <p *ngIf= "classified.user?.id== userDetails.user.id" >\n\n    <ion-item>\n\n    <button ion-button color="secondary" icon-left clear small  (click)="editClassified(classified)">\n\n        Edit\n\n        \n\n      </button> \n\n     \n\n    </ion-item>	\n\n    <ion-item>\n\n        <button ion-button color="secondary" icon-left clear small  (click)="checkResponse(classified)">\n\n            Check Responses\n\n            \n\n          </button> \n\n         \n\n        </ion-item>	\n\n  </p>  \n\n  <p *ngIf= "classified.user?.id!= userDetails.user.id" >\n\n      <ion-item>\n\n      <button ion-button color="secondary" icon-left clear small  (click)="respondClassified(classified)">\n\n          Respond\n\n          \n\n        </button> \n\n       \n\n      </ion-item>	\n\n\n\n\n\n    </p>  \n\n  </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-fab bottom right>\n\n      <button ion-fab mini (click)="addClassified()"><ion-icon name="add"></ion-icon></button>\n\n    </ion-fab>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\classifieds\classifieds.html"*/
+        selector: 'page-classified',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\classifieds\classifieds.html"*/'<ion-header>\n\n  <ion-navbar [hideBackButton]="true" color="primary">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Upcoming Classifieds </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding class="appBackground">\n\n  <ion-card>\n\n    <ion-card-header>\n\n      Search Classified\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n\n\n      <form [formGroup]="searchClassifiedForm">\n\n\n\n        <ion-item>\n\n          <ion-label>Type</ion-label>\n\n          <ion-select formControlName="type">\n\n            <ion-option value="findplayer">Find a Player</ion-option>\n\n            <ion-option value="findteam">Find a Team</ion-option>\n\n            <ion-option value="findopponent">Find a Opposition</ion-option>\n\n            <ion-option value="groundavailablity">Ground Available</ion-option>\n\n          </ion-select>\n\n        </ion-item>\n\n        <ion-item>\n\n          <ion-label>Start Date</ion-label>\n\n          <ion-datetime formControlName="startDate" displayFormat="MMM DD, YYYY HH:mm"></ion-datetime>\n\n        </ion-item>\n\n\n\n        <ion-item>\n\n          <ion-label>End Date</ion-label>\n\n          <ion-datetime formControlName="endDate" displayFormat="MMM DD, YYYY HH:mm"></ion-datetime>\n\n        </ion-item>\n\n        <button ion-button color="secondary" icon-left clear small (click)="search()">\n\n          Filter\n\n\n\n        </button>\n\n\n\n      </form>\n\n\n\n\n\n    </ion-card-content>\n\n  </ion-card>\n\n  <ion-card *ngFor="let classified of classifieds">\n\n    <ion-card-header>\n\n      <ion-item>\n\n\n\n        <p *ngIf="classified.type==\'findplayer\'">\n\n            <ion-item>Find a Player</ion-item></p>\n\n        <p *ngIf="classified.type==\'findteam\'">\n\n            <ion-item>Find a Team</ion-item></p>\n\n        <p *ngIf="classified.type==\'findopponent\'">\n\n            <ion-item> Find a Opposition</ion-item></p>\n\n        <p *ngIf="classified.type==\'groundavailablity\'">\n\n            <ion-item> Ground Available</ion-item></p>\n\n\n\n\n\n\n\n      </ion-item>\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n        <ion-item> {{classified.description}}</ion-item>\n\n          <ion-item> {{classified.team?.teamname}}</ion-item>\n\n          <p *ngIf="classified.classifiedTime!= null">\n\n            <ion-item>{{classified?.classifiedTime | momentjs}}</ion-item>\n\n            </p>\n\n              <ion-item>{{classified.location?.name}}, {{classified.location?.address}}</ion-item>\n\n      <p *ngIf="classified.user?.id== userDetails.user.id">\n\n        \n\n          <button ion-button color="secondary" icon-left clear small (click)="editClassified(classified)">\n\n            Edit\n\n\n\n          </button>\n\n        \n\n        \n\n          <button ion-button color="secondary" icon-left clear small (click)="deleteClassified(classified)">\n\n              delete\n\n  \n\n            </button>\n\n       \n\n      \n\n          <button ion-button color="secondary" icon-left clear small (click)="checkResponse(classified)">\n\n            Check Responses\n\n\n\n          </button>\n\n\n\n       \n\n      </p>\n\n      <p *ngIf="classified.user?.id!= userDetails.user.id">\n\n        \n\n          <button ion-button color="secondary" icon-left clear small (click)="respondClassified(classified)">\n\n            Respond\n\n\n\n          </button>\n\n\n\n     \n\n\n\n\n\n      </p>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-fab bottom right>\n\n    <button ion-fab mini (click)="addClassified()">\n\n      <ion-icon name="add"></ion-icon>\n\n    </button>\n\n  </ion-fab>\n\n</ion-content>'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\classifieds\classifieds.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */], __WEBPACK_IMPORTED_MODULE_5__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_6__providers_teams_teams__["a" /* TeamService */], __WEBPACK_IMPORTED_MODULE_7__providers_other_other__["a" /* OtherService */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_3__providers_classified_classified__["a" /* ClassifiedService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_admob_free__["a" /* AdMobFree */]])
 ], ClassifiedPage);
@@ -8634,13 +9450,179 @@ ClassifiedPage = __decorate([
 
 /***/ }),
 
-/***/ 425:
+/***/ 429:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NewsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_news_news__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_admob_free__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_teams_teams__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_other_other__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__create_news_create_news__ = __webpack_require__(135);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+var NewsPage = (function () {
+    function NewsPage(navCtrl, app, formBuilder, teamService, otherService, authService, newsService, loadingController, admob) {
+        this.navCtrl = navCtrl;
+        this.app = app;
+        this.teamService = teamService;
+        this.otherService = otherService;
+        this.authService = authService;
+        this.newsService = newsService;
+        this.loadingController = loadingController;
+        this.admob = admob;
+        this.userPostData = { "user_id": "", "token": "" };
+        if (this.authService.getAuthenticated()) {
+            var data = JSON.parse(localStorage.getItem('userData'));
+            console.log("fetch data", data);
+            this.userDetails = data;
+            // console.log("user data from storage", this.userDetails)
+            this.userPostData.user_id = this.userDetails.id;
+            this.userPostData.token = this.userDetails.token;
+        }
+        this.searchNewsForm = formBuilder.group({
+            startDate: [],
+            endDate: [],
+            type: []
+        });
+    }
+    NewsPage.prototype.addNews = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_8__create_news_create_news__["a" /* CreateNewsPage */]);
+    };
+    NewsPage.prototype.editNews = function (news) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_8__create_news_create_news__["a" /* CreateNewsPage */], { news: news });
+    };
+    NewsPage.prototype.deleteNews = function (news) {
+        var _this = this;
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        news.active = false;
+        this.newsService.addNews(news).then(function (result) {
+            _this.responseData = result;
+            console.log(_this.responseData);
+            if (_this.responseData.statusCode == '200') {
+                loading.dismiss();
+                console.log("test 200");
+                _this.ionViewDidLoad();
+            }
+            else if (_this.responseData.statusCode == "404") {
+                loading.dismiss();
+                console.log("unauthorrised");
+            }
+            else {
+                loading.dismiss();
+                console.log("test others");
+            }
+        }, function (err) {
+            console.log("error", err);
+            loading.dismiss();
+            // Error log
+        });
+    };
+    NewsPage.prototype.ionViewWillEnter = function () {
+        this.ionViewDidLoad();
+    };
+    NewsPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        console.log('ionViewDidLoad home page');
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.newsService.getAllNewsSearch(this.searchNewsForm.value).then(function (result) {
+            _this.responseData = result;
+            console.log(_this.responseData);
+            if (_this.responseData.statusCode == '200') {
+                loading.dismiss();
+                console.log("test 200");
+                console.log("result", _this.responseData.results.result);
+                _this.newss = _this.responseData.results.result;
+            }
+            else if (_this.responseData.statusCode == "404") {
+                console.log("unauthorrised");
+                loading.dismiss();
+            }
+            else {
+                loading.dismiss();
+                console.log("error", _this.responseData);
+            }
+        }, function (err) {
+            loading.dismiss();
+            // Error log
+        });
+    };
+    NewsPage.prototype.search = function () {
+        var _this = this;
+        console.log('ionViewDidLoad home page');
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.newsService.getAllNewsSearch(this.searchNewsForm.value).then(function (result) {
+            _this.responseData = result;
+            console.log(_this.responseData);
+            if (_this.responseData.statusCode == '200') {
+                loading.dismiss();
+                console.log("test 200");
+                console.log("result", _this.responseData.results.result);
+                _this.newss = _this.responseData.results.result;
+            }
+            else if (_this.responseData.statusCode == "403") {
+                console.log("unauthorrised");
+                loading.dismiss();
+            }
+            else {
+                loading.dismiss();
+                console.log("error", _this.responseData);
+            }
+        }, function (err) {
+            loading.dismiss();
+            // Error log
+        });
+    };
+    return NewsPage;
+}());
+NewsPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-news',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\news\news.html"*/'<ion-header>\n\n  <ion-navbar [hideBackButton]="true" color="primary">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>News </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding class="appBackground">\n\n  <ion-card>\n\n    <ion-card-header>\n\n      Search News\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n\n\n      <form [formGroup]="searchNewsForm">\n\n\n\n          <ion-item>\n\n              <ion-label>Type</ion-label>\n\n              <ion-select formControlName="type" >\n\n                <ion-option value="Local">Local</ion-option>\n\n                <ion-option value="International">International</ion-option>\n\n  \n\n              </ion-select>\n\n            </ion-item>\n\n        <ion-item>\n\n          <ion-label>Start Date</ion-label>\n\n          <ion-datetime formControlName="startDate" displayFormat="MMM DD, YYYY HH:mm"></ion-datetime>\n\n        </ion-item>\n\n\n\n        <ion-item>\n\n          <ion-label>End Date</ion-label>\n\n          <ion-datetime formControlName="endDate" displayFormat="MMM DD, YYYY HH:mm"></ion-datetime>\n\n        </ion-item>\n\n        <button ion-button color="secondary" icon-left clear small (click)="search()">\n\n          Filter\n\n\n\n        </button>\n\n\n\n      </form>\n\n\n\n\n\n    </ion-card-content>\n\n  </ion-card>\n\n  <ion-card *ngFor="let news of newss">\n\n    <ion-card-header>\n\n      <ion-item>\n\n\n\n      \n\n          <ion-item> {{news.title}}</ion-item>\n\n       \n\n\n\n\n\n\n\n      </ion-item>\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n        <p *ngIf= "news.imgUrl!= null && news.imgUrl.length>0" >\n\n          <ion-slides autoplay="5000" loop="true" speed="3000">\n\n              <ion-slide *ngFor="let slide of news.imgUrl">\n\n                <img src="{{slide.url}}" />\n\n              </ion-slide>\n\n            </ion-slides>\n\n        \n\n        </p>\n\n              \n\n        <ion-item> {{news.description}}</ion-item>\n\n         \n\n          <p *ngIf="news.publishedAt!= null">\n\n            <ion-item>{{news?.publishedAt | momentjs}}</ion-item>\n\n            </p>\n\n            \n\n      <p *ngIf="news.user?.id== userDetails.user.id">\n\n        \n\n          <button ion-button color="secondary" icon-left clear small (click)="editNews(news)">\n\n            Edit\n\n\n\n          </button>\n\n        \n\n        \n\n          <button ion-button color="secondary" icon-left clear small (click)="deleteNews(news)">\n\n              delete\n\n  \n\n            </button>\n\n       \n\n\n\n\n\n       \n\n      </p>\n\n\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-fab bottom right>\n\n    <button ion-fab mini (click)="addNews()">\n\n      <ion-icon name="add"></ion-icon>\n\n    </button>\n\n  </ion-fab>\n\n</ion-content>'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\news\news.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */], __WEBPACK_IMPORTED_MODULE_5__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_6__providers_teams_teams__["a" /* TeamService */], __WEBPACK_IMPORTED_MODULE_7__providers_other_other__["a" /* OtherService */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_3__providers_news_news__["a" /* NewsService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_admob_free__["a" /* AdMobFree */]])
+], NewsPage);
+
+//# sourceMappingURL=news.js.map
+
+/***/ }),
+
+/***/ 430:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(426);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(444);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(431);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(449);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -8648,125 +9630,133 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 444:
+/***/ 449:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_admob_free__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_admob_free__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_auth_auth__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_matches_matches__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_stats_stats__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_teams_teams__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_teams_teams__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_other_other__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__providers_batting_batting__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_component__ = __webpack_require__(539);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__providers_batting_batting__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_component__ = __webpack_require__(547);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_home_home__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_classifieds_classifieds__ = __webpack_require__(424);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_list_list__ = __webpack_require__(419);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__providers_bowling_bowling__ = __webpack_require__(359);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_status_bar__ = __webpack_require__(417);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_splash_screen__ = __webpack_require__(418);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_android_permissions__ = __webpack_require__(421);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_welcome_welcome__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_welcome_welcome_module__ = __webpack_require__(219);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_signup_signup__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_signup_signup_module__ = __webpack_require__(218);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_login_login__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_login_login_module__ = __webpack_require__(217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_my_profile_my_profile__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_my_profile_my_profile_module__ = __webpack_require__(220);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_my_account_my_account__ = __webpack_require__(155);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_my_account_my_account_module__ = __webpack_require__(540);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_previous_matches_previous_matches__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_previous_matches_previous_matches_module__ = __webpack_require__(354);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_my_teams_my_teams__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_my_teams_my_teams_module__ = __webpack_require__(541);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__providers_players_players__ = __webpack_require__(221);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__providers_finance_finance__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_previous_match_details_previous_match_details__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__pages_previous_match_details_previous_match_details_module__ = __webpack_require__(353);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__pages_match_team_match_team__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__pages_match_team_match_team_module__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__pages_finance_finance__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__pages_forgot_forgot__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__pages_forgot_forgot_module__ = __webpack_require__(214);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__pages_finance_finance_module__ = __webpack_require__(542);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__pages_reset_reset__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_reset_reset_module__ = __webpack_require__(363);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__pages_logout_logout__ = __webpack_require__(120);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__pages_logout_logout_module__ = __webpack_require__(364);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__ionic_native_push__ = __webpack_require__(422);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__pages_create_team_create_team__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__pages_create_team_create_team_module__ = __webpack_require__(362);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__pages_team_players_team_players__ = __webpack_require__(157);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__pages_team_players_team_players_module__ = __webpack_require__(543);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__angular_forms__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__pages_create_player_create_player__ = __webpack_require__(121);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__pages_create_player_create_player_module__ = __webpack_require__(365);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__pages_create_match_create_match__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__pages_create_match_create_match_module__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__pages_create_ad_create_ad__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__pages_create_ad_create_ad_module__ = __webpack_require__(375);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__pages_team_matches_team_matches__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__pages_team_matches_team_matches_module__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__pages_match_availability_match_availability__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__pages_match_availability_match_availability_module__ = __webpack_require__(356);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__pages_tournaments_tournaments__ = __webpack_require__(158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__pages_locations_locations__ = __webpack_require__(159);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_65__pages_tournaments_tournaments_module__ = __webpack_require__(544);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_66__pages_locations_locations_module__ = __webpack_require__(545);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__pages_create_location_create_location__ = __webpack_require__(123);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_68__pages_create_location_create_location_module__ = __webpack_require__(367);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__pages_create_tournament_create_tournament__ = __webpack_require__(122);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__pages_create_tournament_create_tournament_module__ = __webpack_require__(366);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__pages_modeChange_modeChange__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__pages_modeChange_modeChange_module__ = __webpack_require__(368);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__pages_add_match_team_add_match_team__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74__pages_add_match_team_add_match_team_module__ = __webpack_require__(355);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_75__pages_batting_batting__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_76__pages_batting_batting_module__ = __webpack_require__(357);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77__pages_bowling_bowling__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_78__pages_bowling_bowling_module__ = __webpack_require__(358);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_79__pages_previous_match_details_edit_previous_match_details_edit__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_80__pages_previous_match_details_edit_previous_match_details_edit_module__ = __webpack_require__(360);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_81__providers_images_images__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_82__providers_practice_practice__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_83__ionic_native_camera__ = __webpack_require__(420);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_84__ionic_native_file_transfer__ = __webpack_require__(352);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_85__pages_upload_modal_upload_modal__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_86__pages_upload_modal_upload_modal_module__ = __webpack_require__(351);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_87__pages_team_expense_team_expense__ = __webpack_require__(160);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_88__pages_team_expense_team_expense_module__ = __webpack_require__(546);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_89__pages_add_player_expense_add_player_expense__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_90__pages_add_player_expense_add_player_expense_module__ = __webpack_require__(370);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_91__pages_add_team_expense_add_team_expense__ = __webpack_require__(125);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_92__pages_add_team_expense_add_team_expense_module__ = __webpack_require__(369);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_93__pipes_pipes_module__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_94__pages_view_player_expenses_view_player_expenses__ = __webpack_require__(127);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_95__pages_view_player_expenses_view_player_expenses_module__ = __webpack_require__(371);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_96__pages_create_practice_create_practice__ = __webpack_require__(128);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_97__pages_practice_practice__ = __webpack_require__(423);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_98__pages_create_practice_create_practice_module__ = __webpack_require__(372);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_99__pages_team_practice_team_practice__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_100__pages_team_practice_team_practice_module__ = __webpack_require__(374);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_101__pages_practice_availability_practice_availability__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_102__pages_practice_availability_practice_availability_module__ = __webpack_require__(373);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_103__providers_classified_classified__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_104__pages_classified_response_classified_response__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_105__pages_classified_response_classified_response_module__ = __webpack_require__(376);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_106__pages_classified_response_create_classified_response_create__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_107__pages_classified_response_create_classified_response_create_module__ = __webpack_require__(377);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_classifieds_classifieds__ = __webpack_require__(428);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_news_news__ = __webpack_require__(429);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_list_list__ = __webpack_require__(424);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__providers_bowling_bowling__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_status_bar__ = __webpack_require__(422);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_splash_screen__ = __webpack_require__(423);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_android_permissions__ = __webpack_require__(425);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_welcome_welcome__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_welcome_welcome_module__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_signup_signup__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_signup_signup_module__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_login_login__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_login_login_module__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_my_profile_my_profile__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_my_profile_my_profile_module__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_my_account_my_account__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_my_account_my_account_module__ = __webpack_require__(548);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_previous_matches_previous_matches__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_previous_matches_previous_matches_module__ = __webpack_require__(358);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_my_teams_my_teams__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_my_teams_my_teams_module__ = __webpack_require__(549);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__providers_players_players__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__providers_finance_finance__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__pages_previous_match_details_previous_match_details__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__pages_previous_match_details_previous_match_details_module__ = __webpack_require__(357);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__pages_match_team_match_team__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__pages_match_team_match_team_module__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__pages_finance_finance__ = __webpack_require__(160);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__pages_forgot_forgot__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__pages_forgot_forgot_module__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__pages_finance_finance_module__ = __webpack_require__(550);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_reset_reset__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__pages_reset_reset_module__ = __webpack_require__(367);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__pages_logout_logout__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__pages_logout_logout_module__ = __webpack_require__(368);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__ionic_native_push__ = __webpack_require__(426);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__pages_create_team_create_team__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__pages_create_team_create_team_module__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__pages_team_players_team_players__ = __webpack_require__(161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__pages_team_players_team_players_module__ = __webpack_require__(551);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__angular_forms__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__pages_create_player_create_player__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__pages_create_player_create_player_module__ = __webpack_require__(369);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__pages_create_match_create_match__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__pages_create_match_create_match_module__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__pages_create_ad_create_ad__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__pages_create_ad_create_ad_module__ = __webpack_require__(379);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__pages_create_news_create_news__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__pages_create_news_create_news_module__ = __webpack_require__(382);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__pages_team_matches_team_matches__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__pages_team_matches_team_matches_module__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__pages_match_availability_match_availability__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_65__pages_match_availability_match_availability_module__ = __webpack_require__(360);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_66__pages_tournaments_tournaments__ = __webpack_require__(162);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__pages_locations_locations__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_68__pages_tournaments_tournaments_module__ = __webpack_require__(552);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__pages_locations_locations_module__ = __webpack_require__(553);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__pages_create_location_create_location__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__pages_create_location_create_location_module__ = __webpack_require__(371);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__pages_create_tournament_create_tournament__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__pages_create_tournament_create_tournament_module__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74__pages_modeChange_modeChange__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_75__pages_modeChange_modeChange_module__ = __webpack_require__(372);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_76__pages_add_match_team_add_match_team__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77__pages_add_match_team_add_match_team_module__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_78__pages_batting_batting__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_79__pages_batting_batting_module__ = __webpack_require__(361);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_80__pages_bowling_bowling__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_81__pages_bowling_bowling_module__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_82__pages_previous_match_details_edit_previous_match_details_edit__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_83__pages_previous_match_details_edit_previous_match_details_edit_module__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_84__providers_images_images__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_85__providers_practice_practice__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_86__ionic_native_camera__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_87__ionic_native_file_transfer__ = __webpack_require__(356);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_88__pages_upload_modal_upload_modal__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_89__pages_upload_modal_upload_modal_module__ = __webpack_require__(355);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_90__pages_team_expense_team_expense__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_91__pages_team_expense_team_expense_module__ = __webpack_require__(554);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_92__pages_add_player_expense_add_player_expense__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_93__pages_add_player_expense_add_player_expense_module__ = __webpack_require__(374);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_94__pages_add_team_expense_add_team_expense__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_95__pages_add_team_expense_add_team_expense_module__ = __webpack_require__(373);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_96__pipes_pipes_module__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_97__pages_view_player_expenses_view_player_expenses__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_98__pages_view_player_expenses_view_player_expenses_module__ = __webpack_require__(375);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_99__pages_create_practice_create_practice__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_100__pages_practice_practice__ = __webpack_require__(427);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_101__pages_create_practice_create_practice_module__ = __webpack_require__(376);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_102__pages_team_practice_team_practice__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_103__pages_team_practice_team_practice_module__ = __webpack_require__(378);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_104__pages_practice_availability_practice_availability__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_105__pages_practice_availability_practice_availability_module__ = __webpack_require__(377);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_106__providers_classified_classified__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_107__providers_news_news__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_108__pages_classified_response_classified_response__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_109__pages_classified_response_classified_response_module__ = __webpack_require__(380);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_110__pages_classified_response_create_classified_response_create__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_111__pages_classified_response_create_classified_response_create_module__ = __webpack_require__(381);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
+
 
 
 
@@ -8885,11 +9875,11 @@ AppModule = __decorate([
         declarations: [
             __WEBPACK_IMPORTED_MODULE_11__app_component__["a" /* MyApp */],
             __WEBPACK_IMPORTED_MODULE_12__pages_home_home__["a" /* HomePage */],
-            __WEBPACK_IMPORTED_MODULE_14__pages_list_list__["a" /* ListPage */], __WEBPACK_IMPORTED_MODULE_13__pages_classifieds_classifieds__["a" /* ClassifiedPage */],
-            __WEBPACK_IMPORTED_MODULE_97__pages_practice_practice__["a" /* PracticePage */]
+            __WEBPACK_IMPORTED_MODULE_15__pages_list_list__["a" /* ListPage */], __WEBPACK_IMPORTED_MODULE_13__pages_classifieds_classifieds__["a" /* ClassifiedPage */],
+            __WEBPACK_IMPORTED_MODULE_100__pages_practice_practice__["a" /* PracticePage */], __WEBPACK_IMPORTED_MODULE_14__pages_news_news__["a" /* NewsPage */], __WEBPACK_IMPORTED_MODULE_14__pages_news_news__["a" /* NewsPage */]
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */], __WEBPACK_IMPORTED_MODULE_52__angular_forms__["b" /* FormsModule */], __WEBPACK_IMPORTED_MODULE_4__angular_http__["c" /* HttpModule */], __WEBPACK_IMPORTED_MODULE_93__pipes_pipes_module__["a" /* PipesModule */],
+            __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */], __WEBPACK_IMPORTED_MODULE_53__angular_forms__["b" /* FormsModule */], __WEBPACK_IMPORTED_MODULE_4__angular_http__["c" /* HttpModule */], __WEBPACK_IMPORTED_MODULE_96__pipes_pipes_module__["a" /* PipesModule */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_11__app_component__["a" /* MyApp */], {}, {
                 links: [
                     { loadChildren: '../pages/match-team/match-team.module#MatchTeamPageModule', name: 'MatchTeamPage', segment: 'match-team', priority: 'low', defaultHistory: [] },
@@ -8923,56 +9913,57 @@ AppModule = __decorate([
                     { loadChildren: '../pages/team-practice/team-practice.module#TeamPracticePageModule', name: 'TeamPracticePage', segment: 'team-practice', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/create-ad/create-ad.module#CreateAdPageModule', name: 'CreateAdPage', segment: 'create-ad', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/classified-response/classified-response.module#ClassifiedResponsePageModule', name: 'ClassifiedResponsePage', segment: 'classified-response', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/classified-response-create/classified-response-create.module#ClassifiedResponseCreatePageModule', name: 'ClassifiedResponseCreatePage', segment: 'classified-response-create', priority: 'low', defaultHistory: [] }
+                    { loadChildren: '../pages/classified-response-create/classified-response-create.module#ClassifiedResponseCreatePageModule', name: 'ClassifiedResponseCreatePage', segment: 'classified-response-create', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/create-news/create-news.module#CreateNewsPageModule', name: 'CreateNewsPage', segment: 'create-news', priority: 'low', defaultHistory: [] }
                 ]
             }),
-            __WEBPACK_IMPORTED_MODULE_42__pages_finance_finance_module__["a" /* FinancePageModule */], __WEBPACK_IMPORTED_MODULE_41__pages_forgot_forgot_module__["ForgotPageModule"], __WEBPACK_IMPORTED_MODULE_24__pages_login_login_module__["LoginPageModule"], __WEBPACK_IMPORTED_MODULE_22__pages_signup_signup_module__["SignupPageModule"],
-            __WEBPACK_IMPORTED_MODULE_26__pages_my_profile_my_profile_module__["MyProfilePageModule"],
-            __WEBPACK_IMPORTED_MODULE_28__pages_my_account_my_account_module__["a" /* MyAccountPageModule */],
-            __WEBPACK_IMPORTED_MODULE_30__pages_previous_matches_previous_matches_module__["PreviousMatchesPageModule"],
-            __WEBPACK_IMPORTED_MODULE_32__pages_my_teams_my_teams_module__["a" /* MyTeamsPageModule */],
-            __WEBPACK_IMPORTED_MODULE_36__pages_previous_match_details_previous_match_details_module__["PreviousMatchDetailsPageModule"],
-            __WEBPACK_IMPORTED_MODULE_38__pages_match_team_match_team_module__["MatchTeamPageModule"], __WEBPACK_IMPORTED_MODULE_58__pages_create_ad_create_ad_module__["CreateAdPageModule"],
-            __WEBPACK_IMPORTED_MODULE_44__pages_reset_reset_module__["ResetPageModule"], __WEBPACK_IMPORTED_MODULE_100__pages_team_practice_team_practice_module__["TeamPracticePageModule"],
-            __WEBPACK_IMPORTED_MODULE_46__pages_logout_logout_module__["LogoutPageModule"], __WEBPACK_IMPORTED_MODULE_105__pages_classified_response_classified_response_module__["ClassifiedResponsePageModule"],
-            __WEBPACK_IMPORTED_MODULE_20__pages_welcome_welcome_module__["WelcomePageModule"], __WEBPACK_IMPORTED_MODULE_90__pages_add_player_expense_add_player_expense_module__["AddPlayerExpensePageModule"],
-            __WEBPACK_IMPORTED_MODULE_49__pages_create_team_create_team_module__["CreateTeamModule"], __WEBPACK_IMPORTED_MODULE_102__pages_practice_availability_practice_availability_module__["PracticeAvailabilityPageModule"],
-            __WEBPACK_IMPORTED_MODULE_51__pages_team_players_team_players_module__["a" /* TeamPlayersPageModule */], __WEBPACK_IMPORTED_MODULE_98__pages_create_practice_create_practice_module__["CreatePracticeModule"],
-            __WEBPACK_IMPORTED_MODULE_54__pages_create_player_create_player_module__["CreatePlayerModule"],
-            __WEBPACK_IMPORTED_MODULE_60__pages_team_matches_team_matches_module__["TeamMatchesPageModule"], __WEBPACK_IMPORTED_MODULE_95__pages_view_player_expenses_view_player_expenses_module__["ViewPlayerExpensePageModule"],
-            __WEBPACK_IMPORTED_MODULE_56__pages_create_match_create_match_module__["CreateMatchModule"], __WEBPACK_IMPORTED_MODULE_107__pages_classified_response_create_classified_response_create_module__["ClassifiedResponseCreatePageModule"],
-            __WEBPACK_IMPORTED_MODULE_62__pages_match_availability_match_availability_module__["MatchAvailabilityPageModule"], __WEBPACK_IMPORTED_MODULE_86__pages_upload_modal_upload_modal_module__["UploadModalPageModule"],
-            __WEBPACK_IMPORTED_MODULE_65__pages_tournaments_tournaments_module__["a" /* TournamentsPageModule */], __WEBPACK_IMPORTED_MODULE_78__pages_bowling_bowling_module__["BowlingPageModule"], __WEBPACK_IMPORTED_MODULE_88__pages_team_expense_team_expense_module__["a" /* TeamExpensePageModule */], __WEBPACK_IMPORTED_MODULE_92__pages_add_team_expense_add_team_expense_module__["AddTeamExpensePageModule"],
-            __WEBPACK_IMPORTED_MODULE_66__pages_locations_locations_module__["a" /* LocationsPageModule */], __WEBPACK_IMPORTED_MODULE_68__pages_create_location_create_location_module__["CreateLocationModule"], __WEBPACK_IMPORTED_MODULE_70__pages_create_tournament_create_tournament_module__["CreateTournamentModule"], __WEBPACK_IMPORTED_MODULE_72__pages_modeChange_modeChange_module__["ModeChangeModule"], __WEBPACK_IMPORTED_MODULE_74__pages_add_match_team_add_match_team_module__["AddMatchTeamPageModule"], __WEBPACK_IMPORTED_MODULE_80__pages_previous_match_details_edit_previous_match_details_edit_module__["PreviousMatchDetailsEditPageModule"], __WEBPACK_IMPORTED_MODULE_76__pages_batting_batting_module__["BattingPageModule"]
+            __WEBPACK_IMPORTED_MODULE_43__pages_finance_finance_module__["a" /* FinancePageModule */], __WEBPACK_IMPORTED_MODULE_42__pages_forgot_forgot_module__["ForgotPageModule"], __WEBPACK_IMPORTED_MODULE_25__pages_login_login_module__["LoginPageModule"], __WEBPACK_IMPORTED_MODULE_23__pages_signup_signup_module__["SignupPageModule"],
+            __WEBPACK_IMPORTED_MODULE_27__pages_my_profile_my_profile_module__["MyProfilePageModule"],
+            __WEBPACK_IMPORTED_MODULE_29__pages_my_account_my_account_module__["a" /* MyAccountPageModule */],
+            __WEBPACK_IMPORTED_MODULE_31__pages_previous_matches_previous_matches_module__["PreviousMatchesPageModule"],
+            __WEBPACK_IMPORTED_MODULE_33__pages_my_teams_my_teams_module__["a" /* MyTeamsPageModule */],
+            __WEBPACK_IMPORTED_MODULE_37__pages_previous_match_details_previous_match_details_module__["PreviousMatchDetailsPageModule"],
+            __WEBPACK_IMPORTED_MODULE_39__pages_match_team_match_team_module__["MatchTeamPageModule"], __WEBPACK_IMPORTED_MODULE_59__pages_create_ad_create_ad_module__["CreateAdPageModule"],
+            __WEBPACK_IMPORTED_MODULE_45__pages_reset_reset_module__["ResetPageModule"], __WEBPACK_IMPORTED_MODULE_103__pages_team_practice_team_practice_module__["TeamPracticePageModule"], __WEBPACK_IMPORTED_MODULE_61__pages_create_news_create_news_module__["CreateNewsPageModule"],
+            __WEBPACK_IMPORTED_MODULE_47__pages_logout_logout_module__["LogoutPageModule"], __WEBPACK_IMPORTED_MODULE_109__pages_classified_response_classified_response_module__["ClassifiedResponsePageModule"],
+            __WEBPACK_IMPORTED_MODULE_21__pages_welcome_welcome_module__["WelcomePageModule"], __WEBPACK_IMPORTED_MODULE_93__pages_add_player_expense_add_player_expense_module__["AddPlayerExpensePageModule"],
+            __WEBPACK_IMPORTED_MODULE_50__pages_create_team_create_team_module__["CreateTeamModule"], __WEBPACK_IMPORTED_MODULE_105__pages_practice_availability_practice_availability_module__["PracticeAvailabilityPageModule"],
+            __WEBPACK_IMPORTED_MODULE_52__pages_team_players_team_players_module__["a" /* TeamPlayersPageModule */], __WEBPACK_IMPORTED_MODULE_101__pages_create_practice_create_practice_module__["CreatePracticeModule"],
+            __WEBPACK_IMPORTED_MODULE_55__pages_create_player_create_player_module__["CreatePlayerModule"],
+            __WEBPACK_IMPORTED_MODULE_63__pages_team_matches_team_matches_module__["TeamMatchesPageModule"], __WEBPACK_IMPORTED_MODULE_98__pages_view_player_expenses_view_player_expenses_module__["ViewPlayerExpensePageModule"],
+            __WEBPACK_IMPORTED_MODULE_57__pages_create_match_create_match_module__["CreateMatchModule"], __WEBPACK_IMPORTED_MODULE_111__pages_classified_response_create_classified_response_create_module__["ClassifiedResponseCreatePageModule"],
+            __WEBPACK_IMPORTED_MODULE_65__pages_match_availability_match_availability_module__["MatchAvailabilityPageModule"], __WEBPACK_IMPORTED_MODULE_89__pages_upload_modal_upload_modal_module__["UploadModalPageModule"],
+            __WEBPACK_IMPORTED_MODULE_68__pages_tournaments_tournaments_module__["a" /* TournamentsPageModule */], __WEBPACK_IMPORTED_MODULE_81__pages_bowling_bowling_module__["BowlingPageModule"], __WEBPACK_IMPORTED_MODULE_91__pages_team_expense_team_expense_module__["a" /* TeamExpensePageModule */], __WEBPACK_IMPORTED_MODULE_95__pages_add_team_expense_add_team_expense_module__["AddTeamExpensePageModule"],
+            __WEBPACK_IMPORTED_MODULE_69__pages_locations_locations_module__["a" /* LocationsPageModule */], __WEBPACK_IMPORTED_MODULE_71__pages_create_location_create_location_module__["CreateLocationModule"], __WEBPACK_IMPORTED_MODULE_73__pages_create_tournament_create_tournament_module__["CreateTournamentModule"], __WEBPACK_IMPORTED_MODULE_75__pages_modeChange_modeChange_module__["ModeChangeModule"], __WEBPACK_IMPORTED_MODULE_77__pages_add_match_team_add_match_team_module__["AddMatchTeamPageModule"], __WEBPACK_IMPORTED_MODULE_83__pages_previous_match_details_edit_previous_match_details_edit_module__["PreviousMatchDetailsEditPageModule"], __WEBPACK_IMPORTED_MODULE_79__pages_batting_batting_module__["BattingPageModule"]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicApp */]],
         entryComponents: [
             __WEBPACK_IMPORTED_MODULE_11__app_component__["a" /* MyApp */],
             __WEBPACK_IMPORTED_MODULE_12__pages_home_home__["a" /* HomePage */],
-            __WEBPACK_IMPORTED_MODULE_14__pages_list_list__["a" /* ListPage */], __WEBPACK_IMPORTED_MODULE_13__pages_classifieds_classifieds__["a" /* ClassifiedPage */],
-            __WEBPACK_IMPORTED_MODULE_19__pages_welcome_welcome__["a" /* WelcomePage */], __WEBPACK_IMPORTED_MODULE_94__pages_view_player_expenses_view_player_expenses__["a" /* ViewPlayerExpensePage */],
-            __WEBPACK_IMPORTED_MODULE_23__pages_login_login__["a" /* LoginPage */], __WEBPACK_IMPORTED_MODULE_104__pages_classified_response_classified_response__["a" /* ClassifiedResponsePage */],
-            __WEBPACK_IMPORTED_MODULE_21__pages_signup_signup__["a" /* SignupPage */], __WEBPACK_IMPORTED_MODULE_57__pages_create_ad_create_ad__["a" /* CreateAdPage */],
-            __WEBPACK_IMPORTED_MODULE_25__pages_my_profile_my_profile__["a" /* MyProfilePage */],
-            __WEBPACK_IMPORTED_MODULE_27__pages_my_account_my_account__["a" /* MyAccountPage */],
-            __WEBPACK_IMPORTED_MODULE_29__pages_previous_matches_previous_matches__["a" /* PreviousMatchesPage */], __WEBPACK_IMPORTED_MODULE_101__pages_practice_availability_practice_availability__["a" /* PracticeAvailabilityPage */],
-            __WEBPACK_IMPORTED_MODULE_31__pages_my_teams_my_teams__["a" /* MyTeamsPage */], __WEBPACK_IMPORTED_MODULE_89__pages_add_player_expense_add_player_expense__["a" /* AddPlayerExpensePage */],
-            __WEBPACK_IMPORTED_MODULE_35__pages_previous_match_details_previous_match_details__["a" /* PreviousMatchDetailsPage */],
-            __WEBPACK_IMPORTED_MODULE_37__pages_match_team_match_team__["a" /* MatchTeamPage */], __WEBPACK_IMPORTED_MODULE_96__pages_create_practice_create_practice__["a" /* CreatePracticePage */],
-            __WEBPACK_IMPORTED_MODULE_39__pages_finance_finance__["a" /* FinancePage */], __WEBPACK_IMPORTED_MODULE_99__pages_team_practice_team_practice__["a" /* TeamPracticePage */],
-            __WEBPACK_IMPORTED_MODULE_40__pages_forgot_forgot__["a" /* ForgotPage */], __WEBPACK_IMPORTED_MODULE_91__pages_add_team_expense_add_team_expense__["a" /* AddTeamExpensePage */],
-            __WEBPACK_IMPORTED_MODULE_43__pages_reset_reset__["a" /* ResetPage */], __WEBPACK_IMPORTED_MODULE_97__pages_practice_practice__["a" /* PracticePage */], __WEBPACK_IMPORTED_MODULE_106__pages_classified_response_create_classified_response_create__["a" /* ClassifiedResponseCreatePage */],
-            __WEBPACK_IMPORTED_MODULE_45__pages_logout_logout__["a" /* LogoutPage */], __WEBPACK_IMPORTED_MODULE_85__pages_upload_modal_upload_modal__["a" /* UploadModalPage */], __WEBPACK_IMPORTED_MODULE_87__pages_team_expense_team_expense__["a" /* TeamExpensePage */],
-            __WEBPACK_IMPORTED_MODULE_48__pages_create_team_create_team__["a" /* CreateTeamPage */], __WEBPACK_IMPORTED_MODULE_50__pages_team_players_team_players__["a" /* TeamPlayersPage */], __WEBPACK_IMPORTED_MODULE_53__pages_create_player_create_player__["a" /* CreatePlayerPage */], __WEBPACK_IMPORTED_MODULE_59__pages_team_matches_team_matches__["a" /* TeamMatchesPage */], __WEBPACK_IMPORTED_MODULE_55__pages_create_match_create_match__["a" /* CreateMatchPage */], __WEBPACK_IMPORTED_MODULE_61__pages_match_availability_match_availability__["a" /* MatchAvailabilityPage */], __WEBPACK_IMPORTED_MODULE_63__pages_tournaments_tournaments__["a" /* TournamentsPage */], __WEBPACK_IMPORTED_MODULE_64__pages_locations_locations__["a" /* LocationsPage */],
-            __WEBPACK_IMPORTED_MODULE_67__pages_create_location_create_location__["a" /* CreateLocationPage */], __WEBPACK_IMPORTED_MODULE_69__pages_create_tournament_create_tournament__["a" /* CreateTournamentPage */], __WEBPACK_IMPORTED_MODULE_71__pages_modeChange_modeChange__["a" /* ModeChangePage */], __WEBPACK_IMPORTED_MODULE_73__pages_add_match_team_add_match_team__["a" /* AddMatchTeamPage */], __WEBPACK_IMPORTED_MODULE_79__pages_previous_match_details_edit_previous_match_details_edit__["a" /* PreviousMatchDetailsEditPage */], __WEBPACK_IMPORTED_MODULE_75__pages_batting_batting__["a" /* BattingPage */], __WEBPACK_IMPORTED_MODULE_77__pages_bowling_bowling__["a" /* BowlingPage */]
+            __WEBPACK_IMPORTED_MODULE_15__pages_list_list__["a" /* ListPage */], __WEBPACK_IMPORTED_MODULE_13__pages_classifieds_classifieds__["a" /* ClassifiedPage */],
+            __WEBPACK_IMPORTED_MODULE_20__pages_welcome_welcome__["a" /* WelcomePage */], __WEBPACK_IMPORTED_MODULE_97__pages_view_player_expenses_view_player_expenses__["a" /* ViewPlayerExpensePage */],
+            __WEBPACK_IMPORTED_MODULE_24__pages_login_login__["a" /* LoginPage */], __WEBPACK_IMPORTED_MODULE_108__pages_classified_response_classified_response__["a" /* ClassifiedResponsePage */],
+            __WEBPACK_IMPORTED_MODULE_22__pages_signup_signup__["a" /* SignupPage */], __WEBPACK_IMPORTED_MODULE_58__pages_create_ad_create_ad__["a" /* CreateAdPage */],
+            __WEBPACK_IMPORTED_MODULE_26__pages_my_profile_my_profile__["a" /* MyProfilePage */],
+            __WEBPACK_IMPORTED_MODULE_28__pages_my_account_my_account__["a" /* MyAccountPage */],
+            __WEBPACK_IMPORTED_MODULE_30__pages_previous_matches_previous_matches__["a" /* PreviousMatchesPage */], __WEBPACK_IMPORTED_MODULE_104__pages_practice_availability_practice_availability__["a" /* PracticeAvailabilityPage */],
+            __WEBPACK_IMPORTED_MODULE_32__pages_my_teams_my_teams__["a" /* MyTeamsPage */], __WEBPACK_IMPORTED_MODULE_92__pages_add_player_expense_add_player_expense__["a" /* AddPlayerExpensePage */],
+            __WEBPACK_IMPORTED_MODULE_36__pages_previous_match_details_previous_match_details__["a" /* PreviousMatchDetailsPage */], __WEBPACK_IMPORTED_MODULE_14__pages_news_news__["a" /* NewsPage */],
+            __WEBPACK_IMPORTED_MODULE_38__pages_match_team_match_team__["a" /* MatchTeamPage */], __WEBPACK_IMPORTED_MODULE_99__pages_create_practice_create_practice__["a" /* CreatePracticePage */],
+            __WEBPACK_IMPORTED_MODULE_40__pages_finance_finance__["a" /* FinancePage */], __WEBPACK_IMPORTED_MODULE_102__pages_team_practice_team_practice__["a" /* TeamPracticePage */],
+            __WEBPACK_IMPORTED_MODULE_41__pages_forgot_forgot__["a" /* ForgotPage */], __WEBPACK_IMPORTED_MODULE_94__pages_add_team_expense_add_team_expense__["a" /* AddTeamExpensePage */],
+            __WEBPACK_IMPORTED_MODULE_44__pages_reset_reset__["a" /* ResetPage */], __WEBPACK_IMPORTED_MODULE_100__pages_practice_practice__["a" /* PracticePage */], __WEBPACK_IMPORTED_MODULE_110__pages_classified_response_create_classified_response_create__["a" /* ClassifiedResponseCreatePage */],
+            __WEBPACK_IMPORTED_MODULE_46__pages_logout_logout__["a" /* LogoutPage */], __WEBPACK_IMPORTED_MODULE_88__pages_upload_modal_upload_modal__["a" /* UploadModalPage */], __WEBPACK_IMPORTED_MODULE_90__pages_team_expense_team_expense__["a" /* TeamExpensePage */], __WEBPACK_IMPORTED_MODULE_60__pages_create_news_create_news__["a" /* CreateNewsPage */],
+            __WEBPACK_IMPORTED_MODULE_49__pages_create_team_create_team__["a" /* CreateTeamPage */], __WEBPACK_IMPORTED_MODULE_51__pages_team_players_team_players__["a" /* TeamPlayersPage */], __WEBPACK_IMPORTED_MODULE_54__pages_create_player_create_player__["a" /* CreatePlayerPage */], __WEBPACK_IMPORTED_MODULE_62__pages_team_matches_team_matches__["a" /* TeamMatchesPage */], __WEBPACK_IMPORTED_MODULE_56__pages_create_match_create_match__["a" /* CreateMatchPage */], __WEBPACK_IMPORTED_MODULE_64__pages_match_availability_match_availability__["a" /* MatchAvailabilityPage */], __WEBPACK_IMPORTED_MODULE_66__pages_tournaments_tournaments__["a" /* TournamentsPage */], __WEBPACK_IMPORTED_MODULE_67__pages_locations_locations__["a" /* LocationsPage */],
+            __WEBPACK_IMPORTED_MODULE_70__pages_create_location_create_location__["a" /* CreateLocationPage */], __WEBPACK_IMPORTED_MODULE_72__pages_create_tournament_create_tournament__["a" /* CreateTournamentPage */], __WEBPACK_IMPORTED_MODULE_74__pages_modeChange_modeChange__["a" /* ModeChangePage */], __WEBPACK_IMPORTED_MODULE_76__pages_add_match_team_add_match_team__["a" /* AddMatchTeamPage */], __WEBPACK_IMPORTED_MODULE_82__pages_previous_match_details_edit_previous_match_details_edit__["a" /* PreviousMatchDetailsEditPage */], __WEBPACK_IMPORTED_MODULE_78__pages_batting_batting__["a" /* BattingPage */], __WEBPACK_IMPORTED_MODULE_80__pages_bowling_bowling__["a" /* BowlingPage */]
         ],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_16__ionic_native_status_bar__["a" /* StatusBar */],
-            __WEBPACK_IMPORTED_MODULE_17__ionic_native_splash_screen__["a" /* SplashScreen */],
-            __WEBPACK_IMPORTED_MODULE_5__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_6__providers_matches_matches__["a" /* MatchService */], __WEBPACK_IMPORTED_MODULE_7__providers_stats_stats__["a" /* StatsService */], __WEBPACK_IMPORTED_MODULE_8__providers_teams_teams__["a" /* TeamService */], __WEBPACK_IMPORTED_MODULE_33__providers_players_players__["a" /* PlayersProvider */], __WEBPACK_IMPORTED_MODULE_34__providers_finance_finance__["a" /* FinanceProvider */],
+            __WEBPACK_IMPORTED_MODULE_17__ionic_native_status_bar__["a" /* StatusBar */],
+            __WEBPACK_IMPORTED_MODULE_18__ionic_native_splash_screen__["a" /* SplashScreen */],
+            __WEBPACK_IMPORTED_MODULE_5__providers_auth_auth__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_6__providers_matches_matches__["a" /* MatchService */], __WEBPACK_IMPORTED_MODULE_7__providers_stats_stats__["a" /* StatsService */], __WEBPACK_IMPORTED_MODULE_8__providers_teams_teams__["a" /* TeamService */], __WEBPACK_IMPORTED_MODULE_34__providers_players_players__["a" /* PlayersProvider */], __WEBPACK_IMPORTED_MODULE_35__providers_finance_finance__["a" /* FinanceProvider */],
             { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["v" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicErrorHandler */] },
-            __WEBPACK_IMPORTED_MODULE_33__providers_players_players__["a" /* PlayersProvider */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_admob_free__["a" /* AdMobFree */], __WEBPACK_IMPORTED_MODULE_18__ionic_native_android_permissions__["a" /* AndroidPermissions */], __WEBPACK_IMPORTED_MODULE_47__ionic_native_push__["a" /* Push */], __WEBPACK_IMPORTED_MODULE_9__providers_other_other__["a" /* OtherService */], __WEBPACK_IMPORTED_MODULE_10__providers_batting_batting__["a" /* BattingService */], __WEBPACK_IMPORTED_MODULE_15__providers_bowling_bowling__["a" /* BowlingService */],
-            __WEBPACK_IMPORTED_MODULE_81__providers_images_images__["a" /* ImagesProvider */], __WEBPACK_IMPORTED_MODULE_83__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_84__ionic_native_file_transfer__["a" /* FileTransfer */], __WEBPACK_IMPORTED_MODULE_82__providers_practice_practice__["a" /* PracticeService */], __WEBPACK_IMPORTED_MODULE_103__providers_classified_classified__["a" /* ClassifiedService */]
+            __WEBPACK_IMPORTED_MODULE_34__providers_players_players__["a" /* PlayersProvider */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_admob_free__["a" /* AdMobFree */], __WEBPACK_IMPORTED_MODULE_19__ionic_native_android_permissions__["a" /* AndroidPermissions */], __WEBPACK_IMPORTED_MODULE_48__ionic_native_push__["a" /* Push */], __WEBPACK_IMPORTED_MODULE_9__providers_other_other__["a" /* OtherService */], __WEBPACK_IMPORTED_MODULE_10__providers_batting_batting__["a" /* BattingService */], __WEBPACK_IMPORTED_MODULE_16__providers_bowling_bowling__["a" /* BowlingService */],
+            __WEBPACK_IMPORTED_MODULE_84__providers_images_images__["a" /* ImagesProvider */], __WEBPACK_IMPORTED_MODULE_86__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_87__ionic_native_file_transfer__["a" /* FileTransfer */], __WEBPACK_IMPORTED_MODULE_85__providers_practice_practice__["a" /* PracticeService */], __WEBPACK_IMPORTED_MODULE_106__providers_classified_classified__["a" /* ClassifiedService */], __WEBPACK_IMPORTED_MODULE_107__providers_news_news__["a" /* NewsService */]
         ]
     })
 ], AppModule);
@@ -9115,10 +10106,10 @@ LoginPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_matches_matches__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__match_team_match_team__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_admob_free__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_forms__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_teams_teams__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__match_team_match_team__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_admob_free__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_forms__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_teams_teams__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_other_other__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -9358,7 +10349,7 @@ HomePage = __decorate([
 
 /***/ }),
 
-/***/ 48:
+/***/ 49:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9597,256 +10588,256 @@ FinanceProvider = __decorate([
 
 /***/ }),
 
-/***/ 502:
+/***/ 507:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 228,
-	"./af.js": 228,
-	"./ar": 229,
-	"./ar-dz": 230,
-	"./ar-dz.js": 230,
-	"./ar-kw": 231,
-	"./ar-kw.js": 231,
-	"./ar-ly": 232,
-	"./ar-ly.js": 232,
-	"./ar-ma": 233,
-	"./ar-ma.js": 233,
-	"./ar-sa": 234,
-	"./ar-sa.js": 234,
-	"./ar-tn": 235,
-	"./ar-tn.js": 235,
-	"./ar.js": 229,
-	"./az": 236,
-	"./az.js": 236,
-	"./be": 237,
-	"./be.js": 237,
-	"./bg": 238,
-	"./bg.js": 238,
-	"./bm": 239,
-	"./bm.js": 239,
-	"./bn": 240,
-	"./bn.js": 240,
-	"./bo": 241,
-	"./bo.js": 241,
-	"./br": 242,
-	"./br.js": 242,
-	"./bs": 243,
-	"./bs.js": 243,
-	"./ca": 244,
-	"./ca.js": 244,
-	"./cs": 245,
-	"./cs.js": 245,
-	"./cv": 246,
-	"./cv.js": 246,
-	"./cy": 247,
-	"./cy.js": 247,
-	"./da": 248,
-	"./da.js": 248,
-	"./de": 249,
-	"./de-at": 250,
-	"./de-at.js": 250,
-	"./de-ch": 251,
-	"./de-ch.js": 251,
-	"./de.js": 249,
-	"./dv": 252,
-	"./dv.js": 252,
-	"./el": 253,
-	"./el.js": 253,
-	"./en-au": 254,
-	"./en-au.js": 254,
-	"./en-ca": 255,
-	"./en-ca.js": 255,
-	"./en-gb": 256,
-	"./en-gb.js": 256,
-	"./en-ie": 257,
-	"./en-ie.js": 257,
-	"./en-il": 258,
-	"./en-il.js": 258,
-	"./en-nz": 259,
-	"./en-nz.js": 259,
-	"./eo": 260,
-	"./eo.js": 260,
-	"./es": 261,
-	"./es-do": 262,
-	"./es-do.js": 262,
-	"./es-us": 263,
-	"./es-us.js": 263,
-	"./es.js": 261,
-	"./et": 264,
-	"./et.js": 264,
-	"./eu": 265,
-	"./eu.js": 265,
-	"./fa": 266,
-	"./fa.js": 266,
-	"./fi": 267,
-	"./fi.js": 267,
-	"./fo": 268,
-	"./fo.js": 268,
-	"./fr": 269,
-	"./fr-ca": 270,
-	"./fr-ca.js": 270,
-	"./fr-ch": 271,
-	"./fr-ch.js": 271,
-	"./fr.js": 269,
-	"./fy": 272,
-	"./fy.js": 272,
-	"./gd": 273,
-	"./gd.js": 273,
-	"./gl": 274,
-	"./gl.js": 274,
-	"./gom-latn": 275,
-	"./gom-latn.js": 275,
-	"./gu": 276,
-	"./gu.js": 276,
-	"./he": 277,
-	"./he.js": 277,
-	"./hi": 278,
-	"./hi.js": 278,
-	"./hr": 279,
-	"./hr.js": 279,
-	"./hu": 280,
-	"./hu.js": 280,
-	"./hy-am": 281,
-	"./hy-am.js": 281,
-	"./id": 282,
-	"./id.js": 282,
-	"./is": 283,
-	"./is.js": 283,
-	"./it": 284,
-	"./it.js": 284,
-	"./ja": 285,
-	"./ja.js": 285,
-	"./jv": 286,
-	"./jv.js": 286,
-	"./ka": 287,
-	"./ka.js": 287,
-	"./kk": 288,
-	"./kk.js": 288,
-	"./km": 289,
-	"./km.js": 289,
-	"./kn": 290,
-	"./kn.js": 290,
-	"./ko": 291,
-	"./ko.js": 291,
-	"./ky": 292,
-	"./ky.js": 292,
-	"./lb": 293,
-	"./lb.js": 293,
-	"./lo": 294,
-	"./lo.js": 294,
-	"./lt": 295,
-	"./lt.js": 295,
-	"./lv": 296,
-	"./lv.js": 296,
-	"./me": 297,
-	"./me.js": 297,
-	"./mi": 298,
-	"./mi.js": 298,
-	"./mk": 299,
-	"./mk.js": 299,
-	"./ml": 300,
-	"./ml.js": 300,
-	"./mn": 301,
-	"./mn.js": 301,
-	"./mr": 302,
-	"./mr.js": 302,
-	"./ms": 303,
-	"./ms-my": 304,
-	"./ms-my.js": 304,
-	"./ms.js": 303,
-	"./mt": 305,
-	"./mt.js": 305,
-	"./my": 306,
-	"./my.js": 306,
-	"./nb": 307,
-	"./nb.js": 307,
-	"./ne": 308,
-	"./ne.js": 308,
-	"./nl": 309,
-	"./nl-be": 310,
-	"./nl-be.js": 310,
-	"./nl.js": 309,
-	"./nn": 311,
-	"./nn.js": 311,
-	"./pa-in": 312,
-	"./pa-in.js": 312,
-	"./pl": 313,
-	"./pl.js": 313,
-	"./pt": 314,
-	"./pt-br": 315,
-	"./pt-br.js": 315,
-	"./pt.js": 314,
-	"./ro": 316,
-	"./ro.js": 316,
-	"./ru": 317,
-	"./ru.js": 317,
-	"./sd": 318,
-	"./sd.js": 318,
-	"./se": 319,
-	"./se.js": 319,
-	"./si": 320,
-	"./si.js": 320,
-	"./sk": 321,
-	"./sk.js": 321,
-	"./sl": 322,
-	"./sl.js": 322,
-	"./sq": 323,
-	"./sq.js": 323,
-	"./sr": 324,
-	"./sr-cyrl": 325,
-	"./sr-cyrl.js": 325,
-	"./sr.js": 324,
-	"./ss": 326,
-	"./ss.js": 326,
-	"./sv": 327,
-	"./sv.js": 327,
-	"./sw": 328,
-	"./sw.js": 328,
-	"./ta": 329,
-	"./ta.js": 329,
-	"./te": 330,
-	"./te.js": 330,
-	"./tet": 331,
-	"./tet.js": 331,
-	"./tg": 332,
-	"./tg.js": 332,
-	"./th": 333,
-	"./th.js": 333,
-	"./tl-ph": 334,
-	"./tl-ph.js": 334,
-	"./tlh": 335,
-	"./tlh.js": 335,
-	"./tr": 336,
-	"./tr.js": 336,
-	"./tzl": 337,
-	"./tzl.js": 337,
-	"./tzm": 338,
-	"./tzm-latn": 339,
-	"./tzm-latn.js": 339,
-	"./tzm.js": 338,
-	"./ug-cn": 340,
-	"./ug-cn.js": 340,
-	"./uk": 341,
-	"./uk.js": 341,
-	"./ur": 342,
-	"./ur.js": 342,
-	"./uz": 343,
-	"./uz-latn": 344,
-	"./uz-latn.js": 344,
-	"./uz.js": 343,
-	"./vi": 345,
-	"./vi.js": 345,
-	"./x-pseudo": 346,
-	"./x-pseudo.js": 346,
-	"./yo": 347,
-	"./yo.js": 347,
-	"./zh-cn": 348,
-	"./zh-cn.js": 348,
-	"./zh-hk": 349,
-	"./zh-hk.js": 349,
-	"./zh-tw": 350,
-	"./zh-tw.js": 350
+	"./af": 232,
+	"./af.js": 232,
+	"./ar": 233,
+	"./ar-dz": 234,
+	"./ar-dz.js": 234,
+	"./ar-kw": 235,
+	"./ar-kw.js": 235,
+	"./ar-ly": 236,
+	"./ar-ly.js": 236,
+	"./ar-ma": 237,
+	"./ar-ma.js": 237,
+	"./ar-sa": 238,
+	"./ar-sa.js": 238,
+	"./ar-tn": 239,
+	"./ar-tn.js": 239,
+	"./ar.js": 233,
+	"./az": 240,
+	"./az.js": 240,
+	"./be": 241,
+	"./be.js": 241,
+	"./bg": 242,
+	"./bg.js": 242,
+	"./bm": 243,
+	"./bm.js": 243,
+	"./bn": 244,
+	"./bn.js": 244,
+	"./bo": 245,
+	"./bo.js": 245,
+	"./br": 246,
+	"./br.js": 246,
+	"./bs": 247,
+	"./bs.js": 247,
+	"./ca": 248,
+	"./ca.js": 248,
+	"./cs": 249,
+	"./cs.js": 249,
+	"./cv": 250,
+	"./cv.js": 250,
+	"./cy": 251,
+	"./cy.js": 251,
+	"./da": 252,
+	"./da.js": 252,
+	"./de": 253,
+	"./de-at": 254,
+	"./de-at.js": 254,
+	"./de-ch": 255,
+	"./de-ch.js": 255,
+	"./de.js": 253,
+	"./dv": 256,
+	"./dv.js": 256,
+	"./el": 257,
+	"./el.js": 257,
+	"./en-au": 258,
+	"./en-au.js": 258,
+	"./en-ca": 259,
+	"./en-ca.js": 259,
+	"./en-gb": 260,
+	"./en-gb.js": 260,
+	"./en-ie": 261,
+	"./en-ie.js": 261,
+	"./en-il": 262,
+	"./en-il.js": 262,
+	"./en-nz": 263,
+	"./en-nz.js": 263,
+	"./eo": 264,
+	"./eo.js": 264,
+	"./es": 265,
+	"./es-do": 266,
+	"./es-do.js": 266,
+	"./es-us": 267,
+	"./es-us.js": 267,
+	"./es.js": 265,
+	"./et": 268,
+	"./et.js": 268,
+	"./eu": 269,
+	"./eu.js": 269,
+	"./fa": 270,
+	"./fa.js": 270,
+	"./fi": 271,
+	"./fi.js": 271,
+	"./fo": 272,
+	"./fo.js": 272,
+	"./fr": 273,
+	"./fr-ca": 274,
+	"./fr-ca.js": 274,
+	"./fr-ch": 275,
+	"./fr-ch.js": 275,
+	"./fr.js": 273,
+	"./fy": 276,
+	"./fy.js": 276,
+	"./gd": 277,
+	"./gd.js": 277,
+	"./gl": 278,
+	"./gl.js": 278,
+	"./gom-latn": 279,
+	"./gom-latn.js": 279,
+	"./gu": 280,
+	"./gu.js": 280,
+	"./he": 281,
+	"./he.js": 281,
+	"./hi": 282,
+	"./hi.js": 282,
+	"./hr": 283,
+	"./hr.js": 283,
+	"./hu": 284,
+	"./hu.js": 284,
+	"./hy-am": 285,
+	"./hy-am.js": 285,
+	"./id": 286,
+	"./id.js": 286,
+	"./is": 287,
+	"./is.js": 287,
+	"./it": 288,
+	"./it.js": 288,
+	"./ja": 289,
+	"./ja.js": 289,
+	"./jv": 290,
+	"./jv.js": 290,
+	"./ka": 291,
+	"./ka.js": 291,
+	"./kk": 292,
+	"./kk.js": 292,
+	"./km": 293,
+	"./km.js": 293,
+	"./kn": 294,
+	"./kn.js": 294,
+	"./ko": 295,
+	"./ko.js": 295,
+	"./ky": 296,
+	"./ky.js": 296,
+	"./lb": 297,
+	"./lb.js": 297,
+	"./lo": 298,
+	"./lo.js": 298,
+	"./lt": 299,
+	"./lt.js": 299,
+	"./lv": 300,
+	"./lv.js": 300,
+	"./me": 301,
+	"./me.js": 301,
+	"./mi": 302,
+	"./mi.js": 302,
+	"./mk": 303,
+	"./mk.js": 303,
+	"./ml": 304,
+	"./ml.js": 304,
+	"./mn": 305,
+	"./mn.js": 305,
+	"./mr": 306,
+	"./mr.js": 306,
+	"./ms": 307,
+	"./ms-my": 308,
+	"./ms-my.js": 308,
+	"./ms.js": 307,
+	"./mt": 309,
+	"./mt.js": 309,
+	"./my": 310,
+	"./my.js": 310,
+	"./nb": 311,
+	"./nb.js": 311,
+	"./ne": 312,
+	"./ne.js": 312,
+	"./nl": 313,
+	"./nl-be": 314,
+	"./nl-be.js": 314,
+	"./nl.js": 313,
+	"./nn": 315,
+	"./nn.js": 315,
+	"./pa-in": 316,
+	"./pa-in.js": 316,
+	"./pl": 317,
+	"./pl.js": 317,
+	"./pt": 318,
+	"./pt-br": 319,
+	"./pt-br.js": 319,
+	"./pt.js": 318,
+	"./ro": 320,
+	"./ro.js": 320,
+	"./ru": 321,
+	"./ru.js": 321,
+	"./sd": 322,
+	"./sd.js": 322,
+	"./se": 323,
+	"./se.js": 323,
+	"./si": 324,
+	"./si.js": 324,
+	"./sk": 325,
+	"./sk.js": 325,
+	"./sl": 326,
+	"./sl.js": 326,
+	"./sq": 327,
+	"./sq.js": 327,
+	"./sr": 328,
+	"./sr-cyrl": 329,
+	"./sr-cyrl.js": 329,
+	"./sr.js": 328,
+	"./ss": 330,
+	"./ss.js": 330,
+	"./sv": 331,
+	"./sv.js": 331,
+	"./sw": 332,
+	"./sw.js": 332,
+	"./ta": 333,
+	"./ta.js": 333,
+	"./te": 334,
+	"./te.js": 334,
+	"./tet": 335,
+	"./tet.js": 335,
+	"./tg": 336,
+	"./tg.js": 336,
+	"./th": 337,
+	"./th.js": 337,
+	"./tl-ph": 338,
+	"./tl-ph.js": 338,
+	"./tlh": 339,
+	"./tlh.js": 339,
+	"./tr": 340,
+	"./tr.js": 340,
+	"./tzl": 341,
+	"./tzl.js": 341,
+	"./tzm": 342,
+	"./tzm-latn": 343,
+	"./tzm-latn.js": 343,
+	"./tzm.js": 342,
+	"./ug-cn": 344,
+	"./ug-cn.js": 344,
+	"./uk": 345,
+	"./uk.js": 345,
+	"./ur": 346,
+	"./ur.js": 346,
+	"./uz": 347,
+	"./uz-latn": 348,
+	"./uz-latn.js": 348,
+	"./uz.js": 347,
+	"./vi": 349,
+	"./vi.js": 349,
+	"./x-pseudo": 350,
+	"./x-pseudo.js": 350,
+	"./yo": 351,
+	"./yo.js": 351,
+	"./zh-cn": 352,
+	"./zh-cn.js": 352,
+	"./zh-hk": 353,
+	"./zh-hk.js": 353,
+	"./zh-tw": 354,
+	"./zh-tw.js": 354
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -9862,11 +10853,11 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 502;
+webpackContext.id = 507;
 
 /***/ }),
 
-/***/ 521:
+/***/ 526:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9914,37 +10905,39 @@ MomentjsPipe = __decorate([
 
 /***/ }),
 
-/***/ 539:
+/***/ 547:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(417);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(418);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(422);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(423);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(419);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(424);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_welcome_welcome__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_my_profile_my_profile__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_my_account_my_account__ = __webpack_require__(155);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_previous_matches_previous_matches__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_team_matches_team_matches__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_my_teams_my_teams__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_finance_finance__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_reset_reset__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_logout_logout__ = __webpack_require__(120);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_team_players_team_players__ = __webpack_require__(157);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_android_permissions__ = __webpack_require__(421);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_push__ = __webpack_require__(422);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_tournaments_tournaments__ = __webpack_require__(158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_locations_locations__ = __webpack_require__(159);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_modeChange_modeChange__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_team_expense_team_expense__ = __webpack_require__(160);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_view_player_expenses_view_player_expenses__ = __webpack_require__(127);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_practice_practice__ = __webpack_require__(423);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_team_practice_team_practice__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_classifieds_classifieds__ = __webpack_require__(424);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_my_profile_my_profile__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_my_account_my_account__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_previous_matches_previous_matches__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_team_matches_team_matches__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_my_teams_my_teams__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_finance_finance__ = __webpack_require__(160);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_reset_reset__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_logout_logout__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_team_players_team_players__ = __webpack_require__(161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_android_permissions__ = __webpack_require__(425);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_push__ = __webpack_require__(426);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_tournaments_tournaments__ = __webpack_require__(162);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_locations_locations__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_modeChange_modeChange__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_team_expense_team_expense__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_view_player_expenses_view_player_expenses__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_practice_practice__ = __webpack_require__(427);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_team_practice_team_practice__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_classifieds_classifieds__ = __webpack_require__(428);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_news_news__ = __webpack_require__(429);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_multi_image_upload_multi_image_upload__ = __webpack_require__(137);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9954,6 +10947,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
+
 
 
 
@@ -10016,6 +11011,7 @@ var MyApp = (function () {
             { title: 'Logout', component: __WEBPACK_IMPORTED_MODULE_14__pages_logout_logout__["a" /* LogoutPage */] },
         ];
         this.normalPages = [
+            { title: 'News', component: __WEBPACK_IMPORTED_MODULE_26__pages_news_news__["a" /* NewsPage */] },
             { title: 'Upcoming Matches', component: __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */] },
             { title: 'Completed Matches', component: __WEBPACK_IMPORTED_MODULE_9__pages_previous_matches_previous_matches__["a" /* PreviousMatchesPage */] },
             { title: 'Practice', component: __WEBPACK_IMPORTED_MODULE_23__pages_practice_practice__["a" /* PracticePage */] },
@@ -10108,6 +11104,10 @@ __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Nav */]),
     __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Nav */])
 ], MyApp.prototype, "nav", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_27__components_multi_image_upload_multi_image_upload__["a" /* MultiImageUpload */]),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_27__components_multi_image_upload_multi_image_upload__["a" /* MultiImageUpload */])
+], MyApp.prototype, "multiImageUpload", void 0);
 MyApp = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"D:\ionicapp\crickify\src\app\app.html"*/'<ion-menu [content]="content">\n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title>Menu</ion-title>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        {{p.title}}\n\n      </button>\n\n    </ion-list>\n\n  </ion-content>\n\n\n\n</ion-menu>\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"D:\ionicapp\crickify\src\app\app.html"*/
     }),
@@ -10118,14 +11118,14 @@ MyApp = __decorate([
 
 /***/ }),
 
-/***/ 540:
+/***/ 548:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyAccountPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__my_account__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__my_account__ = __webpack_require__(159);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10155,14 +11155,14 @@ MyAccountPageModule = __decorate([
 
 /***/ }),
 
-/***/ 541:
+/***/ 549:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyTeamsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__my_teams__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__my_teams__ = __webpack_require__(75);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10192,15 +11192,15 @@ MyTeamsPageModule = __decorate([
 
 /***/ }),
 
-/***/ 542:
+/***/ 550:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FinancePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__finance__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_pipes_module__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__finance__ = __webpack_require__(160);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_pipes_module__ = __webpack_require__(38);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10231,14 +11231,14 @@ FinancePageModule = __decorate([
 
 /***/ }),
 
-/***/ 543:
+/***/ 551:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TeamPlayersPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__team_players__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__team_players__ = __webpack_require__(161);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10268,14 +11268,14 @@ TeamPlayersPageModule = __decorate([
 
 /***/ }),
 
-/***/ 544:
+/***/ 552:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TournamentsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tournaments__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tournaments__ = __webpack_require__(162);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10305,14 +11305,14 @@ TournamentsPageModule = __decorate([
 
 /***/ }),
 
-/***/ 545:
+/***/ 553:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LocationsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__locations__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__locations__ = __webpack_require__(163);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10342,15 +11342,15 @@ LocationsPageModule = __decorate([
 
 /***/ }),
 
-/***/ 546:
+/***/ 554:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TeamExpensePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__team_expense__ = __webpack_require__(160);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_pipes_module__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__team_expense__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_pipes_module__ = __webpack_require__(38);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10381,7 +11381,7 @@ TeamExpensePageModule = __decorate([
 
 /***/ }),
 
-/***/ 57:
+/***/ 58:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10911,10 +11911,9 @@ var ClassifiedService = (function () {
 }());
 ClassifiedService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
 ], ClassifiedService);
 
-var _a;
 //# sourceMappingURL=classified.js.map
 
 /***/ }),
@@ -11057,7 +12056,7 @@ ForgotPage = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignupPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__home_home__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__login_login__ = __webpack_require__(46);
@@ -11210,17 +12209,180 @@ SignupPage = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UploadModalPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_images_images__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(2);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var UploadModalPage = (function () {
+    function UploadModalPage(navCtrl, alertController, loadingController, navParams, viewCtrl, imagesProvider) {
+        this.navCtrl = navCtrl;
+        this.alertController = alertController;
+        this.loadingController = loadingController;
+        this.navParams = navParams;
+        this.viewCtrl = viewCtrl;
+        this.imagesProvider = imagesProvider;
+        this.imageData = this.navParams.get('data');
+    }
+    UploadModalPage.prototype.saveImage = function () {
+        var _this = this;
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.imagesProvider.uploadImage(this.imageData).then(function (res) {
+            _this.alertDialog('Success', 'Upload Success');
+            loading.dismiss();
+            //this.viewCtrl.dismiss({reload: true});
+        }, function (err) {
+            _this.alertDialog('Error', err);
+            loading.dismiss();
+            //this.dismiss();
+        });
+    };
+    UploadModalPage.prototype.alertDialog = function (title, message) {
+        var alert = this.alertController.create({
+            title: title,
+            subTitle: message,
+            buttons: [
+                {
+                    text: 'OK',
+                    handler: function (data) {
+                        console.log('ok clicked');
+                    }
+                }
+            ]
+        });
+        alert.present();
+    };
+    UploadModalPage.prototype.dismiss = function () {
+        this.viewCtrl.dismiss();
+    };
+    return UploadModalPage;
+}());
+UploadModalPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
+        selector: 'page-upload-modal',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\upload-modal\upload-modal.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <ion-buttons start>\n      <button ion-button icon-only (click)="dismiss()"><ion-icon name="close"></ion-icon></button>\n    </ion-buttons>\n    <ion-title>Upload Image</ion-title>\n  </ion-navbar>\n</ion-header>\n \n<ion-content padding>\n  <img [src]="imageData" style="width: 100%">\n\n  <button ion-button full icon-left (click)="saveImage()">\n          <ion-icon name="checkmark"></ion-icon>\n          Save & Upload Image\n  </button>\n</ion-content>\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\upload-modal\upload-modal.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["q" /* ViewController */], __WEBPACK_IMPORTED_MODULE_0__providers_images_images__["a" /* ImagesProvider */]])
+], UploadModalPage);
+
+//# sourceMappingURL=upload-modal.js.map
+
+/***/ }),
+
+/***/ 73:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ImagesProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__ = __webpack_require__(356);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var ImagesProvider = (function () {
+    function ImagesProvider(http, transfer) {
+        this.http = http;
+        this.transfer = transfer;
+        this.apiURL = 'https://crickify.herokuapp.com/file';
+        this.serverUrl = "https://crickify.herokuapp.com/image/";
+    }
+    ImagesProvider.prototype.getImages = function () {
+        return this.http.get(this.apiURL + 'images').map(function (res) { return res.json(); });
+    };
+    ImagesProvider.prototype.deleteImage = function (img) {
+        return this.http.delete(this.apiURL + 'images/' + img._id);
+    };
+    ImagesProvider.prototype.getToken = function () {
+        return JSON.parse(localStorage.getItem('userData')).user.token;
+    };
+    ImagesProvider.prototype.uploadImage = function (img) {
+        // Destination URL
+        var url = this.apiURL + '/api/user/upload';
+        // File for Upload
+        var targetPath = img;
+        var headers = new Headers();
+        headers.set("token", this.getToken());
+        var options = {
+            fileKey: 'file',
+            chunkedMode: false,
+            mimeType: 'multipart/form-data',
+            headers: { 'token': this.getToken() }
+        };
+        var fileTransfer = this.transfer.create();
+        // Use the FileTransfer to upload the image
+        return fileTransfer.upload(targetPath, url, options);
+    };
+    ImagesProvider.prototype.uploadCloudinaryImage = function (img, type, id) {
+        // Destination URL
+        var url = this.serverUrl + type + '/image/' + id;
+        // File for Upload
+        var targetPath = img;
+        var headers = new Headers();
+        headers.set("token", this.getToken());
+        var options = {
+            fileKey: 'upload',
+            chunkedMode: false,
+            mimeType: 'multipart/form-data',
+            headers: { 'token': this.getToken() }
+        };
+        var fileTransfer = this.transfer.create();
+        // Use the FileTransfer to upload the image
+        return fileTransfer.upload(targetPath, url, options);
+    };
+    return ImagesProvider;
+}());
+ImagesProvider = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__["a" /* FileTransfer */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__["a" /* FileTransfer */]) === "function" && _b || Object])
+], ImagesProvider);
+
+var _a, _b;
+//# sourceMappingURL=images.js.map
+
+/***/ }),
+
+/***/ 74:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TeamMatchesPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_matches_matches__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__add_match_team_add_match_team__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__create_match_create_match__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__match_availability_match_availability__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__previous_match_details_edit_previous_match_details_edit__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_teams_teams__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__add_match_team_add_match_team__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__create_match_create_match__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__match_availability_match_availability__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__previous_match_details_edit_previous_match_details_edit__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_teams_teams__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__providers_other_other__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -11441,7 +12603,7 @@ TeamMatchesPage = __decorate([
 
 /***/ }),
 
-/***/ 73:
+/***/ 75:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11450,9 +12612,9 @@ TeamMatchesPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_stats_stats__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__team_matches_team_matches__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__create_team_create_team__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_teams_teams__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__team_matches_team_matches__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__create_team_create_team__ = __webpack_require__(119);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -11550,5 +12712,5 @@ MyTeamsPage = __decorate([
 
 /***/ })
 
-},[425]);
+},[430]);
 //# sourceMappingURL=main.js.map

@@ -37,12 +37,14 @@ import {CreatePracticeModule} from '../pages/create-practice/create-practice.mod
 import {CreatePracticePage} from '../pages/create-practice/create-practice';
 import { TeamPracticePage } from '../pages/team-practice/team-practice';
 import { ClassifiedPage } from '../pages/classifieds/classifieds';
+import { NewsPage } from '../pages/news/news';
+import { MultiImageUpload } from '../components/multi-image-upload/multi-image-upload';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-
+  @ViewChild(MultiImageUpload) multiImageUpload: MultiImageUpload;
   rootPage: any = WelcomePage;
 type:any;
   pages: Array<{title: string, component: any}>;
@@ -82,6 +84,7 @@ this.adminPages=[{ title: 'Matches', component: TeamMatchesPage},
     ];
 
 this.normalPages=[
+  {title: 'News', component:NewsPage},
       { title: 'Upcoming Matches', component: HomePage },
       {title: 'Completed Matches', component: PreviousMatchesPage},
       {title: 'Practice', component: PracticePage},

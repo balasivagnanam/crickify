@@ -4,6 +4,10 @@ import 'rxjs/add/operator/map';
 
 let apiUrl = 'https://crickify.herokuapp.com';
 
+let countryApi='https://restcountries.eu/rest/v2/all';
+
+
+let imageUrl = 'https://crickify.herokuapp.com/image/';
 //let isLoggedIn : boolean;
 let isAuthenticated : boolean;
 @Injectable()
@@ -35,7 +39,40 @@ export class OtherService {
     });
 
   }
-  
+
+  getImages(type,id) {
+    return new Promise((resolve, reject) => {
+       this.http.get(imageUrl + type+'/image/'+id,)
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("auth response locations", res.json()); 
+          if(res.json().statusCode == '200'){
+            console.log("locations", res.json());
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
+
+  }
+  getAllCountries() {
+    return new Promise((resolve, reject) => {
+
+      this.http.get(countryApi)
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("auth response locations", res.json()); 
+          if(res.json().statusCode == '200'){
+            console.log("locations", res.json());
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
+
+  }
    getAllDismisals() {
     return new Promise((resolve, reject) => {
       let headers = new Headers();
@@ -82,6 +119,27 @@ export class OtherService {
     headers.set('Content-Type', 'application/json');
 	 headers.set("token",this.getToken());
       this.http.post(apiUrl + '/location/location' , JSON.stringify(credentials), {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("response", res.json()); 
+          if(res.json().statusCode == '200'){
+            console.log("value", res.json());
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+
+        });
+    });
+
+  }
+
+  deleteImage(image) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+	 headers.set("token",this.getToken());
+      this.http.post(imageUrl + '/image/delete' , JSON.stringify(image), {headers: headers})
         .subscribe(res => {
           resolve(res.json());
           console.log("response", res.json()); 

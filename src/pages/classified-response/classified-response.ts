@@ -18,6 +18,7 @@ export class ClassifiedResponsePage {
 
   classified: any;
   responseData: any;
+  responseCreateData:any;
 status: any;
   avaailability: any = [];
   available: any = [];
@@ -69,5 +70,33 @@ status: any;
       // Error log
     });
   }
- 
+  acceptedSelected(event,value) {
+    
+    const loading = this.loadingController.create({
+      content: 'Please wait...'
+    });
+    loading.present();
+    this.classifiedService.addClassifiedResponse(value).then((result) => {
+      this.responseCreateData = result;
+      console.log(this.responseCreateData);
+      if (this.responseCreateData.statusCode == '200') {
+        loading.dismiss();
+        console.log("test 200");
+
+      
+      } else if (this.responseCreateData.statusCode == "404") {
+        loading.dismiss();
+        console.log("unauthorrised");
+      
+      } else {
+        loading.dismiss();
+        console.log("test others");
+       
+      }
+
+    }, (err) => {
+      console.log("error", err);
+      loading.dismiss();
+       });
+  }
 }

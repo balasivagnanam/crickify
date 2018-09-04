@@ -6,6 +6,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 @Injectable()
 export class ImagesProvider {
   apiURL = 'https://crickify.herokuapp.com/file';
+  public serverUrl = "https://crickify.herokuapp.com/image/";
  
   constructor(public http: Http, private transfer: FileTransfer) { }
  
@@ -42,4 +43,25 @@ export class ImagesProvider {
     return fileTransfer.upload(targetPath, url, options);
   }
  
+  uploadCloudinaryImage(img,type,id) {
+ 
+    // Destination URL
+    let url = this.serverUrl + type+'/image/'+id;
+ 
+    // File for Upload
+    var targetPath = img;
+     let headers = new Headers();
+     headers.set("token",this.getToken());
+    var options: FileUploadOptions = {
+      fileKey: 'upload',
+      chunkedMode: false,
+      mimeType: 'multipart/form-data',
+     headers: {'token':this.getToken()}
+    };
+ 
+    const fileTransfer: FileTransferObject = this.transfer.create();
+ 
+    // Use the FileTransfer to upload the image
+    return fileTransfer.upload(targetPath, url, options);
+  }
 }

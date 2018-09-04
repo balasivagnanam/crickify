@@ -45,7 +45,9 @@ export class CreateAdPage {
     this.classified = navParams.get('classified');
     if (this.classified != null) {
       this.createClassifiedForm.setValue(this.classified);
-      this.createClassifiedForm.controls['classifiedTime'].setValue(new Date(this.classified.classifiedTime).toISOString());
+      this.onChange(this.classified.type);
+      if(this.classified.classifiedTime!=null){
+      this.createClassifiedForm.controls['classifiedTime'].setValue(new Date(this.classified.classifiedTime).toISOString());}
     }
     const data = JSON.parse(localStorage.getItem('userData'));
     this.user = data.user;

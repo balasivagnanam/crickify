@@ -36,10 +36,21 @@
     <ion-card-content>
     	
 		   <ion-item>
-          {{stat?.player.comments}}
+          {{stat?.comments}}
       
 	 
     </ion-item>
+
+  <ion-item>
+      <ion-select [(ngModel)]="stat.accepted" (ionChange)="acceptedSelected($event, stat)">
+          <ion-option value=true>Accept</ion-option>
+        <ion-option value=false>No Response</ion-option>
+
+      </ion-select>
+	 
+    </ion-item>
+	
+      
  </ion-card-content>
   </ion-card>
               

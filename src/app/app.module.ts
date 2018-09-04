@@ -12,6 +12,7 @@ import {BattingService} from '../providers/batting/batting';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ClassifiedPage } from '../pages/classifieds/classifieds';
+import { NewsPage } from '../pages/news/news';
 import { ListPage } from '../pages/list/list';
 import {BowlingService} from '../providers/bowling/bowling';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -58,7 +59,8 @@ import {CreateMatchPage} from '../pages/create-match/create-match';
 import {CreateMatchModule} from '../pages/create-match/create-match.module';
 import {CreateAdPage} from '../pages/create-ad/create-ad';
 import {CreateAdPageModule} from '../pages/create-ad/create-ad.module';
-
+import {CreateNewsPage} from '../pages/create-news/create-news';
+import {CreateNewsPageModule} from '../pages/create-news/create-news.module';
 import {TeamMatchesPage} from '../pages/team-matches/team-matches';
 import {TeamMatchesPageModule} from '../pages/team-matches/team-matches.module';
 import {MatchAvailabilityPage} from '../pages/match-availability/match-availability';
@@ -104,17 +106,18 @@ import { TeamPracticePageModule } from '../pages/team-practice/team-practice.mod
 import {PracticeAvailabilityPage} from '../pages/practice-availability/practice-availability';
 import {PracticeAvailabilityPageModule} from '../pages/practice-availability/practice-availability.module';
 import { ClassifiedService } from '../providers/classified/classified';
-
+import { NewsService } from '../providers/news/news';
 import {ClassifiedResponsePage} from '../pages/classified-response/classified-response';
 import {ClassifiedResponsePageModule} from '../pages/classified-response/classified-response.module';
 import {ClassifiedResponseCreatePage} from '../pages/classified-response-create/classified-response-create';
 import {ClassifiedResponseCreatePageModule} from '../pages/classified-response-create/classified-response-create.module';
+import { MultiImageUpload } from '../components/multi-image-upload/multi-image-upload';
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,ClassifiedPage,
-    PracticePage
+    PracticePage,NewsPage,NewsPage
   ],
   imports: [
     BrowserModule, FormsModule, HttpModule,PipesModule,
@@ -126,7 +129,7 @@ import {ClassifiedResponseCreatePageModule} from '../pages/classified-response-c
     MyTeamsPageModule,
     PreviousMatchDetailsPageModule,
 	MatchTeamPageModule,CreateAdPageModule,
-	ResetPageModule,TeamPracticePageModule,
+	ResetPageModule,TeamPracticePageModule,CreateNewsPageModule,
 	LogoutPageModule,ClassifiedResponsePageModule,
 	WelcomePageModule,AddPlayerExpensePageModule,
 	CreateTeamModule,PracticeAvailabilityPageModule,
@@ -150,12 +153,12 @@ import {ClassifiedResponseCreatePageModule} from '../pages/classified-response-c
     MyAccountPage,
     PreviousMatchesPage,PracticeAvailabilityPage,
     MyTeamsPage,AddPlayerExpensePage,
-    PreviousMatchDetailsPage,
+    PreviousMatchDetailsPage,NewsPage,
 	MatchTeamPage,CreatePracticePage,
 	FinancePage,TeamPracticePage,
 	ForgotPage,AddTeamExpensePage,
 	ResetPage,PracticePage,ClassifiedResponseCreatePage,
-	LogoutPage,UploadModalPage,TeamExpensePage,
+	LogoutPage,UploadModalPage,TeamExpensePage,CreateNewsPage,
 	CreateTeamPage,TeamPlayersPage,CreatePlayerPage,TeamMatchesPage,CreateMatchPage,MatchAvailabilityPage,TournamentsPage,LocationsPage,
 	CreateLocationPage,CreateTournamentPage,ModeChangePage,AddMatchTeamPage,PreviousMatchDetailsEditPage,BattingPage,BowlingPage
   ],
@@ -165,7 +168,7 @@ import {ClassifiedResponseCreatePageModule} from '../pages/classified-response-c
     AuthService,MatchService,StatsService, TeamService,PlayersProvider,FinanceProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PlayersProvider,AdMobFree,AndroidPermissions,Push,OtherService,BattingService,BowlingService,
-    ImagesProvider,Camera,FileTransfer,PracticeService,ClassifiedService
+    ImagesProvider,Camera,FileTransfer,PracticeService,ClassifiedService,NewsService
   ]
 })
 export class AppModule {}

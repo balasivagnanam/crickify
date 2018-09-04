@@ -27608,6 +27608,83 @@ ion-navbar.toolbar {
   width: 40%;
 }
 
+multi-image-upload .images-wrapper {
+  font-size: 0;
+}
+
+multi-image-upload .images-wrapper .image-wrapper {
+  display: inline-block;
+  margin: 0;
+  width: 33.3333%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 1px;
+  position: relative;
+}
+
+multi-image-upload .images-wrapper .image-wrapper .remove-image {
+  z-index: 100;
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  padding: 5px 6px;
+  font-size: 20px;
+  text-shadow: white 0 0 1px;
+}
+
+multi-image-upload .images-wrapper .image-wrapper ion-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+multi-image-upload .images-wrapper .image-wrapper ion-spinner * {
+  stroke: white;
+}
+
+multi-image-upload .images-wrapper .image-wrapper .image {
+  position: relative;
+  background-size: cover;
+  background-position: center center;
+}
+
+multi-image-upload .images-wrapper .image-wrapper .image img {
+  width: 100%;
+}
+
+multi-image-upload .images-wrapper .image-wrapper .image img.uploading {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+multi-image-upload .images-wrapper .image-wrapper .image ion-icon {
+  font-size: 50px;
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  color: white;
+}
+
+multi-image-upload .images-wrapper .image-wrapper .image .progress-bar {
+  height: 6px;
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  overflow: hidden;
+}
+
+multi-image-upload .images-wrapper .image-wrapper .image .progress-bar .progress {
+  background: #FFD54A;
+  height: 100%;
+}
+
+multi-image-upload .images-wrapper .image-wrapper.add-image-btn .image {
+  background: #DDD;
+}
+
 page-list .scrollcard {
   width: 750px !important;
   display: inline-block;

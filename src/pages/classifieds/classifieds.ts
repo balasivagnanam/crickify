@@ -61,6 +61,42 @@ this.navCtrl.push(CreateAdPage,{classified: classified});
 
 }
 
+  deleteClassified(classified) {
+    const loading = this.loadingController.create({
+      content: 'Please wait...'
+    });
+    loading.present();
+    classified.active=false;
+    this.classifiedService.addClassified(classified).then((result) => {
+      this.responseData = result;
+      console.log(this.responseData);
+      if (this.responseData.statusCode == '200') {
+        loading.dismiss();
+        console.log("test 200");
+
+      this.ionViewDidLoad();
+      } else if (this.responseData.statusCode == "404") {
+        loading.dismiss();
+        console.log("unauthorrised");
+        
+      } else {
+        loading.dismiss();
+        console.log("test others");
+      
+      }
+
+    }, (err) => {
+      console.log("error", err);
+      loading.dismiss();
+     
+      // Error log
+    });
+  }
+
+  ionViewWillEnter(){
+
+    this.ionViewDidLoad();
+  }
 checkResponse(classified){
   this.navCtrl.push(ClassifiedResponsePage,{classified: classified});
   

@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-navbar [hideBackButton]="true" color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>News </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="appBackground">
+  <ion-card>
+    <ion-card-header>
+      Search News
+    </ion-card-header>
+    <ion-card-content>
+
+      <form [formGroup]="searchNewsForm">
+
+          <ion-item>
+              <ion-label>Type</ion-label>
+              <ion-select formControlName="type" >
+                <ion-option value="Local">Local</ion-option>
+                <ion-option value="International">International</ion-option>
+  
+              </ion-select>
+            </ion-item>
+        <ion-item>
+          <ion-label>Start Date</ion-label>
+          <ion-datetime formControlName="startDate" displayFormat="MMM DD, YYYY HH:mm"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>End Date</ion-label>
+          <ion-datetime formControlName="endDate" displayFormat="MMM DD, YYYY HH:mm"></ion-datetime>
+        </ion-item>
+        <button ion-button color="secondary" icon-left clear small (click)="search()">
+          Filter
+
+        </button>
+
+      </form>
+
+
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngFor="let news of newss">
+    <ion-card-header>
+      <ion-item>
+
+      
+          <ion-item> {{news.title}}</ion-item>
+       
+
+
+
+      </ion-item>
+    </ion-card-header>
+    <ion-card-content>
+        <p *ngIf= "news.imgUrl!= null && news.imgUrl.length>0" >
+          <ion-slides autoplay="5000" loop="true" speed="3000">
+              <ion-slide *ngFor="let slide of news.imgUrl">
+                <img src="{{slide.url}}" />
+              </ion-slide>
+            </ion-slides>
+        
+        </p>
+              
+        <ion-item> {{news.description}}</ion-item>
+         
+          <p *ngIf="news.publishedAt!= null">
+            <ion-item>{{news?.publishedAt | momentjs}}</ion-item>
+            </p>
+            
+      <p *ngIf="news.user?.id== userDetails.user.id">
+        
+          <button ion-button color="secondary" icon-left clear small (click)="editNews(news)">
+            Edit
+
+          </button>
+        
+        
+          <button ion-button color="secondary" icon-left clear small (click)="deleteNews(news)">
+              delete
+  
+            </button>
+       
+
+
+       
+      </p>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab bottom right>
+    <button ion-fab mini (click)="addNews()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>
