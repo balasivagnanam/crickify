@@ -13,6 +13,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ClassifiedPage } from '../pages/classifieds/classifieds';
 import { NewsPage } from '../pages/news/news';
+import { ViewNewsPage } from '../pages/viewnews/viewnews';
 import { ListPage } from '../pages/list/list';
 import {BowlingService} from '../providers/bowling/bowling';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -117,7 +118,7 @@ import { MultiImageUpload } from '../components/multi-image-upload/multi-image-u
     MyApp,
     HomePage,
     ListPage,ClassifiedPage,
-    PracticePage,NewsPage,NewsPage
+    PracticePage,NewsPage,NewsPage,ViewNewsPage
   ],
   imports: [
     BrowserModule, FormsModule, HttpModule,PipesModule,
@@ -155,7 +156,7 @@ import { MultiImageUpload } from '../components/multi-image-upload/multi-image-u
     MyTeamsPage,AddPlayerExpensePage,
     PreviousMatchDetailsPage,NewsPage,
 	MatchTeamPage,CreatePracticePage,
-	FinancePage,TeamPracticePage,
+	FinancePage,TeamPracticePage,ViewNewsPage,
 	ForgotPage,AddTeamExpensePage,
 	ResetPage,PracticePage,ClassifiedResponseCreatePage,
 	LogoutPage,UploadModalPage,TeamExpensePage,CreateNewsPage,

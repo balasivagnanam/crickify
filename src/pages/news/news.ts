@@ -10,6 +10,7 @@ import {TeamService} from '../../providers/teams/teams';
 
 import {OtherService} from '../../providers/other/other';
 import { CreateNewsPage } from '../create-news/create-news';
+import { ViewNewsPage } from '../viewnews/viewnews';
 
 @Component({
   selector: 'page-news',
@@ -59,7 +60,10 @@ editNews(news){
 this.navCtrl.push(CreateNewsPage,{news: news});
 
 }
-
+viewNews(news){
+  this.navCtrl.push(ViewNewsPage,{news: news});
+  
+  }
   deleteNews(news) {
     const loading = this.loadingController.create({
       content: 'Please wait...'

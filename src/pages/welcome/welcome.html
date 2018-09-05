@@ -8,154 +8,210 @@
 
 
 <ion-content padding class="login-background">
-    <ion-grid  >
-        <ion-row>
-          <ion-col col-3>
-            <img src="assets/img/icon.png" hieght="50"/>
-			 </ion-col >
-			 <ion-col col-6 center>
-		 <ion-label color="white" stacked class="my-label">
-        Crickify
-      </ion-label>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-3>
+        <img src="assets/img/icon.png" hieght="50" />
+      </ion-col>
+      <ion-col col-6 center>
+        <ion-label color="white" stacked class="my-label">
+          Crickify
+        </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col center text-center>
+        <button ion-button full color="success" (click)="signup()">Sign up</button>
+      </ion-col>
+
+
+      <ion-col center text-center>
+        <button ion-button full color="lightText" (click)="login()">Log in</button>
+      </ion-col>
+
+
+
+    </ion-row>
+  </ion-grid>
+  <ion-card *ngFor="let news of newss| slice:0:3;">
+    <ion-card-header>
+      <ion-item text-center text-wrap>
+
+
+        <h2>
+          <b>{{news.title}}</b>
+        </h2>
+
+        <p *ngIf="news.publishedAt!= null">
+          <ion-item>{{news?.publishedAt | momentjs}}</ion-item>
+        </p>
+
+
+      </ion-item>
+    </ion-card-header>
+    <div class="header-banner">
+      <p *ngIf="news.imgUrl!= null && news.imgUrl.length>0">
+        <ion-slides autoplay="5000" loop="true" speed="3000">
+          <ion-slide *ngFor="let slide of news.imgUrl">
+            <img src="{{slide.url}}" />
+          </ion-slide>
+        </ion-slides>
+
+      </p>
+      <p *ngIf="news.imgUrl== null || news.imgUrl.length==0">
+        <img src="assets/img/noimage.png" />
+      </p>
+
+    </div>
+    <ion-card-content>
+
+
+      <ion-item> {{news.article}}</ion-item>
+      <button ion-button color="secondary" icon-left clear small (click)="viewNews(news)">
+          View
+
+        </button>
+
+    </ion-card-content>
+  </ion-card>
+  <ion-label color="white" stacked class="my-label">
+    Batting Performances
+  </ion-label>
+
+
+
+  <ion-scroll scrollX="true" direction="x">
+    <ion-card class="scrollcard" color="primary" *ngFor="let batting of battings| slice:0:3;">
+
+      <ion-card-header>
+          <ion-item text-center text-wrap>
+        <b>{{batting.player?.name}} </b>
+</ion-item>
+      </ion-card-header>
+      <ion-card-content>
+
+        <p *ngIf="batting.player?.imgUrl!= null">
+          <img height="150" src="{{batting.player?.imgUrl}}" />
+        </p>
+
+        <p *ngIf="batting.player?.imgUrl == null">
+          <img height="150" src="assets/img/batsman.png" />
+        </p>
+
+        <ion-item text-center text-wrap>
+        <p>{{batting.run}}({{batting.ball}})</p>
+      
+        <p>{{batting.match.team.teamname}} vs {{batting.match.opponent}}
+        </p>
+      </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </ion-scroll>
+
+
+
+
+  <ion-label color="white" stacked class="my-label">
+    Bowling Performances
+  </ion-label>
+
+  <ion-scroll scrollX="true" direction="x">
+    <ion-card class="scrollcard" color="primary" *ngFor="let bowling of bowlings| slice:0:3;">
+
+      <ion-card-header>
+          <ion-item text-center text-wrap>
+        <b>{{bowling.player.name}} </b></ion-item>
+
+      </ion-card-header>
+      <p *ngIf="bowling.player.imgUrl!= null">
+        <img height="150" src="{{bowling.player.imgUrl}}" />
+      </p>
+
+      <p *ngIf="bowling.player.imgUrl == null">
+        <img height="150" src="assets/img/bowler.png" />
+      </p>
+
+      <ion-card-content>
+          <ion-item text-center text-wrap> <p>{{bowling.wickets}}/{{bowling.run}}</p>
+          <p>{{bowling.match.team.teamname}} vs {{bowling.match.opponent}}
+        </p></ion-item>
+
+      </ion-card-content>
+    </ion-card>
+  </ion-scroll>
+
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <ion-card color="primary">
+    <ion-card-header>
+
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-grid>
+        <ion-row color="primary" row-20 center text-center>
+          <ion-col>
+            <h2>About Crickify</h2>
           </ion-col>
         </ion-row>
-          <ion-row>
-          <ion-col center text-center>
-            <button ion-button full color="success" (click)="signup()">Sign up</button>
+
+        <ion-row row-60 center text-center>
+          <ion-col>
+            Manage your entire cricket landscape. From league schedules to player registrations, Player availability to result management,
+            all available under one convenient account.Finance Mangement for the players.Take the hassle out of your club
+            or league site. With integrated cricket data it will always be up to date and looking sharp.Announce your team
+            and get your best team through interface.
           </ion-col>
-        
-        
-          <ion-col center text-center>
-            <button ion-button full color="lightText" (click)="login()">Log in</button>
+          <br>
+          <br> </ion-row>
+        <ion-row row-20 center text-center>
+          <ion-col>
+            <h2>What are you waiting for?! Join us with Crickify today.</h2>
           </ion-col>
-        
-		 
-         
         </ion-row>
       </ion-grid>
-	   <ion-label color="white" stacked class="my-label">
-         Batting Performances
-      </ion-label>
-
-      
-
-          <ion-scroll scrollX="true" direction="x">
-            	<ion-card class="scrollcard"  color="primary" *ngFor="let batting of battings| slice:0:3;">
-     
-                  <ion-card-header>
-                    <b>{{batting.player?.name}} </b>
-                    
-                  </ion-card-header>
-                  <ion-card-content>
-                      
-                  <p *ngIf= "batting.player?.imgUrl!= null" ><img height="150" src="{{batting.player?.imgUrl}}"/></p>
-                  
-                  <p *ngIf="batting.player?.imgUrl == null" ><img height="150" src="assets/img/batsman.png" /></p>
-                
-                  
-                    <p>{{batting.run}}({{batting.ball}})</p>
-                   <p>{{batting.match.team.teamname}} vs
-                    {{batting.match.opponent}}</p>
-                  
-                  </ion-card-content>
-                </ion-card>
-            </ion-scroll>
-
-
-
-	  
-	 <ion-label color="white" stacked class="my-label">
-        Bowling Performances
-      </ion-label>
-
-      <ion-scroll  scrollX="true" direction="x">
-          <ion-card class="scrollcard" color="primary" *ngFor="let bowling of bowlings| slice:0:3;">
- 
-              <ion-card-header>
-                  <b>{{bowling.player.name}} </b>
-                  
-                </ion-card-header>
-                <p *ngIf= "bowling.player.imgUrl!= null" ><img height="150" src="{{bowling.player.imgUrl}}"/></p>
-               
-                <p *ngIf="bowling.player.imgUrl == null" ><img height="150" src="assets/img/bowler.png" /></p>
-              
-                <ion-card-content>
-                  <p>{{bowling.wickets}}/{{bowling.run}}</p>
-                 <p>{{bowling.match.team.teamname}} vs
-                  {{bowling.match.opponent}}</p>
-            
-                </ion-card-content>
-            </ion-card>
-        </ion-scroll>
-	   
-
-<br>
-<br><br>
-<br>
-
-<ion-card color="primary">
-    <ion-card-header>
-	
-	 </ion-card-header>
-	
-    <ion-card-content>
-    <ion-grid >
-        <ion-row color="primary" row-20 center text-center>
-         <ion-col>
-			<h2>About Crickify</h2>
-			</ion-col>
-          </ion-row>
-		  
-		  <ion-row row-60 center text-center>
-		  <ion-col>
-		  Manage your entire cricket landscape. From league schedules to player registrations, Player availability to result management, all available under one convenient account.Finance Mangement for the players.Take the hassle out of your club or league site. 
-		  With integrated cricket data it will always be up to date and looking sharp.Announce your team and get your best team through interface.
-		 </ion-col>
-<br>
-<br>		 </ion-row>
-		  <ion-row row-20 center text-center>
-		  <ion-col>
-		  <h2>What are you waiting for?! Join us with Crickify today.</h2>
-		 </ion-col>
-		 </ion-row>
-		   </ion-grid>
-		    </ion-card-content>
+    </ion-card-content>
   </ion-card>
 
 
-<br>
-<br><br>
-<br>
+  <br>
+  <br>
+  <br>
+  <br>
 
-<ion-card color="primary">
+  <ion-card color="primary">
     <ion-card-header>
-	
-	 </ion-card-header>
-	
+
+    </ion-card-header>
+
     <ion-card-content>
-    <ion-grid color="primary">
-        <ion-row   center text-center>
-         <ion-col >
-			<h2>Contact Us</h2>
-			</ion-col>
-          </ion-row>
-		  <br>
-<br>
-		  <ion-row   center text-center>
-		  <ion-col>
-		  <b>Website Issues or Suggestions? Contact US @ appcrickify@gmail.com</b>
-		  </ion-col>
-		  <br>
-<br>
-		
-		  </ion-row >
-		  <ion-row  center text-center>
-		  <ion-col>
-		  Copyright © 2018 All rights reserved by Crickify
-		  </ion-col>
-		  </ion-row>
-		   </ion-grid>
-		     </ion-card-content>
+      <ion-grid color="primary">
+        <ion-row center text-center>
+          <ion-col>
+            <h2>Contact Us</h2>
+          </ion-col>
+        </ion-row>
+        <br>
+        <br>
+        <ion-row center text-center>
+          <ion-col>
+            <b>Website Issues or Suggestions? Contact US @ appcrickify@gmail.com</b>
+          </ion-col>
+          <br>
+          <br>
+
+        </ion-row>
+        <ion-row center text-center>
+          <ion-col>
+            Copyright © 2018 All rights reserved by Crickify
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
   </ion-card>
 
 </ion-content>

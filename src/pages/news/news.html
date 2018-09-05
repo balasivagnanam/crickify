@@ -45,31 +45,36 @@
   </ion-card>
   <ion-card *ngFor="let news of newss">
     <ion-card-header>
-      <ion-item>
+      <ion-item text-center text-wrap>
 
       
-          <ion-item> {{news.title}}</ion-item>
+           <h2><b>{{news.title}}</b></h2>
        
-
+           <p *ngIf="news.publishedAt!= null">
+              <ion-item>{{news?.publishedAt | momentjs}}</ion-item>
+              </p>
 
 
       </ion-item>
     </ion-card-header>
+    <div class="header-banner">
+    <p *ngIf= "news.imgUrl!= null && news.imgUrl.length>0" >
+        <ion-slides autoplay="5000" loop="true" speed="3000">
+            <ion-slide *ngFor="let slide of news.imgUrl">
+              <img src="{{slide.url}}" />
+            </ion-slide>
+          </ion-slides>
+      
+      </p>
+      <p *ngIf= "news.imgUrl== null || news.imgUrl.length==0" ><img src="assets/img/noimage.png" /></p>
+                
+    </div>
     <ion-card-content>
-        <p *ngIf= "news.imgUrl!= null && news.imgUrl.length>0" >
-          <ion-slides autoplay="5000" loop="true" speed="3000">
-              <ion-slide *ngFor="let slide of news.imgUrl">
-                <img src="{{slide.url}}" />
-              </ion-slide>
-            </ion-slides>
         
-        </p>
               
-        <ion-item> {{news.description}}</ion-item>
+        <ion-item> {{news.article}}</ion-item>
          
-          <p *ngIf="news.publishedAt!= null">
-            <ion-item>{{news?.publishedAt | momentjs}}</ion-item>
-            </p>
+         
             
       <p *ngIf="news.user?.id== userDetails.user.id">
         
@@ -88,7 +93,10 @@
 
        
       </p>
+      <button ion-button color="secondary" icon-left clear small (click)="viewNews(news)">
+          View
 
+        </button>
     </ion-card-content>
   </ion-card>
 

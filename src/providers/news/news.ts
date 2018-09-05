@@ -38,10 +38,7 @@ export class NewsService {
   getAllNewsSearch(filter) {
     return new Promise((resolve, reject) => {
       
-      let headers = new Headers();
-
-    headers.set('Content-Type', 'application/json');
-    headers.set("token",this.getToken());
+     
 
     let urlSearchParams = new URLSearchParams();
     for(let key in filter){
@@ -49,7 +46,7 @@ export class NewsService {
     urlSearchParams.append(key, filter[key]);
       }
   }
-      this.http.get(apiUrl + '/news/search?'+urlSearchParams, {headers: headers})
+      this.http.get(apiUrl + '/news/search?'+urlSearchParams)
         .subscribe(res => {
           resolve(res.json());
           console.log("auth response matches", res.json()); 

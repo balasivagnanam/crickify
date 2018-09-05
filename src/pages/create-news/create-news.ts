@@ -46,6 +46,7 @@ export class CreateNewsPage {
       publishedAt: [''],
       location: ['',],
       title: [],
+      article:[],
       imgUrl: [],
       user: ['', Validators.compose([Validators.required])],
       createDate: [],
@@ -106,7 +107,7 @@ export class CreateNewsPage {
       if (this.responseData.statusCode == '200') {
         loading.dismiss();
         console.log("test 200");
-        this.news=this.responseData.results.news;
+        this.news=this.responseData.results.result;
         this.disabled=false;
         this.alertDialog('Success', 'Added');
       } else if (this.responseData.statusCode == "404") {
@@ -261,24 +262,20 @@ export class CreateNewsPage {
   }
 
   protected submit() {
-    const loading = this.loadingController.create({
-      content: 'Please wait...'
-    });
-    loading.present();
-    if (this.multiImageUpload.images.length == 0) {
+      if (this.multiImageUpload.images.length == 0) {
         this.showToast("Please select at least 1 photo");
-        loading.dismiss();
+        
         return;
     }
-
+    this.multiImageUpload.id=this.news.id;
     this.multiImageUpload.uploadImages().then((images) => {
         this.showToast("Upload successful, view console for details");
         this.uploadFinished = true;
         console.dir(images);
-        loading.dismiss();
+        
         this.getNews();
     }).catch(() => {
-      loading.dismiss();
+      
     });
 }
 

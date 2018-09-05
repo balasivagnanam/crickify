@@ -8,6 +8,8 @@ import { IonicPage, NavController, NavParams ,LoadingController} from 'ionic-ang
 import { MatchService } from '../../providers/matches/matches';
 import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
 import { Platform } from 'ionic-angular';
+import { NewsService } from '../../providers/news/news';
+import { ViewNewsPage } from '../viewnews/viewnews';
 /**
  * Generated class for the WelcomePage page.
  *
@@ -24,7 +26,11 @@ export class WelcomePage {
 battings : any;
 bowlings : any;
   responseData: any;
-  constructor(public navCtrl: NavController,public plt: Platform, public navParams: NavParams, public authService: AuthService,public loadingController: LoadingController,public matchService:MatchService,public admob: AdMobFree) {
+  newss:any;
+  responseNewsData:any;
+  constructor(public navCtrl: NavController,public newsService:NewsService,public plt: Platform, public navParams: NavParams, public authService: AuthService,public loadingController: LoadingController,public matchService:MatchService,public admob: AdMobFree) {
+  
+  this.getNews();
   }
 showBanner() {
  
@@ -112,5 +118,40 @@ showBanner() {
     }
  forgot(){
     this.navCtrl.push(ForgotPage);
+    }
+    viewNews(news){
+      this.navCtrl.push(ViewNewsPage,{news: news});
+      
+      }
+    getNews(){
+      console.log('ionViewDidLoad home page');
+    
+      const loading = this.loadingController.create({
+        content: 'Please wait...'
+      });
+      loading.present();
+      this.newsService.getAllNewsSearch(null).then((result) => {
+        this.responseNewsData = result;
+        console.log(this.responseNewsData); 
+        if (this.responseNewsData.statusCode == '200'){
+          loading.dismiss();
+          console.log("test 200");
+          console.log("result", this.responseNewsData.results.result);
+          this.newss = this.responseNewsData.results.result;
+        }  else if(this.responseNewsData.statusCode == "404") {
+          console.log("unauthorrised");
+      loading.dismiss();
+     
+        } else {
+          loading.dismiss();
+          console.log("error", this.responseNewsData)
+        }
+        
+      }, (err) => {
+      loading.dismiss();
+        // Error log
+      });
+  
+      
     }
 }
