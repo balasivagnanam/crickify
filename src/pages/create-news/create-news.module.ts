@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { CreateNewsPage } from './create-news';
-import {MultiImageUpload} from "../../components/multi-image-upload/multi-image-upload";
+import {MultiImageUploadModule} from "../../components/multi-image-upload/multi-image-upload.module";
 
 
 @NgModule({
   declarations: [
-    CreateNewsPage,MultiImageUpload
+    CreateNewsPage
   ],
   imports: [
-    IonicPageModule.forChild(CreateNewsPage),
+    IonicPageModule.forChild(CreateNewsPage),MultiImageUploadModule
   ],
 })
 export class CreateNewsPageModule {}

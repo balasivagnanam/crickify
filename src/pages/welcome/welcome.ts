@@ -10,6 +10,7 @@ import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig } from '@
 import { Platform } from 'ionic-angular';
 import { NewsService } from '../../providers/news/news';
 import { ViewNewsPage } from '../viewnews/viewnews';
+import { OtherService } from '../../providers/other/other';
 /**
  * Generated class for the WelcomePage page.
  *
@@ -27,9 +28,10 @@ battings : any;
 bowlings : any;
   responseData: any;
   newss:any;
+  scores:any;
   responseNewsData:any;
-  constructor(public navCtrl: NavController,public newsService:NewsService,public plt: Platform, public navParams: NavParams, public authService: AuthService,public loadingController: LoadingController,public matchService:MatchService,public admob: AdMobFree) {
-  
+  constructor(public navCtrl: NavController,public otherService: OtherService,public newsService:NewsService,public plt: Platform, public navParams: NavParams, public authService: AuthService,public loadingController: LoadingController,public matchService:MatchService,public admob: AdMobFree) {
+  this.getScores();
   this.getNews();
   }
 showBanner() {
@@ -153,5 +155,36 @@ showBanner() {
       });
   
       
+    }
+    scoresResponseData:any;
+    scoresDetailResponseData:any;
+    getScores() {
+
+      this.otherService.getAllScores().then((resulta) => {
+        this.scoresResponseData = resulta;
+        let id='';
+        for(let data of this.scoresResponseData) {
+          id=id.concat(data.id,'+');
+        }
+        if(id.length>0){
+        id = id.substring(0, id.length - 1);}
+        this.otherService.getAllScoresDetails(id).then((resultb) => {
+        console.log(this.scoresDetailResponseData);
+        this.scoresDetailResponseData = resultb;
+          this.scores = this.scoresDetailResponseData;
+         
+  
+        }, (err) => {
+          console.log("error", err);
+    
+          // Error log
+        });
+       
+  
+      }, (err) => {
+        console.log("error", err);
+  
+        // Error log
+      });
     }
 }

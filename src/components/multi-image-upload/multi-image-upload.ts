@@ -131,7 +131,7 @@ export class MultiImageUpload {
             headers.set("token",this.getToken());
             if (window['cordova']) {
                 let options = {
-                    fileKey: "upload[]",
+                    fileKey: "upload",
                     fileName: targetPath,
                     chunkedMode: false,
                     mimeType: "multipart/form-data",
@@ -141,7 +141,7 @@ export class MultiImageUpload {
                 const fileTransfer = new TransferObject();
                 this.uploadingHandler[targetPath] = fileTransfer;
 
-                fileTransfer.upload(targetPath, this.serverUrl+this.type+'/images/'+this.id, options).then(data => {
+                fileTransfer.upload(targetPath, this.serverUrl+this.type+'/image/'+this.id, options).then(data => {
                     resolve(JSON.parse(data.response));
                 }).catch(() => {
                     askRetry();

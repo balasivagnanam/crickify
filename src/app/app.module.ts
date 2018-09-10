@@ -113,6 +113,7 @@ import {ClassifiedResponsePageModule} from '../pages/classified-response/classif
 import {ClassifiedResponseCreatePage} from '../pages/classified-response-create/classified-response-create';
 import {ClassifiedResponseCreatePageModule} from '../pages/classified-response-create/classified-response-create.module';
 import { MultiImageUpload } from '../components/multi-image-upload/multi-image-upload';
+import { MultiImageUploadModule } from '../components/multi-image-upload/multi-image-upload.module';
 @NgModule({
   declarations: [
     MyApp,
