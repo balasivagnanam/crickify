@@ -65,18 +65,14 @@ export class ClassifiedService {
   getAllClassifiedSearch(filter) {
     return new Promise((resolve, reject) => {
       
-      let headers = new Headers();
-
-    headers.set('Content-Type', 'application/json');
-    headers.set("token",this.getToken());
-
+      
     let urlSearchParams = new URLSearchParams();
     for(let key in filter){
       if(filter[key]!=null){
     urlSearchParams.append(key, filter[key]);
       }
   }
-      this.http.get(apiUrl + '/classifieds/search?'+urlSearchParams, {headers: headers})
+      this.http.get(apiUrl + '/classifieds/search?'+urlSearchParams)
         .subscribe(res => {
           resolve(res.json());
           console.log("auth response matches", res.json()); 

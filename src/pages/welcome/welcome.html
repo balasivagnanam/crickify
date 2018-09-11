@@ -33,47 +33,110 @@
 
     </ion-row>
   </ion-grid>
-  <ion-card *ngFor="let news of newss| slice:0:3;">
-    <ion-card-header>
-      <ion-item text-center text-wrap>
+  <ion-label color="white" stacked class="my-label">
+    Cricket News
+  </ion-label>
+  <ion-scroll scrollX="true" direction="x">
+      <ion-card class="scrollcard" color="primary" *ngFor="let news of newss| slice:0:5;">
+  
+        <ion-card-header>
+          <ion-item text-center text-wrap>
+            <b>{{news.title}} </b>
+          </ion-item>
+        </ion-card-header>
+        <p *ngIf="news.imgUrl!= null && news.imgUrl.length>0">
+           
+                <img src="{{news.imgUrl[0].url}} " height="150" />
+           
+  
+          </p>
+          <p *ngIf="news.imgUrl== null || news.imgUrl.length==0">
+            <img src="assets/img/noimage.png" height="150" />
+          </p>
+        <ion-card-content>
+            <ion-item> {{news.article}}</ion-item>
+            <button ion-button color="secondary" icon-left clear small (click)="viewNews(news)">
+              View
+    
+            </button>
+        </ion-card-content>
+      </ion-card>
+    </ion-scroll>
+  <p *ngIf="products!= null && products.length>0">
+    <ion-label color="white" stacked class="my-label">
+      Cricket Market
+    </ion-label>
 
 
-        <h2>
-          <b>{{news.title}}</b>
-        </h2>
 
-        <p *ngIf="news.publishedAt!= null">
-          <ion-item>{{news?.publishedAt | momentjs}}</ion-item>
-        </p>
+    <ion-scroll scrollX="true" direction="x">
+      <ion-card class="scrollcard" color="primary" *ngFor="let product of products| slice:0:3;">
 
+        <ion-card-header>
+          <ion-item text-center text-wrap>
+            <b>{{product?.title}} </b>
+          </ion-item>
+        </ion-card-header>
+        
+  
+          <ion-card-content>
+              <p *ngIf="product.imgUrl!= null && product.imgUrl.length>0">
+           
+                  <img src="{{product.imgUrl[0].url}} " height="150" />
+             
+      
+            </p>
+            <p *ngIf="product.imgUrl== null || product.imgUrl.length==0">
+              <img src="assets/img/noimage.png" height="150" />
+            </p>
+          <ion-item text-center text-wrap>
+            <p><b>${{product.price}}</b></p>
+                <button ion-button color="secondary" icon-left clear small (click)="viewProduct(product)">
+                    View
+          
+                  </button>
+            
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </ion-scroll>
+  </p>
 
-      </ion-item>
-    </ion-card-header>
-    <div class="header-banner">
-      <p *ngIf="news.imgUrl!= null && news.imgUrl.length>0">
-        <ion-slides autoplay="5000" loop="true" speed="3000">
-          <ion-slide *ngFor="let slide of news.imgUrl">
-            <img src="{{slide.url}}" />
-          </ion-slide>
-        </ion-slides>
-
-      </p>
-      <p *ngIf="news.imgUrl== null || news.imgUrl.length==0">
-        <img src="assets/img/noimage.png" />
-      </p>
-
-    </div>
-    <ion-card-content>
-
-
-      <ion-item> {{news.article}}</ion-item>
-      <button ion-button color="secondary" icon-left clear small (click)="viewNews(news)">
-          View
-
-        </button>
-
-    </ion-card-content>
-  </ion-card>
+  <p *ngIf="classifieds!= null && classifieds.length>0">
+      <ion-label color="white" stacked class="my-label">
+        Classifieds
+      </ion-label>
+  
+  
+  
+      <ion-scroll scrollX="true" direction="x">
+        <ion-card class="scrollcard" color="primary" *ngFor="let classified of classifieds| slice:0:3;">
+  
+          <ion-card-header>
+            <ion-item text-center text-wrap>
+              <b>{{classified?.type}} </b>
+            </ion-item>
+          </ion-card-header>
+          
+    
+            <ion-card-content>
+                  <ion-item text-center text-wrap>
+                <ion-item> Description: {{classified.description}}</ion-item>
+                <p *ngIf="classified.team!= null">
+                <ion-item>Team: {{classified.team?.teamname}}</ion-item></p>
+                <p *ngIf="classified.classifiedTime!= null">
+                  <ion-item>Date: {{classified?.classifiedTime | momentjs}}</ion-item>
+                  </p>
+                  <p *ngIf="classified.location!= null">
+                    <ion-item>Location: {{classified.location?.name}}, {{classified.location?.address}}</ion-item>
+  </p>
+  
+                   
+              </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-scroll>
+    </p>
   <ion-label color="white" stacked class="my-label">
     Batting Performances
   </ion-label>
@@ -84,9 +147,9 @@
     <ion-card class="scrollcard" color="primary" *ngFor="let batting of battings| slice:0:3;">
 
       <ion-card-header>
-          <ion-item text-center text-wrap>
-        <b>{{batting.player?.name}} </b>
-</ion-item>
+        <ion-item text-center text-wrap>
+          <b>{{batting.player?.name}} </b>
+        </ion-item>
       </ion-card-header>
       <ion-card-content>
 
@@ -99,11 +162,11 @@
         </p>
 
         <ion-item text-center text-wrap>
-        <p>{{batting.run}}({{batting.ball}})</p>
-      
-        <p>{{batting.match.team.teamname}} vs {{batting.match.opponent}}
-        </p>
-      </ion-item>
+          <p>{{batting.run}}({{batting.ball}})</p>
+
+          <p>{{batting.match.team.teamname}} vs {{batting.match.opponent}}
+          </p>
+        </ion-item>
       </ion-card-content>
     </ion-card>
   </ion-scroll>
@@ -119,8 +182,9 @@
     <ion-card class="scrollcard" color="primary" *ngFor="let bowling of bowlings| slice:0:3;">
 
       <ion-card-header>
-          <ion-item text-center text-wrap>
-        <b>{{bowling.player.name}} </b></ion-item>
+        <ion-item text-center text-wrap>
+          <b>{{bowling.player.name}} </b>
+        </ion-item>
 
       </ion-card-header>
       <p *ngIf="bowling.player.imgUrl!= null">
@@ -132,9 +196,11 @@
       </p>
 
       <ion-card-content>
-          <ion-item text-center text-wrap> <p>{{bowling.wickets}}/{{bowling.run}}</p>
+        <ion-item text-center text-wrap>
+          <p>{{bowling.wickets}}/{{bowling.run}}</p>
           <p>{{bowling.match.team.teamname}} vs {{bowling.match.opponent}}
-        </p></ion-item>
+          </p>
+        </ion-item>
 
       </ion-card-content>
     </ion-card>

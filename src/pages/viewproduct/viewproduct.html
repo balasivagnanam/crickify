@@ -1,0 +1,45 @@
+<ion-header>
+
+    <ion-navbar color="primary">
+      <ion-title>Product</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+
+<ion-content padding class="appBackground">
+  <ion-card>
+    <ion-card-header>
+      <ion-item text-center text-wrap>
+
+      
+           <h2><b>{{product.title}}</b></h2>
+       
+
+      </ion-item>
+    </ion-card-header>
+    <div class="header-banner">
+    <p *ngIf= "product.imgUrl!= null && product.imgUrl.length>0" >
+        <ion-slides autoplay="5000" loop="true" speed="3000">
+            <ion-slide *ngFor="let slide of product.imgUrl">
+              <img src="{{slide.url}}" />
+            </ion-slide>
+          </ion-slides>
+      
+      </p>
+      <p *ngIf= "product.imgUrl== null || product.imgUrl.length==0" ><img src="assets/img/noimage.png" /></p>
+                
+    </div>
+    <ion-card-content >
+        
+        <ion-item text-wrap> ${{product.price}}</ion-item> 
+
+      
+        <ion-item text-wrap> {{product.description}}</ion-item>
+        <ion-item text-wrap>Please contact <b>{{product?.user?.name}}</b>  for more details:</ion-item>
+        <ion-item text-wrap> <b>Email :{{product?.user?.username}}</b></ion-item>
+        <p *ngIf= "product?.user?.phone!= null ">
+          <ion-item text-wrap><b>Phone: {{product?.user?.phone}}</b></ion-item>
+        </p> 
+    </ion-card-content>
+  </ion-card>
+</ion-content>

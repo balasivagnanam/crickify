@@ -14,6 +14,7 @@ import { HomePage } from '../pages/home/home';
 import { ClassifiedPage } from '../pages/classifieds/classifieds';
 import { NewsPage } from '../pages/news/news';
 import { ViewNewsPage } from '../pages/viewnews/viewnews';
+
 import { ListPage } from '../pages/list/list';
 import {BowlingService} from '../providers/bowling/bowling';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -114,12 +115,17 @@ import {ClassifiedResponseCreatePage} from '../pages/classified-response-create/
 import {ClassifiedResponseCreatePageModule} from '../pages/classified-response-create/classified-response-create.module';
 import { MultiImageUpload } from '../components/multi-image-upload/multi-image-upload';
 import { MultiImageUploadModule } from '../components/multi-image-upload/multi-image-upload.module';
+import { ProductPage } from '../pages/product/product';
+import { ViewProductPage } from '../pages/viewproduct/viewproduct';
+import {CreateProductPage} from '../pages/create-product/create-product';
+import {CreateProductPageModule} from '../pages/create-product/create-product.module';
+import { ProductService } from '../providers/product/product';
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,ClassifiedPage,
-    PracticePage,NewsPage,NewsPage,ViewNewsPage
+    PracticePage,NewsPage,ViewNewsPage,ProductPage,ViewProductPage
   ],
   imports: [
     BrowserModule, FormsModule, HttpModule,PipesModule,
@@ -129,7 +135,7 @@ import { MultiImageUploadModule } from '../components/multi-image-upload/multi-i
     MyAccountPageModule,
     PreviousMatchesPageModule,
     MyTeamsPageModule,
-    PreviousMatchDetailsPageModule,
+    PreviousMatchDetailsPageModule,CreateProductPageModule,
 	MatchTeamPageModule,CreateAdPageModule,
 	ResetPageModule,TeamPracticePageModule,CreateNewsPageModule,
 	LogoutPageModule,ClassifiedResponsePageModule,
@@ -147,12 +153,12 @@ import { MultiImageUploadModule } from '../components/multi-image-upload/multi-i
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,ClassifiedPage,
+    ListPage,ClassifiedPage,CreateProductPage,
     WelcomePage,ViewPlayerExpensePage,
     LoginPage,ClassifiedResponsePage,
     SignupPage,CreateAdPage,
     MyProfilePage,
-    MyAccountPage,
+    MyAccountPage,ViewProductPage,ProductPage,
     PreviousMatchesPage,PracticeAvailabilityPage,
     MyTeamsPage,AddPlayerExpensePage,
     PreviousMatchDetailsPage,NewsPage,
@@ -170,7 +176,7 @@ import { MultiImageUploadModule } from '../components/multi-image-upload/multi-i
     AuthService,MatchService,StatsService, TeamService,PlayersProvider,FinanceProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PlayersProvider,AdMobFree,AndroidPermissions,Push,OtherService,BattingService,BowlingService,
-    ImagesProvider,Camera,FileTransfer,PracticeService,ClassifiedService,NewsService
+    ImagesProvider,Camera,FileTransfer,PracticeService,ClassifiedService,NewsService,ProductService
   ]
 })
 export class AppModule {}

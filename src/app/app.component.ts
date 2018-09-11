@@ -39,6 +39,7 @@ import { TeamPracticePage } from '../pages/team-practice/team-practice';
 import { ClassifiedPage } from '../pages/classifieds/classifieds';
 import { NewsPage } from '../pages/news/news';
 import { MultiImageUpload } from '../components/multi-image-upload/multi-image-upload';
+import { ProductPage } from '../pages/product/product';
 @Component({
   templateUrl: 'app.html'
 })
@@ -84,8 +85,10 @@ this.adminPages=[{ title: 'Matches', component: TeamMatchesPage},
     ];
 
 this.normalPages=[
-  {title: 'News', component:NewsPage},
+ 
       { title: 'Upcoming Matches', component: HomePage },
+      {title: 'News', component:NewsPage},
+      {title: 'Market', component:ProductPage},
       {title: 'Completed Matches', component: PreviousMatchesPage},
       {title: 'Practice', component: PracticePage},
       

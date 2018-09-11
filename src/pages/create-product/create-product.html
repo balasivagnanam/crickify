@@ -1,0 +1,85 @@
+<!--
+  Generated template for the PreviousMatchDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Product</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="appBackground">
+  <ion-card>
+    <ion-card-header>
+      Add Product
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list no-lines>
+      
+          <multi-image-upload [type]="type" [id]="product?.id"></multi-image-upload>
+          <button ion-button block (click)="submit()" *ngIf="!multiImageUpload.isUploading && !uploadFinished&&!disabled">
+              <ion-icon name="checkmark"></ion-icon>
+              Upload
+          </button>
+          <button ion-button block (click)="cancel()" color="danger" *ngIf="multiImageUpload.isUploading && !uploadFinished&&!disabled">
+              <ion-icon name="close"></ion-icon>
+              Cancel
+          </button>
+
+ 
+            
+
+            <p *ngIf= "product?.imgUrl!= null && product?.imgUrl.length>0" >
+                <ion-slides autoplay="5000" loop="true" speed="3000">
+                    <ion-slide *ngFor="let slide of product.imgUrl">
+                      
+                        <ion-item><img src="{{slide.url}}" /></ion-item>
+                        <ion-item> <button ion-button block (click)="delete(slide)" color="danger">
+                          <ion-icon name="close"></ion-icon>
+                          Delete
+                      </button></ion-item>
+                    </ion-slide>
+                 
+                  </ion-slides>
+              
+              </p>
+                 <form [formGroup]="createProductForm">
+
+
+          <ion-item>
+              <ion-label floating>Title</ion-label>
+              <ion-input formControlName="title" type="text"></ion-input>  </ion-item>
+              <ion-item>
+          
+            <ion-label floating>Description</ion-label>
+            <ion-textarea formControlName="description" type="text"></ion-textarea>  </ion-item>
+
+            <ion-item>
+              <ion-label floating>Price</ion-label>
+              <ion-input formControlName="price" type="number" step="0.2"></ion-input>
+          </ion-item>
+             <ion-item>
+              <ion-label>Country</ion-label>
+              <ion-select formControlName="location">
+                <ion-option *ngFor="let key of locations" [value]="key.name">{{key.name}}</ion-option>
+              </ion-select>
+            </ion-item>
+ 
+            <ion-item>
+              <button ion-button color="secondary" icon-left clear small [disabled]="!createProductForm.valid" (click)="addProduct()">
+                Save Product
+
+              </button>
+            </ion-item>
+        </form>
+
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+ 
+</ion-content>

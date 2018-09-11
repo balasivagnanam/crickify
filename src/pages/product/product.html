@@ -1,0 +1,103 @@
+<ion-header>
+  <ion-navbar [hideBackButton]="true" color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Product </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="appBackground">
+  <ion-card>
+    <ion-card-header>
+      Search Product
+    </ion-card-header>
+    <ion-card-content>
+
+      <form [formGroup]="searchProductForm">
+        <ion-item>
+          <ion-label floating>Name</ion-label>
+          <ion-input formControlName="title" type="text"></ion-input>  </ion-item>
+          
+        <ion-item>
+          <ion-label>Start Date</ion-label>
+          <ion-datetime formControlName="startDate" displayFormat="MMM DD, YYYY HH:mm"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>End Date</ion-label>
+          <ion-datetime formControlName="endDate" displayFormat="MMM DD, YYYY HH:mm"></ion-datetime>
+        </ion-item>
+        <button ion-button color="secondary" icon-left clear small (click)="search()">
+          Filter
+
+        </button>
+
+      </form>
+
+
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngFor="let product of products">
+    <ion-card-header>
+      <ion-item text-center text-wrap>
+
+      
+           <h2><b>{{product.title}}</b></h2>
+       
+           <p *ngIf="product.publishedAt!= null">
+              <ion-item>{{product?.publishedAt | momentjs}}</ion-item>
+              </p>
+
+
+      </ion-item>
+    </ion-card-header>
+    <div class="header-banner">
+    <p *ngIf= "product.imgUrl!= null && product.imgUrl.length>0" >
+        <ion-slides autoplay="5000" loop="true" speed="3000">
+            <ion-slide *ngFor="let slide of product.imgUrl">
+              <img src="{{slide.url}}" />
+            </ion-slide>
+          </ion-slides>
+      
+      </p>
+      <p *ngIf= "product.imgUrl== null || product.imgUrl.length==0" ><img src="assets/img/noimage.png" /></p>
+                
+    </div>
+    <ion-card-content>
+        
+              
+        <ion-item> {{product.description}}</ion-item>
+         
+         
+            
+      <p *ngIf="product.user?.id== userDetails.user.id">
+        
+          <button ion-button color="secondary" icon-left clear small (click)="editProduct(product)">
+            Edit
+
+          </button>
+        
+        
+          <button ion-button color="secondary" icon-left clear small (click)="deleteProduct(product)">
+              delete
+  
+            </button>
+       
+
+
+       
+      </p>
+      <button ion-button color="secondary" icon-left clear small (click)="viewProduct(product)">
+          View
+
+        </button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab bottom right>
+    <button ion-fab mini (click)="addProduct()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

@@ -11,6 +11,9 @@ import { Platform } from 'ionic-angular';
 import { NewsService } from '../../providers/news/news';
 import { ViewNewsPage } from '../viewnews/viewnews';
 import { OtherService } from '../../providers/other/other';
+import { ProductService } from '../../providers/product/product';
+import { ClassifiedService } from '../../providers/classified/classified';
+import { ViewProductPage } from '../viewproduct/viewproduct';
 /**
  * Generated class for the WelcomePage page.
  *
@@ -28,11 +31,14 @@ battings : any;
 bowlings : any;
   responseData: any;
   newss:any;
+  products:any;
   scores:any;
   responseNewsData:any;
-  constructor(public navCtrl: NavController,public otherService: OtherService,public newsService:NewsService,public plt: Platform, public navParams: NavParams, public authService: AuthService,public loadingController: LoadingController,public matchService:MatchService,public admob: AdMobFree) {
-  this.getScores();
+  responseProductData:any;
+  constructor(public navCtrl: NavController,public classifiedService:ClassifiedService,public productService:ProductService,public otherService: OtherService,public newsService:NewsService,public plt: Platform, public navParams: NavParams, public authService: AuthService,public loadingController: LoadingController,public matchService:MatchService,public admob: AdMobFree) {
+ this.getClassifieds();
   this.getNews();
+  this.getProducts();
   }
 showBanner() {
  
@@ -125,6 +131,10 @@ showBanner() {
       this.navCtrl.push(ViewNewsPage,{news: news});
       
       }
+      viewProduct(product){
+        this.navCtrl.push(ViewProductPage,{product: product});
+        
+        }
     getNews(){
       console.log('ionViewDidLoad home page');
     
@@ -156,35 +166,69 @@ showBanner() {
   
       
     }
-    scoresResponseData:any;
-    scoresDetailResponseData:any;
-    getScores() {
 
-      this.otherService.getAllScores().then((resulta) => {
-        this.scoresResponseData = resulta;
-        let id='';
-        for(let data of this.scoresResponseData) {
-          id=id.concat(data.id,'+');
-        }
-        if(id.length>0){
-        id = id.substring(0, id.length - 1);}
-        this.otherService.getAllScoresDetails(id).then((resultb) => {
-        console.log(this.scoresDetailResponseData);
-        this.scoresDetailResponseData = resultb;
-          this.scores = this.scoresDetailResponseData;
-         
-  
-        }, (err) => {
-          console.log("error", err);
+    getProducts(){
+      console.log('ionViewDidLoad home page');
     
-          // Error log
-        });
-       
-  
+      const loading = this.loadingController.create({
+        content: 'Please wait...'
+      });
+      loading.present();
+      this.productService.getAllProductSearch(null).then((result) => {
+        this.responseProductData = result;
+        console.log(this.responseProductData); 
+        if (this.responseProductData.statusCode == '200'){
+          loading.dismiss();
+          console.log("test 200");
+          console.log("result", this.responseProductData.results.result);
+          this.products = this.responseProductData.results.result;
+        }  else if(this.responseProductData.statusCode == "404") {
+          console.log("unauthorrised");
+      loading.dismiss();
+     
+        } else {
+          loading.dismiss();
+          console.log("error", this.responseProductData)
+        }
+        
       }, (err) => {
-        console.log("error", err);
-  
+      loading.dismiss();
         // Error log
       });
+  
+      
+    }
+    classifiedsresponseData:any;
+    classifieds:any;
+    getClassifieds(){
+      console.log('ionViewDidLoad home page');
+    
+      const loading = this.loadingController.create({
+        content: 'Please wait...'
+      });
+      loading.present();
+      this.classifiedService.getAllClassifiedSearch(null).then((result) => {
+        this.classifiedsresponseData = result;
+        console.log(this.classifiedsresponseData); 
+        if (this.classifiedsresponseData.statusCode == '200'){
+          loading.dismiss();
+          console.log("test 200");
+          console.log("result", this.classifiedsresponseData.results.result);
+          this.classifieds = this.classifiedsresponseData.results.result;
+        }  else if(this.classifiedsresponseData.statusCode == "404") {
+          console.log("unauthorrised");
+      loading.dismiss();
+     
+        } else {
+          loading.dismiss();
+          console.log("error", this.classifiedsresponseData)
+        }
+        
+      }, (err) => {
+      loading.dismiss();
+        // Error log
+      });
+  
+      
     }
 }
