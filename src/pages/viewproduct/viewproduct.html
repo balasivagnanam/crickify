@@ -35,11 +35,15 @@
 
       
         <ion-item text-wrap> {{product.description}}</ion-item>
+        <div *ngIf= "user!= null "> 
         <ion-item text-wrap>Please contact <b>{{product?.user?.name}}</b>  for more details:</ion-item>
         <ion-item text-wrap> <b>Email :{{product?.user?.username}}</b></ion-item>
         <p *ngIf= "product?.user?.phone!= null ">
           <ion-item text-wrap><b>Phone: {{product?.user?.phone}}</b></ion-item>
         </p> 
+      </div>
+        <div *ngIf= "user== null ">  <ion-item text-wrap>Please login  for more details:</ion-item>
+          </div>
     </ion-card-content>
   </ion-card>
 </ion-content>

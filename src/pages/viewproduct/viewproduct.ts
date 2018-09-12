@@ -21,9 +21,14 @@ export class ViewProductPage {
  
   teams:any;
   product : any;
+  user:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public app:App, public teamService:TeamService,public otherService:OtherService, public authService:AuthService, public productService:ProductService, public loadingController: LoadingController,public admob: AdMobFree) {
-  
+    const data = JSON.parse(localStorage.getItem('userData'));
+    if(data!=null){
+
+      this.user = data.user;
+    }
     this.product = navParams.get('product');
 
   }
