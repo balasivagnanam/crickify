@@ -120,6 +120,19 @@ import { ViewProductPage } from '../pages/viewproduct/viewproduct';
 import {CreateProductPage} from '../pages/create-product/create-product';
 import {CreateProductPageModule} from '../pages/create-product/create-product.module';
 import { ProductService } from '../providers/product/product';
+import { FcmProvider } from '../providers/fcm/fcm';
+import { Firebase } from '@ionic-native/firebase';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+const firebase = {
+  apiKey: "AIzaSyDuAXZK8lTb8lsbjeSIHWl21kpOKQIUal4",
+  authDomain: "crickify-200803.firebaseapp.com",
+  databaseURL: "https://crickify-200803.firebaseio.com",
+  projectId: "crickify-200803",
+  storageBucket: "crickify-200803.appspot.com",
+  messagingSenderId: "402670322623"
+ }
 @NgModule({
   declarations: [
     MyApp,
@@ -127,7 +140,8 @@ import { ProductService } from '../providers/product/product';
     ListPage,ClassifiedPage,
     PracticePage,NewsPage,ViewNewsPage,ProductPage,ViewProductPage
   ],
-  imports: [
+  imports: [  AngularFireModule.initializeApp(firebase), 
+    AngularFirestoreModule,
     BrowserModule, FormsModule, HttpModule,PipesModule,
     IonicModule.forRoot(MyApp),
 	FinancePageModule,ForgotPageModule,LoginPageModule, SignupPageModule,
@@ -176,7 +190,9 @@ import { ProductService } from '../providers/product/product';
     AuthService,MatchService,StatsService, TeamService,PlayersProvider,FinanceProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PlayersProvider,AdMobFree,AndroidPermissions,Push,OtherService,BattingService,BowlingService,
-    ImagesProvider,Camera,FileTransfer,PracticeService,ClassifiedService,NewsService,ProductService
+    ImagesProvider,Camera,FileTransfer,PracticeService,ClassifiedService,NewsService,ProductService,
+    Firebase,
+    FcmProvider,
   ]
 })
 export class AppModule {}
