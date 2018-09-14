@@ -138,7 +138,27 @@ forgot(credentials) {
           reject(err);
           console.log("error",err);
           isAuthenticated = false;
-          localStorage.clear();
+          
+        });
+    });
+
+  }
+
+  postNotification(credentials) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+	headers.set("token",this.getToken());
+	 console.log("token", this.getToken());
+      this.http.post(apiUrl + '/notification', credentials, {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+ 
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+          isAuthenticated = false;
+          
         });
     });
 

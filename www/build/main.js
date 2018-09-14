@@ -1292,7 +1292,23 @@ var AuthService = (function () {
                 reject(err);
                 console.log("error", err);
                 isAuthenticated = false;
-                localStorage.clear();
+            });
+        });
+    };
+    AuthService.prototype.postNotification = function (credentials) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+            headers.set('Content-Type', 'application/json');
+            headers.set("token", _this.getToken());
+            console.log("token", _this.getToken());
+            _this.http.post(apiUrl + '/notification', credentials, { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+            }, function (err) {
+                reject(err);
+                console.log("error", err);
+                isAuthenticated = false;
             });
         });
     };
@@ -10674,6 +10690,7 @@ var FcmProvider = (function () {
     FcmProvider.prototype.saveTokenToFirestore = function (token) {
         if (!token)
             return;
+        localStorage.setItem('notificationtoken', JSON.stringify(token));
         var devicesRef = this.afs.collection('devices');
         var docData = {
             token: token,
@@ -11472,6 +11489,11 @@ var LoginPage = (function () {
                 console.log("test 200");
                 console.log("result", _this.responseData.results);
                 localStorage.setItem('userData', JSON.stringify(_this.responseData.results));
+                _this.authService.postNotification(localStorage.getItem('notificationtoken')).then(function (result) {
+                    console.log("success");
+                }, function (err) {
+                    console.log("error");
+                });
                 _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]);
                 _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]);
             }

@@ -31,7 +31,7 @@ export class FcmProvider {
 
   private saveTokenToFirestore(token) {
     if (!token) return;
-  
+    localStorage.setItem('notificationtoken', JSON.stringify(token));
     const devicesRef = this.afs.collection('devices')
   
     const docData = { 

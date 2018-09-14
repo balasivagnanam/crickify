@@ -40,6 +40,12 @@ export class LoginPage {
         console.log("test 200");
         console.log("result", this.responseData.results);
         localStorage.setItem('userData', JSON.stringify(this.responseData.results));
+        this.authService.postNotification(localStorage.getItem('notificationtoken')).then((result) => {
+          console.log("success");
+          
+        }, (err) => {
+          console.log("error");
+       });
         this.navCtrl.push(HomePage);
         this.navCtrl.setRoot(HomePage);
       }else if (this.responseData.statusCode == '403'){
