@@ -33,7 +33,7 @@ export class MyAccountPage {
      token: ['',],
     
       name: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      phone: ['', Validators.compose([Validators.pattern('[0-9]*'), Validators.required])],
+      phone: [''],
       username: ['', Validators.compose([Validators.pattern('^[a-zA-Z0-9._]+[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$'), Validators.required])],
       playerType: [''],
       bowlerType: ['',],

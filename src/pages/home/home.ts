@@ -45,6 +45,14 @@ matches : any;
       tournamentId: [0]
     });
 
+    if (!localStorage.getItem('notificationtoken')){
+    this.authService.postNotification(localStorage.getItem('notificationtoken')).then((result) => {
+      console.log("success");
+      
+    }, (err) => {
+      console.log("error");
+   });
+  }
   }
 showBanner() {
  

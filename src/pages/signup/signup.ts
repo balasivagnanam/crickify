@@ -29,7 +29,7 @@ phone : any;
       username: ['', Validators.compose([Validators.maxLength(25), Validators.required])],
       password: ['', Validators.compose([Validators.maxLength(25), Validators.required])],
       name: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      phone: ['', Validators.compose([Validators.maxLength(10), Validators.pattern('[0-9]*'), Validators.required])]
+      phone: ['']
   });
   this.username=this.signupForm.controls['username'];
   this.password=this.signupForm.controls['password'];

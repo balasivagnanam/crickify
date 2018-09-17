@@ -150,15 +150,14 @@ forgot(credentials) {
     headers.set('Content-Type', 'application/json');
 	headers.set("token",this.getToken());
 	 console.log("token", this.getToken());
-      this.http.post(apiUrl + '/notification', credentials, {headers: headers})
+      this.http.post(apiUrl + '/notification', JSON.stringify(credentials), {headers: headers})
         .subscribe(res => {
           resolve(res.json());
  
         }, (err) => {
           reject(err);
           console.log("error",err);
-          isAuthenticated = false;
-          
+                   
         });
     });
 
