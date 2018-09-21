@@ -122,9 +122,15 @@ import {CreateProductPageModule} from '../pages/create-product/create-product.mo
 import { ProductService } from '../providers/product/product';
 import { FcmProvider } from '../providers/fcm/fcm';
 import { Firebase } from '@ionic-native/firebase';
-
+import { ChatRoomPage } from '../pages/chat-room/chat-room';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import {PrivacyPage} from '../pages/privacy/privacy';
+import {PrivacyPageModule} from '../pages/privacy/privacy.module';
+import {ChatPage} from '../pages/chat/chat';
+import {ChatPageModule} from '../pages/chat/chat.module';
+import { ChatService } from '../providers/chat/chat';
+import { MessageService } from '../providers/message/message';
 const firebase = {
   apiKey: "AIzaSyDuAXZK8lTb8lsbjeSIHWl21kpOKQIUal4",
   authDomain: "crickify-200803.firebaseapp.com",
@@ -138,7 +144,7 @@ const firebase = {
     MyApp,
     HomePage,
     ListPage,ClassifiedPage,
-    PracticePage,NewsPage,ViewNewsPage,ProductPage,ViewProductPage
+    PracticePage,NewsPage,ViewNewsPage,ProductPage,ViewProductPage,ChatRoomPage
   ],
   imports: [  AngularFireModule.initializeApp(firebase), 
     AngularFirestoreModule,
@@ -147,7 +153,7 @@ const firebase = {
 	FinancePageModule,ForgotPageModule,LoginPageModule, SignupPageModule,
     MyProfilePageModule,
     MyAccountPageModule,
-    PreviousMatchesPageModule,
+    PreviousMatchesPageModule,PrivacyPageModule,ChatPageModule,
     MyTeamsPageModule,
     PreviousMatchDetailsPageModule,CreateProductPageModule,
 	MatchTeamPageModule,CreateAdPageModule,
@@ -171,7 +177,7 @@ const firebase = {
     WelcomePage,ViewPlayerExpensePage,
     LoginPage,ClassifiedResponsePage,
     SignupPage,CreateAdPage,
-    MyProfilePage,
+    MyProfilePage,ChatRoomPage,PrivacyPage,ChatPage,
     MyAccountPage,ViewProductPage,ProductPage,
     PreviousMatchesPage,PracticeAvailabilityPage,
     MyTeamsPage,AddPlayerExpensePage,
@@ -192,7 +198,7 @@ const firebase = {
     PlayersProvider,AdMobFree,AndroidPermissions,Push,OtherService,BattingService,BowlingService,
     ImagesProvider,Camera,FileTransfer,PracticeService,ClassifiedService,NewsService,ProductService,
     Firebase,
-    FcmProvider,
+    FcmProvider,ChatService,MessageService
   ]
 })
 export class AppModule {}

@@ -14,6 +14,7 @@ import { OtherService } from '../../providers/other/other';
 import { ProductService } from '../../providers/product/product';
 import { ClassifiedService } from '../../providers/classified/classified';
 import { ViewProductPage } from '../viewproduct/viewproduct';
+import { PrivacyPage } from '../privacy/privacy';
 /**
  * Generated class for the WelcomePage page.
  *
@@ -120,7 +121,10 @@ showBanner() {
   login(){
     this.navCtrl.push(LoginPage);
     }
-  
+    privacyPolicy(){
+      this.navCtrl.push(PrivacyPage);
+
+    }
     signup(){
     this.navCtrl.push(SignupPage);
     }

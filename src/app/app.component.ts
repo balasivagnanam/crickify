@@ -44,6 +44,11 @@ import { FcmProvider } from '../providers/fcm/fcm';
 import { ToastController } from 'ionic-angular';
 import { tap } from 'rxjs/operators';
 import { Firebase } from '@ionic-native/firebase';
+import {PrivacyPage} from '../pages/privacy/privacy';
+import {PrivacyPageModule} from '../pages/privacy/privacy.module';
+import {ChatPage} from '../pages/chat/chat';
+import {ChatPageModule} from '../pages/chat/chat.module';
+import { ChatRoomPage } from '../pages/chat-room/chat-room';
 @Component({
   templateUrl: 'app.html'
 })
@@ -99,33 +104,31 @@ export class MyApp {
     this.adminPages = [{ title: 'Matches', component: TeamMatchesPage },
     { title: 'Practice', component: TeamPracticePage },
     { title: 'Players', component: TeamPlayersPage },
-
+    { title: 'Team Stats', component: ListPage },
+    { title: 'Send Message', component: ChatPage },
     { title: 'Tournament', component: TournamentsPage },
-
-    { title: 'Profile', component: MyProfilePage },
-    { title: 'Manage Teams', component: MyTeamsPage },
     { title: 'Change Mode', component: ModeChangePage },
     { title: 'Team Expense', component: TeamExpensePage },
     { title: 'Player Payment Details', component: ViewPlayerExpensePage },
-    { title: 'Update Password', component: ResetPage },
+    { title: 'Location', component: LocationsPage },
     { title: 'Logout', component: LogoutPage },
     ];
 
     this.normalPages = [
 
       { title: 'Upcoming Matches', component: HomePage },
-      { title: 'News', component: NewsPage },
-      { title: 'Market', component: ProductPage },
+      { title: 'Upcoming Practice', component: PracticePage },
+      { title: 'Cricket News', component: NewsPage },
+      { title: 'Cricket Market', component: ProductPage },
+      { title: 'Cricket Classifieds', component: ClassifiedPage },
+      { title: 'Messages', component: ChatRoomPage },   
       { title: 'Completed Matches', component: PreviousMatchesPage },
-      { title: 'Practice', component: PracticePage },
-
-      { title: 'Team Stats', component: ListPage },
-      { title: 'My Profile', component: MyProfilePage },
       { title: 'Change Mode', component: ModeChangePage },
       { title: 'Account Details', component: MyAccountPage },
+      { title: 'My Profile', component: MyProfilePage },
       { title: 'Finance Details', component: FinancePage },
-      { title: 'Classifieds', component: ClassifiedPage },
-      { title: 'Location', component: LocationsPage },
+  
+     
       { title: 'Update Password', component: ResetPage },
 
       { title: 'Logout', component: LogoutPage },

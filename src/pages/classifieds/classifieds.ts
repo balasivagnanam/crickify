@@ -7,7 +7,7 @@ import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig } from '@
 import { PipesModule } from '../../pipes/pipes.module';
 import {Validators, FormBuilder, FormGroup, FormControl} from '@angular/forms';
 import {TeamService} from '../../providers/teams/teams';
-
+import { ChatPage } from '../chat/chat';
 import {OtherService} from '../../providers/other/other';
 import { CreateAdPage } from '../create-ad/create-ad';
 import {ClassifiedResponsePage} from '../classified-response/classified-response';
@@ -105,6 +105,11 @@ respondClassified(classified){
   this.navCtrl.push(ClassifiedResponseCreatePage,{classified: classified});
   
   }
+
+  chatClassified(classified){
+    this.navCtrl.push(ChatPage,{toUser: classified.user});
+    
+    }
   ionViewDidLoad(){
     console.log('ionViewDidLoad home page');
   

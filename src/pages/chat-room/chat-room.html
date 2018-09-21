@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-navbar [hideBackButton]="true" color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Chats </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="appBackground">
+
+  <ion-item class="ItemSpace" ion-item *ngFor="let conversation of chats" (click)="viewChat(conversation)" color="primary">
+   
+
+      <ion-avatar item-start>
+
+        <div *ngIf="conversation.room.type!= null&&conversation.room.type=='PRIVATE'">
+          <div *ngFor="let roomUser of conversation.room.roomUsers">
+            <div *ngIf="roomUser.user.id!=user.id">
+              <div *ngIf="roomUser.user.imgUr!=null">
+                <img src="{{roomUser.user.imgUrl}}" alt="user">
+              </div>
+              <div *ngIf="roomUser.user.imgUr==null">
+                <img src="assets/img/batsman.png" />
+              </div>
+            </div>
+        </div>
+        </div>
+        <div *ngIf="conversation.room.type== null||conversation.room.type!='PRIVATE'">
+            <img src="assets/img/batsman.png" />
+          </div>
+      </ion-avatar>
+
+      <div *ngIf="conversation.room.type!= null&&conversation.room.type=='PRIVATE'">
+          <div *ngFor="let roomUser of conversation.room.roomUsers">
+            <div *ngIf="roomUser.user.id!=user.id">
+                <h2 class="truncate">{{roomUser.user.name}}</h2>
+            </div>
+        </div>
+        </div>
+        <div *ngIf="conversation.room.type== null||conversation.room.type!='PRIVATE'">
+            <h2 class="truncate">{{conversation.room.name}}</h2>
+          </div>
+     
+      <p [class.not-read]="conversation.is_new" class="truncate" [innerHTML]="conversation.message.text"></p>
+
+
+      <!-- <span *ngIf="conversation.status == 1;then content else other_content">here is ignored</span>
+      <ng-template #content>
+        <p *ngIf="!conversation.last_message_text" class="truncate read">{{ LABEL_IMAGE | translate }}</p>
+        <p *ngIf="conversation.last_message_text" class="truncate not-read" [innerHTML]="conversation.last_message_text"></p>
+      </ng-template>
+      <ng-template #other_content>
+        <p *ngIf="!conversation.last_message_text" class="truncate read">{{ LABEL_IMAGE | translate }}</p>
+        <p *ngIf="conversation.last_message_text" class="truncate read" [innerHTML]="conversation.last_message_text"></p>
+      </ng-template> -->
+
+      <ion-note color="dark" item-end>{{conversation.message.createDate| momentjs}}</ion-note>
+    
+  </ion-item>
+
+
+
+
+</ion-content>
