@@ -95,7 +95,6 @@
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
     <plugin name="cordova-plugin-filepath" spec="^1.4.2" />
     <plugin name="cordova-plugin-firebase" spec="^1.0.5" />
-    <engine name="android" spec="~7.0.0" />
     <plugin name="ionic-plugin-deeplinks" spec="^1.0.17">
         <variable name="URL_SCHEME" value="myapp" />
         <variable name="DEEPLINK_SCHEME" value="https" />
@@ -114,4 +113,5 @@
         <variable name="DEEPLINK_5_SCHEME" value=" " />
         <variable name="DEEPLINK_5_HOST" value=" " />
     </plugin>
+    <engine name="android" spec="^7.0.0" />
 </widget>
