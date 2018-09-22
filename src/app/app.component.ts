@@ -49,6 +49,7 @@ import {PrivacyPageModule} from '../pages/privacy/privacy.module';
 import {ChatPage} from '../pages/chat/chat';
 import {ChatPageModule} from '../pages/chat/chat.module';
 import { ChatRoomPage } from '../pages/chat-room/chat-room';
+import { Deeplinks } from '@ionic-native/deeplinks';
 @Component({
   templateUrl: 'app.html'
 })
@@ -60,9 +61,17 @@ export class MyApp {
   pages: Array<{ title: string, component: any }>;
   adminPages: Array<{ title: string, component: any }>;
   normalPages: Array<{ title: string, component: any }>;
-  constructor(firebase: Firebase,public events: Events, toastCtrl: ToastController,public fcm: FcmProvider, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, androidPermissions: AndroidPermissions, public push: Push, private alertCtrl: AlertController) {
+  constructor(private deeplinks: Deeplinks,firebase: Firebase,public events: Events, toastCtrl: ToastController,public fcm: FcmProvider, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, androidPermissions: AndroidPermissions, public push: Push, private alertCtrl: AlertController) {
     this.type = "normal";
+    
     platform.ready().then(() => {
+      this.deeplinks.route({
+        '/about-us': PrivacyPage
+     }).subscribe((match) => {
+         console.log('Successfully matched route', match);
+         }, (nomatch) => {
+         console.error('Got a deeplink that didn\'t match', nomatch);
+         });
          // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
