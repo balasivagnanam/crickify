@@ -11,7 +11,7 @@ import {TeamService} from '../../providers/teams/teams';
 import {OtherService} from '../../providers/other/other';
 import { CreateProductPage } from '../create-product/create-product';
 import { ViewProductPage } from '../viewproduct/viewproduct';
-
+import { ChatPage } from '../chat/chat';
 @Component({
   selector: 'page-product',
   templateUrl: 'product.html'
@@ -55,7 +55,10 @@ products : any;
               
     this.navCtrl.push(CreateProductPage);
 }
-
+chatProduct(product){
+  this.navCtrl.push(ChatPage,{toUser: product.user});
+  
+  }
 editProduct(product){
 this.navCtrl.push(CreateProductPage,{product: product});
 

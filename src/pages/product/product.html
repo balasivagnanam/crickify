@@ -92,6 +92,11 @@
           View
 
         </button>
+        <p *ngIf="product.user?.id!= userDetails.user.id"></p>
+        <button ion-button color="secondary" icon-left clear small (click)="chatProduct(product)">
+            Message
+ 
+           </button>
     </ion-card-content>
   </ion-card>
 

@@ -34,11 +34,11 @@
     </ion-card>
   <ion-card *ngFor="let practice of practices">
     <ion-card-header>
-      {{practice.practice.team.teamname}}
+        <b><h1> {{practice.practice.team.teamname}}</h1></b>
       
     </ion-card-header>
     <ion-card-content>
-        <p>{{practice.practice.practiceTime | momentjs}}</p>
+       <b> <p>{{practice.practice.practiceTime | momentjs}}</p></b>
       <p>{{practice.practice.location?.name}}, {{practice.practice.location?.address}}</p>
 	  
          <ion-label>

@@ -8,10 +8,11 @@
 
 
 <ion-content padding class="login-background">
+  
   <ion-grid>
-    <ion-row>
+    <ion-row >
       <ion-col col-3>
-        <img src="assets/img/icon.png" hieght="50" />
+        <ion-item color="primary"><img src="assets/img/icon.png" hieght="50" /></ion-item>
       </ion-col>
       <ion-col col-6 center>
         <ion-label color="white" stacked class="my-label">
@@ -33,6 +34,7 @@
 
     </ion-row>
   </ion-grid>
+
   <ion-label color="white" stacked class="my-label">
     Cricket News
   </ion-label>
@@ -277,6 +279,13 @@
           </ion-col>
         </ion-row>
       </ion-grid>
+
+      <ion-item>
+          <button ion-button color="secondary" icon-left clear small (click)="privacyPolicy()">
+           Privacy Policy
+
+          </button>
+        </ion-item>
     </ion-card-content>
   </ion-card>
 
