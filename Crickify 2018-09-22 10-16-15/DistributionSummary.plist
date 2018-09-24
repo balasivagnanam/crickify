@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Crickify.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>armv7</string>
+				<string>arm64</string>
+			</array>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>A7DECE28F972AACCF8D35494D00F5511EF6AB78C</string>
+				<key>dateExpires</key>
+				<string>21/9/19</string>
+				<key>type</key>
+				<string>iOS Distribution</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>NQ23N7F9TB.com.app.crickify</string>
+				<key>aps-environment</key>
+				<string>production</string>
+				<key>beta-reports-active</key>
+				<true/>
+				<key>com.apple.developer.team-identifier</key>
+				<string>NQ23N7F9TB</string>
+				<key>get-task-allow</key>
+				<false/>
+			</dict>
+			<key>name</key>
+			<string>Crickify.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>46044ad7-2556-44e5-a39e-3f0600f3d964</string>
+				<key>name</key>
+				<string>crici</string>
+			</dict>
+			<key>symbols</key>
+			<true/>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>NQ23N7F9TB</string>
+				<key>name</key>
+				<string>app crickify</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>
