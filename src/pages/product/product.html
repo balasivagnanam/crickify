@@ -69,7 +69,7 @@
               
         <ion-item> {{product.description}}</ion-item>
          
-         
+        <ion-item>${{product.price}}</ion-item>
             
       <p *ngIf="product.user?.id== userDetails.user.id">
         
@@ -92,11 +92,12 @@
           View
 
         </button>
-        <p *ngIf="product.user?.id!= userDetails.user.id"></p>
+        <p *ngIf="product.user?.id!= userDetails.user.id">
         <button ion-button color="secondary" icon-left clear small (click)="chatProduct(product)">
             Message
  
            </button>
+          </p>
     </ion-card-content>
   </ion-card>
 

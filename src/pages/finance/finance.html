@@ -14,17 +14,17 @@
           </ion-card-header>
           <ion-card-content>
     <ion-label>
-        Total Amount:${{total}}
+        <b>Total Amount:</b>${{total}}
       </ion-label>
 
 
       <ion-label>
-          Paid:${{paidAmount}}
+          <b>Paid:</b>${{paidAmount}}
         </ion-label>
 
 
         <ion-label>
-          Pending:${{pendingAmount}}
+            <b> Pending:</b>${{pendingAmount}}
           </ion-label>
           </ion-card-content>
         </ion-card>
@@ -41,14 +41,14 @@
       <div *ngSwitchCase="'pending'">
   <ion-card *ngFor="let playerexpense of pending">
     <ion-card-header>
-      {{playerexpense.expense.description}}
+     <b><h1>{{playerexpense.expense.description}}</h1></b> 
       <p>{{playerexpense.expense.team.name}}</p>
     </ion-card-header>
     <ion-card-content>
-      <p>{{playerexpense.expenseDate| momentjs}}</p>
+      <p><b>{{playerexpense.expenseDate| momentjs}}</b></p>
      
-      <p>${{playerexpense.amount}}</p>
-	   <p>${{playerexpense.cmnt}}</p>
+      <p> <b>${{playerexpense.amount}}</b></p>
+	   <p>{{playerexpense.cmnt}}</p>
          <ion-label>
           Select Payment Status
         </ion-label>
@@ -81,14 +81,14 @@
 <div *ngSwitchCase="'paid'">
     <ion-card *ngFor="let playerexpense of paid">
       <ion-card-header>
-        {{playerexpense.expense.description}}
+          <b><h1>{{playerexpense.expense.description}}</h1></b>
         <p>{{playerexpense.expense.team.name}}</p>
       </ion-card-header>
       <ion-card-content>
-        <p>{{playerexpense.expenseDate| momentjs}}</p>
+          <p><b>{{playerexpense.expenseDate| momentjs}}</b></p>
        
-        <p>${{playerexpense.amount}}</p>
-       <p>${{playerexpense.cmnt}}</p>
+           <p><b>${{playerexpense.amount}}</b></p>
+       <p>{{playerexpense.cmnt}}</p>
            <ion-label>
             Select Payment Status
           </ion-label>
