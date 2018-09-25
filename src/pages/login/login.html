@@ -6,34 +6,33 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary"> 
+  <ion-navbar color="primary">
     <ion-title>Login</ion-title>
   </ion-navbar>
-
 </ion-header>
-<ion-content padding class="appBackground">
-  <ion-card>
-    <ion-card-header>
-      Login
-    </ion-card-header>
-    <ion-card-content>
-      <ion-list>
+<ion-content>
+  <ion-slides pager="false" autoplay="2000" loop="true" speed="1500" effect="fade">
+    <ion-slide class="slide-background swiper-no-swiping" *ngFor="let background of backgrounds" [ngStyle]="{'background-image': 'url(' + background +')'}">
+    </ion-slide>
+  </ion-slides>
+  <div class="login-container">
+    <img class="logo" src="assets/img/icon.png" />
+    <form [formGroup]="loginForm" (submit)="login()">
+       <ion-item>
+        <ion-input formControlName="username" type="email" placeholder="Email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
+      </ion-item>
+      <button ion-button margin color="primary">LOGIN</button>
+      <p (click)="forgot()">
+        <strong>Forgot your password?</strong>
+      </p>
+   
+         
         
-          <ion-item>
-            <ion-label floating>Username</ion-label>
-            <ion-input type="text" [(ngModel)]="userData.username"></ion-input>
-          </ion-item>
+    </form>
+    <button ion-button margin color="success" (click)="signup()">Sign Up</button>
 
-          <ion-item>
-            <ion-label floating>Password</ion-label>
-            <ion-input type="password" [(ngModel)]="userData.password"></ion-input>
-          </ion-item>
-<ion-item>
-          <button ion-button full color="success" (click)="login()">Login</button></ion-item>
-  <ion-item>         <button ion-button full color="success" (click)="forgot()">Forgot Password</button></ion-item>
-   <ion-item>         <button ion-button full color="success" (click)="signup()">Sign Up</button></ion-item>
-
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
+  </div>
 </ion-content>

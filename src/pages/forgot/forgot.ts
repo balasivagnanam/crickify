@@ -13,11 +13,16 @@ import {WelcomePage} from '../welcome/welcome';
 
 @IonicPage()
 @Component({
-  selector: 'forgot',
+  selector: 'page-forgot',
   templateUrl: 'forgot.html',
 })
 export class ForgotPage {
-  
+  backgrounds = [
+    'assets/img/background/background-1.jpg',
+    'assets/img/background/background-2.jpg',
+    'assets/img/background/background-3.jpg',
+    'assets/img/background/background-4.jpg'
+  ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public alertController: AlertController, public loadingController: LoadingController) {
   }

@@ -18,7 +18,12 @@ import {WelcomePage} from '../welcome/welcome';
   templateUrl: 'signup.html',
 })
 export class SignupPage {
-   
+  backgrounds = [
+    'assets/img/background/background-1.jpg',
+    'assets/img/background/background-2.jpg',
+    'assets/img/background/background-3.jpg',
+    'assets/img/background/background-4.jpg'
+  ];
   private signupForm: FormGroup;
 username : any;
 password : any;

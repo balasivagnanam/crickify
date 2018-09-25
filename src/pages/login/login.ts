@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController,Slides } from 'ionic-angular';
 import {HomePage} from '../home/home';
 import {AuthService} from '../../providers/auth/auth';
 import {SignupPage} from '../signup/signup';
 import {WelcomePage} from '../welcome/welcome';
 import {ForgotPage} from '../forgot/forgot';
+import { FormBuilder, Validators } from '@angular/forms';
 /**
  * Generated class for the LoginPage page.
  *
@@ -19,11 +20,24 @@ import {ForgotPage} from '../forgot/forgot';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-
+  backgrounds = [
+    'assets/img/background/background-1.jpg',
+    'assets/img/background/background-2.jpg',
+    'assets/img/background/background-3.jpg',
+    'assets/img/background/background-4.jpg'
+  ];
   responseData : any;
   userData = {"username": "","password": ""};
+  public loginForm: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public alertController: AlertController, public loadingController: LoadingController) {
+  @ViewChild('slider') slider: Slides;
+  @ViewChild('innerSlider') innerSlider: Slides;
+  constructor(public formBuilder: FormBuilder,public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public alertController: AlertController, public loadingController: LoadingController) {
+    this.loginForm = formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.compose([Validators.minLength(6),
+        Validators.required])]
+    });
   }
 
   login(){
@@ -31,7 +45,7 @@ export class LoginPage {
       content: 'Please wait...'
     });
     loading.present();
-    this.authService.login(this.userData).then((result) => {
+    this.authService.login(this.loginForm.value).then((result) => {
       this.responseData = result;
       console.log(this.responseData);
       localStorage.setItem('userData', JSON.stringify(this.responseData));

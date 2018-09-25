@@ -28021,6 +28021,64 @@ page-create-product .images-wrapper .image-wrapper.add-image-btn .image {
   background: #DDD;
 }
 
+page-forgot .scroll-content {
+  margin-top: 0 !important;
+}
+
+page-forgot .logo {
+  width: 25%;
+  height: auto;
+  padding-top: 9vh;
+  margin-bottom: 15vh;
+}
+
+page-forgot span {
+  color: white;
+}
+
+page-forgot .slide-background {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-color: transparent;
+}
+
+page-forgot .slide-zoom {
+  background: rgba(32, 32, 32, 0.2) !important;
+  height: 100%;
+}
+
+page-forgot ion-slides {
+  height: 150vh;
+}
+
+page-forgot ion-item {
+  color: white !important;
+  padding-left: 10px !important;
+  margin-bottom: 10px;
+  background-color: transparent !important;
+  font-size: 0.9em;
+}
+
+page-forgot ::-webkit-input-placeholder {
+  color: white !important;
+}
+
+page-forgot .login-container {
+  color: white;
+  position: absolute;
+  top: 0;
+  padding: 10vw;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+page-forgot ion-button {
+  opacity: 0.8;
+}
+
 page-list .scrollcard {
   width: 750px !important;
   display: inline-block;
@@ -28035,6 +28093,64 @@ page-list ion-scroll {
 page-list ion-scroll .scroll-content {
   padding: 0px !important;
   white-space: normal;
+}
+
+page-login .scroll-content {
+  margin-top: 0 !important;
+}
+
+page-login .logo {
+  width: 25%;
+  height: auto;
+  padding-top: 9vh;
+  margin-bottom: 15vh;
+}
+
+page-login span {
+  color: white;
+}
+
+page-login .slide-background {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-color: transparent;
+}
+
+page-login .slide-zoom {
+  background: rgba(32, 32, 32, 0.2) !important;
+  height: 100%;
+}
+
+page-login ion-slides {
+  height: 150vh;
+}
+
+page-login ion-item {
+  color: white !important;
+  padding-left: 10px !important;
+  margin-bottom: 10px;
+  background-color: transparent !important;
+  font-size: 0.9em;
+}
+
+page-login ::-webkit-input-placeholder {
+  color: white !important;
+}
+
+page-login .login-container {
+  color: white;
+  position: absolute;
+  top: 0;
+  padding: 10vw;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+page-login ion-button {
+  opacity: 0.8;
 }
 
 page-my-profile .cric-cards {
@@ -28090,6 +28206,64 @@ page-home .header-banner {
 
 page-home .slide-zoom {
   height: 200px;
+}
+
+page-signup .scroll-content {
+  margin-top: 0 !important;
+}
+
+page-signup .logo {
+  width: 25%;
+  height: auto;
+  padding-top: 9vh;
+  margin-bottom: 15vh;
+}
+
+page-signup span {
+  color: white;
+}
+
+page-signup .slide-background {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-color: transparent;
+}
+
+page-signup .slide-zoom {
+  background: rgba(32, 32, 32, 0.2) !important;
+  height: 100%;
+}
+
+page-signup ion-slides {
+  height: 150vh;
+}
+
+page-signup ion-item {
+  color: white !important;
+  padding-left: 10px !important;
+  margin-bottom: 10px;
+  background-color: transparent !important;
+  font-size: 0.9em;
+}
+
+page-signup ::-webkit-input-placeholder {
+  color: white !important;
+}
+
+page-signup .login-container {
+  color: white;
+  position: absolute;
+  top: 0;
+  padding: 10vw;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+page-signup ion-button {
+  opacity: 0.8;
 }
 
 page-home .header-banner {
