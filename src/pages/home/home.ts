@@ -7,7 +7,7 @@ import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig } from '@
 import { PipesModule } from '../../pipes/pipes.module';
 import {Validators, FormBuilder, FormGroup, FormControl} from '@angular/forms';
 import {TeamService} from '../../providers/teams/teams';
-
+import { Platform } from 'ionic-angular';
 import {OtherService} from '../../providers/other/other';
 @Component({
   selector: 'page-home',
@@ -27,7 +27,7 @@ export class HomePage {
   teams:any;
 matches : any;
 
-  constructor(public navCtrl: NavController, public app:App, formBuilder: FormBuilder,public teamService:TeamService,public otherService:OtherService, public authService:AuthService, public matchService:MatchService, public loadingController: LoadingController,public admob: AdMobFree) {
+  constructor(public navCtrl: NavController,public plt: Platform, public app:App, formBuilder: FormBuilder,public teamService:TeamService,public otherService:OtherService, public authService:AuthService, public matchService:MatchService, public loadingController: LoadingController,public admob: AdMobFree) {
     if (this.authService.getAuthenticated()){
       const data = JSON.parse(localStorage.getItem('userData'));
       console.log("fetch data", data);
@@ -54,28 +54,31 @@ matches : any;
    });
   }
   }
-showBanner() {
+  showBanner() {
  
-        let bannerConfig: AdMobFreeBannerConfig = {
-            
-            autoShow: true,
-           id:'ca-app-pub-7720772047232561/8941352265'
-        };
- 
-        this.admob.banner.config(bannerConfig);
- console.log('view did before enter ad');
-        this.admob.banner.prepare().then(() => {
-            // success
-			console.log('view did enter ad');
-        }).catch(e => console.log("view did error enter ad",e));
-  console.log('view did after enter ad');
-    }
-  ionViewCanEnter(){
-	  this.showBanner();
-    console.log("view did enter", this.authService.getAuthenticated());
-      return this.authService.getAuthenticated();
-  }
-  
+    let bannerConfig: AdMobFreeBannerConfig = {
+        
+        autoShow: true,
+       id:'ca-app-pub-7720772047232561~3441613572'
+    };
+
+
+   let iosBannerConfig: AdMobFreeBannerConfig = {
+        
+      autoShow: true,
+     id:'ca-app-pub-7720772047232561~7847498768'
+  };
+  if (this.plt.is('android')){
+    this.admob.banner.config(bannerConfig);}
+    if (this.plt.is('ios'))  {
+      this.admob.banner.config(iosBannerConfig);
+}
+    this.admob.banner.prepare().then(() => {
+        // success
+  console.log('view did enter ad');
+    }).catch(e => console.log("view did error enter ad",e));
+console.log('view did after enter ad');
+}
   ionViewDidLoad(){
     console.log('ionViewDidLoad home page');
     if (this.authService.getAuthenticated()){

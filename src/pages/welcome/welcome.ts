@@ -46,7 +46,7 @@ showBanner() {
         let bannerConfig: AdMobFreeBannerConfig = {
             
             autoShow: true,
-           id:'ca-app-pub-7720772047232561/8941352265'
+           id:'ca-app-pub-7720772047232561~3441613572'
         };
  
 
