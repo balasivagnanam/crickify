@@ -16,14 +16,14 @@
 
       <form [formGroup]="searchNewsForm">
 
-          <ion-item>
-              <ion-label>Type</ion-label>
-              <ion-select formControlName="type" >
-                <ion-option value="Local">Local</ion-option>
-                <ion-option value="International">International</ion-option>
-  
-              </ion-select>
-            </ion-item>
+        <ion-item>
+          <ion-label>Type</ion-label>
+          <ion-select formControlName="type">
+            <ion-option value="Local">Local</ion-option>
+            <ion-option value="International">International</ion-option>
+
+          </ion-select>
+        </ion-item>
         <ion-item>
           <ion-label>Start Date</ion-label>
           <ion-datetime formControlName="startDate" displayFormat="MMM DD, YYYY HH:mm"></ion-datetime>
@@ -44,60 +44,72 @@
     </ion-card-content>
   </ion-card>
   <ion-card *ngFor="let news of newss">
-    <ion-card-header>
-      <ion-item text-center text-wrap>
-
-      
-           <h2><b>{{news.title}}</b></h2>
-       
-           <p *ngIf="news.publishedAt!= null">
-              <ion-item>{{news?.publishedAt | momentjs}}</ion-item>
-              </p>
-
-
-      </ion-item>
-    </ion-card-header>
     <div class="header-banner">
-    <p *ngIf= "news.imgUrl!= null && news.imgUrl.length>0" >
+      <p *ngIf="news.imgUrl!= null && news.imgUrl.length>0">
         <ion-slides autoplay="5000" loop="true" speed="3000">
-            <ion-slide *ngFor="let slide of news.imgUrl">
-              <img src="{{slide.url}}" />
-            </ion-slide>
-          </ion-slides>
-      
+          <ion-slide *ngFor="let slide of news.imgUrl">
+            <img src="{{slide.url}}" />
+          </ion-slide>
+        </ion-slides>
+
       </p>
-      <p *ngIf= "news.imgUrl== null || news.imgUrl.length==0" ><img src="assets/img/noimage.png" /></p>
-                
+      <p *ngIf="news.imgUrl== null || news.imgUrl.length==0">
+        <img src="assets/img/noimage.png" />
+      </p>
+
     </div>
-    <ion-card-content>
-        
-              
-        <ion-item> {{news.article}}</ion-item>
-         
-         
-            
-      <p *ngIf="news?.user?.id== userDetails.user.id">
-        
+
+
+
+
+    <ion-card-content  text-wrap>
+
+
+      <h2 class="card-title">
+       <b> {{news.title}}</b>
+      </h2>
+
+
+
+      <p *ngIf="news.publishedAt!= null">
+        <ion-item>{{news?.publishedAt | momentjs}}</ion-item>
+      </p>
+
+    </ion-card-content>
+    <ion-row no-padding>
+
+      <div *ngIf="news?.user?.id== userDetails.user.id">
+        <ion-col>
           <button ion-button color="secondary" icon-left clear small (click)="editNews(news)">
+              <ion-icon name="create"></ion-icon>
+
             Edit
 
           </button>
-        
-        
+
+        </ion-col>
+        <ion-col>
           <button ion-button color="secondary" icon-left clear small (click)="deleteNews(news)">
-              delete
-  
-            </button>
-       
+              <ion-icon name="trash"></ion-icon>
+            Delete
+
+          </button>
+        </ion-col>
 
 
-       
-      </p>
-      <button ion-button color="secondary" icon-left clear small (click)="viewNews(news)">
+
+      </div>
+      <div>
+      <ion-col>
+        <button ion-button color="secondary" icon-left clear small (click)="viewNews(news)">
+            <ion-icon name="eye"></ion-icon>
           View
 
         </button>
-    </ion-card-content>
+      </ion-col>
+    </div>
+    </ion-row>
+
   </ion-card>
 
   <ion-fab bottom right>

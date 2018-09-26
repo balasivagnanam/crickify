@@ -43,24 +43,7 @@
               <ion-icon name="close"></ion-icon>
               Cancel
           </button>
-          
-
-              
-             
-            <p *ngIf= "news?.imgUrl!= null && news?.imgUrl.length>0" >
-                <ion-slides autoplay="5000" loop="true" speed="3000">
-                    <ion-slide *ngFor="let slide of news.imgUrl">
-                      
-                        <ion-item><img src="{{slide.url}}" /></ion-item>
-                        <ion-item> <button ion-button block (click)="delete(slide)" color="danger">
-                         
-                          Delete
-                      </button></ion-item>
-                    </ion-slide>
-                 
-                  </ion-slides>
-              
-              </p>
+         
                  <form [formGroup]="createNewsForm">
 
           <ion-item>

@@ -34,33 +34,24 @@
 
     </ion-row>
   </ion-grid>
-
   <ion-label color="white" stacked class="my-label">
     Cricket News
   </ion-label>
   <ion-scroll scrollX="true" direction="x">
-      <ion-card class="scrollcard" color="primary" *ngFor="let news of newss| slice:0:5;">
-  
-        <ion-card-header>
-          <ion-item text-center text-wrap>
-            <b>{{news.title}} </b>
-          </ion-item>
-        </ion-card-header>
+      <ion-card class="scrollcard" color="primary" *ngFor="let news of newss| slice:0:5;" (click)="viewNews(news)">
         <p *ngIf="news.imgUrl!= null && news.imgUrl.length>0">
            
-                <img src="{{news.imgUrl[0].url}} " height="150" />
+                <img src="{{news.imgUrl[0].url}} " height="250" />
            
   
           </p>
           <p *ngIf="news.imgUrl== null || news.imgUrl.length==0">
-            <img src="assets/img/noimage.png" height="150" />
+            <img src="assets/img/noimage.png" height="250" />
           </p>
-        <ion-card-content>
-            <ion-item> {{news.article}}</ion-item>
-            <button ion-button color="secondary" icon-left clear small (click)="viewNews(news)">
-              View
-    
-            </button>
+        <ion-card-content text-wrap>
+           
+                <h2><b>{{news.title}} </b></h2>
+             
         </ion-card-content>
       </ion-card>
     </ion-scroll>
@@ -72,33 +63,29 @@
 
 
     <ion-scroll scrollX="true" direction="x">
-      <ion-card class="scrollcard" color="primary" *ngFor="let product of products| slice:0:3;">
+      <ion-card class="scrollcard" color="primary" *ngFor="let product of products| slice:0:3;" (click)="viewProduct(product)">
 
-        <ion-card-header>
-          <ion-item text-center text-wrap>
-            <b>{{product?.title}} </b>
-          </ion-item>
+        <ion-card-header  text-center text-wrap>
+          
+            <h2> <b>{{product?.title}} </b></h2>
+          
         </ion-card-header>
-        
+        <p *ngIf="product.imgUrl!= null && product.imgUrl.length>0">
+           
+            <img src="{{product.imgUrl[0].url}} " height="200" />
+       
+
+      </p>
+      <p *ngIf="product.imgUrl== null || product.imgUrl.length==0">
+        <img src="assets/img/noimage.png" height="200" />
+      </p>  
   
           <ion-card-content>
-              <p *ngIf="product.imgUrl!= null && product.imgUrl.length>0">
-           
-                  <img src="{{product.imgUrl[0].url}} " height="150" />
-             
-      
-            </p>
-            <p *ngIf="product.imgUrl== null || product.imgUrl.length==0">
-              <img src="assets/img/noimage.png" height="150" />
-            </p>
-          <ion-item text-center text-wrap>
-            <p><b>${{product.price}}</b></p>
-                <button ion-button color="secondary" icon-left clear small (click)="viewProduct(product)">
-                    View
+
           
-                  </button>
-            
-          </ion-item>
+            <p><b>${{product.price}}</b></p>
+                          
+          
         </ion-card-content>
       </ion-card>
     </ion-scroll>
@@ -114,23 +101,23 @@
       <ion-scroll scrollX="true" direction="x">
         <ion-card class="scrollcard" color="primary" *ngFor="let classified of classifieds| slice:0:3;">
   
-          <ion-card-header>
-            <ion-item text-center text-wrap>
-              <b>{{classified?.type}} </b>
-            </ion-item>
+          <ion-card-header text-center text-wrap>
+            
+              <h2><b>{{classified?.type}} </b></h2>
+            
           </ion-card-header>
           
     
             <ion-card-content>
                   <ion-item text-center text-wrap>
-                <ion-item> Description: {{classified.description}}</ion-item>
+                <ion-item> <b>Description:</b> {{classified.description}}</ion-item>
                 <p *ngIf="classified.team!= null">
-                <ion-item>Team: {{classified.team?.teamname}}</ion-item></p>
+                <ion-item><b>Team:</b> {{classified.team?.teamname}}</ion-item></p>
                 <p *ngIf="classified.classifiedTime!= null">
-                  <ion-item>Date: {{classified?.classifiedTime | momentjs}}</ion-item>
+                  <ion-item><b>Date:</b> {{classified?.classifiedTime | momentjs}}</ion-item>
                   </p>
                   <p *ngIf="classified.location!= null">
-                    <ion-item>Location: {{classified.location?.name}}, {{classified.location?.address}}</ion-item>
+                    <ion-item><b>Location:</b> {{classified.location?.name}}, {{classified.location?.address}}</ion-item>
   </p>
   
                    
