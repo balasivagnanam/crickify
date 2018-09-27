@@ -131,7 +131,7 @@ import {ChatPage} from '../pages/chat/chat';
 import {ChatPageModule} from '../pages/chat/chat.module';
 import { ChatService } from '../providers/chat/chat';
 import { MessageService } from '../providers/message/message';
-import { Deeplinks } from '@ionic-native/deeplinks';
+
 
 const firebase = {
   apiKey: "AIzaSyDuAXZK8lTb8lsbjeSIHWl21kpOKQIUal4",
@@ -200,7 +200,7 @@ const firebase = {
     PlayersProvider,AdMobFree,AndroidPermissions,Push,OtherService,BattingService,BowlingService,
     ImagesProvider,Camera,FileTransfer,PracticeService,ClassifiedService,NewsService,ProductService,
     Firebase,
-    FcmProvider,ChatService,MessageService,Deeplinks
+    FcmProvider,ChatService,MessageService
   ]
 })
 export class AppModule {}
