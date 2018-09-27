@@ -19,10 +19,12 @@
     <img class="logo" src="assets/img/icon.png" />
     <form [formGroup]="loginForm" (submit)="login()">
        <ion-item>
-        <ion-input formControlName="username" type="email" placeholder="Email"></ion-input>
+          <ion-label floating color="white" >Email</ion-label>
+        <ion-input formControlName="username" type="email" ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
+          <ion-label floating color="white" >Password</ion-label>
+        <ion-input formControlName="password" type="password"></ion-input>
       </ion-item>
       <button ion-button margin color="primary">LOGIN</button>
       <p (click)="forgot()">

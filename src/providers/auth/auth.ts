@@ -170,6 +170,14 @@ forgot(credentials) {
         .subscribe(res => {
           resolve(res.json());
           console.log("auth response login", res.json()); 
+          if(localStorage.getItem('notificationtoken')!=null){
+          this.postNotification(localStorage.getItem('notificationtoken')).then((result) => {
+            console.log("success");
+            
+          }, (err) => {
+            console.log("error");
+         });
+        }
           if(res.json().statusCode == '200' || res.json().statusCode == '401'){
             isAuthenticated = true;
           }

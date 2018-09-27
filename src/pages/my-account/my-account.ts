@@ -26,7 +26,7 @@ export class MyAccountPage {
   user : any = " ";
 
   constructor(public navCtrl: NavController,public alertController: AlertController,private modalCtrl: ModalController, public navParams: NavParams, public authService: AuthService, formBuilder: FormBuilder, public loadingController:LoadingController,private imagesProvider: ImagesProvider, private camera: Camera, private actionSheetCtrl: ActionSheetController) {
-    if (this.authService.getAuthenticated()){
+    
       const data = JSON.parse(localStorage.getItem('userData'));
       this.editUserForm = formBuilder.group({
   id: ['', ],
@@ -55,7 +55,7 @@ export class MyAccountPage {
       this.userPostData.token = this.userDetails.token;
       
        
-    }
+      this.getUser();
   }
 
   ionViewWillEnter() {
@@ -101,7 +101,8 @@ saveUser(){
        if (this.responseData.statusCode == '200'){
          loading.dismiss();
          this.editUserForm.setValue(this.responseData.results.user);
-      
+         this.userDetails=this.responseData.results.user;
+
        }  else if(this.responseData.statusCode == "404") {
         loading.dismiss();
          console.log("unauthorrised");
