@@ -20,7 +20,7 @@
     </ion-card-header>
     <ion-card-content>
         <div>
-            <div class="images-wrapper">
+            <div class="images-wrapper" *ngIf="product!=null && product.imgUrl!= null && product.imgUrl.length>0">
               <div class="image-wrapper" *ngFor="let img of product.imgUrl">
                 <ion-icon class="remove-image" name="close" (click)="delete(img)"></ion-icon>
                 <div class="image" [style.background-image]="img.url.sanitized">

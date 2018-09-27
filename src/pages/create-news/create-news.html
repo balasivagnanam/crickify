@@ -18,21 +18,20 @@
     <ion-card-header>
       Add News
     </ion-card-header>
+    <div *ngIf="news!=null && news.imgUrl!= null && news.imgUrl.length>0">
+        <div class="images-wrapper">
+          <div class="image-wrapper" *ngFor="let img of news.imgUrl">
+            <ion-icon class="remove-image" name="close" (click)="delete(img)"></ion-icon>
+            <div class="image" [style.background-image]="img.url.sanitized">
+              <img src="{{img.url}}"/>
+            </div>
+          </div>
+      
+        </div>
+    </div>
+  
     <ion-card-content>
-        
-                <div>
-                  <div class="images-wrapper">
-                    <div class="image-wrapper" *ngFor="let img of news.imgUrl">
-                      <ion-icon class="remove-image" name="close" (click)="delete(img)"></ion-icon>
-                      <div class="image" [style.background-image]="img.url.sanitized">
-                        <img src="{{img.url}}"/>
-                      </div>
-                    </div>
-                
-                  </div>
-              </div>
-            
-      <ion-list no-lines>
+           <ion-list no-lines>
       
           <multi-image-upload [type]="type" [id]="news?.id"></multi-image-upload>
           <button ion-button block (click)="submit()" *ngIf="!multiImageUpload.isUploading && !uploadFinished&&!disabled">
