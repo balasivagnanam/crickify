@@ -126,13 +126,11 @@ export class MyApp {
       { title: 'Messages', component: ChatRoomPage },   
       { title: 'Completed Matches', component: PreviousMatchesPage },
       { title: 'Change Mode', component: ModeChangePage },
-      { title: 'Account Details', component: MyAccountPage },
-      { title: 'My Profile', component: MyProfilePage },
+      { title: 'My Career', component: MyProfilePage },
+      { title: 'My Profile', component: MyAccountPage },     
       { title: 'Finance Details', component: FinancePage },
-  
-     
       { title: 'Update Password', component: ResetPage },
-
+      { title: 'Location', component: LocationsPage },
       { title: 'Logout', component: LogoutPage },
     ];
     // used for an example of ngFor and navigation

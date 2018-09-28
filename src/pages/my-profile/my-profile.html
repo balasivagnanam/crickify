@@ -10,7 +10,7 @@
         <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>My Profile</ion-title>
+        <ion-title>My Career</ion-title>
       </ion-navbar>
 </ion-header>
 
@@ -19,13 +19,13 @@
     <ion-item>
     <h1><b>{{statsArray[0]?.stats.battingStatistics?.player.name}}</b></h1>
   </ion-item>
-       <ion-item>
+       <ion-item class="header">
      Batting stats  
     </ion-item>
     <br>
     <ion-scroll scrollX="true" direction="x">
         <ion-item class="scrollcardheader">
-            <ion-row text-center text-wrap>
+            <ion-row text-center text-wrap  class="header">
                 <ion-col col-1 >M</ion-col>
                 <ion-col col-1>I</ion-col>
                 <ion-col col-1 >R</ion-col>
@@ -46,13 +46,13 @@
             </ion-row>
           </ion-item>
           <br>   
-          <ion-item>
+          <ion-item class="header">
               Bowling stats  
              </ion-item>  
               
              <br> 
                 <ion-item class="scrollcardheader">
-              <ion-row text-center text-wrap>
+              <ion-row text-center text-wrap  class="header">
                   <ion-col col-1 >M</ion-col>
                   <ion-col col-2 >O</ion-col>
                   <ion-col col-1 >M</ion-col>
@@ -101,14 +101,14 @@
   <div [ngSwitch]="tabsvalues"> 
     <div *ngSwitchCase="'batting'">
     <ion-card>
-  <ion-card-header>
-  Batting
+  <ion-card-header class="header">
+      <b>Batting</b>
   </ion-card-header>
  <ion-card-content>
         <div class="cric-stat-batting-table">
             <ion-scroll scrollX="true" scrollY="true" direction="x">
                 <ion-item class="scrollcard">
-                    <ion-row text-center text-wrap>
+                    <ion-row text-center text-wrap class="header">
           
                         <ion-col col-3 >Tournament</ion-col>
                         <ion-col col-1 >M</ion-col>
@@ -140,14 +140,14 @@
 
     <div *ngSwitchCase="'bowling'">
      <ion-card>
-  <ion-card-header>
-  Bowling
+  <ion-card-header class="header">
+  <b>Bowling</b>
   </ion-card-header>
  <ion-card-content>
         <div class="cric-stat-bowling-table">
             <ion-scroll scrollX="true" scrollY="true" direction="x">
                 <ion-item class="scrollcard">
-                    <ion-row text-center text-wrap>
+                    <ion-row text-center text-wrap class="header" >
                         <ion-col col-3 >Tournament</ion-col>
                         <ion-col col-1 >M</ion-col>
                         <ion-col col-1 >O</ion-col>
@@ -158,7 +158,7 @@
                         <ion-col col-2 >Ec</ion-col>
                         </ion-row>
                   </ion-item>
-                 
+                
                   <ion-item  *ngFor="let tournament of statsArray" class="scrollcard">
                     <ion-row text-center text-wrap >
                         <ion-col col-3>{{tournament?.name}}</ion-col>
@@ -180,51 +180,43 @@
 
       <div *ngSwitchCase="'fielding'">
          <ion-card>
-  <ion-card-header>
-  Fielding
+  <ion-card-header class="header">
+      <b>Fielding</b>
   </ion-card-header>
  <ion-card-content>
           <div class="cric-stat-bowling-table">
-              <ul>
-                <li class="header">
-                    <p class="cric-player-name">Tournament</p>
-                    <p>M</p>
-                    <p>Ct</p>
-                    <p>R/O</p>
-                    <p>St</p>
-                </li>
-                <li *ngFor="let tournament of statsArray">
-                    <p class="cric-player-name">{{tournament?.name}}</p>
-                    <p>{{tournament.stats.bowlingStatistics?.matches}}</p>
-                    <p>{{tournament.stats.bowlingStatistics?.catches}}</p>
-                    <p>{{tournament.stats.bowlingStatistics?.runOuts}}</p>
-                    <p>{{tournament.stats.bowlingStatistics?.stumpings}}</p>
-                </li>
-              </ul>
+
+              <ion-scroll scrollX="true" scrollY="true" direction="x">
+                  <ion-item class="scrollcard">
+                      <ion-row text-center text-wrap class="header" >
+                          <ion-col col-3 >Tournament</ion-col>
+                          <ion-col col-1 >M</ion-col>
+                          <ion-col col-1 >Ct</ion-col>
+                          <ion-col col-1 >R/O</ion-col>
+                          <ion-col col-1 >St</ion-col>
+                    
+                          </ion-row>
+                    </ion-item>
+                  
+                    <ion-item  *ngFor="let tournament of statsArray" class="scrollcard">
+                      <ion-row text-center text-wrap >
+                          <ion-col col-3>{{tournament?.name}}</ion-col>
+                       
+                        <ion-col col-1 >{{tournament.stats.bowlingStatistics?.matches}}</ion-col>
+                        <ion-col col-1>{{tournament.stats.bowlingStatistics?.catches}}</ion-col>
+                        <ion-col col-1 >{{tournament.stats.bowlingStatistics?.runOuts}}</ion-col>
+                        <ion-col col-1 >{{tournament.stats.bowlingStatistics?.stumpings}}</ion-col>
+                        </ion-row>
+                    </ion-item>
+                  </ion-scroll>
+            
             </div>
             </ion-card-content>
 			  </ion-card>
       </div>
 
     </div>
-<ion-card>
-   <ion-card-header>
-     Runs Scored
-   </ion-card-header>
-   <ion-card-content>
-      <canvas #barCanvas></canvas>
-   </ion-card-content>
- </ion-card>
-         
-            <ion-card>
-   <ion-card-header>
-     Dismissal Types
-   </ion-card-header>
-   <ion-card-content>
-     <canvas #doughnutCanvas></canvas>
-   </ion-card-content>
- </ion-card>
-    
-     
+ 
+    <button ion-button margin color="success" (click)="analysis()">My Analysis</button> 
     
 </ion-content>

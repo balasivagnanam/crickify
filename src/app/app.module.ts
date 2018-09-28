@@ -131,7 +131,8 @@ import {ChatPage} from '../pages/chat/chat';
 import {ChatPageModule} from '../pages/chat/chat.module';
 import { ChatService } from '../providers/chat/chat';
 import { MessageService } from '../providers/message/message';
-
+import {MyAnalysisPage} from '../pages/my-analysis/my-analysis';
+import {MyAnalysisPageModule} from '../pages/my-analysis/my-analysis.module';
 
 const firebase = {
   apiKey: "AIzaSyDuAXZK8lTb8lsbjeSIHWl21kpOKQIUal4",
@@ -156,7 +157,7 @@ const firebase = {
     MyProfilePageModule,
     MyAccountPageModule,
     PreviousMatchesPageModule,PrivacyPageModule,ChatPageModule,
-    MyTeamsPageModule,
+    MyTeamsPageModule,MyAnalysisPageModule,
     PreviousMatchDetailsPageModule,CreateProductPageModule,
 	MatchTeamPageModule,CreateAdPageModule,
 	ResetPageModule,TeamPracticePageModule,CreateNewsPageModule,
@@ -174,7 +175,7 @@ const firebase = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
+    HomePage,MyAnalysisPage,
     ListPage,ClassifiedPage,CreateProductPage,
     WelcomePage,ViewPlayerExpensePage,
     LoginPage,ClassifiedResponsePage,

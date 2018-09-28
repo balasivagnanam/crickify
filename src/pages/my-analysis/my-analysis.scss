@@ -1,0 +1,38 @@
+page-my-profile {
+    .cric-cards{
+        float: left;
+        margin-right:5px; 
+        width: 22%;
+        margin-bottom: 20px;
+    }
+
+    .scrollcard {
+        width: 500px !important;
+        
+        display: inline-block;
+      }
+
+      ion-scroll {
+        min-height: 300px; 
+        height: auto;
+      
+            .scroll-content {
+            padding: 0px !important;
+        }    
+      }
+
+      .scrollcardheader {
+        width: 500px !important;
+        
+        display: inline-block;
+      }
+
+      ion-scrollheader {
+        min-height: 150px; 
+        height: auto;
+      
+            .scroll-content {
+            padding: 0px !important;
+        }    
+      }
+}
