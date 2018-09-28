@@ -5,6 +5,7 @@ import {Validators, FormBuilder, FormGroup, FormControl} from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import {UploadModalPage} from '../upload-modal/upload-modal';
 import { ImagesProvider } from './../../providers/images/images';
+import { ResetPage } from '../reset/reset';
 
 /**
  * Generated class for the MyAccountPage page.
@@ -196,6 +197,11 @@ saveUser(){
   }
   reloadImages() {
    
+  }
+
+  update() {
+    
+    this.navCtrl.push(ResetPage);
   }
 }
 

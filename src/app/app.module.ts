@@ -133,7 +133,8 @@ import { ChatService } from '../providers/chat/chat';
 import { MessageService } from '../providers/message/message';
 import {MyAnalysisPage} from '../pages/my-analysis/my-analysis';
 import {MyAnalysisPageModule} from '../pages/my-analysis/my-analysis.module';
-
+import { ViewLocationPage } from '../pages/view-location/view-location';
+import { ViewLocationModule } from '../pages/view-location/view-location.module';
 const firebase = {
   apiKey: "AIzaSyDuAXZK8lTb8lsbjeSIHWl21kpOKQIUal4",
   authDomain: "crickify-200803.firebaseapp.com",
@@ -152,7 +153,7 @@ const firebase = {
   imports: [  AngularFireModule.initializeApp(firebase), 
     AngularFirestoreModule,
     BrowserModule, FormsModule, HttpModule,PipesModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp),ViewLocationModule,
 	FinancePageModule,ForgotPageModule,LoginPageModule, SignupPageModule,
     MyProfilePageModule,
     MyAccountPageModule,
@@ -179,7 +180,7 @@ const firebase = {
     ListPage,ClassifiedPage,CreateProductPage,
     WelcomePage,ViewPlayerExpensePage,
     LoginPage,ClassifiedResponsePage,
-    SignupPage,CreateAdPage,
+    SignupPage,CreateAdPage,ViewLocationPage,
     MyProfilePage,ChatRoomPage,PrivacyPage,ChatPage,
     MyAccountPage,ViewProductPage,ProductPage,
     PreviousMatchesPage,PracticeAvailabilityPage,

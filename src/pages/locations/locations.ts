@@ -7,6 +7,7 @@ import {TeamService} from '../../providers/teams/teams';
 import { Events } from 'ionic-angular';
 import {CreateLocationPage} from '../create-location/create-location';
 import {OtherService} from '../../providers/other/other';
+import { ViewLocationPage } from '../view-location/view-location';
 /**
  * Generated class for the MyTeamsPage page.
  *
@@ -84,7 +85,10 @@ export class LocationsPage {
   }
 
   
-
+  view(location){
+    this.navCtrl.push(ViewLocationPage,{location: location});
+    
+    }
   
  createLocation(){
     //Login page link

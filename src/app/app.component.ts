@@ -117,7 +117,6 @@ export class MyApp {
     ];
 
     this.normalPages = [
-
       { title: 'Upcoming Matches', component: HomePage },
       { title: 'Upcoming Practice', component: PracticePage },
       { title: 'Cricket News', component: NewsPage },
@@ -125,12 +124,11 @@ export class MyApp {
       { title: 'Cricket Classifieds', component: ClassifiedPage },
       { title: 'Messages', component: ChatRoomPage },   
       { title: 'Completed Matches', component: PreviousMatchesPage },
+      { title: 'Finance Details', component: FinancePage },        
+      { title: 'Location', component: LocationsPage },
       { title: 'Change Mode', component: ModeChangePage },
       { title: 'My Career', component: MyProfilePage },
-      { title: 'My Profile', component: MyAccountPage },     
-      { title: 'Finance Details', component: FinancePage },
-      { title: 'Update Password', component: ResetPage },
-      { title: 'Location', component: LocationsPage },
+      { title: 'My Profile', component: MyAccountPage },
       { title: 'Logout', component: LogoutPage },
     ];
     // used for an example of ngFor and navigation
