@@ -31,14 +31,14 @@ export class NewsPage {
 newss : any;
 
   constructor(public navCtrl: NavController, public app:App, formBuilder: FormBuilder,public teamService:TeamService,public otherService:OtherService, public authService:AuthService, public newsService:NewsService, public loadingController: LoadingController,public admob: AdMobFree) {
-    if (this.authService.getAuthenticated()){
+  
       const data = JSON.parse(localStorage.getItem('userData'));
       console.log("fetch data", data);
       this.userDetails = data;
      // console.log("user data from storage", this.userDetails)
       this.userPostData.user_id = this.userDetails.id;
       this.userPostData.token = this.userDetails.token;
-    }
+    
     
     
     this.searchNewsForm = formBuilder.group({

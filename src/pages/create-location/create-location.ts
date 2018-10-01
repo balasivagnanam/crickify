@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, LoadingController ,AlertController
 import {TeamService} from '../../providers/teams/teams';
 import {OtherService} from '../../providers/other/other';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { CreateSubLocationPage } from '../create-sublocation/create-sublocation';
+import { ViewSubLocationPage } from '../view-sublocation/view-sublocation';
 /**
  * Generated class for the CreatedTeamPage page.
  *
@@ -18,24 +20,58 @@ import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 export class CreateLocationPage {
 
   private createLocationForm: FormGroup;
-
-  name : any;
+location:any;
+user : any;
+locationResponseData:any;
+locations:any;
   responseData : any;
   constructor(public navCtrl: NavController,public alertController: AlertController, public navParams: NavParams, public teamService: TeamService, public loadingController: LoadingController,formBuilder: FormBuilder,public otherService: OtherService) {
-   this.createLocationForm = formBuilder.group({
+   
+    this.location = navParams.get('location');
+    this.createLocationForm = formBuilder.group({
      
       name: ['', Validators.compose([ Validators.required])],
 	  address: ['', Validators.compose([Validators.required])],
 	  lat: [''],
-	  lng: ['']
+    lng: [''],
+    id:[],
+    user:[],
+    email:[Validators.compose([Validators.required])],
+    contact:[],
+    country:['', Validators.compose([ Validators.required])],
+    subLocations:['']
+
      
   });
-
+  if (this.location != null) {
+    this.createLocationForm.setValue(this.location);
+  }
   
-  this.name=this.createLocationForm.controls['name'];
+  
+  const data = JSON.parse(localStorage.getItem('userData'));
+  this.user = data.user;
+  this.createLocationForm.controls['user'].setValue(this.user);
 
   }
 
+  getLocations() {
+
+    this.otherService.getAllCountries().then((result) => {
+      this.locationResponseData = result;
+      console.log(this.locationResponseData);
+     
+        this.locations = this.locationResponseData;
+       
+
+
+     
+
+    }, (err) => {
+      console.log("error", err);
+
+      // Error log
+    });
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad create team');
   }
@@ -88,4 +124,19 @@ alertDialog(title,message){
         });
         alert.present();
   }
+
+  view(location){
+    this.navCtrl.push(ViewSubLocationPage,{location: location});
+    
+    }
+  
+ createSubLocation(){
+    //Login page link
+    this.navCtrl.push(CreateSubLocationPage);
+  }
+  editLocation(sublocation){
+    this.navCtrl.push(CreateSubLocationPage,{sublocation: sublocation});
+    
+    }
+
 }

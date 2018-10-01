@@ -37,21 +37,13 @@ export class LocationsPage {
   userPostData = {"user_id":"","token":""};
 
   constructor(public events: Events,public navCtrl: NavController, public navParams: NavParams, public authService:AuthService, public teamService:TeamService, public statsService:StatsService, public app: App, public loadingController:LoadingController,public otherService:OtherService) {
-    if (this.authService.getAuthenticated()){
-      const data = JSON.parse(localStorage.getItem('userData'));
-      console.log("fetch data", data);
-      this.userDetails = data;
-     // console.log("user data from storage", this.userDetails)
-      this.userPostData.user_id = this.userDetails.id;
-      this.userPostData.token = this.userDetails.token;
-    } else {
-      const root = this.app.getRootNav();
-      root.popToRoot();
-    }
+    const data = JSON.parse(localStorage.getItem('userData'));
+    this.userDetails = data;
   }
   ionViewWillEnter() {
    this.ionViewDidLoad();
   }
+
 
   ionViewDidLoad(){
     console.log('ionViewDidLoad home page');
@@ -94,5 +86,8 @@ export class LocationsPage {
     //Login page link
     this.navCtrl.push(CreateLocationPage);
   }
- 
+  editLocation(location){
+    this.navCtrl.push(CreateLocationPage,{location: location});
+    
+    }
 }

@@ -39,7 +39,7 @@
     </ion-card-content>
     </ion-card>
   <ion-card *ngFor="let match of matches">
-    <ion-card-header>
+    <ion-card-header text-wrap>
       <b><h1>{{match.match.team.teamname}} versus
       {{match.match.opponent}}</h1></b>
       <p>{{match.match.tournament?.name}}</p>

@@ -49,7 +49,6 @@ import {ResetPageModule} from '../pages/reset/reset.module';
 import {LogoutPage} from '../pages/logout/logout';
 import {LogoutPageModule} from '../pages/logout/logout.module';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
-import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
 import {CreateTeamPage} from '../pages/create-team/create-team';
 import {CreateTeamModule} from '../pages/create-team/create-team.module';
 import {TeamPlayersPage} from '../pages/team-players/team-players';
@@ -135,6 +134,13 @@ import {MyAnalysisPage} from '../pages/my-analysis/my-analysis';
 import {MyAnalysisPageModule} from '../pages/my-analysis/my-analysis.module';
 import { ViewLocationPage } from '../pages/view-location/view-location';
 import { ViewLocationModule } from '../pages/view-location/view-location.module';
+import { ViewSubLocationPage } from '../pages/view-sublocation/view-sublocation';
+import { ViewSubLocationModule } from '../pages/view-sublocation/view-sublocation.module';
+import {CreateSubLocationPage} from '../pages/create-sublocation/create-sublocation';
+import {CreateSubLocationModule} from '../pages/create-sublocation/create-sublocation.module';
+import { SubLocationService } from '../providers/sublocation/sublocation';
+import { SlotService } from '../providers/slot/slot';
+import { BookingService } from '../providers/booking/booking';
 const firebase = {
   apiKey: "AIzaSyDuAXZK8lTb8lsbjeSIHWl21kpOKQIUal4",
   authDomain: "crickify-200803.firebaseapp.com",
@@ -155,10 +161,10 @@ const firebase = {
     BrowserModule, FormsModule, HttpModule,PipesModule,
     IonicModule.forRoot(MyApp),ViewLocationModule,
 	FinancePageModule,ForgotPageModule,LoginPageModule, SignupPageModule,
-    MyProfilePageModule,
+    MyProfilePageModule,ViewSubLocationModule,
     MyAccountPageModule,
     PreviousMatchesPageModule,PrivacyPageModule,ChatPageModule,
-    MyTeamsPageModule,MyAnalysisPageModule,
+    MyTeamsPageModule,MyAnalysisPageModule,CreateSubLocationModule,
     PreviousMatchDetailsPageModule,CreateProductPageModule,
 	MatchTeamPageModule,CreateAdPageModule,
 	ResetPageModule,TeamPracticePageModule,CreateNewsPageModule,
@@ -175,10 +181,10 @@ const firebase = {
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
+    MyApp,ViewSubLocationPage,
     HomePage,MyAnalysisPage,
     ListPage,ClassifiedPage,CreateProductPage,
-    WelcomePage,ViewPlayerExpensePage,
+    WelcomePage,ViewPlayerExpensePage,CreateSubLocationPage,
     LoginPage,ClassifiedResponsePage,
     SignupPage,CreateAdPage,ViewLocationPage,
     MyProfilePage,ChatRoomPage,PrivacyPage,ChatPage,
@@ -202,7 +208,7 @@ const firebase = {
     PlayersProvider,AdMobFree,AndroidPermissions,Push,OtherService,BattingService,BowlingService,
     ImagesProvider,Camera,FileTransfer,PracticeService,ClassifiedService,NewsService,ProductService,
     Firebase,
-    FcmProvider,ChatService,MessageService
+    FcmProvider,ChatService,MessageService,SubLocationService,BookingService,SlotService
   ]
 })
 export class AppModule {}

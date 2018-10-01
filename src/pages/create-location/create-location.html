@@ -27,10 +27,24 @@
             <ion-label floating>Name</ion-label>
             <ion-input formControlName="name" type="text"></ion-input>
         </ion-item>
+        <ion-item>
+            <ion-label floating>Contact</ion-label>
+            <ion-input formControlName="contact" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input formControlName="email" type="text"></ion-input>
+        </ion-item>
       <ion-item>
             <ion-label floating>Address</ion-label>
             <ion-input formControlName="address" type="text"></ion-input>
         </ion-item>
+        <ion-item>
+            <ion-label>Country</ion-label>
+            <ion-select formControlName="location">
+              <ion-option *ngFor="let key of locations" [value]="key.name">{{key.name}}</ion-option>
+            </ion-select>
+          </ion-item>
        <ion-item>
             <ion-label floating>Latitude</ion-label>
             <ion-input formControlName="lat" type="number" step="0.01"></ion-input>
@@ -48,4 +62,46 @@
 </ion-list>
 </ion-card-content>
  </ion-card>
+ <ion-card>
+    <ion-card-header>
+      Sub Locations
+    </ion-card-header>
+    <ion-card-content>
+  <ion-list no-lines>
+ <ion-card *ngFor="let location of location?.subLocations" color="primary" >
+    <ion-card-header>
+      {{location.name}}
+	   </ion-card-header>
+     <ion-row no-padding>
+
+        <div *ngIf="location?.user?.id== userDetails.user.id">
+          <ion-col>
+            <button ion-button color="secondary" icon-left clear small (click)="editLocation(location)">
+                <ion-icon name="create"></ion-icon>
+  
+              Edit
+  
+            </button>
+  
+          </ion-col>
+  
+  
+        </div>
+        <div>
+        <ion-col>
+          <button ion-button color="secondary" icon-left clear small (click)="view(location)">
+              <ion-icon name="eye"></ion-icon>
+            View
+  
+          </button>
+        </ion-col>
+      </div>
+      </ion-row>
+  </ion-card>
+  </ion-list>
+  </ion-card-content>
+  <ion-fab bottom right>
+      <button ion-fab mini (click)="createSubLocation()"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+  </ion-card>
 </ion-content>

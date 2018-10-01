@@ -17,11 +17,35 @@
 
 
 <ion-content padding class="appBackground">
-  <ion-card *ngFor="let location of locations" color="primary" (click)="view(location)">
+  <ion-card *ngFor="let location of locations" color="primary" >
     <ion-card-header>
       {{location.name}}
 	   </ion-card-header>
-	 
+     <ion-row no-padding>
+
+        <div *ngIf="location?.user?.id== userDetails.user.id"  >
+          <ion-col>
+            <button ion-button color="secondary" icon-left clear small (click)="editLocation(location)">
+                <ion-icon name="create"></ion-icon>
+  
+              Edit
+  
+            </button>
+  
+          </ion-col>
+  
+  
+        </div>
+        <div>
+        <ion-col>
+          <button ion-button color="secondary" icon-left clear small (click)="view(location)">
+              <ion-icon name="eye"></ion-icon>
+            View
+  
+          </button>
+        </ion-col>
+      </div>
+      </ion-row>
   </ion-card>
 </ion-content>
 

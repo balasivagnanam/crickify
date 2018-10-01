@@ -14,18 +14,19 @@
 
 
 <ion-content padding class="appBackground" >
-
+<ion-card>
+    <ion-card-content>
   <ion-segment [(ngModel)]="tabsvalues">
-      <ion-segment-button value="available">
+      <ion-segment-button value="available" text-wrap>
         Availability
       </ion-segment-button>
-          <ion-segment-button value="unAvailable">
+          <ion-segment-button value="unAvailable" text-wrap>
          UnAvailable
       </ion-segment-button>
-	         <ion-segment-button value="tentative">
+	         <ion-segment-button value="tentative" text-wrap>
         Tentative
       </ion-segment-button>
-	         <ion-segment-button value="Unknown">
+	         <ion-segment-button value="Unknown" text-wrap>
          Unknown
       </ion-segment-button>
     </ion-segment>
@@ -142,4 +143,6 @@
         </div>
        </div>
   </div>
+  </ion-card-content>
+</ion-card>
 </ion-content>
