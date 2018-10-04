@@ -28025,6 +28025,45 @@ page-create-product .images-wrapper .image-wrapper.add-image-btn .image {
   background: #DDD;
 }
 
+page-create-sublocation .cric-cards {
+  float: left;
+  margin-right: 5px;
+  width: 22%;
+  margin-bottom: 20px;
+}
+
+page-create-sublocation .scrollcard {
+  width: 500px !important;
+  display: inline-block;
+}
+
+page-create-sublocation .header {
+  background: #f0dd38;
+}
+
+page-create-sublocation ion-scroll {
+  min-height: 300px;
+  height: auto;
+}
+
+page-create-sublocation ion-scroll .scroll-content {
+  padding: 0px !important;
+}
+
+page-create-sublocation .scrollcardheader {
+  width: 500px !important;
+  display: inline-block;
+}
+
+page-create-sublocation ion-scrollheader {
+  min-height: 150px;
+  height: auto;
+}
+
+page-create-sublocation ion-scrollheader .scroll-content {
+  padding: 0px !important;
+}
+
 page-forgot .scroll-content {
   margin-top: 0 !important;
 }

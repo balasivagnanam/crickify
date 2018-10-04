@@ -138,8 +138,11 @@ import { ViewSubLocationPage } from '../pages/view-sublocation/view-sublocation'
 import { ViewSubLocationModule } from '../pages/view-sublocation/view-sublocation.module';
 import {CreateSubLocationPage} from '../pages/create-sublocation/create-sublocation';
 import {CreateSubLocationModule} from '../pages/create-sublocation/create-sublocation.module';
+import {CreateSchedulePage} from '../pages/create-schedule/create-schedule';
+import {CreateSchedulePageModule} from '../pages/create-schedule/create-schedule.module';
 import { SubLocationService } from '../providers/sublocation/sublocation';
 import { SlotService } from '../providers/slot/slot';
+import { SlotScheduleService } from '../providers/slotSchedule/slotSchedule';
 import { BookingService } from '../providers/booking/booking';
 const firebase = {
   apiKey: "AIzaSyDuAXZK8lTb8lsbjeSIHWl21kpOKQIUal4",
@@ -162,7 +165,7 @@ const firebase = {
     IonicModule.forRoot(MyApp),ViewLocationModule,
 	FinancePageModule,ForgotPageModule,LoginPageModule, SignupPageModule,
     MyProfilePageModule,ViewSubLocationModule,
-    MyAccountPageModule,
+    MyAccountPageModule,CreateSchedulePageModule,
     PreviousMatchesPageModule,PrivacyPageModule,ChatPageModule,
     MyTeamsPageModule,MyAnalysisPageModule,CreateSubLocationModule,
     PreviousMatchDetailsPageModule,CreateProductPageModule,
@@ -182,7 +185,7 @@ const firebase = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,ViewSubLocationPage,
-    HomePage,MyAnalysisPage,
+    HomePage,MyAnalysisPage,CreateSchedulePage,
     ListPage,ClassifiedPage,CreateProductPage,
     WelcomePage,ViewPlayerExpensePage,CreateSubLocationPage,
     LoginPage,ClassifiedResponsePage,
@@ -207,7 +210,7 @@ const firebase = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PlayersProvider,AdMobFree,AndroidPermissions,Push,OtherService,BattingService,BowlingService,
     ImagesProvider,Camera,FileTransfer,PracticeService,ClassifiedService,NewsService,ProductService,
-    Firebase,
+    Firebase,SlotScheduleService,
     FcmProvider,ChatService,MessageService,SubLocationService,BookingService,SlotService
   ]
 })
