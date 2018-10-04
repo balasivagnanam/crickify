@@ -71,33 +71,48 @@
          
         <ion-item>${{product.price}}</ion-item>
             
-      <p *ngIf="product.user?.id== userDetails.user.id">
+            <ion-row no-padding>
+
+              <div *ngIf="product?.user?.id== userDetails.user.id">
+                <ion-col>
+                  <button ion-button color="secondary" icon-left clear small (click)="editProduct(product)">
+                      <ion-icon name="create"></ion-icon>
         
-          <button ion-button color="secondary" icon-left clear small (click)="editProduct(product)">
-            Edit
-
-          </button>
+                    Edit
+        
+                  </button>
+        
+                </ion-col>
+                <ion-col>
+                  <button ion-button color="secondary" icon-left clear small (click)="deleteProduct(product)">
+                      <ion-icon name="trash"></ion-icon>
+                    Delete
+        
+                  </button>
+                </ion-col>
         
         
-          <button ion-button color="secondary" icon-left clear small (click)="deleteProduct(product)">
-              delete
-  
-            </button>
-       
-
-
-       
-      </p>
-      <button ion-button color="secondary" icon-left clear small (click)="viewProduct(product)">
-          View
-
-        </button>
-        <p *ngIf="product.user?.id!= userDetails.user.id">
-        <button ion-button color="secondary" icon-left clear small (click)="chatProduct(product)">
-            Message
- 
-           </button>
-          </p>
+        
+              </div>
+              <div >
+                  <ion-col>
+                    <button ion-button color="secondary" icon-left clear small (click)="viewProduct(product)">
+                        <ion-icon name="eye"></ion-icon>
+                        View
+            
+                    </button>
+                  </ion-col>
+                </div>
+             <div *ngIf="product.user?.id!= userDetails.user.id">
+              <ion-col>
+                <button ion-button color="secondary" icon-left clear small (click)="chatProduct(product)">
+                    <ion-icon name="message"></ion-icon>
+                    Message
+        
+                </button>
+              </ion-col>
+            </div>
+            </ion-row>
     </ion-card-content>
   </ion-card>
 

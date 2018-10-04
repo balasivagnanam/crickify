@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
-let matchapiUrl = 'https://crickify.herokuapp.com/match';
-let apiUrl = 'https://crickify.herokuapp.com/teamplayer';
-let teamapiUrl = 'https://crickify.herokuapp.com/team';
+import { ENV } from '@app/env';
+let matchapiUrl = ENV.baseUrl+'/match';
+let apiUrl = ENV.baseUrl+'/teamplayer';
+let teamapiUrl = ENV.baseUrl+'/team';
 //let isLoggedIn : boolean;
 let isAuthenticated : boolean;
 @Injectable()

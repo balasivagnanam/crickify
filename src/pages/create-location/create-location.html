@@ -41,7 +41,7 @@
         </ion-item>
         <ion-item>
             <ion-label>Country</ion-label>
-            <ion-select formControlName="location">
+            <ion-select formControlName="country">
               <ion-option *ngFor="let key of locations" [value]="key.name">{{key.name}}</ion-option>
             </ion-select>
           </ion-item>
@@ -54,7 +54,7 @@
             <ion-input formControlName="lng" type="number" step="0.01"></ion-input>
         </ion-item>
           <button ion-button color="secondary" icon-left clear small [disabled]="!createLocationForm.valid" (click)="createLocation()">
-            Create Location
+            Save Location
             
           </button>
     </form>
@@ -62,7 +62,7 @@
 </ion-list>
 </ion-card-content>
  </ion-card>
- <ion-card>
+ <ion-card *ngIf="location?.id==null">
     <ion-card-header>
       Sub Locations
     </ion-card-header>
@@ -104,4 +104,5 @@
       <button ion-fab mini (click)="createSubLocation()"><ion-icon name="add"></ion-icon></button>
     </ion-fab>
   </ion-card>
+</ion-card>
 </ion-content>

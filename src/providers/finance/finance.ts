@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
-
-let apiUrl = 'https://crickify.herokuapp.com/finance';
+import { ENV } from '@app/env';
+let apiUrl = ENV.baseUrl+'/finance';
 
 //let isLoggedIn : boolean;
 let isAuthenticated : boolean;

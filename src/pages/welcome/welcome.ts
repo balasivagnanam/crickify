@@ -43,18 +43,18 @@ bowlings : any;
   }
 showBanner() {
  
-        let bannerConfig: AdMobFreeBannerConfig = {
-            
-            autoShow: true,
-           id:'ca-app-pub-7720772047232561~3441613572'
-        };
- 
+  let bannerConfig: AdMobFreeBannerConfig = {
+        
+    autoShow: true,
+   id:'ca-app-pub-7720772047232561/8941352265'
+};
 
-       let iosBannerConfig: AdMobFreeBannerConfig = {
-            
-          autoShow: true,
-         id:'ca-app-pub-7720772047232561~7847498768'
-      };
+
+let iosBannerConfig: AdMobFreeBannerConfig = {
+    
+  autoShow: true,
+ id:'ca-app-pub-7720772047232561/2648166418'
+};
       if (this.plt.is('android')){
         this.admob.banner.config(bannerConfig);}
         if (this.plt.is('ios'))  {

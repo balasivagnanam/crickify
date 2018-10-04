@@ -4,8 +4,8 @@ import 'rxjs/add/operator/map';
 import { Observable } from "rxjs/Observable";
 import { map } from 'rxjs/operators/map';
 import { Response } from '@angular/http';
-let apiUrl = 'https://crickify.herokuapp.com/message';
-
+let apiUrl = ENV.baseUrl+'/message';
+import { ENV } from '@app/env';
 let isAuthenticated : boolean;
 
 export class ChatMessage {

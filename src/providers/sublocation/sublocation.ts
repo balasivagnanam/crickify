@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
-
-let apiUrl = 'http://localhost:8181/auth/sublocation';
+import { ENV } from '@app/env';
+let apiUrl = ENV.baseUrl+'/sublocation';
 
 let isAuthenticated : boolean;
 @Injectable()

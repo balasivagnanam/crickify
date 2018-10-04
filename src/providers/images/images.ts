@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { Http } from '@angular/http';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
- 
+import { ENV } from '@app/env';
 @Injectable()
 export class ImagesProvider {
-  apiURL = 'https://crickify.herokuapp.com/file';
+  apiURL = ENV.baseUrl+'/file';
   public serverUrl = "https://crickify.herokuapp.com/image/";
  
   constructor(public http: Http, private transfer: FileTransfer) { }

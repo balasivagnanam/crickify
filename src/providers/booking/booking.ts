@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
-
-let apiUrl = 'http://localhost:8181/auth/booking';
+import { ENV } from '@app/env';
+let apiUrl = ENV.baseUrl+'/booking';
 
 let isAuthenticated : boolean;
 @Injectable()

@@ -67,42 +67,44 @@
           <p *ngIf="classified.classifiedTime!= null">
             <ion-item>{{classified?.classifiedTime | momentjs}}</ion-item>
             </p>
+            <p *ngIf="classified.location!= null">
               <ion-item>{{classified.location?.name}}, {{classified.location?.address}}</ion-item>
-      <p *ngIf="classified.user?.id== userDetails.user.id">
-        
-          <button ion-button color="secondary" icon-left clear small (click)="editClassified(classified)">
-            Edit
+              </p>
+ 
 
-          </button>
-        
-        
-          <button ion-button color="secondary" icon-left clear small (click)="deleteClassified(classified)">
-              delete
-  
+      <ion-row no-padding>
+
+          <div *ngIf="classified?.user?.id== userDetails.user.id">
+            <ion-col>
+              <button ion-button color="secondary" icon-left clear small (click)="editClassified(classified)">
+                  <ion-icon name="create"></ion-icon>
+    
+                Edit
+    
+              </button>
+    
+            </ion-col>
+            <ion-col>
+              <button ion-button color="secondary" icon-left clear small (click)="deleteClassified(classified)">
+                  <ion-icon name="trash"></ion-icon>
+                Delete
+    
+              </button>
+            </ion-col>
+    
+    
+    
+          </div>
+          <div *ngIf="classified.user?.id!= userDetails.user.id">
+          <ion-col>
+            <button ion-button color="secondary" icon-left clear small (click)="chatClassified(classified)">
+                <ion-icon name="message"></ion-icon>
+                Message
+    
             </button>
-       
-      
-          <button ion-button color="secondary" icon-left clear small (click)="checkResponse(classified)">
-            Check Responses
-
-          </button>
-
-       
-      </p>
-      <p *ngIf="classified.user?.id!= userDetails.user.id">
-        
-          <button ion-button color="secondary" icon-left clear small (click)="respondClassified(classified)">
-            Respond
-
-          </button>
-
-          <button ion-button color="secondary" icon-left clear small (click)="chatClassified(classified)">
-             Message
-  
-            </button>
-
-
-      </p>
+          </ion-col>
+        </div>
+        </ion-row>
     </ion-card-content>
   </ion-card>
 

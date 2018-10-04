@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
-
-let apiUrl = 'https://crickify.herokuapp.com';
+import { ENV } from '@app/env';
+let apiUrl = ENV.baseUrl+'';
 
 let countryApi='https://restcountries.eu/rest/v2/all';
 
 let scoreApi='https://cricscore-api.appspot.com';
-let imageUrl = 'https://crickify.herokuapp.com/image/';
+let imageUrl = ENV.baseUrl+'/image/';
 //let isLoggedIn : boolean;
 let isAuthenticated : boolean;
 @Injectable()

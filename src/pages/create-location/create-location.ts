@@ -25,6 +25,7 @@ user : any;
 locationResponseData:any;
 locations:any;
   responseData : any;
+  userDetails:any;
   constructor(public navCtrl: NavController,public alertController: AlertController, public navParams: NavParams, public teamService: TeamService, public loadingController: LoadingController,formBuilder: FormBuilder,public otherService: OtherService) {
    
     this.location = navParams.get('location');
@@ -36,7 +37,7 @@ locations:any;
     lng: [''],
     id:[],
     user:[],
-    email:[Validators.compose([Validators.required])],
+    email:['',Validators.compose([Validators.required])],
     contact:[],
     country:['', Validators.compose([ Validators.required])],
     subLocations:['']
@@ -49,6 +50,7 @@ locations:any;
   
   
   const data = JSON.parse(localStorage.getItem('userData'));
+  this.userDetails=data;
   this.user = data.user;
   this.createLocationForm.controls['user'].setValue(this.user);
 

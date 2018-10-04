@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
-
+import { ENV } from '@app/env';
 /*
   Generated class for the PlayersProvider provider.
 
@@ -9,8 +9,8 @@ import 'rxjs/add/operator/map';
   and Angular DI.
 */
 
-let apiUrl = 'https://crickify.herokuapp.com/player';
-let apiUrlTeam = 'https://crickify.herokuapp.com/teamplayer';
+let apiUrl = ENV.baseUrl+'/player';
+let apiUrlTeam = ENV.baseUrl+'/teamplayer';
 
 @Injectable()
 export class PlayersProvider {
