@@ -70,7 +70,7 @@ export class CreateSchedulePage {
       if (this.responseData.statusCode == '200'){
         loading.dismiss();
         console.log("test 200");
-    
+        this.navCtrl.pop();
      
       }  else if(this.responseData.statusCode == "404") {
 		   loading.dismiss();

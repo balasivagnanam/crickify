@@ -19,7 +19,25 @@ export class OtherService {
   getToken(){
       return JSON.parse(localStorage.getItem('userData')).user.token;
   }
+  getLocationId(id) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set("token",this.getToken());
+      this.http.get(apiUrl + '/location/location/'+id, {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          
+          if(res.json().statusCode == '200'){
+           
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
 
+  }
   getAllLocation() {
     return new Promise((resolve, reject) => {
       let headers = new Headers();

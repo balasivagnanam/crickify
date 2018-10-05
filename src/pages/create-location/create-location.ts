@@ -26,6 +26,7 @@ export class CreateLocationPage {
   locations: any;
   responseData: any;
   userDetails: any;
+  locationresponseData:any;
   constructor(public navCtrl: NavController, public alertController: AlertController, public navParams: NavParams, public teamService: TeamService, public loadingController: LoadingController, formBuilder: FormBuilder, public otherService: OtherService) {
 
     this.location = navParams.get('location');
@@ -55,7 +56,36 @@ export class CreateLocationPage {
     this.createLocationForm.controls['user'].setValue(this.user);
 
   }
+  ionViewWillEnter() {
+    this.getData();
+   }
 
+   getData(){
+    if(this.location!=null&&this.location.id!=null){
+    const loading = this.loadingController.create({
+      content: 'Please wait...'
+    });
+    loading.present();
+    this.otherService.getLocationId(this.location.id).then((result) => {
+      this.locationresponseData = result;
+      console.log(this.locationresponseData); 
+      if (this.locationresponseData.statusCode == '200'){
+        loading.dismiss();
+        console.log("test 200");
+        console.log("result", this.locationresponseData.results.result);
+        this.location = this.locationresponseData.results.result;
+      }  else if(this.locationresponseData.statusCode == "404") {
+        loading.dismiss();
+      } else {
+        loading.dismiss();
+        console.log("error", this.locationresponseData)
+      }
+      
+    }, (err) => {
+      loading.dismiss();
+    });
+  }
+  }
   getLocations() {
 
     this.otherService.getAllCountries().then((result) => {

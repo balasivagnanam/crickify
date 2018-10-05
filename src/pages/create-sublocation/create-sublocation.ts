@@ -25,6 +25,7 @@ export class CreateSubLocationPage {
   user: any;
   responseData: any;
   location:any;
+  subresponseData:any;
   constructor(public navCtrl: NavController, public alertController: AlertController, public navParams: NavParams, public teamService: TeamService, public loadingController: LoadingController, formBuilder: FormBuilder, public otherService: SubLocationService) {
 
     this.sublocation = navParams.get('sublocation');
@@ -41,7 +42,7 @@ export class CreateSubLocationPage {
       this.createSubLocationForm.setValue(this.sublocation);
     }else{
      
-      delete this.location.subLocations;
+      
       this.createSubLocationForm.controls['location'].setValue(this.location);
       
     }
@@ -51,6 +52,37 @@ export class CreateSubLocationPage {
 
 
   }
+  ionViewWillEnter() {
+    this.getData();
+   }
+
+   getData(){
+    if(this.sublocation!=null&&this.sublocation.id!=null){
+    const loading = this.loadingController.create({
+      content: 'Please wait...'
+    });
+    loading.present();
+    this.otherService.getSubLocationId(this.sublocation.id).then((result) => {
+      this.subresponseData = result;
+      console.log(this.subresponseData); 
+      if (this.subresponseData.statusCode == '200'){
+        loading.dismiss();
+        console.log("test 200");
+        console.log("result", this.subresponseData.results.result);
+        this.sublocation = this.subresponseData.results.result;
+      }  else if(this.subresponseData.statusCode == "404") {
+        loading.dismiss();
+      } else {
+        loading.dismiss();
+        console.log("error", this.subresponseData)
+      }
+      
+    }, (err) => {
+      loading.dismiss();
+    });
+  }
+  }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad create team');
@@ -61,13 +93,14 @@ export class CreateSubLocationPage {
       content: 'Please wait...'
     });
     loading.present();
+    delete this.createSubLocationForm.value.location.subLocations;
     this.otherService.addSubLocation(this.createSubLocationForm.value).then((result) => {
       this.responseData = result;
       console.log(this.responseData);
       if (this.responseData.statusCode == '200') {
         loading.dismiss();
         console.log("test 200");
-
+this.navCtrl.pop();
 
       } else if (this.responseData.statusCode == "404") {
         loading.dismiss();
