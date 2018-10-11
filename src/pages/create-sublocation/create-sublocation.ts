@@ -5,6 +5,9 @@ import { SubLocationService } from '../../providers/sublocation/sublocation';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ViewSubLocationPage } from '../view-sublocation/view-sublocation';
 import { CreateSchedulePage } from '../create-schedule/create-schedule';
+import {SlotScheduleService} from '../../providers/slotSchedule/slotSchedule';
+import { SubLocationSlotsPage } from '../sublocation-slots/sublocation-slots';
+import { SubLocationBookingPage } from '../sublocation-booking/sublocation-booking';
 /**
  * Generated class for the CreatedTeamPage page.
  *
@@ -26,7 +29,8 @@ export class CreateSubLocationPage {
   responseData: any;
   location:any;
   subresponseData:any;
-  constructor(public navCtrl: NavController, public alertController: AlertController, public navParams: NavParams, public teamService: TeamService, public loadingController: LoadingController, formBuilder: FormBuilder, public otherService: SubLocationService) {
+  slotSchedule:any;
+  constructor(public navCtrl: NavController,public scheduleService:SlotScheduleService, public alertController: AlertController, public navParams: NavParams, public teamService: TeamService, public loadingController: LoadingController, formBuilder: FormBuilder, public otherService: SubLocationService) {
 
     this.sublocation = navParams.get('sublocation');
     this.location = navParams.get('location');
@@ -35,8 +39,8 @@ export class CreateSubLocationPage {
       name: ['', Validators.compose([Validators.required])],
       user: [],
       id: [],
-      location: [],
-      slotSchedules: []
+      type:['', Validators.compose([Validators.required])],
+      location: []
     });
     if (this.sublocation != null) {
       this.createSubLocationForm.setValue(this.sublocation);
@@ -62,14 +66,14 @@ export class CreateSubLocationPage {
       content: 'Please wait...'
     });
     loading.present();
-    this.otherService.getSubLocationId(this.sublocation.id).then((result) => {
+    this.scheduleService.getAllSlotSchedule(this.sublocation.id).then((result) => {
       this.subresponseData = result;
       console.log(this.subresponseData); 
       if (this.subresponseData.statusCode == '200'){
         loading.dismiss();
         console.log("test 200");
         console.log("result", this.subresponseData.results.result);
-        this.sublocation = this.subresponseData.results.result;
+        this.slotSchedule = this.subresponseData.results.result;
       }  else if(this.subresponseData.statusCode == "404") {
         loading.dismiss();
       } else {
@@ -93,7 +97,7 @@ export class CreateSubLocationPage {
       content: 'Please wait...'
     });
     loading.present();
-    delete this.createSubLocationForm.value.location.subLocations;
+    
     this.otherService.addSubLocation(this.createSubLocationForm.value).then((result) => {
       this.responseData = result;
       console.log(this.responseData);
@@ -149,5 +153,14 @@ this.navCtrl.pop();
     this.navCtrl.push(CreateSchedulePage, { schedule: schedule });
 
   }
+  viewSlots() {
+    
+    this.navCtrl.push(SubLocationSlotsPage, { subLocation: this.sublocation });
 
+  }
+  viewBookings() {
+    
+    this.navCtrl.push(SubLocationBookingPage, { subLocation: this.sublocation });
+
+  }
 }

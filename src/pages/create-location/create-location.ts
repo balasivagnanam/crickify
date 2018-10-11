@@ -5,6 +5,9 @@ import { OtherService } from '../../providers/other/other';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { CreateSubLocationPage } from '../create-sublocation/create-sublocation';
 import { ViewSubLocationPage } from '../view-sublocation/view-sublocation';
+import { SubLocationService } from '../../providers/sublocation/sublocation';
+import { SubLocationSlotsPage } from '../sublocation-slots/sublocation-slots';
+import { SubLocationBookingPage } from '../sublocation-booking/sublocation-booking';
 /**
  * Generated class for the CreatedTeamPage page.
  *
@@ -27,9 +30,11 @@ export class CreateLocationPage {
   responseData: any;
   userDetails: any;
   locationresponseData:any;
-  constructor(public navCtrl: NavController, public alertController: AlertController, public navParams: NavParams, public teamService: TeamService, public loadingController: LoadingController, formBuilder: FormBuilder, public otherService: OtherService) {
+  sublocations:any;
+  constructor(public navCtrl: NavController,public sublocationService:SubLocationService, public alertController: AlertController, public navParams: NavParams, public teamService: TeamService, public loadingController: LoadingController, formBuilder: FormBuilder, public otherService: OtherService) {
 
     this.location = navParams.get('location');
+    this.getLocations();
     this.createLocationForm = formBuilder.group({
 
       name: ['', Validators.compose([Validators.required])],
@@ -40,8 +45,7 @@ export class CreateLocationPage {
       user: [],
       email: ['', Validators.compose([Validators.required])],
       contact: [],
-      country: ['', Validators.compose([Validators.required])],
-      subLocations: ['']
+      country: ['', Validators.compose([Validators.required])]
 
 
     });
@@ -66,14 +70,15 @@ export class CreateLocationPage {
       content: 'Please wait...'
     });
     loading.present();
-    this.otherService.getLocationId(this.location.id).then((result) => {
+    this.sublocationService.getAllSubLocation(this.location.id).then((result) => {
       this.locationresponseData = result;
       console.log(this.locationresponseData); 
       if (this.locationresponseData.statusCode == '200'){
         loading.dismiss();
         console.log("test 200");
         console.log("result", this.locationresponseData.results.result);
-        this.location = this.locationresponseData.results.result;
+        this.sublocations = this.locationresponseData.results.result;
+       
       }  else if(this.locationresponseData.statusCode == "404") {
         loading.dismiss();
       } else {
@@ -161,7 +166,16 @@ export class CreateLocationPage {
     this.navCtrl.push(ViewSubLocationPage, { location: location });
 
   }
+  viewSlots(sublocation) {
+    
+    this.navCtrl.push(SubLocationSlotsPage, { subLocation: sublocation });
 
+  }
+  viewBookings(sublocation) {
+    
+    this.navCtrl.push(SubLocationBookingPage, { subLocation: sublocation });
+
+  }
   createSubLocation() {
        this.navCtrl.push(CreateSubLocationPage, { location: this.location });
   }

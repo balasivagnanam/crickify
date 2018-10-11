@@ -37,4 +37,21 @@
 </ion-list>
 </ion-card-content>
  </ion-card>
+
+ <ion-card *ngIf="location?.id!=null">
+    <ion-card-header>
+      Facilities
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list no-lines>
+        <ion-card *ngFor="let value of sublocations" color="primary">
+          <ion-card-header>
+            {{value.name}}
+           <p> {{value.type}}</p>
+          </ion-card-header>
+          
+        </ion-card>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

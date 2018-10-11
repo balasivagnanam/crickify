@@ -1,0 +1,88 @@
+<ion-header>
+
+    <ion-navbar color="primary">
+      <ion-title>Slots</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+
+<ion-content padding class="appBackground">
+  <ion-card>
+    <ion-card-header>
+      Search Slots
+    </ion-card-header>
+    <ion-card-content>
+
+      <form [formGroup]="searchSlotsForm">
+
+        <ion-item>
+          <ion-label>Start Date</ion-label>
+          <ion-datetime formControlName="startDate" displayFormat="MMM DD, YYYY HH:mm" [min]="minDate"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>End Date</ion-label>
+          <ion-datetime formControlName="endDate" displayFormat="MMM DD, YYYY HH:mm" [min]="minDate"></ion-datetime>
+        </ion-item>
+        <button ion-button margin color="primary" type="submit" (click)="search()">
+          Filter
+
+        </button>
+      
+
+      </form>
+    </ion-card-content>
+  </ion-card>
+  <ion-card >
+  <ion-scroll scrollX="true" direction="x">
+       
+  <ion-segment [(ngModel)]="slots">
+      <ion-segment-button text-wrap *ngFor="let slots of slotss" value={{slots}} (click)="viewSlots(slots)">
+          {{slots.date}}
+      </ion-segment-button>
+    </ion-segment>
+  
+    </ion-scroll>
+  </ion-card>
+  <!--ion-scroll scrollX="true" direction="x"></ion-scroll>
+      <ion-card class="scrollcard" *ngFor="let slots of slotss" >
+     
+      
+    <button class="filterbutton button5" color="primary" (click)="viewSlots(slots)">{{slots.date}}</button>
+</ion-card>
+  </ion-scroll-->
+
+
+  <ion-card *ngFor="let sublocation of selectdate?.slots">
+    
+  
+  
+  
+  
+      <ion-card-content  text-wrap>
+  
+  
+        <h2 class="card-title">
+         <b> {{sublocation.subLocation.location.name}}</b>
+         <b> {{sublocation.subLocation.name}}</b>
+        </h2>
+        <ion-grid>
+        <ion-row class="row">
+            <ion-col class="col" col-auto *ngFor="let column of sublocation.slots;">
+              <div *ngIf="!column.available">
+              <button ion-button class='buttoncell'  color="danger" ion-button (click)="viewBooking(column)">{{column.startDate| slotjs}}</button>
+            </div>
+            <div *ngIf="column.available">
+                <button ion-button class='buttoncell'  color="secondary" ion-button (click)="viewSlot(column)">{{column.startDate| slotjs}}</button>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+  
+      </ion-card-content>
+  
+    </ion-card>
+</ion-content>
+<ion-fab bottom right>
+    <button ion-fab mini (click)="addSlot()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>

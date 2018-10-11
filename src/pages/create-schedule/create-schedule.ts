@@ -29,6 +29,7 @@ export class CreateSchedulePage {
     this.subLocation = navParams.get('subLocation');
     this.createScheduleForm = formBuilder.group({
       id:[],
+      build:[],
       subLocation:[''],
     startTime:['', Validators.compose([ Validators.required])],
     startDay:['', Validators.compose([ Validators.required])],
@@ -38,10 +39,11 @@ export class CreateSchedulePage {
     duration:['', Validators.compose([ Validators.required])]
   });
   if (this.schedule != null) {
+    
     this.createScheduleForm.setValue(this.schedule);
   }else{
-    delete this.subLocation.slotSchedules;
-    delete this.subLocation.location.subLocations;
+   
+    
     this.createScheduleForm.controls['subLocation'].setValue(this.subLocation);
     
   }

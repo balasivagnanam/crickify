@@ -1,0 +1,40 @@
+page-slots {
+
+	.filterbutton {
+		background-color:color($colors, primary, base);
+		border: none;
+		color: white;
+		padding: 20px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		margin: 4px 2px;
+	}
+	
+	.button1 {border-radius: 2px;}
+	.button2 {border-radius: 4px;}
+	.button3 {border-radius: 8px;}
+	.button4 {border-radius: 12px;}
+	.button5 {border-radius: 70%;}
+
+	ion-scroll {
+		min-height: 50px; 
+		height: auto;
+	  
+			.scroll-content {
+			padding: 0px !important;
+		}    
+	  }
+	  .scrollcard {
+		min-height: 100; 
+		width: 150px !important;
+		display: inline-block;
+		background-color: transparent;
+	  }
+	  .scroll-zoom-wrapper {
+		white-space: nowrap;
+	  }
+
+	  
+}

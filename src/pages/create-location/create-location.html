@@ -64,13 +64,14 @@
   </ion-card>
   <ion-card *ngIf="location?.id!=null">
     <ion-card-header>
-      Sub Locations
+      Facilities
     </ion-card-header>
     <ion-card-content>
       <ion-list no-lines>
-        <ion-card *ngFor="let location of location?.subLocations" color="primary">
+        <ion-card *ngFor="let location of sublocations" color="primary">
           <ion-card-header>
             {{location.name}}
+           <p> {{location.type}}</p>
           </ion-card-header>
           <ion-row no-padding>
 
@@ -79,7 +80,7 @@
                 <button ion-button color="secondary" icon-left clear small (click)="editLocation(location)">
                   <ion-icon name="create"></ion-icon>
 
-                  Edit
+                  Manage Facility
 
                 </button>
 
@@ -88,11 +89,22 @@
 
             </div>
             <div>
+                <ion-col>
+            <button ion-button color="secondary" icon-left clear small (click)="viewSlots(location)">
+                <ion-icon name="eye"></ion-icon>
+      
+                View Slots
+      
+              </button>
+            </ion-col>
+          </div>
+          <div>
               <ion-col>
-                <button ion-button color="secondary" icon-left clear small (click)="view(location)">
+              <button ion-button color="secondary" icon-left  clear small (click)="viewBookings(location)">
                   <ion-icon name="eye"></ion-icon>
-                  View
-
+      
+                  View Bookings
+      
                 </button>
               </ion-col>
             </div>

@@ -36,10 +36,10 @@
                     <ion-option *ngFor="let key of tournaments" [value]="key.id">{{key.name}}</ion-option>
                   </ion-select>
                 </ion-item>
-     <button ion-button color="secondary" icon-left clear small (click)="search()">
-                Filter
-                
-              </button>
+                <button ion-button margin color="primary" type="submit" (click)="search()">
+                    Filter
+          
+                  </button>
      
         </form>
       
@@ -47,18 +47,18 @@
     </ion-card-content>
     </ion-card>
     <ion-card *ngFor="let match of matches">
-        <ion-card-header>
-          {{match.team?.teamname}} Vs
-          {{match?.opponent}}
-          <p>{{match.tournament?.name}}</p>
+        <ion-card-header text-wrap>
+            <b><h1>{{match.team.teamname}} versus
+                {{match.opponent}}</h1></b>
+                <p>{{match.tournament?.name}}</p>
         </ion-card-header>
         <ion-card-content>
-          <p>{{match.matchTime | momentjs}}</p>
-          <p>{{match.location?.name}}, {{match.location?.address}}</p>
-          <p>Toss won by <span *ngIf="match.tossWon">{{match.team.teamname}}</span><span *ngIf="!match.tossWon">{{match.opponent}}</span>
-          <p>Result : {{match.result}}, {{match.remarks}}</p>
-          <p>{{match.team.teamname}}: {{match.score}}/{{match.wickets}}</p>
-          <p>{{match.opponent}}:{{match.oppositionScore}}/{{match.oppositionWickets}}</p>
+            <p><b>{{match.matchTime | momentjs}}</b></p>
+            <p><b>{{match.location?.name}}</b>, {{match.location?.address}}</p>
+              <p><b>Toss :</b><span *ngIf="match.tossWon">{{match.team.teamname}}</span><span *ngIf="!match.tossWon">{{match.opponent}}</span>
+          <p><b>Result :</b> {{match.result}}, {{match.remarks}}</p>
+          <p><b>{{match.team.teamname}}:</b>{{match.score}}/{{match.wickets}}</p>
+          <p><b>{{match.opponent}}:</b>{{match.oppositionScore}}/{{match.oppositionWickets}}</p>
         </ion-card-content>
 		 <button ion-button icon-left clear small (click)="goToMatchTeam(match.id)">
             <ion-icon name="text"></ion-icon>

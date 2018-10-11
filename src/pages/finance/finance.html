@@ -41,8 +41,8 @@
       <div *ngSwitchCase="'pending'">
   <ion-card *ngFor="let playerexpense of pending">
     <ion-card-header>
-     <b><h1>{{playerexpense.expense.description}}</h1></b> 
-      <p>{{playerexpense.expense.team.name}}</p>
+     <b><h1>{{playerexpense.expense?.description}}</h1></b> 
+      <p>{{playerexpense.expense?.team.name}}</p>
     </ion-card-header>
     <ion-card-content>
       <p><b>{{playerexpense.expenseDate| momentjs}}</b></p>

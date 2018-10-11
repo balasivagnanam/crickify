@@ -152,8 +152,8 @@ for (let i = 1; i < count; i++) {
     var label = [];
     var value = [];
     var count=0;
-    if(battings.length>10){
-      count=10;}
+    if(battings.length>5){
+      count=5;}
     else{
       count=battings.length;}
 for (let i = 1; i < count; i++) {

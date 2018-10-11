@@ -77,8 +77,7 @@ phone : any;
       if (this.responseData.statusCode == '200'){
         console.log("test 200");
         console.log("result", this.responseData.results);
-        localStorage.setItem('userData', JSON.stringify(this.responseData.results.user));
-        let alert = this.alertController.create({
+       let alert = this.alertController.create({
           title: 'Registration Successful',
           subTitle: 'Your Registration is successful',
           buttons: [
@@ -86,8 +85,6 @@ phone : any;
             text: 'OK',
             handler: data => {
               console.log('ok clicked');
-              this.navCtrl.push(HomePage);
-              this.navCtrl.setRoot(HomePage);
             }
           }
         ]
@@ -119,7 +116,7 @@ phone : any;
             text: 'OK',
             handler: data => {
               console.log('ok clicked');
-              this.navCtrl.push(LoginPage);
+              
             }
           }
         ]

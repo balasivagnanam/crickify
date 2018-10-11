@@ -40,10 +40,11 @@ import {PreviousMatchDetailsPage} from '../pages/previous-match-details/previous
 import {PreviousMatchDetailsPageModule} from '../pages/previous-match-details/previous-match-details.module';
 import {MatchTeamPage} from '../pages/match-team/match-team';
 import {MatchTeamPageModule} from '../pages/match-team/match-team.module';
-import {FinancePage} from '../pages/finance/finance';
+
 import {ForgotPage} from '../pages/forgot/forgot';
 import {ForgotPageModule} from '../pages/forgot/forgot.module';
 import {FinancePageModule} from '../pages/finance/finance.module';
+import {FinancePage} from '../pages/finance/finance';
 import {ResetPage} from '../pages/reset/reset';
 import {ResetPageModule} from '../pages/reset/reset.module';
 import {LogoutPage} from '../pages/logout/logout';
@@ -144,6 +145,20 @@ import { SubLocationService } from '../providers/sublocation/sublocation';
 import { SlotService } from '../providers/slot/slot';
 import { SlotScheduleService } from '../providers/slotSchedule/slotSchedule';
 import { BookingService } from '../providers/booking/booking';
+import { SlotsPage } from '../pages/slots/slots';
+import {CreateBookingPageModule} from '../pages/create-booking/create-booking.module';
+import {CreateBookingPage} from '../pages/create-booking/create-booking';
+import {BookingPageModule} from '../pages/booking/booking.module';
+import {BookingPage} from '../pages/booking/booking';
+import { SubLocationSlotsPage } from '../pages/sublocation-slots/sublocation-slots';
+import {SubLocationBookingPage} from '../pages/sublocation-booking/sublocation-booking';
+import {SubLocationBookingPageModule} from '../pages/sublocation-booking/sublocation-booking.module';
+import {CreateSlotPageeModule} from '../pages/create-slot/create-slot.module';
+import {CreateSlotPage} from '../pages/create-slot/create-slot';
+import {ViewBookingPageModule} from '../pages/view-booking/view-booking.module';
+import {ViewBookingPage} from '../pages/view-booking/view-booking';
+import {ViewSlotPageModule} from '../pages/view-slot/view-slot.module';
+import {ViewSlotPage} from '../pages/view-slot/view-slot';
 const firebase = {
   apiKey: "AIzaSyDuAXZK8lTb8lsbjeSIHWl21kpOKQIUal4",
   authDomain: "crickify-200803.firebaseapp.com",
@@ -156,26 +171,26 @@ const firebase = {
   declarations: [
     MyApp,
     HomePage,
-    ListPage,ClassifiedPage,
+    ListPage,ClassifiedPage,SlotsPage,SubLocationSlotsPage,
     PracticePage,NewsPage,ViewNewsPage,ProductPage,ViewProductPage,ChatRoomPage
   ],
   imports: [  AngularFireModule.initializeApp(firebase), 
-    AngularFirestoreModule,
+    AngularFirestoreModule,SubLocationBookingPageModule,
     BrowserModule, FormsModule, HttpModule,PipesModule,
     IonicModule.forRoot(MyApp),ViewLocationModule,
-	FinancePageModule,ForgotPageModule,LoginPageModule, SignupPageModule,
-    MyProfilePageModule,ViewSubLocationModule,
-    MyAccountPageModule,CreateSchedulePageModule,
+	FinancePageModule,ForgotPageModule,LoginPageModule, SignupPageModule,ViewSlotPageModule,
+    MyProfilePageModule,ViewSubLocationModule,ViewBookingPageModule,
+    MyAccountPageModule,CreateSchedulePageModule,CreateSlotPageeModule,
     PreviousMatchesPageModule,PrivacyPageModule,ChatPageModule,
     MyTeamsPageModule,MyAnalysisPageModule,CreateSubLocationModule,
     PreviousMatchDetailsPageModule,CreateProductPageModule,
 	MatchTeamPageModule,CreateAdPageModule,
 	ResetPageModule,TeamPracticePageModule,CreateNewsPageModule,
 	LogoutPageModule,ClassifiedResponsePageModule,
-	WelcomePageModule,AddPlayerExpensePageModule,
+	WelcomePageModule,AddPlayerExpensePageModule,BookingPageModule,
 	CreateTeamModule,PracticeAvailabilityPageModule,
 	TeamPlayersPageModule,CreatePracticeModule,
-	CreatePlayerModule,
+	CreatePlayerModule,CreateBookingPageModule,
 	TeamMatchesPageModule,ViewPlayerExpensePageModule,
 	CreateMatchModule,ClassifiedResponseCreatePageModule,
 	MatchAvailabilityPageModule,UploadModalPageModule,
@@ -184,17 +199,17 @@ const firebase = {
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,ViewSubLocationPage,
-    HomePage,MyAnalysisPage,CreateSchedulePage,
-    ListPage,ClassifiedPage,CreateProductPage,
+    MyApp,ViewSubLocationPage,SubLocationSlotsPage,
+    HomePage,MyAnalysisPage,CreateSchedulePage,ViewBookingPage,
+    ListPage,ClassifiedPage,CreateProductPage,SubLocationBookingPage,
     WelcomePage,ViewPlayerExpensePage,CreateSubLocationPage,
-    LoginPage,ClassifiedResponsePage,
-    SignupPage,CreateAdPage,ViewLocationPage,
+    LoginPage,ClassifiedResponsePage,SlotsPage,ViewSlotPage,
+    SignupPage,CreateAdPage,ViewLocationPage,CreateSlotPage,
     MyProfilePage,ChatRoomPage,PrivacyPage,ChatPage,
     MyAccountPage,ViewProductPage,ProductPage,
     PreviousMatchesPage,PracticeAvailabilityPage,
-    MyTeamsPage,AddPlayerExpensePage,
-    PreviousMatchDetailsPage,NewsPage,
+    MyTeamsPage,AddPlayerExpensePage,BookingPage,
+    PreviousMatchDetailsPage,NewsPage,CreateBookingPage,
 	MatchTeamPage,CreatePracticePage,
 	FinancePage,TeamPracticePage,ViewNewsPage,
 	ForgotPage,AddTeamExpensePage,

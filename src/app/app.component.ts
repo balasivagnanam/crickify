@@ -49,7 +49,10 @@ import {PrivacyPageModule} from '../pages/privacy/privacy.module';
 import {ChatPage} from '../pages/chat/chat';
 import {ChatPageModule} from '../pages/chat/chat.module';
 import { ChatRoomPage } from '../pages/chat-room/chat-room';
-
+import { SlotsPage } from '../pages/slots/slots';
+import {BookingPage} from '../pages/booking/booking';
+import { SubLocationSlotsPage } from '../pages/sublocation-slots/sublocation-slots';
+import {SubLocationBookingPage} from '../pages/sublocation-booking/sublocation-booking';
 @Component({
   templateUrl: 'app.html'
 })
@@ -112,14 +115,16 @@ export class MyApp {
     { title: 'Change Mode', component: ModeChangePage },
     { title: 'Team Expense', component: TeamExpensePage },
     { title: 'Player Payment Details', component: ViewPlayerExpensePage },
-    { title: 'Location', component: LocationsPage },
     { title: 'Logout', component: LogoutPage },
     ];
 
     this.normalPages = [
       { title: 'Upcoming Matches', component: HomePage },
       { title: 'Upcoming Practice', component: PracticePage },
+      { title: 'Book Facilities', component: SlotsPage },
+      { title: 'My Booking', component: BookingPage },
       { title: 'Cricket News', component: NewsPage },
+  
       { title: 'Cricket Market', component: ProductPage },
       { title: 'Cricket Classifieds', component: ClassifiedPage },
       { title: 'Messages', component: ChatRoomPage },   
@@ -129,6 +134,7 @@ export class MyApp {
       { title: 'Change Mode', component: ModeChangePage },
       { title: 'My Career', component: MyProfilePage },
       { title: 'My Profile', component: MyAccountPage },
+      
       { title: 'Logout', component: LogoutPage },
     ];
     // used for an example of ngFor and navigation

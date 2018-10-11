@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Bookings</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="appBackground">
+  <ion-card>
+    <ion-card-header>
+      Bookings
+    </ion-card-header>
+  </ion-card>
+  <ion-segment [(ngModel)]="tabsvalues">
+    <ion-segment-button value="new">
+      Upcoming
+    </ion-segment-button>
+    <ion-segment-button value="past">
+      Past
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="tabsvalues">
+    <div *ngSwitchCase="'new'">
+      <ion-card *ngFor="let booking of new">
+        <ion-card-header>
+          <b>
+            <h1>{{booking.slot.subLocation.location.name}}</h1>
+            <h2>{{booking.slot.subLocation.name}}</h2>
+            <h2>{{booking.slot.subLocation.type}}</h2>
+          </b>
+
+        </ion-card-header>
+        <ion-card-content>
+          <p>
+            <b>Date :</b> {{booking.slot.startDate| momentjs}}
+          </p>
+          <p>
+              <b>Booked on :</b>{{booking.createDate| momentjs}}
+            </p>
+            <p *ngIf="!booking.cancelled" >  
+            <button ion-button color="danger" icon-left clear small (click)="cancel(booking)">
+                Cancel Booking
+                 
+               </button>
+               </p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div *ngSwitchCase="'past'">
+      <ion-card *ngFor="let booking of old">
+
+
+          <ion-card-header>
+              <b>
+                <h1>{{booking.slot.subLocation.location.name}}</h1>
+                <h2>{{booking.slot.subLocation.name}}</h2>
+                <h2>{{booking.slot.subLocation.type}}</h2>
+              </b>
+    
+            </ion-card-header>
+            <ion-card-content>
+              <p>
+                <b>Date :</b> {{booking.slot.startDate| momentjs}}
+              </p>
+              <p>
+                  <b>Booked on :</b>{{booking.createDate| momentjs}}
+                </p>
+
+          
+            </ion-card-content>
+          </ion-card>
+    </div>
+  </div>
+</ion-content>
