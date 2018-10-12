@@ -54,31 +54,39 @@
           <ion-item class="scrollcard">
             <ion-row text-center text-wrap class="header">
               <ion-col col-3>Days</ion-col>
-              <ion-col col-3>Time Slot</ion-col>
+              <ion-col col-2>Time Slot</ion-col>
               <ion-col col-2>Duration</ion-col>
               <ion-col col-2>Rate</ion-col>
               <ion-col col-1>Edit</ion-col>
-
+              <ion-col col-2>Delete</ion-col>
             </ion-row>
           </ion-item>
           <ion-item *ngFor="let schedule of slotSchedule" class="scrollcard">
             <ion-row text-center text-wrap>
-              <ion-col col-3>
+              <ion-col col-3 align-self-center text-center>
               
 
-                    {{schedule.startDay}}-{{schedule.endDay}}
+                  {{ day[schedule.startDay-1]}}-{{day[schedule.endDay-1]}}
               </ion-col>
-              <ion-col col-3>{{schedule.startTime}}-{{schedule.endTime}}</ion-col>
-              <ion-col col-2>{{schedule.duration}}</ion-col>
-              <ion-col col-2>{{schedule.rate}}</ion-col>
-              <ion-col col-2>
-                <button ion-button color="secondary" icon-left  clear small (click)="editSchedule(schedule)">
+              <ion-col col-2 align-self-center text-center>{{schedule.startTime}}-{{schedule.endTime}}</ion-col>
+              <ion-col col-2 align-self-center text-center>{{schedule.duration}}</ion-col>
+              <ion-col col-2 align-self-center text-center>{{schedule.rate}}</ion-col>
+              <ion-col col-1>
+                <button ion-button color="secondary" icon-center  clear small (click)="editSchedule(schedule)">
                   <ion-icon name="create"></ion-icon>
 
-                  Edit
+                  
 
                 </button>
               </ion-col>
+              <ion-col col-2>
+                  <button ion-button color="danger" icon-center  clear small (click)="deleteSchedule(schedule)">
+                    <ion-icon name="trash"></ion-icon>
+  
+                    
+  
+                  </button>
+                </ion-col>
             </ion-row>
           </ion-item>
         </ion-scroll>

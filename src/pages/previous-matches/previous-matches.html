@@ -54,7 +54,8 @@
         </ion-card-header>
         <ion-card-content>
             <p><b>{{match.matchTime | momentjs}}</b></p>
-            <p><b>{{match.location?.name}}</b>, {{match.location?.address}}</p>
+            <p></p>
+            <p><b>{{match.location?.name}}</b>, {{match.location?.address}} <ion-icon name="locate" color="primary" item-right (click)='viewLocation(match.location)'></ion-icon></p>
               <p><b>Toss :</b><span *ngIf="match.tossWon">{{match.team.teamname}}</span><span *ngIf="!match.tossWon">{{match.opponent}}</span>
           <p><b>Result :</b> {{match.result}}, {{match.remarks}}</p>
           <p><b>{{match.team.teamname}}:</b>{{match.score}}/{{match.wickets}}</p>

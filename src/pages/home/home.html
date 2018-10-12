@@ -46,7 +46,8 @@
     </ion-card-header>
     <ion-card-content>
         <p><b>{{match.match.matchTime | momentjs}}</b></p>
-      <p>{{match.match.location?.name}}, {{match.match.location?.address}}</p>
+        <p></p>
+      <p>{{match.match.location?.name}}, {{match.match.location?.address}} <ion-icon name="locate" color="primary" item-right (click)='viewLocation(match.match.location)'></ion-icon></p>
 	  
          <ion-label>
           Select Attendance
@@ -65,8 +66,14 @@
       <ion-item>
 	  
 	      <ion-label floating>Comments</ion-label>
-    <ion-input [(ngModel)]="match.comments" (ionChange)="availabilitySelected($event, match)"></ion-input>
-	 </ion-item>
+    <ion-input [(ngModel)]="match.comments"></ion-input>
+   </ion-item>
+   <ion-item>
+   <button ion-button icon-left (click)="availabilitySelected($event, match)">
+      <ion-icon name="save"></ion-icon>
+      <div>Save Comment</div>
+    </button>
+  </ion-item>
 	 <button ion-button icon-left clear small (click)="goToMatchTeam(match.id)">
             <ion-icon name="text"></ion-icon>
             <div>Match Team</div>

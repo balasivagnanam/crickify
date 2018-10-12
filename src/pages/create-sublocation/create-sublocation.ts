@@ -21,7 +21,7 @@ import { SubLocationBookingPage } from '../sublocation-booking/sublocation-booki
   templateUrl: 'create-sublocation.html',
 })
 export class CreateSubLocationPage {
-
+  day = ["SUN","MON", "TUE", "WED","THU", "FRI", "SAT"];
   private createSubLocationForm: FormGroup;
   sublocation: any;
   name: any;
@@ -39,6 +39,7 @@ export class CreateSubLocationPage {
       name: ['', Validators.compose([Validators.required])],
       user: [],
       id: [],
+      active: [true],
       type:['', Validators.compose([Validators.required])],
       location: []
     });
@@ -163,4 +164,57 @@ this.navCtrl.pop();
     this.navCtrl.push(SubLocationBookingPage, { subLocation: this.sublocation });
 
   }
+
+  deleteSchedule(schedule) {
+    let alert = this.alertController.create({
+      title: 'Cancel Schedule',
+      message: 'Do you want to cancel this schedule?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: data => {
+         
+              this.cancelSchedule(schedule.id);
+           
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+  cancelSchedule(id){
+    console.log('ionViewDidLoad home page');
+    
+    const loading = this.loadingController.create({
+      content: 'Please wait...'
+    });
+    loading.present();
+    this.scheduleService.delete(id).then((result) => {
+      this.updateresponseData = result;
+      console.log(this.updateresponseData); 
+      if (this.updateresponseData.statusCode == '200'){
+        loading.dismiss();
+        this.getData();
+      }  else if(this.updateresponseData.statusCode == "404") {
+        console.log("unauthorrised");
+        loading.dismiss();
+      } else {
+        loading.dismiss();
+        console.log("error", this.updateresponseData)
+      }
+      
+    }, (err) => {
+      loading.dismiss();
+    });
+
+    
+  }
+  updateresponseData:any;
 }

@@ -9,6 +9,7 @@ import {Validators, FormBuilder, FormGroup, FormControl} from '@angular/forms';
 import {TeamService} from '../../providers/teams/teams';
 import { Platform } from 'ionic-angular';
 import {OtherService} from '../../providers/other/other';
+import { ViewLocationPage } from '../view-location/view-location';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -107,7 +108,13 @@ console.log('view did after enter ad');
 
     
   }
-  
+  viewLocation(location){
+    
+      this.navCtrl.push(ViewLocationPage,{location: location});
+      
+      
+
+  }
   availabilitySelected(event, match){
     console.log("selected",event, match);
     match.player = this.authService.getUser();

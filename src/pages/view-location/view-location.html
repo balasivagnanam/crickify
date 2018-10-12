@@ -24,15 +24,21 @@
    
  
         <ion-item>
-            <ion-label >Name: {{location.name}}</ion-label>
+            <ion-label ><b>Name:</b> {{location.name}}</ion-label>
            
         </ion-item>
       <ion-item>
-            <ion-label>Address {{location.address}}</ion-label>
+            <ion-label><b>Address:</b> {{location.address}}</ion-label>
        
         </ion-item>
-
-   
+        <ion-item>
+            <ion-label><b>Email:</b> {{location.email}}</ion-label>
+       
+        </ion-item>
+        <ion-item>
+            <ion-label><b>Phone:</b> {{location.phone}}</ion-label>
+       
+        </ion-item>  
 
 </ion-list>
 </ion-card-content>
@@ -54,4 +60,7 @@
       </ion-list>
     </ion-card-content>
   </ion-card>
+
+      <div #map id="map"></div> 
+    
 </ion-content>

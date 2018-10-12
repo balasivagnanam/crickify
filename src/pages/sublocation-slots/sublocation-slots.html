@@ -34,16 +34,16 @@
     </ion-card-content>
   </ion-card>
   <ion-card >
-  <ion-scroll scrollX="true" direction="x">
-       
-  <ion-segment [(ngModel)]="slots">
-      <ion-segment-button text-wrap *ngFor="let slots of slotss" value={{slots}} (click)="viewSlots(slots)">
-          {{slots.date}}
-      </ion-segment-button>
-    </ion-segment>
-  
-    </ion-scroll>
-  </ion-card>
+      <ion-scroll scrollX="true" direction="x" style="height:75px;" >
+           
+      <ion-segment [(ngModel)]="slots"  >
+          <ion-segment-button text-wrap color="primary"  *ngFor="let slots of slotss" value={{slots}} (click)="viewSlots(slots)">
+              {{slots.date}}
+          </ion-segment-button>
+        </ion-segment>
+      
+        </ion-scroll>
+      </ion-card>
   <!--ion-scroll scrollX="true" direction="x"></ion-scroll>
       <ion-card class="scrollcard" *ngFor="let slots of slotss" >
      

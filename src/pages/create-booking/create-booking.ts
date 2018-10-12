@@ -31,7 +31,8 @@ export class CreateBookingPage {
      slot:['', Validators.compose([ Validators.required])],
     user:['', Validators.compose([ Validators.required])],
     createDate: [],
-    modifyDate: []
+    modifyDate: [],
+    remark:[]
   });
 
    
@@ -54,7 +55,7 @@ export class CreateBookingPage {
     console.log('ionViewDidLoad create team');
   }
 
-  createSchedule(){
+  createBooking(){
     const loading = this.loadingController.create({
       content: 'Please wait...'
     });

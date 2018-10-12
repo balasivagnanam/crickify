@@ -31,6 +31,7 @@ export class CreateSchedulePage {
       id:[],
       build:[],
       subLocation:[''],
+      active: [true],
     startTime:['', Validators.compose([ Validators.required])],
     startDay:['', Validators.compose([ Validators.required])],
     rate: ['', Validators.compose([ Validators.required])],

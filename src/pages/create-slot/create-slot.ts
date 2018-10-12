@@ -31,6 +31,7 @@ export class CreateSlotPage {
     this.createSlotForm = formBuilder.group({
       id:[],
       available:[true],
+      active: [true],
       subLocation:['', Validators.compose([ Validators.required])],
     startDate:['', Validators.compose([ Validators.required])],  
     rate: ['', Validators.compose([ Validators.required])],

@@ -8,6 +8,7 @@ import {Validators, FormBuilder, FormGroup, FormControl} from '@angular/forms';
 import {TeamService} from '../../providers/teams/teams';
 
 import {OtherService} from '../../providers/other/other';
+import { ViewLocationPage } from '../view-location/view-location';
 /**
  * Generated class for the PreviousMatchesPage page.
  *
@@ -82,7 +83,13 @@ export class PreviousMatchesPage {
 
     
   }
+  viewLocation(location){
+    
+    this.navCtrl.push(ViewLocationPage,{location: location});
+    
+    
 
+}
   goToMatchDetails(event){
     console.log("clicked match", event);
     this.navCtrl.push(PreviousMatchDetailsPage, {"matchId": event});
