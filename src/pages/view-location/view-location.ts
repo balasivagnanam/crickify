@@ -1,5 +1,5 @@
 import { Component,ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController ,AlertController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController ,AlertController,Platform} from 'ionic-angular';
 import {TeamService} from '../../providers/teams/teams';
 import {OtherService} from '../../providers/other/other';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
@@ -25,10 +25,13 @@ export class ViewLocationPage {
   location : any;
   sublocations : any;
   locationresponseData:any;
-  constructor(public navCtrl: NavController,public sublocationService:SubLocationService,public alertController: AlertController, public navParams: NavParams, public teamService: TeamService, public loadingController: LoadingController,formBuilder: FormBuilder,public otherService: OtherService) {
+  constructor(public navCtrl: NavController,public platform: Platform,public sublocationService:SubLocationService,public alertController: AlertController, public navParams: NavParams, public teamService: TeamService, public loadingController: LoadingController,formBuilder: FormBuilder,public otherService: OtherService) {
     this.location = navParams.get('location');
     
 this.getData();
+platform.ready().then(() => {
+  this.loadMap();
+});
   }
 
   loadMap(){
@@ -105,7 +108,7 @@ this.getData();
   }
   }
   ionViewDidLoad() {
-    this.loadMap();
+
   }
 
   
