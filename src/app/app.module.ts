@@ -159,6 +159,7 @@ import {ViewBookingPageModule} from '../pages/view-booking/view-booking.module';
 import {ViewBookingPage} from '../pages/view-booking/view-booking';
 import {ViewSlotPageModule} from '../pages/view-slot/view-slot.module';
 import {ViewSlotPage} from '../pages/view-slot/view-slot';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 const firebase = {
   apiKey: "AIzaSyDuAXZK8lTb8lsbjeSIHWl21kpOKQIUal4",
   authDomain: "crickify-200803.firebaseapp.com",
@@ -220,7 +221,7 @@ const firebase = {
   ],
   providers: [
     StatusBar,
-    SplashScreen,
+    SplashScreen,InAppBrowser,
     AuthService,MatchService,StatsService, TeamService,PlayersProvider,FinanceProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PlayersProvider,AdMobFree,AndroidPermissions,Push,OtherService,BattingService,BowlingService,

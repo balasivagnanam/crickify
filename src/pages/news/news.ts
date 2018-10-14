@@ -7,7 +7,7 @@ import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig } from '@
 import { PipesModule } from '../../pipes/pipes.module';
 import {Validators, FormBuilder, FormGroup, FormControl} from '@angular/forms';
 import {TeamService} from '../../providers/teams/teams';
-
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 import {OtherService} from '../../providers/other/other';
 import { CreateNewsPage } from '../create-news/create-news';
 import { ViewNewsPage } from '../viewnews/viewnews';
@@ -30,7 +30,7 @@ export class NewsPage {
   teams:any;
 newss : any;
 
-  constructor(public navCtrl: NavController, public app:App, formBuilder: FormBuilder,public teamService:TeamService,public otherService:OtherService, public authService:AuthService, public newsService:NewsService, public loadingController: LoadingController,public admob: AdMobFree) {
+  constructor(private iab: InAppBrowser,public navCtrl: NavController, public app:App, formBuilder: FormBuilder,public teamService:TeamService,public otherService:OtherService, public authService:AuthService, public newsService:NewsService, public loadingController: LoadingController,public admob: AdMobFree) {
   
       const data = JSON.parse(localStorage.getItem('userData'));
       console.log("fetch data", data);
@@ -61,7 +61,15 @@ this.navCtrl.push(CreateNewsPage,{news: news});
 
 }
 viewNews(news){
-  this.navCtrl.push(ViewNewsPage,{news: news});
+
+  if(news.external){
+  const browser = this.iab.create(news.url);
+  }else {
+    this.navCtrl.push(ViewNewsPage,{news: news});
+
+  }
+
+ 
   
   }
   deleteNews(news) {
