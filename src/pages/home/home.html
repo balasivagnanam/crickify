@@ -28,17 +28,17 @@
                     <ion-option *ngFor="let key of tournaments" [value]="key.id">{{key.name}}</ion-option>
                   </ion-select>
                 </ion-item>
-                <button ion-button margin color="primary" type="submit" (click)="search()">
-                    Filter
-          
-                  </button>
+     <button ion-button color="secondary" icon-left clear small (click)="search()">
+                Filter
+                
+              </button>
      
         </form>
       
     
     </ion-card-content>
     </ion-card>
-  <ion-card *ngFor="let match of matches">
+  <ion-card *ngFor="let match of matches" class="cric-match-card">
     <ion-card-header text-wrap>
       <b><h1>{{match.match.team.teamname}} versus
       {{match.match.opponent}}</h1></b>
@@ -46,15 +46,15 @@
     </ion-card-header>
     <ion-card-content>
         <p><b>{{match.match.matchTime | momentjs}}</b></p>
-        <p></p>
-      <p>{{match.match.location?.name}}, {{match.match.location?.address}} <ion-icon name="locate" color="primary" item-right (click)='viewLocation(match.match.location)'></ion-icon></p>
-	  
-         <ion-label>
+      <p>{{match.match.location?.name}}, {{match.match.location?.address}}</p>
+
+      <ion-item class="cric-float-left cric-no-left-pad">
+        <ion-label class="cric-float-left">
           Select Attendance
         </ion-label>
 		
-		   <ion-item>
-      <ion-select [(ngModel)]="match.status" (ionChange)="availabilitySelected($event, match)">
+		   
+      <ion-select class="cric-half-width" [(ngModel)]="match.status" (ionChange)="availabilitySelected($event, match)">
           <ion-option value="0">Not Provided</ion-option>
         <ion-option value="1">IN</ion-option>
         <ion-option value="2">OUT</ion-option>
@@ -63,17 +63,11 @@
 	 
     </ion-item>
 	
-      <ion-item>
+      <ion-item class="cric-no-left-pad">
 	  
 	      <ion-label floating>Comments</ion-label>
-    <ion-input [(ngModel)]="match.comments"></ion-input>
-   </ion-item>
-   <ion-item>
-   <button ion-button icon-left (click)="availabilitySelected($event, match)">
-      <ion-icon name="save"></ion-icon>
-      <div>Save Comment</div>
-    </button>
-  </ion-item>
+    <ion-input [(ngModel)]="match.comments" (ionChange)="availabilitySelected($event, match)"></ion-input>
+	 </ion-item>
 	 <button ion-button icon-left clear small (click)="goToMatchTeam(match.id)">
             <ion-icon name="text"></ion-icon>
             <div>Match Team</div>

@@ -30,8 +30,26 @@
     padding: 5px;
 }
 
+.cric-float-left{
+  float: left;
+  margin-right: 10px;   
+}
+.cric-half-width{
+    width: 50%;
+}
+
+.cric-no-left-pad{
+    padding-left: 0px;
+}
+.item-ios.item-block .item-inner{
+    border-bottom: 0.55px solid #c8c7cc !important;
+}
 ion-select{
     max-width: 90% !important;
+}
+
+.button, .button-ios , .button-clear, .button-clear-ios, .button-small, .button-small-ios {
+    color: #6610f2 !important;
 }
 .cric-stat-batting-table{
     float: left;
@@ -77,9 +95,9 @@ ion-select{
   
 }
 .appBackground {
-  background: url("../assets/img/cricket2.jpg") no-repeat fixed center;
-  background-size: cover;
-  
+  background: url("../assets/img/bg-pattern.png") , linear-gradient(to left, #7b4397, #dc2430);
+  background-repeat: repeat;
+  background-size: initial;
 }
 
 .cric-stat-bowling-table{
