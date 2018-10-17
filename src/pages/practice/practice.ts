@@ -9,6 +9,7 @@ import {Validators, FormBuilder, FormGroup, FormControl} from '@angular/forms';
 import {TeamService} from '../../providers/teams/teams';
 
 import {OtherService} from '../../providers/other/other';
+import { PracticeTeamPage } from '../practice-team/practice-team';
 @Component({
   selector: 'page-practice',
   templateUrl: 'practice.html'
@@ -51,7 +52,10 @@ practices : any;
 	  
 
   }
-  
+  goToPracticeTeam(event){
+    console.log("clicked match team", event);
+    this.navCtrl.push(PracticeTeamPage, {"practiceId": event});
+  }
   ionViewDidLoad(){
     console.log('ionViewDidLoad home page');
     if (this.authService.getAuthenticated()){

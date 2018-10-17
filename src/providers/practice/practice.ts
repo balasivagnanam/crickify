@@ -3,7 +3,7 @@ import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import { ENV } from '@app/env';
 let apiUrl = ENV.baseUrl+'/practice';
-
+let practiceteamapiUrl=ENV.baseUrl+'/practiceplayer';
 let isAuthenticated : boolean;
 @Injectable()
 export class PracticeService {
@@ -195,6 +195,95 @@ export class PracticeService {
     headers.set('Content-Type', 'application/json');
     headers.set("token",this.getToken());	
 	this.http.delete(apiUrl + '/practice/'+practice, {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("mast post resp", res.json()); 
+          
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
+
+  }
+  createPracticeTeam(data) {
+    return new Promise((resolve, reject) => {
+	let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set("token",this.getToken());	
+	console.log("requeset", JSON.stringify(data)); 
+      this.http.post(practiceteamapiUrl + '/practiceplayer',JSON.stringify(data), {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("mast post resp", res.json()); 
+          
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
+
+  }
+  createTempPracticeTeamPlater(practiceid,data) {
+    return new Promise((resolve, reject) => {
+	let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set("token",this.getToken());	
+	console.log("requeset", JSON.stringify(data)); 
+      this.http.post(practiceteamapiUrl + '/practiceplayer/temp/'+practiceid,JSON.stringify(data), {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("mast post resp", res.json()); 
+          
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
+
+  }
+  getPracticeTeam(practiceid) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set("token",this.getToken());
+      this.http.get(practiceteamapiUrl + '/practice/' + practiceid+'/practiceplayer' , {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("auth response players", res.json()); 
+          if(res.json().statusCode == '200'){
+            console.log("players", res.json());
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
+
+  }
+  deletePracticeTeam(id) {
+    return new Promise((resolve, reject) => {
+	let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set("token",this.getToken());	
+	this.http.delete(practiceteamapiUrl + '/practiceplayer/'+id, {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("mast post resp", res.json()); 
+          
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
+
+  }
+  sendTeamList(practiceId) {
+    return new Promise((resolve, reject) => {
+	let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set("token",this.getToken());		
+      this.http.post(practiceteamapiUrl + '/team/send/'+practiceId,null,{headers: headers})
         .subscribe(res => {
           resolve(res.json());
           console.log("mast post resp", res.json()); 

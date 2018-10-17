@@ -12,6 +12,7 @@ import {TeamService} from '../../providers/teams/teams';
 
 import {OtherService} from '../../providers/other/other';
 import { PracticeService } from '../../providers/practice/practice';
+import { AddPracticeTeamPage } from '../add-practice-team/add-practice-team';
 /**
  * Generated class for the PreviousMatchesPage page.
  *
@@ -89,11 +90,19 @@ export class  TeamPracticePage {
 
     
   }
+  goToPracticeTeam(event){
+    console.log("clicked match team", event);
+    this.navCtrl.push(AddPracticeTeamPage, {"practice": event});
+  }
   goToPracticeAvailability(event){
    
     this.navCtrl.push(PracticeAvailabilityPage, {"practiceId": event});
   }
   edit(event){
+   
+    this.navCtrl.push(CreatePracticePage, {"practice": event});
+  }
+  start(event){
    
     this.navCtrl.push(CreatePracticePage, {"practice": event});
   }

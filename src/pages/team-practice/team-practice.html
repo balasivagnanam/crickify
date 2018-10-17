@@ -54,6 +54,10 @@
           <span *ngIf="practice?.location!=null">
           <p>{{practice?.location?.name}}, {{practice?.location?.address}}</p>
         </span>
+        <button ion-button icon-left clear small (click)="goToPracticeTeam(practice)">
+            <ion-icon name="text"></ion-icon>
+            <div>Practice Team</div>
+          </button>
         <button ion-button icon-left clear small (click)="edit(practice)">
             <ion-icon name="text"></ion-icon>
             <div>Edit Practice</div>
@@ -62,6 +66,10 @@
             <ion-icon name="text"></ion-icon>
             <div>Practice Availability</div>
           </button>
+          <button ion-button icon-left clear small (click)="start(practice)">
+              <ion-icon name="text"></ion-icon>
+              <div>Practice Start</div>
+            </button>
           <button ion-button icon-left clear small (click)="delete(practice.id)">
               <ion-icon name="text"></ion-icon>
               <div>Delete Practice</div>

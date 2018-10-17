@@ -58,9 +58,12 @@
       <ion-item>
 	  
 	      <ion-label floating>Comments</ion-label>
-    <ion-input [(ngModel)]="practice.comments" (ionChange)="availabilitySelected($event, match)"></ion-input>
+    <ion-input [(ngModel)]="practice.comments" (ionChange)="availabilitySelected($event, practice)"></ion-input>
 	 </ion-item>
-	
+   <button ion-button icon-left clear small (click)="goToPracticeTeam(practice.id)">
+      <ion-icon name="text"></ion-icon>
+      <div>Practice Team</div>
+    </button>
     </ion-card-content>
   </ion-card>
 </ion-content>

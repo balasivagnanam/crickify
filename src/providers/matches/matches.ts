@@ -227,25 +227,7 @@ getBestBatting() {
     });
 
   }
-  getMatchTeam(matchid) {
-    return new Promise((resolve, reject) => {
-      let headers = new Headers();
-    headers.set('Content-Type', 'application/json');
-    headers.set("token",this.getToken());
-      this.http.get(apiUrl + '/team/' + matchid, {headers: headers})
-        .subscribe(res => {
-          resolve(res.json());
-          console.log("auth response players", res.json()); 
-          if(res.json().statusCode == '200'){
-            console.log("players", res.json());
-          }
-        }, (err) => {
-          reject(err);
-          console.log("error",err);
-        });
-    });
-
-  }
+  
   postAvailability(data) {
     return new Promise((resolve, reject) => {
       let headers = new Headers();
@@ -319,16 +301,18 @@ getBestBatting() {
     });
 
   }
-  sendTeamList(matchId) {
+  getMatchTeam(matchid) {
     return new Promise((resolve, reject) => {
-	let headers = new Headers();
+      let headers = new Headers();
     headers.set('Content-Type', 'application/json');
-    headers.set("token",this.getToken());		
-      this.http.post(apiUrl + '/team/send/'+matchId,null,{headers: headers})
+    headers.set("token",this.getToken());
+      this.http.get(apiUrl + '/team/' + matchid, {headers: headers})
         .subscribe(res => {
           resolve(res.json());
-          console.log("mast post resp", res.json()); 
-          
+          console.log("auth response players", res.json()); 
+          if(res.json().statusCode == '200'){
+            console.log("players", res.json());
+          }
         }, (err) => {
           reject(err);
           console.log("error",err);
@@ -353,6 +337,24 @@ getBestBatting() {
     });
 
   }
+  sendTeamList(matchId) {
+    return new Promise((resolve, reject) => {
+	let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set("token",this.getToken());		
+      this.http.post(apiUrl + '/team/send/'+matchId,null,{headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("mast post resp", res.json()); 
+          
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
+
+  }
+  
 
   delete(matchId) {
     return new Promise((resolve, reject) => {

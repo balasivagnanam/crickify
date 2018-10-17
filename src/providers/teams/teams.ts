@@ -5,6 +5,7 @@ import { ENV } from '@app/env';
 let matchapiUrl = ENV.baseUrl+'/match';
 let apiUrl = ENV.baseUrl+'/teamplayer';
 let teamapiUrl = ENV.baseUrl+'/team';
+let practiceapiUrl = ENV.baseUrl+'/practiceplayer';
 //let isLoggedIn : boolean;
 let isAuthenticated : boolean;
 @Injectable()
@@ -64,6 +65,26 @@ export class TeamService {
     headers.set('Content-Type', 'application/json');
     headers.set("token",this.getToken());
       this.http.get(matchapiUrl + '/players/'+matchId , {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("auth response players", res.json()); 
+          if(res.json().statusCode == '200'){
+            console.log("players", res.json());
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
+
+  }
+
+  getOtherPracticePlayers(team,matchId) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set("token",this.getToken());
+      this.http.get(practiceapiUrl + '/players/'+matchId , {headers: headers})
         .subscribe(res => {
           resolve(res.json());
           console.log("auth response players", res.json()); 

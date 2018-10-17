@@ -1,0 +1,80 @@
+<!--
+  Generated template for the PreviousPracticeDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Practice Team List</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding class="appBackground" >
+    <ion-card> 
+        <ion-card-content>
+  <ion-segment [(ngModel)]="tabsvalues">
+      <ion-segment-button value="summary">
+        Team List
+      </ion-segment-button>
+     
+    </ion-segment>
+    
+  <div [ngSwitch]="tabsvalues"> 
+      <div *ngSwitchCase="'summary'">
+        <div class="cric-stat-batting-table">
+          <h4>Team</h4>
+          <ol >
+		  <li *ngFor="let practiceplayer of practiceplayers">
+		  <ion-list>
+  <ion-item-sliding>
+    <ion-item>
+      {{practiceplayer?.player?.name}}
+    </ion-item>
+<ion-item-options side="right">
+  <button ion-button (click)="delete(practiceplayer)">
+    <ion-icon name="trash"></ion-icon>
+    Delete
+  </button>
+</ion-item-options>
+  </ion-item-sliding>
+</ion-list>
+              
+            </li>
+          </ol>
+
+        </div>
+       </div>
+  </div>
+      <form [formGroup]="addPracticeTeamForm">
+  <ion-item>
+  <ion-label>Player</ion-label>
+  <ion-select formControlName="player">
+    <ion-option *ngFor="let key of players" [value]="key">{{key.name}}</ion-option>
+  </ion-select>
+</ion-item>
+ <button ion-button color="secondary" icon-left clear small [disabled]="!addPracticeTeamForm.valid" (click)="addPlayer()">
+            Add Player
+            
+          </button>
+    </form>
+    <form [formGroup]="addPracticeTeamTempForm">
+        <ion-item>
+            <ion-label floating>Name</ion-label>
+            <ion-input formControlName="name"></ion-input>
+      
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input formControlName="username" type="email"></ion-input>      
+        </ion-item>
+       <button ion-button color="secondary" icon-left clear small [disabled]="!addPracticeTeamTempForm.valid" (click)="addtempPlayer()">
+                  Add Temp Player
+                  
+                </button>
+          </form>
+        </ion-card-content>
+        </ion-card> 
+</ion-content>

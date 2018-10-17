@@ -160,6 +160,11 @@ import {ViewBookingPage} from '../pages/view-booking/view-booking';
 import {ViewSlotPageModule} from '../pages/view-slot/view-slot.module';
 import {ViewSlotPage} from '../pages/view-slot/view-slot';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import {AddPracticeTeamPage} from '../pages/add-practice-team/add-practice-team';
+import {AddPracticeTeamPageModule} from '../pages/add-practice-team/add-practice-team.module';
+
+import {PracticeTeamPage} from '../pages/practice-team/practice-team';
+import {PracticeTeamPageModule} from '../pages/practice-team/practice-team.module';
 const firebase = {
   apiKey: "AIzaSyDuAXZK8lTb8lsbjeSIHWl21kpOKQIUal4",
   authDomain: "crickify-200803.firebaseapp.com",
@@ -176,9 +181,9 @@ const firebase = {
     PracticePage,NewsPage,ViewNewsPage,ProductPage,ViewProductPage,ChatRoomPage
   ],
   imports: [  AngularFireModule.initializeApp(firebase), 
-    AngularFirestoreModule,SubLocationBookingPageModule,
+    AngularFirestoreModule,SubLocationBookingPageModule,PracticeTeamPageModule,
     BrowserModule, FormsModule, HttpModule,PipesModule,
-    IonicModule.forRoot(MyApp),ViewLocationModule,
+    IonicModule.forRoot(MyApp),ViewLocationModule,AddPracticeTeamPageModule,
 	FinancePageModule,ForgotPageModule,LoginPageModule, SignupPageModule,ViewSlotPageModule,
     MyProfilePageModule,ViewSubLocationModule,ViewBookingPageModule,
     MyAccountPageModule,CreateSchedulePageModule,CreateSlotPageeModule,
@@ -200,13 +205,13 @@ const firebase = {
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,ViewSubLocationPage,SubLocationSlotsPage,
+    MyApp,ViewSubLocationPage,SubLocationSlotsPage,PracticeTeamPage,
     HomePage,MyAnalysisPage,CreateSchedulePage,ViewBookingPage,
     ListPage,ClassifiedPage,CreateProductPage,SubLocationBookingPage,
     WelcomePage,ViewPlayerExpensePage,CreateSubLocationPage,
     LoginPage,ClassifiedResponsePage,SlotsPage,ViewSlotPage,
     SignupPage,CreateAdPage,ViewLocationPage,CreateSlotPage,
-    MyProfilePage,ChatRoomPage,PrivacyPage,ChatPage,
+    MyProfilePage,ChatRoomPage,PrivacyPage,ChatPage,AddPracticeTeamPage,
     MyAccountPage,ViewProductPage,ProductPage,
     PreviousMatchesPage,PracticeAvailabilityPage,
     MyTeamsPage,AddPlayerExpensePage,BookingPage,
