@@ -162,7 +162,9 @@ import {ViewSlotPage} from '../pages/view-slot/view-slot';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import {AddPracticeTeamPage} from '../pages/add-practice-team/add-practice-team';
 import {AddPracticeTeamPageModule} from '../pages/add-practice-team/add-practice-team.module';
-
+import {AddPracticeScorePage} from '../pages/add-practice-score/add-practice-score';
+import {AddPracticeScorePageModule} from '../pages/add-practice-score/add-practice-score.module';
+import {ScoreService} from '../providers/score/score';
 import {PracticeTeamPage} from '../pages/practice-team/practice-team';
 import {PracticeTeamPageModule} from '../pages/practice-team/practice-team.module';
 const firebase = {
@@ -180,7 +182,7 @@ const firebase = {
     ListPage,ClassifiedPage,SlotsPage,SubLocationSlotsPage,
     PracticePage,NewsPage,ViewNewsPage,ProductPage,ViewProductPage,ChatRoomPage
   ],
-  imports: [  AngularFireModule.initializeApp(firebase), 
+  imports: [  AngularFireModule.initializeApp(firebase), AddPracticeScorePageModule,
     AngularFirestoreModule,SubLocationBookingPageModule,PracticeTeamPageModule,
     BrowserModule, FormsModule, HttpModule,PipesModule,
     IonicModule.forRoot(MyApp),ViewLocationModule,AddPracticeTeamPageModule,
@@ -212,7 +214,7 @@ const firebase = {
     LoginPage,ClassifiedResponsePage,SlotsPage,ViewSlotPage,
     SignupPage,CreateAdPage,ViewLocationPage,CreateSlotPage,
     MyProfilePage,ChatRoomPage,PrivacyPage,ChatPage,AddPracticeTeamPage,
-    MyAccountPage,ViewProductPage,ProductPage,
+    MyAccountPage,ViewProductPage,ProductPage,AddPracticeScorePage,
     PreviousMatchesPage,PracticeAvailabilityPage,
     MyTeamsPage,AddPlayerExpensePage,BookingPage,
     PreviousMatchDetailsPage,NewsPage,CreateBookingPage,
@@ -231,7 +233,7 @@ const firebase = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PlayersProvider,AdMobFree,AndroidPermissions,Push,OtherService,BattingService,BowlingService,
     ImagesProvider,Camera,FileTransfer,PracticeService,ClassifiedService,NewsService,ProductService,
-    Firebase,SlotScheduleService,
+    Firebase,SlotScheduleService,ScoreService,
     FcmProvider,ChatService,MessageService,SubLocationService,BookingService,SlotService
   ]
 })

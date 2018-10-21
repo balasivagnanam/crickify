@@ -13,6 +13,7 @@ import {TeamService} from '../../providers/teams/teams';
 import {OtherService} from '../../providers/other/other';
 import { PracticeService } from '../../providers/practice/practice';
 import { AddPracticeTeamPage } from '../add-practice-team/add-practice-team';
+import { AddPracticeScorePage } from '../add-practice-score/add-practice-score';
 /**
  * Generated class for the PreviousMatchesPage page.
  *
@@ -104,7 +105,7 @@ export class  TeamPracticePage {
   }
   start(event){
    
-    this.navCtrl.push(CreatePracticePage, {"practice": event});
+    this.navCtrl.push(AddPracticeScorePage, {"practice": event});
   }
   delete(practice){
     const loading = this.loadingController.create({

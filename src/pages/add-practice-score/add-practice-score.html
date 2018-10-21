@@ -1,0 +1,160 @@
+<!--
+  Generated template for the PreviousPracticeDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Scoring</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding class="appBackground">
+  <ion-card>
+    <ion-card-content>
+
+        <ion-item>
+            <ion-label>Batsman</ion-label>
+            <ion-select [(ngModel)]="striker" (ionChange)="onStrikerChange($event)" >
+              <ion-option *ngFor="let key of practiceplayers" [value]="key.player">{{key.player.name}}</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Runner</ion-label >
+            <ion-select [(ngModel)]="nonStriker" (ionChange)="onNonStrikerChange($event)">
+              <ion-option *ngFor="let key of practiceplayers" [value]="key.player">{{key.player.name}}</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-scroll scrollX="true" direction="x">
+              <ion-card class="scrollcard" color="primary" *ngFor="let value of score?.reverse()">
+                  <ion-card-content center text-wrap>
+                        <h2><b>{{value.text}} </b></h2>
+                     </ion-card-content>
+                
+              </ion-card>
+            </ion-scroll>
+            <ion-label><b>Run</b></ion-label>
+        <ion-grid>
+          <ion-row class="row item" radio-group [(ngModel)]="run" (ionChange)="onRunChange($event)">
+              <ion-col class="col" col-auto>
+                
+                    
+                    <ion-radio  value=0>0</ion-radio>
+                 
+                </ion-col>
+            <ion-col class="col" col-auto>
+            
+                <ion-label>1</ion-label>
+                <ion-radio value=1></ion-radio>
+             
+            </ion-col>
+            <ion-col class="col" col-auto>
+           
+                <ion-label>2</ion-label>
+                <ion-radio value=2></ion-radio>
+             
+            </ion-col>
+            <ion-col class="col" col-auto>
+            
+                <ion-label>3</ion-label>
+                <ion-radio value=3></ion-radio>
+            
+            </ion-col>
+            <ion-col class="col" col-auto>
+          
+                  <ion-label>4</ion-label>
+                  <ion-radio  value=4></ion-radio>
+             
+              </ion-col>
+              <ion-col class="col" col-auto>
+               
+                    <ion-label>6</ion-label>
+                    <ion-radio value=6></ion-radio>
+                 
+                </ion-col>
+          </ion-row>
+        </ion-grid>
+        
+        <ion-item>
+            <ion-label><b>Out</b></ion-label>
+            <ion-toggle [(ngModel)]="out" (ionChange)="onOutChange($event)"></ion-toggle>
+          </ion-item>
+      <form [formGroup]="addBallForm">
+          <ion-label><b>Bowler</b></ion-label>
+            <ion-list radio-group formControlName="bowler" >
+    
+              <ion-item *ngFor="let key of practiceplayers">
+                <ion-label>{{key.player.name}}</ion-label>
+                <ion-radio [value]="key.player"></ion-radio>
+              </ion-item>
+            </ion-list>
+            
+        <ion-label><b>Ball Type</b></ion-label>
+        <ion-grid>
+            <ion-row class="row item" radio-group formControlName="extra" text-wrap>
+                <ion-col class="col" col-auto>
+                   
+                      <ion-label>Good</ion-label>
+                      <ion-radio value=0 checked></ion-radio>
+                   
+                  </ion-col>
+              <ion-col class="col" col-auto>
+              
+                  <ion-label>L.S Wide</ion-label>
+                  <ion-radio  value=1></ion-radio>
+               
+              </ion-col>
+              <ion-col class="col" col-auto>
+               
+                  <ion-label>O.S Wide</ion-label>
+                  <ion-radio value=2></ion-radio>
+                
+              </ion-col>
+              <ion-col class="col" col-auto>
+               
+                  <ion-label>No Ball</ion-label>
+                  <ion-radio value=3></ion-radio>
+                
+              </ion-col>
+             
+            </ion-row>
+          </ion-grid>
+          <ion-label><b>Shot Type</b></ion-label>
+          <ion-grid>
+              <ion-row class="row item" radio-group formControlName="shotType">
+                  <ion-col class="col" col-auto>
+                      
+                        <ion-label>Good</ion-label>
+                        <ion-radio value=0 checked></ion-radio>
+                      
+                    </ion-col>
+                <ion-col class="col" col-auto>
+                
+                    <ion-label>Edged</ion-label>
+                    <ion-radio value=1></ion-radio>
+                  
+                </ion-col>
+                <ion-col class="col" col-auto>
+                 
+                    <ion-label>Beaten</ion-label>
+                    <ion-radio value=2></ion-radio>
+                 
+                </ion-col>
+                <ion-col class="col" col-auto>
+                
+                    <ion-label>X Shot</ion-label>
+                    <ion-radio value=3></ion-radio>
+                  
+                </ion-col>
+               
+              </ion-row>
+            </ion-grid>
+
+
+        <button ion-button color="secondary" icon-left clear small [disabled]="!addBallForm.valid" (click)="addBall()">
+          Add
+        </button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
