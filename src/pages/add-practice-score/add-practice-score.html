@@ -19,12 +19,12 @@
               <ion-option *ngFor="let key of practiceplayers" [value]="key.player">{{key.player.name}}</ion-option>
             </ion-select>
           </ion-item>
-          <ion-item>
+          <!-- <ion-item>
             <ion-label>Runner</ion-label >
             <ion-select [(ngModel)]="nonStriker" (ionChange)="onNonStrikerChange($event)">
               <ion-option *ngFor="let key of practiceplayers" [value]="key.player">{{key.player.name}}</ion-option>
             </ion-select>
-          </ion-item>
+          </ion-item> -->
           <ion-scroll scrollX="true" direction="x">
               <ion-card class="scrollcard" color="primary" *ngFor="let value of score?.reverse()">
                   <ion-card-content center text-wrap>
