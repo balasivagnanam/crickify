@@ -1,0 +1,49 @@
+<!--
+  Generated template for the PreviousMatchDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="primary">
+      <ion-title>Player Expense</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding class="appBackground" >
+      <ion-card>
+          <ion-card-header>
+          Player Payment Details
+          <p></p>
+          <p></p>
+          <b><h1>{{playerExpense.expense?.description}}</h1></b> 
+          <p>{{playerExpense.expense?.team.name}}</p>
+        </ion-card-header>
+        <ion-card-content>
+          <p><b>{{playerExpense.expenseDate| momentjs}}</b></p>
+         
+          <p> <b>${{playerExpense.amount}}</b></p>
+        
+         <p><b> PayNow number:{{playerExpense.expense?.team.phone}}</b></p>
+
+       </ion-card-content>
+       </ion-card>
+    <ion-card> 
+        <ion-card-content>
+        <form [formGroup]="addPaymentForm">
+ 
+   <button ion-button color="secondary" icon-left clear small [disabled]="!addPaymentForm.valid" (click)="addPlayerExpense()">
+              Make Payment Using Paynow
+              
+            </button>
+      </form>
+    </ion-card-content>
+  </ion-card>   
+        
+
+
+  </ion-content>
+  

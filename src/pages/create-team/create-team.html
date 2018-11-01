@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Create Team</ion-title>
+    <ion-title>Manage Team</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,7 +16,7 @@
 <ion-content padding class="appBackground" >
  <ion-card>
     <ion-card-header>
-      Create Team
+        Manage Team
     </ion-card-header>
     <ion-card-content>
   <ion-list no-lines>
@@ -27,13 +27,44 @@
             <ion-label floating>Team Name</ion-label>
             <ion-input formControlName="teamname" type="text"></ion-input>
         </ion-item>
+        <ion-item>
+            <ion-label>Country</ion-label>
+            <ion-select formControlName="country">
+              <ion-option *ngFor="let key of locations" [value]="key.name">{{key.name}}</ion-option>
+            </ion-select>
+          </ion-item>
  <button ion-button color="secondary" icon-left clear small [disabled]="!createTeamForm.valid" (click)="addTeam()">
-            Create Team
+            Save
             
           </button>
  
     </form>
+    <p *ngIf="team?.country=='Singapore'">
+    Singapore based verified Phone Number can be used for the team payment using Paynow:
+  </p>
+    <p *ngIf="team?.country=='Singapore' && team.phone!=null">
+        <b><h2>Enable/Disable Paynow</h2> </b>
+    <ion-item>
+        <ion-checkbox [(ngModel)]="paynow"  (ionChange)="paynowChange($event)"></ion-checkbox>
   
+   
+     </ion-item>
+  </p>
+  <p *ngIf="team!=null">
+  <ion-item>
+      <ion-label floating>Phone Number</ion-label>
+      <ion-input [(ngModel)]="phone" type="number"></ion-input>
+  </ion-item>
+        <ion-item>
+           
+            <button ion-button color="secondary" icon-left clear (click)="verify()">
+                Add/Change Phone
+                
+              </button>
+     
+        </ion-item>
+      </p> 
+   
 </ion-list>
 </ion-card-content>
  </ion-card>

@@ -18,7 +18,7 @@ export class CreateNewsPage {
   @ViewChild(MultiImageUpload) multiImageUpload: MultiImageUpload;
   private createNewsForm: FormGroup;
   protected uploadFinished = false;
-  locations: any;
+  
   news: any;
   type:any;
   team: any;
@@ -28,6 +28,7 @@ export class CreateNewsPage {
   responseNewsData: any;
   teamResponseData: any;
   locationResponseData: any;
+  locations: any;
   locationDisabled = false;
   newsTimeDisabled = false;
   teamDisabled = false;

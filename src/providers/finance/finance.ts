@@ -223,4 +223,20 @@ export class FinanceProvider {
     });
   }
   
+  addPayment(data) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set("token",this.getToken());
+      this.http.post(apiUrl + '/payment/', JSON.stringify(data), {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("payment update", res.json()); 
+          
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
+  }
 }

@@ -4,7 +4,7 @@ import {HomePage} from '../home/home';
 import {ForgotPage} from '../forgot/forgot';
 import {AuthService} from '../../providers/auth/auth';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams ,LoadingController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams ,LoadingController,MenuController} from 'ionic-angular';
 import { MatchService } from '../../providers/matches/matches';
 import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
 import { Platform } from 'ionic-angular';
@@ -36,11 +36,28 @@ bowlings : any;
   scores:any;
   responseNewsData:any;
   responseProductData:any;
-  constructor(public navCtrl: NavController,public classifiedService:ClassifiedService,public productService:ProductService,public otherService: OtherService,public newsService:NewsService,public plt: Platform, public navParams: NavParams, public authService: AuthService,public loadingController: LoadingController,public matchService:MatchService,public admob: AdMobFree) {
- this.getClassifieds();
+  constructor(private menu: MenuController,public navCtrl: NavController,public classifiedService:ClassifiedService,public productService:ProductService,public otherService: OtherService,public newsService:NewsService,public plt: Platform, public navParams: NavParams, public authService: AuthService,public loadingController: LoadingController,public matchService:MatchService,public admob: AdMobFree) {
+ this.getmaster();
+    this.getClassifieds();
   this.getNews();
   this.getProducts();
   }
+  ionViewDidEnter() {
+    this.menu.swipeEnable(false);
+
+    // If you have more than one side menu, use the id like below
+    // this.menu.swipeEnable(false, 'menu1');
+  }
+
+  ionViewWillLeave() {
+    // Don't forget to return the swipe to normal, otherwise 
+    // the rest of the pages won't be able to swipe to open menu
+    this.menu.swipeEnable(true);
+
+    // If you have more than one side menu, use the id like below
+    // this.menu.swipeEnable(true, 'menu1');
+   }
+
 showBanner() {
  
   let bannerConfig: AdMobFreeBannerConfig = {
@@ -117,7 +134,26 @@ let iosBannerConfig: AdMobFreeBannerConfig = {
 	
 	loading.dismiss();
   }
-  
+  getmaster(){
+
+    this.otherService.getAllMasterData().then((result) => {
+      this.responseData = result;
+      console.log(this.responseData); 
+      if (this.responseData.statusCode == '200'){
+        
+        console.log("test 200");
+        console.log("result", this.responseData.results.result);
+	  }
+       else {
+        
+        console.log("error", this.responseData)
+      }
+      
+    }, (err) => {
+		
+      // Error log
+    });
+  }
   login(){
     this.navCtrl.push(LoginPage);
     }

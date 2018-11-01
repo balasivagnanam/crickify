@@ -53,6 +53,7 @@ import { SlotsPage } from '../pages/slots/slots';
 import {BookingPage} from '../pages/booking/booking';
 import { SubLocationSlotsPage } from '../pages/sublocation-slots/sublocation-slots';
 import {SubLocationBookingPage} from '../pages/sublocation-booking/sublocation-booking';
+import { ExtraPage } from '../pages/extra/extra';
 @Component({
   templateUrl: 'app.html'
 })
@@ -64,6 +65,7 @@ export class MyApp {
   pages: Array<{ title: string, component: any }>;
   adminPages: Array<{ title: string, component: any }>;
   normalPages: Array<{ title: string, component: any }>;
+  emptyPages:Array<{ title: string, component: any }>;
   constructor(firebase: Firebase,public events: Events, toastCtrl: ToastController,public fcm: FcmProvider, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, androidPermissions: AndroidPermissions, public push: Push, private alertCtrl: AlertController) {
     this.type = "normal";
     
@@ -105,36 +107,32 @@ export class MyApp {
     )
     this.initializeApp();
     
-
+    this.emptyPages=[];
     this.adminPages = [{ title: 'Matches', component: TeamMatchesPage },
     { title: 'Practice', component: TeamPracticePage },
     { title: 'Players', component: TeamPlayersPage },
     { title: 'Team Stats', component: ListPage },
-    { title: 'Send Message', component: ChatPage },
+    { title: 'Message', component: ChatPage },
     { title: 'Tournament', component: TournamentsPage },
-    { title: 'Change Mode', component: ModeChangePage },
+    { title: 'Manage Team', component: ModeChangePage },
     { title: 'Team Expense', component: TeamExpensePage },
     { title: 'Player Payment Details', component: ViewPlayerExpensePage },
     { title: 'Logout', component: LogoutPage },
     ];
-
     this.normalPages = [
       { title: 'Upcoming Matches', component: HomePage },
       { title: 'Upcoming Practice', component: PracticePage },
+      { title: 'Manage Team', component: ModeChangePage },
       { title: 'Book Facilities', component: SlotsPage },
-      { title: 'My Booking', component: BookingPage },
-      { title: 'Cricket News', component: NewsPage },
-  
-      { title: 'Cricket Market', component: ProductPage },
-      { title: 'Cricket Classifieds', component: ClassifiedPage },
+      { title: 'Location', component: LocationsPage }, 
+      { title: 'Cricket Extra', component: ExtraPage }, 
       { title: 'Messages', component: ChatRoomPage },   
       { title: 'Completed Matches', component: PreviousMatchesPage },
-      { title: 'Finance Details', component: FinancePage },        
-      { title: 'Location', component: LocationsPage },
-      { title: 'Change Mode', component: ModeChangePage },
+      { title: 'My Finance', component: FinancePage },     
+   
+      { title: 'My Booking', component: BookingPage },   
       { title: 'My Career', component: MyProfilePage },
-      { title: 'My Profile', component: MyAccountPage },
-      
+      { title: 'My Profile', component: MyAccountPage },      
       { title: 'Logout', component: LogoutPage },
     ];
     // used for an example of ngFor and navigation

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController,Slides } from 'ionic-angular';
+import { IonicPage, NavController, MenuController,NavParams, AlertController, LoadingController,Slides } from 'ionic-angular';
 import {HomePage} from '../home/home';
 import {AuthService} from '../../providers/auth/auth';
 import {SignupPage} from '../signup/signup';
@@ -32,14 +32,28 @@ export class LoginPage {
 
   @ViewChild('slider') slider: Slides;
   @ViewChild('innerSlider') innerSlider: Slides;
-  constructor(public formBuilder: FormBuilder,public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public alertController: AlertController, public loadingController: LoadingController) {
+  constructor(private menu: MenuController,public formBuilder: FormBuilder,public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public alertController: AlertController, public loadingController: LoadingController) {
     this.loginForm = formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.compose([Validators.minLength(6),
         Validators.required])]
     });
   }
+  ionViewDidEnter() {
+    this.menu.swipeEnable(false);
 
+    // If you have more than one side menu, use the id like below
+    // this.menu.swipeEnable(false, 'menu1');
+  }
+
+  ionViewWillLeave() {
+    // Don't forget to return the swipe to normal, otherwise 
+    // the rest of the pages won't be able to swipe to open menu
+    this.menu.swipeEnable(true);
+
+    // If you have more than one side menu, use the id like below
+    // this.menu.swipeEnable(true, 'menu1');
+   }
   login(){
     const loading = this.loadingController.create({
       content: 'Please wait...'

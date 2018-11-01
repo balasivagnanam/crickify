@@ -167,6 +167,12 @@ import {AddPracticeScorePageModule} from '../pages/add-practice-score/add-practi
 import {ScoreService} from '../providers/score/score';
 import {PracticeTeamPage} from '../pages/practice-team/practice-team';
 import {PracticeTeamPageModule} from '../pages/practice-team/practice-team.module';
+import { AddPlayerPaymentPage } from '../pages/add-player-payment/add-player-payment';
+import { AddPlayerPaymentPageModule } from '../pages/add-player-payment/add-player-payment.module';
+import { ExtraPage } from '../pages/extra/extra';
+import { ExtraPageModule } from '../pages/extra/extra.module';
+import { VerifyPage } from '../pages/verify/verify';
+import { VerifyPageModule } from '../pages/verify/verify.module';
 const firebase = {
   apiKey: "AIzaSyDuAXZK8lTb8lsbjeSIHWl21kpOKQIUal4",
   authDomain: "crickify-200803.firebaseapp.com",
@@ -191,12 +197,12 @@ const firebase = {
     MyAccountPageModule,CreateSchedulePageModule,CreateSlotPageeModule,
     PreviousMatchesPageModule,PrivacyPageModule,ChatPageModule,
     MyTeamsPageModule,MyAnalysisPageModule,CreateSubLocationModule,
-    PreviousMatchDetailsPageModule,CreateProductPageModule,
-	MatchTeamPageModule,CreateAdPageModule,
+    PreviousMatchDetailsPageModule,CreateProductPageModule,AddPlayerPaymentPageModule,
+	MatchTeamPageModule,CreateAdPageModule,VerifyPageModule,
 	ResetPageModule,TeamPracticePageModule,CreateNewsPageModule,
 	LogoutPageModule,ClassifiedResponsePageModule,
 	WelcomePageModule,AddPlayerExpensePageModule,BookingPageModule,
-	CreateTeamModule,PracticeAvailabilityPageModule,
+	CreateTeamModule,PracticeAvailabilityPageModule,ExtraPageModule,
 	TeamPlayersPageModule,CreatePracticeModule,
 	CreatePlayerModule,CreateBookingPageModule,
 	TeamMatchesPageModule,ViewPlayerExpensePageModule,
@@ -210,7 +216,7 @@ const firebase = {
     MyApp,ViewSubLocationPage,SubLocationSlotsPage,PracticeTeamPage,
     HomePage,MyAnalysisPage,CreateSchedulePage,ViewBookingPage,
     ListPage,ClassifiedPage,CreateProductPage,SubLocationBookingPage,
-    WelcomePage,ViewPlayerExpensePage,CreateSubLocationPage,
+    WelcomePage,ViewPlayerExpensePage,CreateSubLocationPage,AddPlayerPaymentPage,
     LoginPage,ClassifiedResponsePage,SlotsPage,ViewSlotPage,
     SignupPage,CreateAdPage,ViewLocationPage,CreateSlotPage,
     MyProfilePage,ChatRoomPage,PrivacyPage,ChatPage,AddPracticeTeamPage,
@@ -218,9 +224,9 @@ const firebase = {
     PreviousMatchesPage,PracticeAvailabilityPage,
     MyTeamsPage,AddPlayerExpensePage,BookingPage,
     PreviousMatchDetailsPage,NewsPage,CreateBookingPage,
-	MatchTeamPage,CreatePracticePage,
+	MatchTeamPage,CreatePracticePage,ExtraPage,
 	FinancePage,TeamPracticePage,ViewNewsPage,
-	ForgotPage,AddTeamExpensePage,
+	ForgotPage,AddTeamExpensePage,VerifyPage,
 	ResetPage,PracticePage,ClassifiedResponseCreatePage,
 	LogoutPage,UploadModalPage,TeamExpensePage,CreateNewsPage,
 	CreateTeamPage,TeamPlayersPage,CreatePlayerPage,TeamMatchesPage,CreateMatchPage,MatchAvailabilityPage,TournamentsPage,LocationsPage,
@@ -237,4 +243,5 @@ const firebase = {
     FcmProvider,ChatService,MessageService,SubLocationService,BookingService,SlotService
   ]
 })
+
 export class AppModule {}

@@ -52,8 +52,8 @@
          <ion-label>
           Select Payment Status
         </ion-label>
-		
-		   <ion-item>
+        <ion-item>
+         
 		   <ion-checkbox [(ngModel)]="playerexpense.paid"  (ionChange)="availabilitySelected($event, playerexpense)"></ion-checkbox>
      
 	 
@@ -73,16 +73,24 @@
 	  
 	       
     <ion-input [(ngModel)]="playerexpense.remark" (ionChange)="availabilitySelected($event, playerexpense)"></ion-input>
-	 </ion-item>
-	
+   </ion-item>
+   <p *ngIf="playerexpense.expense?.team?.phone!=null && playerexpense.expense?.team?.paynow!=null && playerexpense.expense?.team?.paynow">
+		 
+   <ion-item>
+      <button ion-button color="secondary" icon-left clear small (click)="makePayment(playerexpense)">
+          Make Payment
+          
+        </button>
+   </ion-item>
+	</p>
     </ion-card-content>
   </ion-card>
 </div>
 <div *ngSwitchCase="'paid'">
     <ion-card *ngFor="let playerexpense of paid">
       <ion-card-header>
-          <b><h1>{{playerexpense.expense.description}}</h1></b>
-        <p>{{playerexpense.expense.team.name}}</p>
+          <b><h1>{{playerexpense.expense?.description}}</h1></b>
+        <p>{{playerexpense.expense?.team.name}}</p>
       </ion-card-header>
       <ion-card-content>
           <p><b>{{playerexpense.expenseDate| momentjs}}</b></p>

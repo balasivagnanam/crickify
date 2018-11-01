@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController,MenuController } from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import {AuthService} from '../../providers/auth/auth';
 import {HomePage} from '../home/home';
@@ -29,7 +29,7 @@ username : any;
 password : any;
 name : any;
 phone : any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public alertController: AlertController, public loadingController: LoadingController, formBuilder: FormBuilder) {
+  constructor(private menu: MenuController,public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public alertController: AlertController, public loadingController: LoadingController, formBuilder: FormBuilder) {
     this.signupForm = formBuilder.group({
       username: ['', Validators.compose([Validators.maxLength(25), Validators.required])],
       password: ['', Validators.compose([Validators.maxLength(25), Validators.required])],
@@ -41,7 +41,21 @@ phone : any;
   this.name=this.signupForm.controls['name'];
   this.phone=this.signupForm.controls['phone'];
   }
+  ionViewDidEnter() {
+    this.menu.swipeEnable(false);
 
+    // If you have more than one side menu, use the id like below
+    // this.menu.swipeEnable(false, 'menu1');
+  }
+
+  ionViewWillLeave() {
+    // Don't forget to return the swipe to normal, otherwise 
+    // the rest of the pages won't be able to swipe to open menu
+    this.menu.swipeEnable(true);
+
+    // If you have more than one side menu, use the id like below
+    // this.menu.swipeEnable(true, 'menu1');
+   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupPage');
   }

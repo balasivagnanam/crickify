@@ -4,6 +4,7 @@ import { AuthService} from '../../providers/auth/auth';
 import { MatchService } from '../../providers/matches/matches';
 import { FinanceProvider } from '../../providers/finance/finance';
 import {MatchTeamPage} from '../match-team/match-team';
+import { AddPlayerPaymentPage } from '../add-player-payment/add-player-payment';
 @Component({
   selector: 'page-finance',
   templateUrl: 'finance.html'
@@ -121,8 +122,8 @@ paidAmount=0;
 
 
   
- goToMatchTeam(event){
-    console.log("clicked match team", event);
-    this.navCtrl.push(MatchTeamPage, {"matchId": event});
+  makePayment(playerExpense){
+   
+    this.navCtrl.push(AddPlayerPaymentPage, {"playerExpense": playerExpense});
   }
 }

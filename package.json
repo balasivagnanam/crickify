@@ -42,6 +42,7 @@
     "cord": "^1.0.0",
     "cordova-admob-sdk": "^0.15.1",
     "cordova-android": "^7.0.0",
+    "cordova-browser": "5.0.4",
     "cordova-ios": "git+https://github.com/apache/cordova-ios.git",
     "cordova-plugin-admob-free": "^0.15.0",
     "cordova-plugin-android-permissions": "^1.0.0",
@@ -68,6 +69,7 @@
     "moment": "^2.22.2",
     "morgan": "^1.9.0",
     "phonegap-plugin-push": "^2.2.3",
+    "prod": "1.0.1",
     "promise-polyfill": "^8.1.0",
     "rxjs": "^6.3.2",
     "rxjs-compat": "^6.3.2",
@@ -104,8 +106,9 @@
       "cordova-plugin-inappbrowser": {}
     },
     "platforms": [
-      "android",
-      "ios"
+      "ios",
+      "browser",
+      "android"
     ]
   }
 }

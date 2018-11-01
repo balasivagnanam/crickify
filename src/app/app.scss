@@ -90,8 +90,9 @@ ion-select{
     }
 }
 .login-background {
-  background: url("../assets/img/cricket2.jpg") no-repeat fixed center;
-  background-size: cover;
+    background: url("../assets/img/bg-pattern.png") , linear-gradient(to left, #7b4397, #dc2430);
+    background-repeat: repeat;
+    background-size: initial;
   
 }
 .appBackground {
