@@ -39,7 +39,25 @@ export class TeamService {
     });
 
   }
-  
+  getTeam(id) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set("token",this.getToken());
+      this.http.get(teamapiUrl + '/team/'+id , {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("auth response matches", res.json()); 
+          if(res.json().statusCode == '200'){
+            console.log("matches", res.json());
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
+
+  }
     getAllPlayers(team) {
     return new Promise((resolve, reject) => {
       let headers = new Headers();

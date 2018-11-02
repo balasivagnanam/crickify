@@ -29,7 +29,7 @@ playerExpenses:any;
   players:any=[];
   tabsvalues: any = "summary";
 team:any;
-
+payment:any;
   constructor(private iab: InAppBrowser,public navCtrl: NavController, public navParams: NavParams, public financeService: FinanceProvider,public alertController: AlertController, public loadingController: LoadingController,public teamService:TeamService,formBuilder: FormBuilder) {
    this.addPaymentForm = formBuilder.group({
     playerExpense: ['', Validators.compose([Validators.required])],
@@ -53,14 +53,14 @@ addPayment(value){
     this.responseData = result;
     console.log(this.responseData); 
     if (this.responseData.statusCode == '200'){
-
-   this.alertDialog("Payment Status",this.responseData.result.status)
+   this.alertDialog("Payment Success ",this.responseData.results.status);
+this.payment=this.responseData.results.result;
     }else {
-
+ this.alertDialog("Payment Failed",this.responseData.results.status);
     }
     
   }, (err) => {
-
+    this.alertDialog("Payment Failed","Please contact the admin");
   });
 }
 

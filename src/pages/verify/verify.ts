@@ -72,7 +72,7 @@ export class VerifyPage {
         ]
         });
         alert.present();
-      }  {
+      } else {
         
         let alert = this.alertController.create({
           title: ' Error',
