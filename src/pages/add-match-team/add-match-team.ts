@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController,AlertController 
 import {MatchService} from '../../providers/matches/matches';
 import {TeamService} from '../../providers/teams/teams';
 import {Validators, FormBuilder, FormGroup,FormControl } from '@angular/forms';
+import { AddMatchPlayerPage } from '../add-match-player/add-match-player';
 /**
  * Generated class for the MatchTeamPage page.
  *
@@ -38,7 +39,10 @@ team:any;
 	this.getPlayers();
 	
   }
-
+  ionViewWillEnter() {
+    this.getData(this.matchId);
+    this.getPlayers();
+   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad PreviousMatchDetailsPage');
   }
@@ -82,7 +86,7 @@ delete(player){
         console.log("test 200");
         this.getData(this.matchId);
        
-     this.alertDialog('Success','Player Success');
+     this.alertDialog('Success','Success');
       }  else if(this.responseData.statusCode == "404") {
        loading.dismiss();
           this.alertDialog('Error','UnAuthorized');
@@ -97,6 +101,11 @@ delete(player){
       // Error log
     });
   }
+
+  goToMatchTeam(){
+  
+    this.navCtrl.push(AddMatchPlayerPage, {"matchId": this.matchId});
+  }
   addPlayer(){
     const loading = this.loadingController.create({
       content: 'Please wait...'
@@ -110,7 +119,7 @@ delete(player){
        
          this.getData(this.matchId);
          this.getPlayers();
-         this.alertDialog('Success','Player Success');
+         this.alertDialog('Success','Success');
       }  else if(this.responseData.statusCode == "404") {
         loading.dismiss();
         this.alertDialog('Error','UnAuthorized');
@@ -157,7 +166,7 @@ delete(player){
       console.log(this.responseData); 
       if (this.responseData.statusCode == '200'){
         
-        this.alertDialog('Success','Email Success');
+        this.alertDialog('Success','Success');
       
          }  else if(this.responseData.statusCode == "404") {
           this.alertDialog('Error','Email Error');

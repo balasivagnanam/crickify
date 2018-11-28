@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, App, LoadingController } from 'ionic-angular';
+import { NavController, App, LoadingController,ToastController } from 'ionic-angular';
 import { AuthService} from '../../providers/auth/auth';
 import { MatchService } from '../../providers/matches/matches';
 import {MatchTeamPage} from '../match-team/match-team';
@@ -28,7 +28,7 @@ export class HomePage {
   teams:any;
 matches : any;
 
-  constructor(public navCtrl: NavController,public plt: Platform, public app:App, formBuilder: FormBuilder,public teamService:TeamService,public otherService:OtherService, public authService:AuthService, public matchService:MatchService, public loadingController: LoadingController,public admob: AdMobFree) {
+  constructor(private toastCtrl: ToastController,public navCtrl: NavController,public plt: Platform, public app:App, formBuilder: FormBuilder,public teamService:TeamService,public otherService:OtherService, public authService:AuthService, public matchService:MatchService, public loadingController: LoadingController,public admob: AdMobFree) {
     if (this.authService.getAuthenticated()){
       const data = JSON.parse(localStorage.getItem('userData'));
       console.log("fetch data", data);
@@ -47,6 +47,20 @@ matches : any;
     });
 
 
+  }
+
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
   }
   showBanner() {
  
@@ -68,10 +82,17 @@ matches : any;
       this.admob.banner.config(iosBannerConfig);
 }
     this.admob.banner.prepare().then(() => {
-        // success
+   {    
   console.log('view did enter ad');
-    }).catch(e => console.log("view did error enter ad",e));
+this.presentToast('admob added success');
+}
+    }).catch(e => {console.log("view did error enter ad",e);
+  
+    this.presentToast('admob added failure '+e);
+  });
 console.log('view did after enter ad');
+
+this.presentToast('Token is '+localStorage.getItem('notificationtoken'));
 }
   ionViewDidLoad(){
     console.log('ionViewDidLoad home page');

@@ -41,32 +41,20 @@
       <div *ngSwitchCase="'pending'">
   <ion-card *ngFor="let playerexpense of pending">
     <ion-card-header>
-     <b><h1>{{playerexpense.expense?.description}}</h1></b> 
+     <b><h1>{{playerexpense.expense?.name}}</h1></b> 
       <p>{{playerexpense.expense?.team.name}}</p>
     </ion-card-header>
     <ion-card-content>
-      <p><b>{{playerexpense.expenseDate| momentjs}}</b></p>
+      <p *ngIf="playerexpense.expenseDate!=null"><b>{{playerexpense.expenseDate| momentjs}}</b></p>
      
       <p> <b>${{playerexpense.amount}}</b></p>
 	   <p>{{playerexpense.cmnt}}</p>
          <ion-label>
-          Select Payment Status
+          Payment Status
         </ion-label>
-        <ion-item>
-         
-		   <ion-checkbox [(ngModel)]="playerexpense.paid"  (ionChange)="availabilitySelected($event, playerexpense)"></ion-checkbox>
-     
-	 
-    </ion-item>
 	
 	<ion-item>
-      <ion-select [(ngModel)]="playerexpense.paymentType" (ionChange)="availabilitySelected($event, playerexpense)">
-          <ion-option value="CASH">CASH</ion-option>
-        <ion-option value="FREE">FREE</ion-option>
-      <ion-option value="PREPAID">PREPAID</ion-option>
-        <ion-option value="TRANSFER">TRANSFER</ion-option>
-      </ion-select>
-	 
+     {{playerexpense.paymentType}}
     </ion-item>
 	<p><ion-label>Remarks</ion-label></p>
       <ion-item>
@@ -89,33 +77,23 @@
 <div *ngSwitchCase="'paid'">
     <ion-card *ngFor="let playerexpense of paid">
       <ion-card-header>
-          <b><h1>{{playerexpense.expense?.description}}</h1></b>
+          <b><h1>{{playerexpense.expense?.name}}</h1></b>
         <p>{{playerexpense.expense?.team.name}}</p>
       </ion-card-header>
       <ion-card-content>
-          <p><b>{{playerexpense.expenseDate| momentjs}}</b></p>
+          <p *ngIf="playerexpense.expenseDate!=null"><b>{{playerexpense.expenseDate| momentjs}}</b></p>
        
            <p><b>${{playerexpense.amount}}</b></p>
        <p>{{playerexpense.cmnt}}</p>
            <ion-label>
-            Select Payment Status
+            Payment Status
           </ion-label>
-      
-         <ion-item>
-         <ion-checkbox [(ngModel)]="playerexpense.paid"  (ionChange)="availabilitySelected($event, playerexpense)"></ion-checkbox>
-       
-     
-      </ion-item>
     
-    <ion-item>
-        <ion-select [(ngModel)]="playerexpense.paymentType" (ionChange)="availabilitySelected($event, playerexpense)">
-            <ion-option value="CASH">CASH</ion-option>
-          <ion-option value="FREE">FREE</ion-option>
-        <ion-option value="PREPAID">PREPAID</ion-option>
-          <ion-option value="TRANSFER">TRANSFER</ion-option>
-        </ion-select>
-     
-      </ion-item>
+   
+	
+      <ion-item>
+          {{playerexpense.paymentType}}
+         </ion-item>
     <p><ion-label>Remarks</ion-label></p>
         <ion-item>
       

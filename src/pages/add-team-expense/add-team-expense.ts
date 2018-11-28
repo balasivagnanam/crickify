@@ -73,17 +73,12 @@ export class AddTeamExpensePage {
       if (this.responseData.statusCode == '200') {
         loading.dismiss();
         console.log("test 200");
-this.alertDialog('Success','Batting added Success');
-
-      } else if (this.responseData.statusCode == "404") {
-        loading.dismiss();
-        console.log("unauthorrised");
-        this.alertDialog('Error','unauthorrised');
+this.alertDialog('Success','Expense added Success');
 
       } else {
         loading.dismiss();
         console.log("test others");
-        this.alertDialog('Error','Error');
+        this.alertDialog('Error','Expense add failure');
       }
 
     }, (err) => {
@@ -99,23 +94,18 @@ this.alertDialog('Success','Batting added Success');
       if (this.responseData.statusCode == '200') {
         loading.dismiss();
         console.log("test 200");
-this.alertDialog('Success','Batting added Success');
+this.alertDialog('Success','Expense added Success');
 
-      } else if (this.responseData.statusCode == "404") {
-        loading.dismiss();
-        console.log("unauthorrised");
-        this.alertDialog('Error','unauthorrised');
-
-      } else {
+      }  else {
         loading.dismiss();
         console.log("test others");
-        this.alertDialog('Error','Error');
+        this.alertDialog('Error','Expense add failure');
       }
 
     }, (err) => {
       console.log("error", err);
       loading.dismiss();
-      this.alertDialog('Error','Error');
+      this.alertDialog('Error','Expense add failure');
       // Error log
     });
   

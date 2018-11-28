@@ -31,7 +31,7 @@ expenses : any;
 total=0;
 pendingAmount=0;
 paidAmount=0;
-
+tabsvalues="pending";
   constructor(public navCtrl: NavController, public app:App, public authService:AuthService, public financeService:FinanceProvider, public loadingController: LoadingController) {
     if (this.authService.getAuthenticated()){
       const data = JSON.parse(localStorage.getItem('userData'));

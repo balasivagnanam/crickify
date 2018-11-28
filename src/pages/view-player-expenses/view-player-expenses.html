@@ -54,30 +54,29 @@
         </ion-segment-button>
        
       </ion-segment>
-      
-    <div [ngSwitch]="tabsvalues"> 
+      <div [ngSwitch]="tabsvalues"> 
         <div *ngSwitchCase="'summary'">
           <div class="cric-stat-expense-table">
-            <h4>Payment</h4>
+            <h2>Payment</h2>
             <ol >
         <li *ngFor="let stat of playerExpenses">
         <ion-list>
             <ion-card> 
                 <ion-card-content>
 
-        <p>{{stat?.player.name}}</p>
+        <h2><b>{{stat?.player.name}}</b></h2>
 
-         <p>${{stat?.amount}}</p>
-         <p>Expense Date:{{stat?.expenseDate| momentjs}}</p>
+         <p><b>${{stat?.amount}}</b></p>
+         <p><b>Expense Date:{{stat?.expenseDate| momentjs}}</b></p>
            <p>Comment:{{stat?.cmnt}}</p>
 
 
            <p>Player Remark:{{stat?.remark}}</p>
-           PaymentStatus:
-           <p *ngIf= "stat.paid" >PAID</p>
-           <p *ngIf= "!stat.paid" >PENDING</p>
-           <p *ngIf= "stat.paid">Payment Type:{{stat?.paymentType}}</p>
-           <p *ngIf= "stat.paid">PaymentDate:{{stat?.paymentDate| momentjs}}</p>
+           <b>PaymentStatus:</b>
+           <p *ngIf= "stat.paid" ><b>PAID</b></p>
+           <p *ngIf= "!stat.paid" ><b>PENDING</b></p>
+           <p *ngIf= "stat.paid"><b>Payment Type:{{stat?.paymentType}}</b></p>
+           <p *ngIf= "stat.paid && stat.paymentDate!=null"><b>PaymentDate:{{stat?.paymentDate| momentjs}}</b></p>
         <button ion-button color="secondary" icon-left clear small (click)="editPlayerExpense(stat)">
             Edit Player Expense
             

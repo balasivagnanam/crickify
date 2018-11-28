@@ -69,14 +69,12 @@ getData(expense){
     console.log(this.responseData); 
     if (this.responseData.statusCode == '200'){
       loading.dismiss();
-      console.log("test 200");
+    
       console.log("result", this.responseData.results.result);
 
       this.playerExpenses = this.responseData.results.result;
    
-    }  else if(this.responseData.statusCode == "404") {
-    loading.dismiss();
-    } else {
+    }  else {
       loading.dismiss();
       console.log("error", this.responseData)
     }
@@ -98,18 +96,15 @@ delete(playerExpense){
       console.log("test 200");
       this.getData(this.expense);
      
-   this.alertDialog('Success','Player Success');
-    }  else if(this.deleteresponseData.statusCode == "404") {
-     loading.dismiss();
-        this.alertDialog('Error','UnAuthorized');
+   this.alertDialog('Success','Success');
     } else {
       loading.dismiss();
-       this.alertDialog('Error','Error');
+       this.alertDialog('Error','Failure');
     }
     
   }, (err) => {
   loading.dismiss();
-      this.alertDialog('Error','Error');
+      this.alertDialog('Error','Failure');
     // Error log
   });
 }
@@ -126,20 +121,17 @@ addPlayerExpense(){
      
        this.getData(this.expense);
        //this.getPlayers();
-       this.alertDialog('Success','Player Success');
-    }  else if(this.addresponseData.statusCode == "404") {
-      loading.dismiss();
-      this.alertDialog('Error','UnAuthorized');
+       this.alertDialog('Success','Player Expense added Success');
     } else {
       loading.dismiss();
       console.log("error", this.addresponseData)
-      this.alertDialog('Error','Error');
+      this.alertDialog('Error','Player Expense adding failed');
     }
     
   }, (err) => {
     // Error log
   loading.dismiss();
-    this.alertDialog('Error','Error');
+    this.alertDialog('Error','Player Expense adding failed');
   });
 }
  getPlayers(){

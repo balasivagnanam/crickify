@@ -32,34 +32,43 @@ team:any;
 payment:any;
   constructor(private iab: InAppBrowser,public navCtrl: NavController, public navParams: NavParams, public financeService: FinanceProvider,public alertController: AlertController, public loadingController: LoadingController,public teamService:TeamService,formBuilder: FormBuilder) {
    this.addPaymentForm = formBuilder.group({
-    playerExpense: ['', Validators.compose([Validators.required])],
-    createDate: [''],
-    id: [''],
-    token: [''],
-    modifyDate: ['']
+    expense: ['', Validators.compose([Validators.required])],
+    token: ['']
 });
 
 
   this.playerExpense = navParams.get('playerExpense');
-  this.addPaymentForm.controls['playerExpense'].setValue(this.playerExpense);
+  this.addPaymentForm.controls['expense'].setValue(this.playerExpense);
 
 
 
 }
 
 addPayment(value){
-
+  const loading = this.loadingController.create({
+    content: 'Please wait...'
+  });
+  loading.present();
   this.financeService.addPayment(value).then((result) => {
+    loading.dismiss();
     this.responseData = result;
     console.log(this.responseData); 
     if (this.responseData.statusCode == '200'){
    this.alertDialog("Payment Success ",this.responseData.results.status);
 this.payment=this.responseData.results.result;
     }else {
- this.alertDialog("Payment Failed",this.responseData.results.status);
+      if(this.responseData!=null&&this.responseData.results!=null){
+
+        this.alertDialog("Payment Failed",this.responseData.results.status);
+      }else {
+
+        this.alertDialog("Payment Failed",this.responseData);
+      }
+
     }
     
   }, (err) => {
+    loading.dismiss();
     this.alertDialog("Payment Failed","Please contact the admin");
   });
 }

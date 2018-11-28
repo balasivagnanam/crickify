@@ -46,7 +46,7 @@
     </ion-card-header>
     <ion-card-content>
         <p><b>{{match.match.matchTime | momentjs}}</b></p>
-      <p>{{match.match.location?.name}}, {{match.match.location?.address}}</p>
+      <p>{{match.match.location?.name}}, {{match.match.location?.address}} <ion-icon name="locate" (click)="viewLocation(match.match.location)"></ion-icon></p>
 
       <ion-item class="cric-float-left cric-no-left-pad">
         <ion-label class="cric-float-left">

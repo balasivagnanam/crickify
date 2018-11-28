@@ -173,6 +173,8 @@ import { ExtraPage } from '../pages/extra/extra';
 import { ExtraPageModule } from '../pages/extra/extra.module';
 import { VerifyPage } from '../pages/verify/verify';
 import { VerifyPageModule } from '../pages/verify/verify.module';
+import {AddMatchPlayerPage} from '../pages/add-match-player/add-match-player';
+import {AddMatchPlayerPageModule} from '../pages/add-match-player/add-match-player.module';
 const firebase = {
   apiKey: "AIzaSyDuAXZK8lTb8lsbjeSIHWl21kpOKQIUal4",
   authDomain: "crickify-200803.firebaseapp.com",
@@ -198,7 +200,7 @@ const firebase = {
     PreviousMatchesPageModule,PrivacyPageModule,ChatPageModule,
     MyTeamsPageModule,MyAnalysisPageModule,CreateSubLocationModule,
     PreviousMatchDetailsPageModule,CreateProductPageModule,AddPlayerPaymentPageModule,
-	MatchTeamPageModule,CreateAdPageModule,VerifyPageModule,
+	MatchTeamPageModule,CreateAdPageModule,VerifyPageModule,AddMatchPlayerPageModule,
 	ResetPageModule,TeamPracticePageModule,CreateNewsPageModule,
 	LogoutPageModule,ClassifiedResponsePageModule,
 	WelcomePageModule,AddPlayerExpensePageModule,BookingPageModule,
@@ -221,7 +223,7 @@ const firebase = {
     SignupPage,CreateAdPage,ViewLocationPage,CreateSlotPage,
     MyProfilePage,ChatRoomPage,PrivacyPage,ChatPage,AddPracticeTeamPage,
     MyAccountPage,ViewProductPage,ProductPage,AddPracticeScorePage,
-    PreviousMatchesPage,PracticeAvailabilityPage,
+    PreviousMatchesPage,PracticeAvailabilityPage,AddMatchPlayerPage,
     MyTeamsPage,AddPlayerExpensePage,BookingPage,
     PreviousMatchDetailsPage,NewsPage,CreateBookingPage,
 	MatchTeamPage,CreatePracticePage,ExtraPage,
