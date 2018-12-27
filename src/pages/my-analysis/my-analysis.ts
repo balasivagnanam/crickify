@@ -71,9 +71,6 @@ dismissalstats= [];
         this.getLastBatting(this.battingresponseData.results.battings);
       
         
-      }  else if(this.battingresponseData.statusCode == "404") {
-   
-      //  this.backToWelcome();
       } else {
         
         console.log("error", this.battingresponseData)
@@ -103,7 +100,6 @@ dismissalstats= [];
       
     });
   }
-
   getDismissalstats(dismissals){
      var label = [];
     var value = [];
@@ -112,7 +108,7 @@ dismissalstats= [];
       count=10;}
     else{
       count=dismissals.length;}
-for (let i = 1; i < count; i++) {
+for (let i = 0; i <count; i++) {
   
     label.push(dismissals[i].name);
   value.push(dismissals[i].count);
@@ -156,7 +152,7 @@ for (let i = 1; i < count; i++) {
       count=5;}
     else{
       count=battings.length;}
-for (let i = 1; i < count; i++) {
+for (let i = 0; i <count; i++) {
   
     label.push(battings[i].match.opponent);
   value.push(battings[i].run);

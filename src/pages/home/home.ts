@@ -42,7 +42,7 @@ matches : any;
     this.searchMatchesForm = formBuilder.group({
 
       startDate: [new Date().toISOString()],
-      teamId: [0],
+      teamId: [0,Validators.compose([ Validators.required])],
       tournamentId: [0]
     });
 

@@ -16,6 +16,10 @@
 <ion-content padding class="appBackground" >
 <ion-card>
     <ion-card-content>
+        <button ion-button color="secondary" icon-left clear  (click)="sendReminder()">
+            
+            Send reminder
+          </button>
   <ion-segment [(ngModel)]="tabsvalues">
       <ion-segment-button value="available" text-wrap>
         Availability

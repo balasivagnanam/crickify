@@ -14,13 +14,14 @@
 
 
 <ion-content padding class="appBackground">
- 
-<ion-card>
+ <ion-card>
    <ion-card-header>
      Runs Scored
    </ion-card-header>
    <ion-card-content>
-      <canvas #barCanvas></canvas>
+      <div style="display: block">
+      <canvas #barCanvas width="400" height="400"></canvas>
+      </div>
    </ion-card-content>
  </ion-card>
          
@@ -29,7 +30,7 @@
      Dismissal Types
    </ion-card-header>
    <ion-card-content>
-     <canvas #doughnutCanvas></canvas>
+     <canvas #doughnutCanvas width="400" height="400"></canvas>
    </ion-card-content>
  </ion-card>
     

@@ -8,8 +8,10 @@ page-my-profile {
 
     .scrollcard {
         width: 500px !important;
-        
         display: inline-block;
+        ion-row{
+            width: 500px !important;
+        }
       }
       .header {
      background: #f0dd38

@@ -10,13 +10,13 @@
         <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>My Career</ion-title>
+        <ion-title>Career</ion-title>
       </ion-navbar>
 </ion-header>
 
 
 <ion-content padding class="appBackground">
-    <ion-item>
+    <ion-item class="header"> 
     <h1><b>{{statsArray[0]?.stats.battingStatistics?.player.name}}</b></h1>
   </ion-item>
        <ion-item class="header">
@@ -75,7 +75,12 @@
               </ion-row>
             </ion-item>
           </ion-scroll>
+
+
             <br>
+            
+    <button ion-button margin color="success" (click)="analysis()">Analysis</button> 
+    
             <br>
               <ion-item>
         <ion-label>Pick a Team</ion-label>
@@ -88,13 +93,13 @@
   
   <ion-segment [(ngModel)]="tabsvalues">
       <ion-segment-button value="batting">
-        Batting Stats
+        Batting
       </ion-segment-button>
       <ion-segment-button value="bowling">
-          Bowling Stats
+          Bowling
       </ion-segment-button>
       <ion-segment-button value="fielding">
-            Fielding Stats
+            Fielding
       </ion-segment-button>
     </ion-segment>
   
@@ -109,8 +114,7 @@
             <ion-scroll scrollX="true" scrollY="true" direction="x">
                 <ion-item class="scrollcard">
                     <ion-row text-center text-wrap class="header">
-          
-                        <ion-col col-3 >Tournament</ion-col>
+                         <ion-col col-3 >Tournament</ion-col>
                         <ion-col col-1 >M</ion-col>
                         <ion-col col-1>I</ion-col>
                         <ion-col col-1 >R</ion-col>
@@ -119,9 +123,9 @@
                         <ion-col col-2 >Sr</ion-col>
                        </ion-row>
                   </ion-item>
-                 
-                  <ion-item  *ngFor="let tournament of statsArray" class="scrollcard">
-                    <ion-row text-center text-wrap >
+                  <br>
+                  <ion-item   class="scrollcard">
+                    <ion-row *ngFor="let tournament of statsArray" text-center text-wrap >
                         <ion-col col-3>{{tournament?.name}}</ion-col>
                       <ion-col col-1>{{tournament.stats.battingStatistics?.matches}}</ion-col>
                       <ion-col col-1>{{tournament.stats.battingStatistics?.innings}}</ion-col>
@@ -130,6 +134,7 @@
                       <ion-col col-2 >{{tournament.stats.battingStatistics?.average | number : '1.2-2'}}</ion-col>
                       <ion-col col-2 >{{tournament.stats.battingStatistics?.sr | number : '1.2-2'}}</ion-col>
                     </ion-row>
+                    <br>
                   </ion-item>
                 </ion-scroll>
             
@@ -158,9 +163,9 @@
                         <ion-col col-2 >Ec</ion-col>
                         </ion-row>
                   </ion-item>
-                
-                  <ion-item  *ngFor="let tournament of statsArray" class="scrollcard">
-                    <ion-row text-center text-wrap >
+                  <br>
+                  <ion-item   class="scrollcard">
+                    <ion-row  *ngFor="let tournament of statsArray" text-center text-wrap >
                         <ion-col col-3>{{tournament?.name}}</ion-col>
                      
                       <ion-col col-1 >{{tournament.stats.bowlingStatistics?.matches}}</ion-col>
@@ -171,6 +176,7 @@
                       <ion-col col-1 >{{tournament.stats.bowlingStatistics?.wide}}</ion-col>
                       <ion-col col-2 >{{tournament.stats.bowlingStatistics?.economy | number : '1.2-2'}}</ion-col>
                     </ion-row>
+                    <br>
                   </ion-item>
                 </ion-scroll>
           </div>
@@ -197,9 +203,9 @@
                     
                           </ion-row>
                     </ion-item>
-                  
-                    <ion-item  *ngFor="let tournament of statsArray" class="scrollcard">
-                      <ion-row text-center text-wrap >
+                    <br>
+                    <ion-item   class="scrollcard">
+                      <ion-row *ngFor="let tournament of statsArray" text-center text-wrap >
                           <ion-col col-3>{{tournament?.name}}</ion-col>
                        
                         <ion-col col-1 >{{tournament.stats.bowlingStatistics?.matches}}</ion-col>
@@ -207,6 +213,7 @@
                         <ion-col col-1 >{{tournament.stats.bowlingStatistics?.runOuts}}</ion-col>
                         <ion-col col-1 >{{tournament.stats.bowlingStatistics?.stumpings}}</ion-col>
                         </ion-row>
+                        <br>
                     </ion-item>
                   </ion-scroll>
             
@@ -217,6 +224,4 @@
 
     </div>
  
-    <button ion-button margin color="success" (click)="analysis()">My Analysis</button> 
-    
 </ion-content>

@@ -228,6 +228,23 @@ getBestBatting() {
 
   }
   
+  matchReminder(matchid) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set("token",this.getToken());
+      this.http.post(apiUrl + '/availability/reminder/' + matchid, null,{headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+         
+
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
+
+  }
   postAvailability(data) {
     return new Promise((resolve, reject) => {
       let headers = new Headers();

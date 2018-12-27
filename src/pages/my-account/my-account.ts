@@ -45,7 +45,7 @@ export class MyAccountPage {
        imgUrl: [''],
        verified: [''],
        dob: [''],
-  
+       temp: [false],
     isVerified: ['']
   
     });

@@ -35,7 +35,19 @@ status: any;
   ionViewDidLoad() {
     console.log('ionViewDidLoad PreviousMatchDetailsPage');
   }
+  sendReminder(){
+    const loading = this.loadingController.create({
+      content: 'Please wait...'
+    });
+    loading.present();
+    this.matchService.matchReminder(this.matchId).then((result) => { loading.dismiss();
+      console.log("result",result);}, (err) => {
+        loading.dismiss();
+      console.log("error",err);
+    });
+  
 
+  }
   getData(matchId){
 	    this.available= [];
   this.unavailable= [];

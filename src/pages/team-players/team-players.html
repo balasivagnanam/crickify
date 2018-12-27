@@ -17,23 +17,32 @@
 
 
 <ion-content padding class="appBackground">
-    <ion-grid >
-        <ion-row  *ngFor="let teamplayer of teamplayers"> 
-		<ion-col >
-  <ion-card >
-    <ion-card-header>
-      {{teamplayer.player.name}}
-	   </ion-card-header>
-	   <ion-card-content>
-        <p *ngIf= "teamplayer.player.imgUrl!= null" ><img  src="{{teamplayer.player.imgUrl}}"/></p>
    
-    <p *ngIf="teamplayer.player.imgUrl == null" ><img src="assets/img/bowler.png" /></p>
+  <ion-card *ngFor="let teamplayer of teamplayers">
+
+	   <ion-card-content>
+        <ion-grid >
+            <ion-row  > 
+        <ion-col >
+        <p *ngIf= "teamplayer.player.imgUrl!= null" ><img   src="{{teamplayer.player.imgUrl}}"/></p>
+   
+    <p *ngIf="teamplayer.player.imgUrl == null" ><img  src="assets/img/bowler.png" /></p>
+  </ion-col>
+  <ion-col col-8>
+    <b>{{teamplayer.player.name}}</b>
+  </ion-col>
+</ion-row>
+<ion-row  > 
+    <ion-col >
 	   <ion-item> 
+       
 	   <button ion-button icon-left clear small color="primary" (click)="delete(teamplayer.player)">
             <ion-icon name="delete"></ion-icon>
             <div>Delete</div>
           </button>
           </ion-item>
+          </ion-col>
+          <ion-col >
           <ion-item> 
 <ion-select [(ngModel)]="teamplayer.status" (ionChange)="roleSelected($event, teamplayer)">
           <ion-option value="0">Normal</ion-option>
@@ -42,11 +51,12 @@
 
       </ion-select>
       </ion-item>
+      </ion-col>
+ </ion-row>
+     </ion-grid>
 		    </ion-card-content>
   </ion-card>
-</ion-col>
-</ion-row>
-   </ion-grid>
+
 </ion-content>
 
 <ion-fab bottom right>

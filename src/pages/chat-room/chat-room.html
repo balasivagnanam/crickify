@@ -55,7 +55,7 @@
         <p *ngIf="conversation.last_message_text" class="truncate read" [innerHTML]="conversation.last_message_text"></p>
       </ng-template> -->
 
-      <ion-note color="dark" item-end>{{conversation.message.createDate| momentjs}}</ion-note>
+      <p>{{conversation.message.createDate| momentjs}}</p>
     
   </ion-item>
 
