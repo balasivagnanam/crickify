@@ -15,7 +15,7 @@ Details</ion-title> </ion-navbar> </ion-header>
 		<div class="cric-stat-bowling-table">
 			<form [formGroup]="createBowlingForm">
 				<ion-item> <ion-label>Player</ion-label> <ion-select
-					formControlName="player" [compareWith]="compareFn" [disabled]="true"> <ion-option
+					formControlName="player" [compareWith]="compareFn"> <ion-option
 					*ngFor="let key of players" [value]="key">{{key.name}}</ion-option>
 				</ion-select> </ion-item>
 			

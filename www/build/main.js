@@ -4716,14 +4716,14 @@ var BattingPage = (function () {
                 _this.createBattingForm.setValue(_this.batting);
             }
             else if (_this.responseData.statusCode == "404") {
-                console.log("unauthorrised");
-                localStorage.clear();
+                loading.dismiss();
             }
             else {
                 loading.dismiss();
                 console.log("error", _this.responseData);
             }
         }, function (err) {
+            loading.dismiss();
             // Error log
         });
     };
@@ -4749,7 +4749,12 @@ var BattingPage = (function () {
     };
     BattingPage.prototype.getPlayers = function () {
         var _this = this;
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
         this.teamService.getAllPlayers(this.team).then(function (result) {
+            loading.dismiss();
             _this.responseData = result;
             console.log(_this.responseData);
             if (_this.responseData.statusCode == '200') {
@@ -4762,6 +4767,7 @@ var BattingPage = (function () {
                 console.log("error", _this.responseData);
             }
         }, function (err) {
+            loading.dismiss();
         });
     };
     BattingPage.prototype.saveBatting = function () {
@@ -4816,9 +4822,10 @@ BattingPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'batting',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\batting\batting.html"*/'<!--\n\n  Generated template for the PreviousMatchDetailsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar color="primary">\n\n    <ion-title>Match Details</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground">\n\n<ion-card>\n\n  <ion-card-header>\n\n </ion-card-header>\n\n \n\n   <ion-card-content>\n\n  <div [ngSwitch]="tabsvalues"> \n\n      <div *ngSwitchCase="\'summary\'">\n\n        <div class="cric-stat-batting-table">\n\n      <form [formGroup]="createBattingForm">\n\n      <ion-item>\n\n       <ion-label>Player</ion-label>\n\n      	  <ion-select formControlName="player" [compareWith]="compareFn">\n\n    <ion-option *ngFor="let key of players" [value]="key">{{key.name}}</ion-option>\n\n  </ion-select>\n\n     </ion-item>\n\n	   <ion-item>\n\n            <ion-label floating>Run</ion-label>\n\n            <ion-input formControlName="run" type="number"></ion-input>\n\n			\n\n        </ion-item>\n\n       <ion-item>\n\n            <ion-label floating>Ball</ion-label>\n\n            <ion-input formControlName="ball" type="number"></ion-input>\n\n			\n\n        </ion-item>\n\n        <ion-item>\n\n            <ion-label floating>Four</ion-label>\n\n            <ion-input formControlName="four" type="number" ></ion-input>\n\n          </ion-item>\n\n		      <ion-item>\n\n            <ion-label floating>Six</ion-label>\n\n            <ion-input formControlName="six" type="number"></ion-input>\n\n			  </ion-item>\n\n\n\n\n\n	  <ion-item>\n\n    <ion-label>Did Not Bat</ion-label>\n\n    <ion-checkbox formControlName="dnb"></ion-checkbox>\n\n  </ion-item>\n\n  <ion-item>\n\n    <ion-label>Out</ion-label>\n\n    <ion-checkbox formControlName="out"></ion-checkbox>\n\n  </ion-item>\n\n  <ion-item>\n\n      <ion-label>Dismissal</ion-label>\n\n      <ion-select formControlName="dismisal"  [compareWith]="compareFn">\n\n        <ion-option *ngFor="let key of dismissals" [value]="key">{{key.name}}</ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n    <ion-item>\n\n    <ion-label>Batting Down</ion-label>\n\n    <ion-input formControlName="battingDown" type="number"></ion-input>\n\n  </ion-item>\n\n    	 <button ion-button color="secondary" icon-left clear small [disabled]="!createBattingForm.valid" (click)="saveBatting()">\n\n            Submit\n\n            \n\n          </button>   \n\n    </form>\n\n\n\n    \n\n \n\n      </div>\n\n  </div>\n\n   </div>\n\n     </ion-card-content>\n\n    </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\batting\batting.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_batting_batting__["a" /* BattingService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_4__providers_other_other__["a" /* OtherService */], __WEBPACK_IMPORTED_MODULE_5__providers_teams_teams__["a" /* TeamService */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_batting_batting__["a" /* BattingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_batting_batting__["a" /* BattingService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_4__providers_other_other__["a" /* OtherService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_other_other__["a" /* OtherService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_5__providers_teams_teams__["a" /* TeamService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_teams_teams__["a" /* TeamService */]) === "function" && _h || Object])
 ], BattingPage);
 
+var _a, _b, _c, _d, _e, _f, _g, _h;
 //# sourceMappingURL=batting.js.map
 
 /***/ }),
@@ -4924,14 +4931,14 @@ var BowlingPage = (function () {
             }
             else if (_this.responseData.statusCode == "404") {
                 console.log("unauthorrised");
-                localStorage.clear();
+                loading.dismiss();
             }
             else {
                 loading.dismiss();
                 console.log("error", _this.responseData);
             }
         }, function (err) {
-            // Error log
+            loading.dismiss();
         });
     };
     BowlingPage.prototype.getDismissals = function () {
@@ -4956,7 +4963,12 @@ var BowlingPage = (function () {
     };
     BowlingPage.prototype.getPlayers = function () {
         var _this = this;
+        var loading = this.loadingController.create({
+            content: 'Please wait...'
+        });
+        loading.present();
         this.teamService.getAllPlayers(this.team).then(function (result) {
+            loading.dismiss();
             _this.responseData = result;
             console.log(_this.responseData);
             if (_this.responseData.statusCode == '200') {
@@ -4969,6 +4981,7 @@ var BowlingPage = (function () {
                 console.log("error", _this.responseData);
             }
         }, function (err) {
+            loading.dismiss();
         });
     };
     BowlingPage.prototype.saveBowling = function () {
@@ -5021,11 +5034,12 @@ var BowlingPage = (function () {
 }());
 BowlingPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'bowling',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\bowling\bowling.html"*/'<!--\n\n  Generated template for the PreviousMatchDetailsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header> <ion-navbar color="primary"> <ion-title>Match\n\nDetails</ion-title> </ion-navbar> </ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground"> <ion-card>\n\n<ion-card-header> </ion-card-header> <ion-card-content>\n\n<div [ngSwitch]="tabsvalues">\n\n	<div *ngSwitchCase="\'summary\'">\n\n		<div class="cric-stat-bowling-table">\n\n			<form [formGroup]="createBowlingForm">\n\n				<ion-item> <ion-label>Player</ion-label> <ion-select\n\n					formControlName="player" [compareWith]="compareFn" [disabled]="true"> <ion-option\n\n					*ngFor="let key of players" [value]="key">{{key.name}}</ion-option>\n\n				</ion-select> </ion-item>\n\n			\n\n				<ion-item> <ion-label floating>Ball</ion-label> <ion-input\n\n					formControlName="ball" type="number"></ion-input> </ion-item>\n\n				<ion-item> <ion-label floating>Maiden</ion-label> <ion-input\n\n					formControlName="maiden" type="number"></ion-input> </ion-item>\n\n				<ion-item> <ion-label floating>Run</ion-label> <ion-input\n\n					formControlName="run" type="number"></ion-input> </ion-item>\n\n				<ion-item> <ion-label floating>Wickets</ion-label> <ion-input\n\n					formControlName="wickets" type="number"></ion-input> </ion-item>\n\n				<ion-item> <ion-label floating>Wide</ion-label> <ion-input\n\n					formControlName="wide" type="number"></ion-input> </ion-item>\n\n				<ion-item> <ion-label floating>No Ball</ion-label> <ion-input\n\n					formControlName="noBall" type="number"></ion-input> </ion-item>\n\n				<ion-item> <ion-label floating>Catches</ion-label> <ion-input\n\n					formControlName="catches" type="number"></ion-input> </ion-item>\n\n				<ion-item> <ion-label floating>Run Out</ion-label> <ion-input\n\n					formControlName="runOuts" type="number"></ion-input> </ion-item>\n\n				<ion-item> <ion-label floating>Stumping</ion-label> <ion-input\n\n					formControlName="stumpings" type="number"></ion-input> </ion-item>\n\n			\n\n				<ion-item> <ion-label>Did Not Ball</ion-label> <ion-checkbox\n\n					formControlName="dnb"></ion-checkbox> </ion-item>\n\n				<button ion-button color="secondary" icon-left clear small [disabled]="!createBowlingForm.valid"\n\n				(click)="saveBowling()">Submit</button>\n\n			</form>\n\n		\n\n\n\n\n\n		</div>\n\n	</div>\n\n</div>\n\n</ion-card-content> </ion-card> </ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\bowling\bowling.html"*/,
+        selector: 'bowling',template:/*ion-inline-start:"D:\ionicapp\crickify\src\pages\bowling\bowling.html"*/'<!--\n\n  Generated template for the PreviousMatchDetailsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header> <ion-navbar color="primary"> <ion-title>Match\n\nDetails</ion-title> </ion-navbar> </ion-header>\n\n\n\n\n\n<ion-content padding class="appBackground"> <ion-card>\n\n<ion-card-header> </ion-card-header> <ion-card-content>\n\n<div [ngSwitch]="tabsvalues">\n\n	<div *ngSwitchCase="\'summary\'">\n\n		<div class="cric-stat-bowling-table">\n\n			<form [formGroup]="createBowlingForm">\n\n				<ion-item> <ion-label>Player</ion-label> <ion-select\n\n					formControlName="player" [compareWith]="compareFn"> <ion-option\n\n					*ngFor="let key of players" [value]="key">{{key.name}}</ion-option>\n\n				</ion-select> </ion-item>\n\n			\n\n				<ion-item> <ion-label floating>Ball</ion-label> <ion-input\n\n					formControlName="ball" type="number"></ion-input> </ion-item>\n\n				<ion-item> <ion-label floating>Maiden</ion-label> <ion-input\n\n					formControlName="maiden" type="number"></ion-input> </ion-item>\n\n				<ion-item> <ion-label floating>Run</ion-label> <ion-input\n\n					formControlName="run" type="number"></ion-input> </ion-item>\n\n				<ion-item> <ion-label floating>Wickets</ion-label> <ion-input\n\n					formControlName="wickets" type="number"></ion-input> </ion-item>\n\n				<ion-item> <ion-label floating>Wide</ion-label> <ion-input\n\n					formControlName="wide" type="number"></ion-input> </ion-item>\n\n				<ion-item> <ion-label floating>No Ball</ion-label> <ion-input\n\n					formControlName="noBall" type="number"></ion-input> </ion-item>\n\n				<ion-item> <ion-label floating>Catches</ion-label> <ion-input\n\n					formControlName="catches" type="number"></ion-input> </ion-item>\n\n				<ion-item> <ion-label floating>Run Out</ion-label> <ion-input\n\n					formControlName="runOuts" type="number"></ion-input> </ion-item>\n\n				<ion-item> <ion-label floating>Stumping</ion-label> <ion-input\n\n					formControlName="stumpings" type="number"></ion-input> </ion-item>\n\n			\n\n				<ion-item> <ion-label>Did Not Ball</ion-label> <ion-checkbox\n\n					formControlName="dnb"></ion-checkbox> </ion-item>\n\n				<button ion-button color="secondary" icon-left clear small [disabled]="!createBowlingForm.valid"\n\n				(click)="saveBowling()">Submit</button>\n\n			</form>\n\n		\n\n\n\n\n\n		</div>\n\n	</div>\n\n</div>\n\n</ion-card-content> </ion-card> </ion-content>\n\n'/*ion-inline-end:"D:\ionicapp\crickify\src\pages\bowling\bowling.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_2__providers_bowling_bowling__["a" /* BowlingService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_4__providers_other_other__["a" /* OtherService */], __WEBPACK_IMPORTED_MODULE_5__providers_teams_teams__["a" /* TeamService */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_bowling_bowling__["a" /* BowlingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_bowling_bowling__["a" /* BowlingService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_4__providers_other_other__["a" /* OtherService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_other_other__["a" /* OtherService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_5__providers_teams_teams__["a" /* TeamService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_teams_teams__["a" /* TeamService */]) === "function" && _h || Object])
 ], BowlingPage);
 
+var _a, _b, _c, _d, _e, _f, _g, _h;
 //# sourceMappingURL=bowling.js.map
 
 /***/ }),

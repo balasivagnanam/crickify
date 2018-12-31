@@ -94,14 +94,14 @@ export class BowlingPage {
 
       } else if (this.responseData.statusCode == "404") {
         console.log("unauthorrised");
-        localStorage.clear();
+        loading.dismiss();
       } else {
         loading.dismiss();
         console.log("error", this.responseData)
       }
 
     }, (err) => {
-      // Error log
+      loading.dismiss();
     });
   }
   getDismissals() {
@@ -130,7 +130,12 @@ export class BowlingPage {
     });
   }
   getPlayers() {
+    const loading = this.loadingController.create({
+      content: 'Please wait...'
+    });
+    loading.present();
     this.teamService.getAllPlayers(this.team).then((result) => {
+      loading.dismiss();
       this.responseData = result;
       console.log(this.responseData);
       if (this.responseData.statusCode == '200') {
@@ -145,7 +150,7 @@ export class BowlingPage {
       }
 
     }, (err) => {
-
+      loading.dismiss();
     });
   }
   saveBowling() {
