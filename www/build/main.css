@@ -28548,6 +28548,41 @@ page-sublocation-slots ion-segment ion-segment-button.segment-button {
   width: auto;
 }
 
+page-teamstats .scrollcard {
+  width: 750px !important;
+  display: inline-block;
+}
+
+page-teamstats .header {
+  background: #f0dd38;
+}
+
+page-teamstats ion-scroll {
+  min-height: 150px;
+  height: auto;
+  white-space: normal;
+}
+
+page-teamstats ion-scroll .scroll-content {
+  padding: 0px !important;
+  white-space: normal;
+}
+
+page-teamstats .ion-scroll-big {
+  min-height: 350px;
+  height: auto;
+  white-space: normal;
+}
+
+page-teamstats .ion-scroll-big .scroll-content {
+  padding: 0px !important;
+  white-space: normal;
+}
+
+page-teamstats ion-row {
+  white-space: pre;
+}
+
 page-view-location #map {
   width: 100%;
   height: 100%;

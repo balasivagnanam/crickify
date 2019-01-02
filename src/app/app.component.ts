@@ -54,6 +54,7 @@ import {BookingPage} from '../pages/booking/booking';
 import { SubLocationSlotsPage } from '../pages/sublocation-slots/sublocation-slots';
 import {SubLocationBookingPage} from '../pages/sublocation-booking/sublocation-booking';
 import { ExtraPage } from '../pages/extra/extra';
+import { TeamStatsPage } from '../pages/teamstats/teamstats';
 @Component({
   templateUrl: 'app.html'
 })
@@ -112,6 +113,7 @@ export class MyApp {
     { title: 'Practice', component: TeamPracticePage },
     { title: 'Players', component: TeamPlayersPage },    
     { title: 'Message', component: ChatPage },
+    { title: 'Statistics', component: TeamStatsPage },
     { title: 'Tournament', component: TournamentsPage },
     { title: 'Change Mode', component: ModeChangePage },
     { title: 'Team Expense', component: TeamExpensePage },

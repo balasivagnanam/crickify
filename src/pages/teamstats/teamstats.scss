@@ -1,0 +1,33 @@
+page-teamstats {
+    .scrollcard {
+        width: 750px !important;
+        display: inline-block;
+        
+      }
+      .header {
+        background: #f0dd38
+         }
+      ion-scroll {
+        min-height: 150px; 
+        height: auto;
+        white-space:normal;
+            .scroll-content {
+            padding: 0px !important;
+            white-space:normal;
+        }    
+      }
+      .ion-scroll-big {
+        min-height: 350px; 
+        height: auto;
+        white-space:normal;
+            .scroll-content {
+            padding: 0px !important;
+            white-space:normal;
+        }    
+      }
+
+      ion-row{
+
+        white-space: pre;
+      }
+}

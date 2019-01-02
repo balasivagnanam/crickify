@@ -14,7 +14,7 @@ import { HomePage } from '../pages/home/home';
 import { ClassifiedPage } from '../pages/classifieds/classifieds';
 import { NewsPage } from '../pages/news/news';
 import { ViewNewsPage } from '../pages/viewnews/viewnews';
-
+import { TeamStatsPage } from '../pages/teamstats/teamstats';
 import { ListPage } from '../pages/list/list';
 import {BowlingService} from '../providers/bowling/bowling';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -187,7 +187,7 @@ const firebase = {
   declarations: [
     MyApp,
     HomePage,
-    ListPage,ClassifiedPage,SlotsPage,SubLocationSlotsPage,
+    ListPage,TeamStatsPage,ClassifiedPage,SlotsPage,SubLocationSlotsPage,
     PracticePage,NewsPage,ViewNewsPage,ProductPage,ViewProductPage,ChatRoomPage
   ],
   imports: [  AngularFireModule.initializeApp(firebase), AddPracticeScorePageModule,
@@ -226,7 +226,7 @@ const firebase = {
     PreviousMatchesPage,PracticeAvailabilityPage,AddMatchPlayerPage,
     MyTeamsPage,AddPlayerExpensePage,BookingPage,
     PreviousMatchDetailsPage,NewsPage,CreateBookingPage,
-	MatchTeamPage,CreatePracticePage,ExtraPage,
+	MatchTeamPage,CreatePracticePage,ExtraPage,TeamStatsPage,
 	FinancePage,TeamPracticePage,ViewNewsPage,
 	ForgotPage,AddTeamExpensePage,VerifyPage,
 	ResetPage,PracticePage,ClassifiedResponseCreatePage,

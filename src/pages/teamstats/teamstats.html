@@ -1,0 +1,231 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Team Stats</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="appBackground">
+
+    <ion-card>
+        <ion-card-header>
+          Search
+        </ion-card-header>
+        <ion-card-content>
+          
+        <form [formGroup]="searchForm">
+                 <ion-item>
+                    <ion-label>Start Date</ion-label>
+                    <ion-datetime formControlName="startDate"  displayFormat="MMM DD, YYYY HH:mm" min="2016-01-01"></ion-datetime>
+                  </ion-item>
+                 
+                      <ion-item>
+                          <ion-label>End Date</ion-label>
+                          <ion-datetime formControlName="endDate"  displayFormat="MMM DD, YYYY HH:mm" max="2020-12-31"></ion-datetime>
+                        </ion-item>
+                     
+                        <button ion-button margin color="primary" type="submit"  [disabled]="!searchForm.valid" (click)="search()">
+                            Filter
+                  
+                          </button>
+     
+        </form>
+      
+    
+    </ion-card-content>
+    </ion-card>
+    <p *ngIf="stat!= null">
+        <ion-card>
+    <ion-segment [(ngModel)]="tabsvalues">
+        <ion-segment-button value="team">
+          Team Stats
+        </ion-segment-button>
+        <ion-segment-button value="batting">
+          Batting Stats
+        </ion-segment-button>
+        <ion-segment-button value="bowling">
+            Bowling Stats
+        </ion-segment-button>
+      </ion-segment>
+    
+    <div [ngSwitch]="tabsvalues">
+      <div *ngSwitchCase="'team'">
+          <ion-scroll scrollX="true" scrollY="true" direction="x" >
+          
+              <ion-item class="scrollcard" >
+                  <ion-row text-center text-wrap class="header">
+                      <ion-col col-1 >Played</ion-col>
+                      <ion-col col-1>Won</ion-col>
+                      <ion-col col-1 >Lost</ion-col>
+                      <ion-col col-2 >No Result</ion-col>
+                                    
+                     </ion-row>
+                </ion-item>
+              <br>
+            
+
+                <ion-item  class="scrollcard">
+                  <ion-row text-center text-wrap >
+                      
+                    <ion-col col-1>{{stat.statistics.played}}</ion-col>
+                    <ion-col col-1>{{stat.statistics.won}}</ion-col>
+                    <ion-col col-1 >{{stat.statistics.lost}}</ion-col>
+                    <ion-col col-2 >{{stat.statistics.abandoned}}</ion-col>                  
+                    
+                  </ion-row>
+                </ion-item>
+                </ion-scroll>
+
+
+                <ion-scroll scrollX="true" scrollY="true" direction="x" >
+          
+                    <ion-item class="scrollcard" >
+                        <ion-row text-center text-wrap class="header">
+                          
+                            <ion-col col-2> Toss Won</ion-col>
+                            <ion-col col-2 >Won Batting First</ion-col>
+                            <ion-col col-2 >Lost Batting First</ion-col>
+                            <ion-col col-2 >Won Batting Second</ion-col>
+                            <ion-col col-2 >Lost Batting Second</ion-col>
+                                
+                           </ion-row>
+                      </ion-item>
+                    <br>
+                  
+      
+                      <ion-item  class="scrollcard">
+                        <ion-row text-center text-wrap >
+                            
+                        
+                          <ion-col col-2>{{stat.statistics.tossWon}}</ion-col>
+                          <ion-col col-2 >{{stat.statistics.wonBattingFirst}}</ion-col>
+                          <ion-col col-2 >{{stat.statistics.lostBattingFirst}}</ion-col>
+                          <ion-col col-2 >{{stat.statistics.wonBattingSecond}}</ion-col>
+                          <ion-col col-2>{{stat.statistics.lostBattingSecond}}</ion-col>
+                        
+                          
+                        </ion-row>
+                      </ion-item>
+                      </ion-scroll>
+         
+                      
+                      <ion-scroll scrollX="true" scrollY="true" direction="x" >
+          
+                          <ion-item class="scrollcard" >
+                              <ion-row text-center text-wrap class="header">
+                                  
+                                  <ion-col col-2> Runs Scored</ion-col>
+                                  <ion-col col-2 >Runs Conceded</ion-col>
+                                  <ion-col col-2 >Overs Faced</ion-col>
+                                  <ion-col col-2 >Overs Bowled</ion-col>
+                                  <ion-col col-2 >Wickets Lost</ion-col>
+                                  <ion-col col-2 >Wickets Taken</ion-col>
+                                 
+                                 </ion-row>
+                            </ion-item>
+                          <br>
+                        
+            
+                            <ion-item  class="scrollcard">
+                              <ion-row text-center text-wrap >
+                                  
+                                
+                                <ion-col col-2>{{stat.statistics.runsScored}}</ion-col>
+                                <ion-col col-2 >{{stat.statistics.runConceded}}</ion-col>
+                                <ion-col col-2 >{{stat.statistics.ballsBowled| number : '1.0-0'}}</ion-col>
+                                <ion-col col-2 >{{stat.statistics.ballsFaced| number : '1.0-0'}}</ion-col>
+                                <ion-col col-2 >{{stat.statistics.wicketsTaken}}</ion-col>
+                                <ion-col col-2 >{{stat.statistics.wicketsConceded}}</ion-col>
+                                
+                              </ion-row>
+                            </ion-item>
+                            </ion-scroll>
+      </div>
+    
+      <div *ngSwitchCase="'batting'">
+        
+          <ion-card>
+                <ion-card-content> 
+                    
+                  <ion-scroll class="ion-scroll-big" scrollX="true" scrollY="true" direction="x" >
+                      
+                    <ion-item class="scrollcard" >
+                        <ion-row text-center text-wrap class="header">
+                            <ion-col col-3 >Name</ion-col>
+                            <ion-col col-1 >M</ion-col>
+                            <ion-col col-1>R</ion-col>
+                            <ion-col col-1 >B</ion-col>
+                            <ion-col col-2 >Av</ion-col>
+                            <ion-col col-2 >Sr</ion-col>                  
+                           </ion-row>
+                      </ion-item>
+                    <br>
+                  
+      
+                      <ion-item  class="scrollcard" >
+                        <ion-row text-center text-wrap *ngFor="let player of stat.battingStatistics">
+                            <ion-col col-3>{{player.player.name}}</ion-col>
+                          <ion-col col-1>{{player.matches}}</ion-col>
+                          <ion-col col-1>{{player.run}}</ion-col>
+                          <ion-col col-1 >{{player.ball}}</ion-col>
+                          <ion-col col-2 >{{player.average | number : '1.2-2'}}</ion-col>
+                          <ion-col col-2>{{player.sr | number : '1.2-2'}}</ion-col>
+                          
+                        </ion-row>
+                      </ion-item>
+                      </ion-scroll>
+              
+               </ion-card-content>
+              </ion-card>
+      </div>
+
+      <div *ngSwitchCase="'bowling'">
+         
+          <ion-card >
+                <ion-card-content>
+              <div class="cric-stat-bowling-table">
+                  
+                  <ion-scroll class="ion-scroll-big" scrollX="true" scrollY="true" direction="x" >
+                    
+                      <ion-item class="scrollcard" >
+                          <ion-row text-center text-wrap class="header">
+                              <ion-col col-3 >Name</ion-col>
+                              <ion-col col-1 >M</ion-col>
+                              <ion-col col-1>O</ion-col>
+                              <ion-col col-1 >R</ion-col>
+                              <ion-col col-1 >W</ion-col>
+                              <ion-col col-1 >wd</ion-col>
+                              <ion-col col-2 >Ec</ion-col>                  
+                             </ion-row>
+                        </ion-item>
+                      <br>
+                    
+        
+                        <ion-item  class="scrollcard" >
+                          <ion-row text-center text-wrap *ngFor="let player of stat.bowlingStatistics">
+                              <ion-col col-3>{{player.player.name}}</ion-col>
+                            <ion-col col-1>{{player.matches}}</ion-col>
+                            <ion-col col-1>{{player.overs}}</ion-col>
+                            <ion-col col-1 >{{player.run}}</ion-col>
+                            <ion-col col-1 >{{player.wickets}}</ion-col>
+                              <ion-col col-1 >{{player.wide}}</ion-col>
+                            <ion-col col-2>{{player.economy | number : '1.2-2'}}</ion-col>
+                            
+                          </ion-row>
+                        </ion-item>
+                        </ion-scroll>
+                  
+               
+                </div>
+            </ion-card-content>
+              </ion-card >
+      </div>
+
+       
+
+      </div> 
+      </ion-card>
+</p>
+</ion-content>
