@@ -175,6 +175,8 @@ import { VerifyPage } from '../pages/verify/verify';
 import { VerifyPageModule } from '../pages/verify/verify.module';
 import {AddMatchPlayerPage} from '../pages/add-match-player/add-match-player';
 import {AddMatchPlayerPageModule} from '../pages/add-match-player/add-match-player.module';
+import {ScaMatchesPage} from '../pages/sca-matches/sca-matches';
+import {ScaMatchesPageModule} from '../pages/sca-matches/sca-matches.module';
 const firebase = {
   apiKey: "AIzaSyDuAXZK8lTb8lsbjeSIHWl21kpOKQIUal4",
   authDomain: "crickify-200803.firebaseapp.com",
@@ -202,7 +204,7 @@ const firebase = {
     PreviousMatchDetailsPageModule,CreateProductPageModule,AddPlayerPaymentPageModule,
 	MatchTeamPageModule,CreateAdPageModule,VerifyPageModule,AddMatchPlayerPageModule,
 	ResetPageModule,TeamPracticePageModule,CreateNewsPageModule,
-	LogoutPageModule,ClassifiedResponsePageModule,
+	LogoutPageModule,ClassifiedResponsePageModule,ScaMatchesPageModule,
 	WelcomePageModule,AddPlayerExpensePageModule,BookingPageModule,
 	CreateTeamModule,PracticeAvailabilityPageModule,ExtraPageModule,
 	TeamPlayersPageModule,CreatePracticeModule,
@@ -230,7 +232,7 @@ const firebase = {
 	FinancePage,TeamPracticePage,ViewNewsPage,
 	ForgotPage,AddTeamExpensePage,VerifyPage,
 	ResetPage,PracticePage,ClassifiedResponseCreatePage,
-	LogoutPage,UploadModalPage,TeamExpensePage,CreateNewsPage,
+	LogoutPage,UploadModalPage,TeamExpensePage,CreateNewsPage,ScaMatchesPage,
 	CreateTeamPage,TeamPlayersPage,CreatePlayerPage,TeamMatchesPage,CreateMatchPage,MatchAvailabilityPage,TournamentsPage,LocationsPage,
 	CreateLocationPage,CreateTournamentPage,ModeChangePage,AddMatchTeamPage,PreviousMatchDetailsEditPage,BattingPage,BowlingPage
   ],

@@ -58,6 +58,81 @@ export class TeamService {
     });
 
   }
+
+  getSca() {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+   
+      this.http.get(teamapiUrl + '/sca' , {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("auth response matches", res.json()); 
+          if(res.json().statusCode == '200'){
+            console.log("matches", res.json());
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
+
+  }
+
+  getScaSchedules(filter) {
+    return new Promise((resolve, reject) => {
+      
+     
+
+    let urlSearchParams = new URLSearchParams();
+    for(let key in filter){
+      if(filter[key]!=null){
+    urlSearchParams.append(key, filter[key]);
+      }
+  }
+      this.http.get(teamapiUrl + '/scaschedule?'+urlSearchParams)
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("auth response matches", res.json()); 
+          if(res.json().statusCode == '200'){
+            console.log("matches", res.json());
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
+
+  }
+
+  
+  claimTeam(team,filter) {
+    return new Promise((resolve, reject) => {
+      
+      let headers = new Headers();
+      headers.set('Content-Type', 'application/json');
+      headers.set("token",this.getToken());
+
+    let urlSearchParams = new URLSearchParams();
+    for(let key in filter){
+      if(filter[key]!=null){
+    urlSearchParams.append(key, filter[key]);
+      }
+  }
+      this.http.post(teamapiUrl + '/scaschedule/'+team.id+'/claim?'+urlSearchParams,null, {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("auth response matches", res.json()); 
+          if(res.json().statusCode == '200'){
+            console.log("matches", res.json());
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
+
+  }
     getAllPlayers(team) {
     return new Promise((resolve, reject) => {
       let headers = new Headers();

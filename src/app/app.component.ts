@@ -55,6 +55,7 @@ import { SubLocationSlotsPage } from '../pages/sublocation-slots/sublocation-slo
 import {SubLocationBookingPage} from '../pages/sublocation-booking/sublocation-booking';
 import { ExtraPage } from '../pages/extra/extra';
 import { TeamStatsPage } from '../pages/teamstats/teamstats';
+import {ScaMatchesPage} from '../pages/sca-matches/sca-matches';
 @Component({
   templateUrl: 'app.html'
 })
@@ -115,6 +116,7 @@ export class MyApp {
     { title: 'Message', component: ChatPage },
     { title: 'Statistics', component: TeamStatsPage },
     { title: 'Tournament', component: TournamentsPage },
+    { title: 'Claim SCA Team', component: ScaMatchesPage },
     { title: 'Change Mode', component: ModeChangePage },
     { title: 'Team Expense', component: TeamExpensePage },
     { title: 'Player Payment Details', component: ViewPlayerExpensePage },
