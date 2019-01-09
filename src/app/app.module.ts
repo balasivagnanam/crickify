@@ -177,6 +177,8 @@ import {AddMatchPlayerPage} from '../pages/add-match-player/add-match-player';
 import {AddMatchPlayerPageModule} from '../pages/add-match-player/add-match-player.module';
 import {ScaMatchesPage} from '../pages/sca-matches/sca-matches';
 import {ScaMatchesPageModule} from '../pages/sca-matches/sca-matches.module';
+import { AccountPage } from '../pages/account/account';
+import { AccountPageModule } from '../pages/account/account.module';
 const firebase = {
   apiKey: "AIzaSyDuAXZK8lTb8lsbjeSIHWl21kpOKQIUal4",
   authDomain: "crickify-200803.firebaseapp.com",
@@ -198,7 +200,7 @@ const firebase = {
     IonicModule.forRoot(MyApp),ViewLocationModule,AddPracticeTeamPageModule,
 	FinancePageModule,ForgotPageModule,LoginPageModule, SignupPageModule,ViewSlotPageModule,
     MyProfilePageModule,ViewSubLocationModule,ViewBookingPageModule,
-    MyAccountPageModule,CreateSchedulePageModule,CreateSlotPageeModule,
+    MyAccountPageModule,CreateSchedulePageModule,CreateSlotPageeModule,AccountPageModule,
     PreviousMatchesPageModule,PrivacyPageModule,ChatPageModule,
     MyTeamsPageModule,MyAnalysisPageModule,CreateSubLocationModule,
     PreviousMatchDetailsPageModule,CreateProductPageModule,AddPlayerPaymentPageModule,
@@ -226,7 +228,7 @@ const firebase = {
     MyProfilePage,ChatRoomPage,PrivacyPage,ChatPage,AddPracticeTeamPage,
     MyAccountPage,ViewProductPage,ProductPage,AddPracticeScorePage,
     PreviousMatchesPage,PracticeAvailabilityPage,AddMatchPlayerPage,
-    MyTeamsPage,AddPlayerExpensePage,BookingPage,
+    MyTeamsPage,AddPlayerExpensePage,BookingPage,AccountPage,
     PreviousMatchDetailsPage,NewsPage,CreateBookingPage,
 	MatchTeamPage,CreatePracticePage,ExtraPage,TeamStatsPage,
 	FinancePage,TeamPracticePage,ViewNewsPage,

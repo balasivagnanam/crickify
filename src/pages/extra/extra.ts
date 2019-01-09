@@ -7,6 +7,7 @@ import {MyTeamsPage} from '../my-teams/my-teams';
 import { NewsPage } from '../news/news';
 import { ProductPage } from '../product/product';
 import { ClassifiedPage } from '../classifieds/classifieds';
+import { LocationsPage } from '../locations/locations';
 /**
  * Generated class for the Forgot page.
  *
@@ -39,6 +40,10 @@ market(){
   
   classifieds(){
     this.navCtrl.push(ClassifiedPage);
+  }
+
+  facility(){
+    this.navCtrl.push(LocationsPage);
   }
   
 }

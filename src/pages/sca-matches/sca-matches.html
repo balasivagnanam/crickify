@@ -36,12 +36,12 @@
                   </ion-select>
                 </ion-item>
                      
-                        <button ion-button margin color="primary" type="submit" [disabled]="!searchTeamForm.valid" (click)="search()">
+                        <button ion-button margin color="secondary" icon-left clear small type="submit" [disabled]="!searchTeamForm.valid" (click)="search()">
                             Filter Schedule
                   
                           </button>
 
-                          <button ion-button margin color="primary" type="submit" [disabled]="!searchTeamForm.valid" (click)="claim()">
+                          <button ion-button color="secondary" icon-left clear small type="submit" [disabled]="!searchTeamForm.valid" (click)="claim()">
                             Claim Team Schedule                  
                           </button>
      
@@ -51,7 +51,7 @@
     </ion-card-content>
     </ion-card>
     <ion-card *ngFor="let match of matches">
-        <ion-card-header>
+        <ion-card-header text-wrap>
           {{match.team}} Vs
           {{match.opponent}}
           <p>{{match.tournament.name}}</p>

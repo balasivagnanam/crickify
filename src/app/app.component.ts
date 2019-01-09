@@ -56,6 +56,7 @@ import {SubLocationBookingPage} from '../pages/sublocation-booking/sublocation-b
 import { ExtraPage } from '../pages/extra/extra';
 import { TeamStatsPage } from '../pages/teamstats/teamstats';
 import {ScaMatchesPage} from '../pages/sca-matches/sca-matches';
+import { AccountPage } from '../pages/account/account';
 @Component({
   templateUrl: 'app.html'
 })
@@ -111,31 +112,28 @@ export class MyApp {
     
     this.emptyPages=[];
     this.adminPages = [{ title: 'Matches', component: TeamMatchesPage },
-    { title: 'Practice', component: TeamPracticePage },
-    { title: 'Players', component: TeamPlayersPage },    
-    { title: 'Message', component: ChatPage },
+    { title: 'Practice', component: TeamPracticePage },    
+    { title: 'Change Mode', component: ModeChangePage },
     { title: 'Statistics', component: TeamStatsPage },
     { title: 'Tournament', component: TournamentsPage },
     { title: 'Claim SCA Team', component: ScaMatchesPage },
-    { title: 'Change Mode', component: ModeChangePage },
+    { title: 'Players', component: TeamPlayersPage },  
     { title: 'Team Expense', component: TeamExpensePage },
     { title: 'Player Payment Details', component: ViewPlayerExpensePage },
+    { title: 'Message', component: ChatPage },
     { title: 'Logout', component: LogoutPage },
     ];
     this.normalPages = [
-      { title: 'Upcoming Matches', component: HomePage },
-      { title: 'Upcoming Practice', component: PracticePage },
+      { title: 'Schedule', component: HomePage },
+      { title: 'Practice', component: PracticePage },
       { title: 'Change Mode', component: ModeChangePage },
-      { title: 'Book Facilities', component: SlotsPage },
-      { title: 'Location', component: LocationsPage }, 
-      { title: 'Cricket Extra', component: ExtraPage }, 
-      { title: 'Messages', component: ChatRoomPage },   
-      { title: 'Completed Matches', component: PreviousMatchesPage },
-      { title: 'Team Stats', component: ListPage },
-      { title: 'My Finance', component: FinancePage },   
-      { title: 'My Booking', component: BookingPage },   
-      { title: 'My Career', component: MyProfilePage },
-      { title: 'My Profile', component: MyAccountPage },      
+      { title: 'Result', component: PreviousMatchesPage },      
+
+      { title: 'Team Stats', component: ListPage }, 
+      { title: 'Account', component: AccountPage }, 
+      { title: 'Book Facilities(Beta!)', component: SlotsPage },  
+      { title: 'Extra (Beta!)', component: ExtraPage },
+      { title: 'Messages', component: ChatRoomPage },        
       { title: 'Logout', component: LogoutPage },
     ];
     // used for an example of ngFor and navigation

@@ -1,0 +1,27 @@
+page-account {
+    ion-grid {
+        height: 100%;
+      
+        ion-row {
+          height: 50%;
+          ion-col {
+            width: 50%;
+            height: 100%;
+            ion-card  {
+                width: 100%;
+                height: 100%;
+               padding: 5%;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                word-wrap: break-word;
+                white-space: normal;
+                font-weight: bold;
+             
+              }
+          }
+        }
+         
+      }
+}
