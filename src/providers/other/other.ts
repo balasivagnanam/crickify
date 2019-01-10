@@ -190,6 +190,27 @@ export class OtherService {
 
   }
 
+  
+  getmyTournament() {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set("token",this.getToken());
+      this.http.get(apiUrl + '/tournament/mytournaments', {headers: headers})
+        .subscribe(res => {
+          resolve(res.json());
+          console.log("auth response tournaments", res.json()); 
+          if(res.json().statusCode == '200'){
+            console.log("tournaments", res.json());
+          }
+        }, (err) => {
+          reject(err);
+          console.log("error",err);
+        });
+    });
+
+  }
+
   createLocation(credentials) {
     return new Promise((resolve, reject) => {
       let headers = new Headers();

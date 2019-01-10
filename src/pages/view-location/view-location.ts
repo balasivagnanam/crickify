@@ -4,6 +4,7 @@ import {TeamService} from '../../providers/teams/teams';
 import {OtherService} from '../../providers/other/other';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { SubLocationService } from '../../providers/sublocation/sublocation';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 /**
  * Generated class for the CreatedTeamPage page.
  *
@@ -25,7 +26,7 @@ export class ViewLocationPage {
   location : any;
   sublocations : any;
   locationresponseData:any;
-  constructor(public navCtrl: NavController,public platform: Platform,public sublocationService:SubLocationService,public alertController: AlertController, public navParams: NavParams, public teamService: TeamService, public loadingController: LoadingController,formBuilder: FormBuilder,public otherService: OtherService) {
+  constructor(private iab: InAppBrowser,public navCtrl: NavController,public platform: Platform,public sublocationService:SubLocationService,public alertController: AlertController, public navParams: NavParams, public teamService: TeamService, public loadingController: LoadingController,formBuilder: FormBuilder,public otherService: OtherService) {
     this.location = navParams.get('location');
     
 this.getData();
@@ -55,6 +56,12 @@ platform.ready().then(() => {
     }
   }
 
+  viewmap(location){
+
+    var url='https://maps.google.com/?q='+location.lat+','+location.lng;
+    const browser = this.iab.create(url);
+    
+    }
   addMarker(){
  
     let marker = new google.maps.Marker({

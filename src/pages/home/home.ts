@@ -84,7 +84,7 @@ matches : any;
     this.admob.banner.prepare().then(() => {
    {    
   console.log('view did enter ad');
-this.presentToast('admob added success');
+
 }
     }).catch(e => {console.log("view did error enter ad",e);
   
@@ -222,7 +222,7 @@ this.presentToast('Token is '+localStorage.getItem('notificationtoken'));
     }
 
 
-    this.otherService.getAllTournament().then((result) => {
+    this.otherService.getmyTournament().then((result) => {
       this.tournamentresponseData = result;
       console.log(this.tournamentresponseData); 
       if (this.tournamentresponseData.statusCode == '200'){

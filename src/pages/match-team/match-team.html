@@ -29,7 +29,7 @@
   <div [ngSwitch]="tabsvalues"> 
       <div *ngSwitchCase="'summary'">
         <div class="cric-stat-batting-table">
-         
+          <div *ngIf="batting != null && batting.length>0">     
           <ul>
             <li class="header">
                 <p class="cric-player-name">Name</p>
@@ -40,6 +40,15 @@
               
             </li>
           </ul>
+          </div>
+          <div *ngIf="batting == null || batting.length==0"> 
+          <b><h1>
+
+              Team will be published later, Please visit again later.
+
+          </h1></b>  
+          
+          </div>    
         </div>
        </div>
   </div>

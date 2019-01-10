@@ -46,11 +46,19 @@
 }
 ion-select{
     max-width: 90% !important;
+    
 }
 
 .button, .button-ios , .button-clear, .button-clear-ios, .button-small, .button-small-ios {
-    color: #6610f2 !important;
+    color: #7b4397 !important;
+   
 }
+ion-segment{
+    background: #ffffff !important;
+}
+.mainbutton {
+    color: #ffffff !important;
+  }
 .cric-stat-batting-table{
     float: left;
     width: 100%;

@@ -17,10 +17,14 @@
 
 
 <ion-content padding class="appBackground">
-  <ion-card *ngFor="let location of locations" color="primary" >
+  <ion-card *ngFor="let location of locations">
     <ion-card-header>
       {{location.name}}
-	   </ion-card-header>
+
+      
+     </ion-card-header>
+     <ion-card-content>
+     {{location.address}}
      <ion-row no-padding>
 
         <div *ngIf="location?.user?.id== userDetails.user.id"  >
@@ -45,7 +49,17 @@
           </button>
         </ion-col>
       </div>
+      <div *ngIf="location?.lat!= 0 && location?.lng!= 0"  >
+      <ion-col>
+          <button ion-button color="secondary" icon-left clear small (click)="map(location)">
+              <ion-icon name="eye"></ion-icon>
+            Map
+  
+          </button>
+        </ion-col>
+      </div>
       </ion-row>
+    </ion-card-content>
   </ion-card>
 </ion-content>
 

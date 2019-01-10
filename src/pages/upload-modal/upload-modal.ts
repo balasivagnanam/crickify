@@ -25,7 +25,7 @@ export class UploadModalPage {
       loading.dismiss();
       //this.viewCtrl.dismiss({reload: true});
     }, err => {
-      this.alertDialog('Error',err);
+      this.alertDialog('Error during upload',err.statusMessage);
       loading.dismiss();
       //this.dismiss();
     });

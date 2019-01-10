@@ -4,10 +4,11 @@ import { AuthService} from '../../providers/auth/auth';
 //import { MatchService } from '../../providers/matches/matches';
 import { StatsService } from '../../providers/stats/stats';
 import {TeamService} from '../../providers/teams/teams';
-import { Events } from 'ionic-angular';
+import { Events,Platform  } from 'ionic-angular';
 import {CreateLocationPage} from '../create-location/create-location';
 import {OtherService} from '../../providers/other/other';
 import { ViewLocationPage } from '../view-location/view-location';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 /**
  * Generated class for the MyTeamsPage page.
  *
@@ -36,7 +37,7 @@ export class LocationsPage {
  
   userPostData = {"user_id":"","token":""};
 
-  constructor(public events: Events,public navCtrl: NavController, public navParams: NavParams, public authService:AuthService, public teamService:TeamService, public statsService:StatsService, public app: App, public loadingController:LoadingController,public otherService:OtherService) {
+  constructor(private iab: InAppBrowser,private platform: Platform,public events: Events,public navCtrl: NavController, public navParams: NavParams, public authService:AuthService, public teamService:TeamService, public statsService:StatsService, public app: App, public loadingController:LoadingController,public otherService:OtherService) {
     const data = JSON.parse(localStorage.getItem('userData'));
     this.userDetails = data;
   }
@@ -82,6 +83,17 @@ export class LocationsPage {
     
     }
   
+    map(location){
+      this.platform.ready().then(() => {
+        var url='https://maps.google.com/?q='+location.lat+','+location.lng;
+        const browser = this.iab.create(url,'_blank',{location:'no', zoom:'no'}); 
+browser.show();
+
+});
+    
+     
+      
+      }
  createLocation(){
     //Login page link
     this.navCtrl.push(CreateLocationPage);

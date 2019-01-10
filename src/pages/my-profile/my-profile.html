@@ -28,8 +28,8 @@
             <ion-row text-center text-wrap  class="header">
                 <ion-col col-1 >M</ion-col>
                 <ion-col col-1>I</ion-col>
-                <ion-col col-1 >R</ion-col>
-                <ion-col col-1 >B</ion-col>
+                <ion-col col-2 >R</ion-col>
+                <ion-col col-2 >B</ion-col>
                 <ion-col col-2 >Av</ion-col>
                 <ion-col col-2 >Sr</ion-col>
                </ion-row>
@@ -39,8 +39,8 @@
             <ion-row text-center text-wrap >
               <ion-col col-1>{{battingStats.matches}}</ion-col>
               <ion-col col-1>{{battingStats.innings}}</ion-col>
-              <ion-col col-1 >{{battingStats.run}}</ion-col>
-              <ion-col col-1 >{{battingStats.ball}}</ion-col>
+              <ion-col col-2 >{{battingStats.run}}</ion-col>
+              <ion-col col-2 >{{battingStats.ball}}</ion-col>
               <ion-col col-2 >{{battingStats.average | number : '1.2-2'}}</ion-col>
               <ion-col col-2 >{{battingStats.sr | number : '1.2-2'}}</ion-col>
             </ion-row>
@@ -56,7 +56,7 @@
                   <ion-col col-1 >M</ion-col>
                   <ion-col col-2 >O</ion-col>
                   <ion-col col-1 >M</ion-col>
-                  <ion-col col-1 >R</ion-col>
+                  <ion-col col-2 >R</ion-col>
                   <ion-col col-1 >W</ion-col>
                   <ion-col col-1 >wd</ion-col>
                   <ion-col col-2 >Ec</ion-col>
@@ -68,7 +68,7 @@
                 <ion-col col-1 >{{bowlingStats.matches}}</ion-col>
                 <ion-col col-2>{{bowlingStats.overs}}</ion-col>
                 <ion-col col-1 >{{bowlingStats.maiden}}</ion-col>
-                <ion-col col-1 >{{bowlingStats.run}}</ion-col>
+                <ion-col col-2 >{{bowlingStats.run}}</ion-col>
                 <ion-col col-1 >{{bowlingStats.wickets}}</ion-col>
                 <ion-col col-1 >{{bowlingStats.wide}}</ion-col>
                 <ion-col col-2 >{{bowlingStats.economy | number : '1.2-2'}}</ion-col>
@@ -79,7 +79,7 @@
 
             <br>
             
-    <button ion-button margin color="success" (click)="analysis()">Analysis</button> 
+    <button ion-button full class="mainbutton" (click)="analysis()">Analysis</button> 
     
             <br>
               <ion-item>

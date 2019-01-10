@@ -41,6 +41,16 @@
         </ion-item>  
 
 </ion-list>
+
+<div *ngIf="location?.lat!= 0 && location?.lng!= 0"  >
+   
+        <button ion-button color="secondary" icon-left clear small (click)="viewmap(location)">
+            <ion-icon name="eye"></ion-icon>
+          Map
+
+        </button>
+   
+    </div>
 </ion-card-content>
  </ion-card>
 
