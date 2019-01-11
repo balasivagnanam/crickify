@@ -77,7 +77,7 @@ saveUser(){
       }  else if(this.responseData.statusCode == "404") {
        loading.dismiss();
         console.log("unauthorrised");
-        this.alertDialog('Error','unauthorrised');
+        this.alertDialog('Error','Unauthorrised');
       } else {
         loading.dismiss();
   console.log("test others");
@@ -196,7 +196,7 @@ saveUser(){
         alert.present();
   }
   reloadImages() {
-   
+    this.getUser();
   }
 
   update() {
