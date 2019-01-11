@@ -26,24 +26,21 @@
       <div *ngSwitchCase="'summary'">
         <div class="cric-stat-batting-table">
           <h4>Team</h4>
-          <ol >
-		  <li *ngFor="let stat of batting">
-		  <ion-list>
-  <ion-item-sliding>
+          
+		  
+		  <ion-card *ngFor="let stat of batting">
+ 
     <ion-item>
       {{stat?.name}}
     </ion-item>
-<ion-item-options side="right">
-  <button ion-button (click)="delete(stat)">
+  <button ion-button right clear (click)="delete(stat)">
     <ion-icon name="trash"></ion-icon>
-    Delete
+    Remove
   </button>
-</ion-item-options>
-  </ion-item-sliding>
-</ion-list>
+
+ 
+</ion-card>
               
-            </li>
-          </ol>
 
         </div>
        </div>

@@ -11,7 +11,7 @@ import moment from 'moment';
 export class SlotjsPipe implements PipeTransform {
 
   transform(value: string, ...args) {
-    return moment(value).utc().local().format("HH:mm");
+    return moment(value).utc().format("HH:mm");
     //return value.toLowerCase();
   }
 }
