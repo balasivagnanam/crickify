@@ -111,9 +111,8 @@ export class MyApp {
     this.initializeApp();
     
     this.emptyPages=[];
-    this.adminPages = [{ title: 'Matches', component: TeamMatchesPage },
-    { title: 'Practice', component: TeamPracticePage },    
-    { title: 'Change Mode', component: ModeChangePage },
+    this.adminPages = [{ title: 'Upcoming Matches', component: TeamMatchesPage },
+    { title: 'Upcoming Practice', component: TeamPracticePage },    
     { title: 'Statistics', component: TeamStatsPage },
     { title: 'Tournament', component: TournamentsPage },
     { title: 'Claim SCA Team', component: ScaMatchesPage },
@@ -121,19 +120,19 @@ export class MyApp {
     { title: 'Team Expense', component: TeamExpensePage },
     { title: 'Player Payment Details', component: ViewPlayerExpensePage },
     { title: 'Message', component: ChatPage },
+    { title: 'Change Mode', component: ModeChangePage },
     { title: 'Logout', component: LogoutPage },
     ];
     this.normalPages = [
-      { title: 'Schedule', component: HomePage },
-      { title: 'Practice', component: PracticePage },
-      { title: 'Change Mode', component: ModeChangePage },
-      { title: 'Result', component: PreviousMatchesPage },      
-
+      { title: 'Upcoming Matches', component: HomePage },
+      { title: 'Upcoming Practice', component: PracticePage },  
+      { title: 'Match Results', component: PreviousMatchesPage },      
       { title: 'Team Stats', component: ListPage }, 
-      { title: 'Account', component: AccountPage }, 
+      { title: 'My Profile', component: AccountPage }, 
       { title: 'Book Facilities(Beta!)', component: SlotsPage },  
       { title: 'Extra (Beta!)', component: ExtraPage },
-      { title: 'Messages', component: ChatRoomPage },        
+      { title: 'Messages', component: ChatRoomPage },           
+      { title: 'Change Mode', component: ModeChangePage },
       { title: 'Logout', component: LogoutPage },
     ];
     // used for an example of ngFor and navigation

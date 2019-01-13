@@ -144,3 +144,20 @@ ion-segment{
         }
     }
 }
+
+.input-wrapper{
+    border-bottom : 1px solid color($colors, secondary) !important;
+}
+
+.toolbar-background-md{
+    background: color($colors, tertiary) !important;
+    color: color($colors, white) !important;
+}
+
+.toolbar-title-md{
+    color: color($colors, white) !important;
+}
+
+.scroll-content{
+    padding: 0px !important;
+}
